@@ -1,0 +1,129 @@
+% SECTION : sections_and_references {{{
+\section{Sections and References}
+\label{sec:sections_and_references}
+\parindent=0em
+
+\lettrine[lines=3, findent=3pt, nindent=0pt]{T}{he} original comic book Superman
+could leap tall buildings in a single bound. But then he had to come right back
+down to Earth—because he didn't fly. It wasn't until the 1940s, when animators
+for a new animated series decided it would be too difficult to routinely draw
+him bending his knees, that it was decided that Superman could take off into the
+air. Readers got to see smooth animation, and a superhero gained a new power.
+\vspace{0.5cm}
+
+% 	SUB-SECTION : tbox_references {{{
+\subsection{Tbox References}
+\label{ssec:tbox_references}
+
+This is a ref to go to the tcolorboxes table \reftable{table_title}
+
+This is a ref to go to the tcolorboxes definition \refdef{definition}
+
+This is a ref to go to the figure in the images section \reffig{placeholder}
+
+\subsectionend
+% }}} END SUB-SECTION : tbox_references
+
+\vspace{0.5cm}
+
+% 	SUB-SECTION : section_references {{{
+\subsection{Section References}
+\label{ssec:section_references}
+
+Section \refsec{tcolorboxes}
+
+Sub-section \refssec{tbox_references}
+
+Sub-sub-section \refsssec{footnotes}
+
+
+\subsectionend
+% }}} END SUB-SECTION : section_references
+
+\vspace{0.5cm}
+
+% 		SUB-SUB-SECTION : footnotes {{{
+\subsubsection{Footnotes}
+\label{sssec:footnotes}
+
+\lipsum[1-2]
+
+This sentence has a footnote attached.\footnote{Try writing out a few
+	sentences—anything at all. Now take a minute to look at how frequently each
+	letter in the alphabet appears.  Chances are you'll see a lot of the letter
+	"e." That's because the commonly used vowel appears in around 11 percent of
+	all words in the English language, according to Oxford Dictionaries. The
+	next most popular letter was "a," which appears in around 8.5 percent of all
+	words. The least common letter is "q," which appears in just 0.2 percent of
+	words.}
+
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : footnotes
+
+\vspace{0.5cm}
+
+% 		SUB-SUB-SECTION : citations {{{
+\subsubsection{Citations}
+\label{sssec:citations}
+
+\textbf{Types of citations aviable in natbib :}
+
+% ENUMERATE : citations {{{
+
+\begin{itemize}[noitemsep]
+
+	\item \cite{einstein}
+	\item \citeauthor{einstein}
+	\item \citeauthor*{einstein}
+	\item \citeyear{einstein}
+	\item \citeyearpar{einstein}
+	\item \citet{einstein} 
+	\item \citet*{einstein} 
+	\item \citet[chap. ~2]{einstein} 
+	\item \citep{einstein} 
+	\item \citep*{einstein} 
+	\item \citep[see][]{einstein} 
+	\item \citep[see][chap. ~2]{einstein}
+
+\end{itemize}
+
+% }}} END-ENUMERATE : citations
+
+\textbf{Multiple sources , same line :}
+
+
+% ENUMERATE : multiple_sources {{{
+
+\begin{itemize}[noitemsep]
+
+	\item \cite{einstein,lipsum}
+	\item \citet{einstein,lipsum}
+	\item \citep{einstein,lipsum}
+	\item \citet*{einstein,lipsum}
+	\item \citep*{einstein,lipsum}
+
+\end{itemize}
+
+% }}} END-ENUMERATE : multiple sources
+
+
+\textbf{Multiple authors for the same text :}
+
+i got too tired to read the man file , but you can do it im sure
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : citations
+
+
+% 		SUB-SUB-SECTION : reference_without_inline_citation {{{
+\subsubsection{Reference without inline citation}
+\label{sssec:reference_without_inline_citation}
+
+\nocite{lipsum}
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : reference_without_inline_citation
+\sectionend
+% }}} END SECTION : sections_and_refrences
+

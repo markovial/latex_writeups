@@ -1,0 +1,635 @@
+
+% SECTION : layer_3_network {{{
+\section{Layer 3 : Network}
+\label{sec:layer_3_network}
+\parindent=0em
+
+Layer 3, the Network Layer
+
+This is the most important layer of the OSI model, which performs real time processing and transfers data from nodes to nodes. Routers and switches are the devices used for this layer that connects the notes in the network to transmit and control data flow.
+
+The network layer assists the following protocols: Internet Protocol (IPv4), Internet Protocol (IPv6), IPX, AppleTalk, ICMP, IPSec and IGMP.
+
+
+% 	SUB-SECTION : routers {{{
+\subsection{Routers}
+\label{ssec:routers}
+
+router : sends data by observing ip information , also forwards
+
+A router connects multiple networks and routes network traffic between them.
+It’s really that simple. In the case of your home network, your router has one
+connection to the Internet and one connection to your private local network. In
+addition, most routers also contain built-in switches that let you connect
+multiple wired devices. Many also contain wireless radios that let you connect
+Wi-Fi devices.
+
+The simple way to think about routers—especially on your home network—is like
+this. The router sits in between your Internet connection and your local
+network. It lets you connect multiple devices to the Internet through one
+physical Internet connection and also lets those devices communicate with one
+another over the local network. In addition, the router offers some protection
+to your devices over being exposed directly to the Internet. To the Internet,
+all the traffic coming from your house looks like it’s coming from a single
+device. The router keeps track of what traffic goes to which actual device on
+your network.
+
+But you can’t connect directly to the Internet with just a router. Instead, your
+router must be plugged into a device that can transmit your digital traffic over
+whatever type of Internet connection you have. And that device is a modem.
+
+It is worth mentioning that the ``Internet'' is basically just a huge network of
+these routers talking to each other.
+
+The IP address of the router itself is also commonly reffere to as the default
+gateway. Typing this IP address into your browser will allow you to visit the
+configuration page for the router.
+
+
+Enterprise Network Routers
+
+While the switches and access points can provide thousands of ports and network
+connections, it is inefficient to have that many connections to the same
+"logical" network. The ports are divided into groups using a technology called
+Virtual LAN (VLAN) and each VLAN is associated with a different subnet.
+Communications between different VLANs have to go through a router. 
+
+
+
+Do different bands on the router get different public IP adresses
+
+single band router
+
+dual band router
+
+tri band router
+
+mesh wifi
+
+wifi extender vs repeater vs WAP
+
+
+router interface
+
+loopback interface
+
+upstream router address
+
+gateway routers
+
+router remote access
+
+% 		SUB-SUB-SECTION : nat {{{
+\subsubsection{NAT}
+\label{sssec:nat}
+
+
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : nat
+
+% 		SUB-SUB-SECTION : pat {{{
+\subsubsection{PAT}
+\label{sssec:pat}
+
+Port forwarding allows for unsolicited network traffic to come from the outside
+internet into our local networks. This allows us to run servers and other
+similar devices that act like web servers , because these have no idea when
+someone is going to access them , and who is going to be asking for the
+information.
+
+Port range forwarding : Instead of specifying the specific port that can be
+accessed on an internal machine from an external network we can specify an
+entire range of ports.
+
+Port forwarding is a setting that, when enabled, forwards a network port from
+one network node to another.
+
+Port triggering is a setting that automates port forwarding by specifying
+triggering ports to which inbound traffic is automatically forwarded.
+
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : pat
+
+% 		SUB-SUB-SECTION : routing_tables {{{
+\subsubsection{Routing Tables}
+\label{sssec:routing_tables}
+
+routing tables : routing tables contain address information for destination ,
+subnet mask , gateway and NIC.
+
+router metric : when a router has two different ways to get to a particular
+place , the metric value allows it to pick which one of these ways it would
+rather use. Earlier routing metrics used to use something called the hop count ,
+and just pick the lower count value to set as the metric.
+
+
+Nowdays routers use all kinds of things to arrive at the final metric of a
+particular route. Some of these things are :
+
+ - Hop count : this is the number of routers it takes to get to a particular
+network ID.
+ - MTU : The maximum transmission unit. This basically tells us the maximum amount
+of data we can haul in a frame. E.g ethernet has a MTU of 1500 bytes
+
+ - Bandwidth
+ - Cost
+ - Latency : How long does it take this particular route to react to what I want
+ to get done.
+
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : routing_tables
+
+% 		SUB-SUB-SECTION : routing_protocols {{{
+\subsubsection{Routing Protocols}
+\label{sssec:routing_protocols}
+
+static route : A static route is a fixed route that is manually configured and
+is persistent. We are essentially entering the all the routing table information
+ourselves for any computers that we might want to connect to. this also means
+that if we want to connect to another computer on another LAN , we have our
+router manually configured to send information to the router of that particular
+LAN , but if the connection breaks then there is no other way to talk to that
+particular network. The only way to get that particular connection up and
+running again would be for us to rewrite the routing tables. This is why outisde
+of personal inbuliding LANs static routing is very uncommon.
+
+Dynamic routing : Dynamic routing is basically builds some smarts inside routers
+,so that they are able to rewrite their own routing tables and keep everything
+that is supposed to be accesible in a network , accesible on the network. This
+is opposed to static routing where we would be rebuilding our routing tables
+ourselves , and not just us , everyone who wants to get in touch with a
+particluar router which has lost one of its routes. When all the routers
+reconfigure themselves automatically to reflect a new route it is called
+convergence. There are essentially two sets of dynamic routing protocols :
+
+ - Distance Vector : this is the old granddaddy of dynamic routing protocols.
+ When some router is using distance vector , they will be sending their entire
+ routing tables to its neighbors. These neighbors will then look at the routing
+ tables , compare it to their own and then determine which is the best route
+ that they can use. Distance vectors lean heavily on the idea of hop count as a
+ metric.
+
+ - Link State : Link state regularly makes a hi / how you doin call to the
+ connected routers. Just to make sure these routers are actually there , and if
+ there are any changes (somebody doesnt say hi back , or some other dude says hi
+ instead of the guy we called), Then the guy who initiated the interaction would
+ update its routing table , and send a message to the other connected routers
+ being like hey , I updated my routing table , are you guys interested in
+ updating your contacts info too ? And over time the entire network gets
+ resolved. This is known as advertising and results in much faster convergence
+ than distance vector dynamic routing protocol.
+
+Dynamic routing protocols can also be broken up into the following categories :
+
+ - EGP (Exterior Gateway Protocol) : When a dynamic routing protocol wants to
+ talk to something that is outside the sphere of influence of one route
+ controller (e.g. an ISP like comcast) they will use the EGP protocol. This
+ being said , there is only one EGP in the entire world and this is the BGP or
+ the border gateway protocol. The ISPs will use the BSP to communicate with each
+ other using autonomous system numbers that are assigned to them.
+
+ - BGP : It is a hybrid protcol that contains aspects of link state and dynamic
+ vector. BGP breaks the entire internet into roughly 20,000 autonomous systems.
+ The entire job of the BGP is to route data between different autonomous
+ systems. This means one peice of data that has a AS number destination from one
+ AS to another only needs to go to a router that lives on the `edge' of an AS
+ zone instead of always bouncing around slowly making its way to the border of
+ the current AS network. This router on the edge only needs to know where to
+ forward into one router on the next AS zone , and all of this is done using the
+ AS numbers.
+
+Autonomous Systems (AS) : An AS is a group of one or more router networks that
+are under the control of a single entity (ISP , university , goverment system
+etc...) An AS has direct or indirect control of all of the routers , all the
+networks , all the subnets etc.. within their own AS. This allows ASs to route
+within their own ``internal network'' howver they want.  When these AS systems
+want to talk to each other though they have to use BGP. Each AS has its own
+autonomous system number (ASN).
+
+ - IGP (Interior Gateway Protocol) : When you want to talk to someone who is
+ within the same routing sphere of influence as you (e.g. you and your actual
+ physical apartment neigbor both use comcast) then you will use IGP. There are a
+ couple of kinds of IGPs :
+ 
+  - - RIP : Rip is a distance vector protocol and an interior gateway protocol
+  (IGP)  that uses hop count to deterimine routes. If a route is found with a
+  shorter hop count to the same destination, the routers with a choice to the
+  said path will simply delete the longer path from the routing table. There are
+  versions of RIP.  RIP1 is only used in classful networks ( e.g Class A , B
+  etc...). Rips maximum hop count is 15. Since we are using distance vector ,
+  the routers will only talk to each other every so often , therefore it can
+  take a longer time to convergence as opposed to other link state based IGP
+  protocols.
+
+  - - EIGRP : Another example of a distance vector routing protocol.
+
+  - - OSPF : Open shortest path first. Most popular dynamic routing IGP. Uses
+  Link state protocol. As soon as OSPF routers are connected together they start
+  sending link state advertisments and calculating their links. These links are
+  based mainly on bandwidth. They will automatically elect one out of all of the
+  routers connected (on this particualar AreaID) as the designated leader
+  router, and another as the backup leader. The link state advertisments will
+  communicate information about who the individual routers are connected to ,
+  this is in opposition to sending out entire routing tables as is done in
+  dynamic vector. Since we are only sending small quick connection information ,
+  the routers can quickly update thier own tables and know which path leads them
+  where. This leads to faster convergence. OSPF also works with CIDR (classes
+  subnets) and also works with BGP.
+
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : routing_protocols
+
+\subsectionend
+% }}} END SUB-SECTION : routers
+
+% 	SUB-SECTION : ipv4 {{{
+\subsection{IPv4}
+\label{ssec:ipv4}
+
+An IP address encodes two pieces of information:
+
+- The network number (network ID)—this number is common to all hosts on the same IP network.
+
+- The host number (host ID)—this unique number identifies a host on a particular network or logical subnetwork. 
+
+In order to distinguish the network ID and host ID portions within an address, each host must also be configured with a network prefix length or subnet mask. This is combined with the IP address to determine the identity of the network to which the host belongs.
+
+There are some IP adresses that are special.
+
+Private ip address : there are three different types of adresses that you can
+only access on a private network. You cant go through the internet or google to
+these addresses. These are used on internal networks for systems that do not do
+any sharing outside of the network. These are :
+
+ - 10.x.x.x : Any IP starting with a 10 is a private IP address.
+ - 172.16.x.x - 172.31.x.x :
+ - 192.168.x.x :
+
+Loopback Addresses : This is an address that you get only when you try to ping
+yourself using a loopback adaptor (a RJ plug looped in on itself). This used to
+be a good way to test the working of your network cards.  Nowdays loopbacks are
+not that useful. The actual address for IPV4 is 127.0.0.1 , and for IPV6 is ::1:
+.
+
+
+Public ip address :
+
+
+
+
+
+
+% subnet masks {{{
+
+% }}}
+
+% ip classes {{{
+
+The first octet of a Class A address goes from 1 to 126. The first octet of a
+Class B address goes from 128 to 191. The first octet of a Class C address goes
+from 192 to 223.
+
+examples :
+
+B : 130.222.255.170 
+C : 216.53.12.11
+C : 223.255.6.88
+
+% }}}
+
+% default gateway {{{
+
+% }}}
+
+gateway vs interface
+
+ip broadcast vs mac broadcast
+
+ARP : Address Resolution Protocol.
+
+CIDR : Classless Inter-Domain Routing
+
+unicast :
+
+Multicast : a multicast allows a computer to have multiple different IP
+addresses assigned to it. One will be your normal regular IP adress and the
+second one will be a multicast address. This adress is then used in conjucntion
+with IGMP protocol to be able to send the same stream of traffic from a server
+(like a video) to multiple different devices , while only having opened one IP
+connection. Namely the multicast connection with the multicast IP.There are a
+special batch of IP adresess reserved for this type of thing.  All IP adresses
+starting with 224.x.x.x are multicast adrresses.
+
+broadcast :
+
+\subsectionend
+% }}} END SUB-SECTION : ipv4
+
+% 	SUB-SECTION : ipv6 {{{
+\subsection{IPv6}
+\label{ssec:ipv6}
+
+IPv6 is 128 bits compared to 32 bit Ipv4 Address. This gives IPv6 $ 2^{128} $
+addresses , as opposed to the $ 2^{32} $ that IPv4 has. IPv6 uses 8 segments
+that are traditionally seperated by 7 colons, and look something like :
+
+ 00 00:00 00:00 00:00 00:00 00:00 00:00 00:00 00
+
+IPv6 addresses all have /64 subnet masks with no exceptions. This means that
+there is no more classfull or classless subnetting.
+
+Ipv6 allows data to move much faster through the internet.
+
+Another thing about Ipv6 is that we no longer need private IP adresses. This is
+because IPv4 private adresses mainly came about cause we were running out of
+adresses to use, so we decided to recycle as many as we could using clever
+tricks.
+
+Now that we have plenty of addresses to hand out we dont need your little
+trickses. The problem however is that since IPv6 addresses are all public and
+unique there is a certain degree of traceability to your system anytime you are
+communicating on the internet. People could trace your traffic down to your
+individual unique NIC MAC address , so there is a loss of privacy. To advoid
+this instead of using EUI-64 , we just use a randomizer to generate the last
+half of the link-local address. A system admin could however force the machines
+on the LAN to use EUI-64 if he wants to for some reason.
+
+
+
+When we use IPv6 then we always have at least two addresses :
+
+ - Link Local Address (IPv6) : The link local address is automatically generated
+ by any IPv6 capable host as soon as the device starts up. The link-local
+ address always starts with - 
+
+ fe80:0000:0000:0000
+
+ The second part of the link-local address comes from the MAC address. The
+ conversion from MAC to IPv6 happens using EUI-64.
+
+ - Internet Address (IPv6) : The internet address is given to you at least in
+ part by your gateway router.
+
+ Link local adresses cannot connect to the internet.
+
+
+
+
+
+NDP : Neighbor Discovery Protocol
+
+Neighbor Solicitation Messages are sent out right after the computers boot up
+and have generated their Link-Local Address. This is sent to the switch using
+ICMPv6 which is a multicast version of ICMP.
+
+Neighbor Advertisment
+
+Router Solicitation
+
+Router Advertisment
+
+Stateless auto Configuration
+
+\subsectionend
+% }}} END SUB-SECTION : ipv6
+
+
+% 	SUB-SECTION : firewalls {{{
+\subsection{Firewalls}
+\label{ssec:firewalls}
+
+% https://www.networkstraining.com/different-types-of-firewalls/
+
+Types of Firewall
+
+On a TCP/IP network, each host is identified by an IP address, while each
+application protocol (HTTP, FTP, SMTP, and so on) is identified by a port
+number. Packet filters on a firewall can be applied to IP addresses and port
+numbers.
+
+A more advanced firewall (stateful inspection) can analyze the contents of
+network data packets, so long as they are not encrypted, and block them if any
+suspicious signatures are detected and identify suspicious patterns of activity.
+
+A hardware firewall is a dedicated appliance with the firewall installed as
+firmware. A software firewall is installed as an application on a workstation or
+server. Most Internet routers also feature a built-in firewall, configured via
+the web management interface. 
+
+A simple host firewall (or personal firewall) may be installed on a client PC to
+protect it. Windows features such a firewall. There are also numerous thirdparty
+host firewalls.
+
+On an enterprise network, a network firewall is likely to be deployed to monitor
+and control all traffic passing between the local network and the Internet. On
+networks like this, clients might not be allowed to connect to the Internet
+directly but forced to use a proxy server instead. The proxy server can be
+configured as a firewall and apply other types of content filtering rules.
+
+Some proxy servers work transparently so that clients use them without any extra
+configuration of the client application. Other proxies require that client
+software, such as the browser, be configured with the IP address and port of the
+proxy server. This information would be provided by the network administrator. 
+
+%-------------------------
+
+A firewall exists between the internal network and the external public internet.
+
+A firewall basically blocks unwanted traffic from entering the network , and
+allows wanted traffic.
+
+The word firewall comes from the actual physical firewalls that exist inside
+buildings. In case of fire such walls exists to contain fires within specific
+zones to prevent them from spreading and burning your whole house down.
+
+A firewall becomes more and more essential , the larger your internal network
+gets. It sits on the router and prevents any traffic from accessing devices on
+your internal network that people on the outside have no business acessing
+anyway.
+
+The rules according to which the firewall will allow or block traffic are
+defined inside a file called the access control list. Firewall rules can be
+based upon :
+
+- IP addresses
+- Domain names
+- Protocols
+- Progams
+- Ports
+- Key words
+
+Host Based Firewall
+A host based firewall is installed as a peice of software on a computer instead
+of a router. This means that only that specific computer is protected instead of
+the whole internal network. An example of this is the Microsoft Windows firewall
+that runs locally on your computer.
+
+Network based Firewall
+A network based firewall is a combination of a hardware and software based
+firewall. This firewall is so named because it operates at layer 3 or rather the
+network layer. It is placed between the private network and the public internet.
+These can be built into a router , or in case of larger organizations they can
+also be a stand alone device that can be purchased, or they can also be part of
+a service providers cloud infrastructure.
+
+% Stateless firewall {{{
+
+Stateless firewalls examing packets / ports etc \ldots independently based on
+different variables. As long as a specific incoming or outgoing packet meets the
+predefined requirements from the ACL ( Access Control List ) then they will be
+indiviually allowed through , with no reference to any preceding packets that
+may have passed the firewall before.
+
+The following functions fall under simple static stateless filtering :
+
+
+- Port Filtering : Allow or deny certain port communications. Closing Port 80
+will deny all web page traffic. While allowing port 25 will allow sending
+emails.
+
+MAC Filtering : Allow or deny commnication in or out of a device based upon the
+MAC number of the NIC ( Network Interface Card )
+
+IP Filtering : This is also known as packet filtering , and will block packets
+in layer 3. This can allow blocking of incoming or outgoing traffic by a
+specific IP address or range of IP addresses.
+
+Content Filtering : this is also known as information filtering. This blocks
+traffic by matching strings of characters. Common examples might be `Hate'
+`Violence' and `Pornography'.
+% }}}
+
+% Statefull firewall {{{
+
+Dynamic or statefull filtering is a more comprehensive inspection of all the
+incoming data packets. Statefull or dynamic filtering goes all the way from
+layer 2 to layer 7. It will not only inspect the source and destination IPs /
+MACs included in the packet / frame , it will also go so far as the application
+layer and will inspect the content inside the payload.
+
+A thing to keep in mind though is that dynamic / stateful inspection is not a
+simple sum of all of the stateless inspection models.
+
+The most important feature of dynamic firewalls is tha packets are exmined as
+steams , and the decision on whether to pass a packet depends onwhat packets
+have already been though the firewall.
+
+
+% }}}
+
+- Edge Firewall
+- Interior Firewall
+
+
+
+\subsectionend
+% }}} END SUB-SECTION : firewalls
+
+% 	SUB-SECTION : ids {{{
+\subsection{IDS}
+\label{ssec:ids}
+
+Intrusion detection systems detect and report possible attacks to the
+administrators.
+
+\subsectionend
+% }}} END SUB-SECTION : ids
+
+% 	SUB-SECTION : ips {{{
+\subsection{IPS}
+\label{ssec:ips}
+
+An intrusion prevention system is an evolution of IDS. It was originally known
+as active IDS.
+
+Intrusion Prevention systems run in-line with networks and act to stop detected
+attacks.
+
+The difference is that a firewall filters malicious traffic , the IDS notifies
+on detection on malicious traffic , the IPS acts to stop malicious traffic.
+
+- inline IPS
+
+
+\subsectionend
+% }}} END SUB-SECTION : ips
+
+% 	SUB-SECTION : layer_3_vpns {{{
+\subsection{Layer 3 VPNs}
+\label{ssec:layer_3_vpns}
+The purpose of the Network Layer VPNs has deviated towards the Layer 3 tunnelling as well as the adoption of encryption mechanisms and techniques that were lacking in Layer 2.
+
+For example, we are using the IPsec tunnelling and encrypting protocol for the development of VPNs, although some of the other technical examples are GRE and L2TP protocols.
+
+It would be quite interesting if we notice that however L2TP tunnels Layer 2 traffic, along with that, it uses Layer 3 which is the IP layer, to help perform this mechanism. Due to such functioning, we call it a network layer VPN.
+
+This pretty much sums up the working of network Layer VPNs. Network Layers are responsible for providing an extremely accurate and suitable site to do encryptions.
+
+The network layer is quite low as compared to the stack for providing a robust and seamless network and internet connectivity to all applicants running freely on the top of the Network Layer. The functioning of Network Layers is steady enough to let the suitable granularity arose for the traffic regarding being the part of the VPN based on its IP address architecture.
+
+\subsectionend
+% }}} END SUB-SECTION : layer_3_vpns
+
+% 	SUB-SECTION : protocols {{{
+\subsection{Protocols}
+\label{ssec:protocols}
+
+IGMP : works on layer 2 (internet) of TCP/IP and layer 3 (network) on the OSI 
+
+
+% NAT {{{
+
+Network Address translation (NAT) : Converts IP addresses between internal networks
+and `the internet'. This is also known as Port address translation (PAT). You
+can think about this as translating an `IP address' to an `internet address'.
+NAT works at layer 3 because it is modifying the IP header. If you use PAT you could argue that it is working at layer 4 as well because it MIGHT change the source port of the packet in case it is not unique.
+
+
+
+Several internal addresses can be NATed to only one or a few external
+addresses by using a feature called Port Address Translation (PAT) which is
+also referred to as "overload", a subset of NAT functionality.
+
+PAT uses unique source port numbers on the Inside Global IP address to
+distinguish between translations. Because the port number is encoded in 16
+bits, the total number could theoretically be as high as 65,536 per IP
+address.
+
+PAT will attempt to preserve the original source port, if this source port
+is already allocated PAT will attempt to find the first available port
+number starting from the beginning of the appropriate port group 0-511,
+512-1023 or 1024-65535.
+
+If there is still no port available from the appropriate group and more than one
+IP address is configured, PAT will move to the next IP address and try to
+allocate the original source port again. This continues until it runs out of
+available ports and IP addresses.
+
+
+
+Static NAT (SNAT) : The router will assign one IP address to one machine on the
+internal network so that any incoming traffic will always be sent to that
+machine.
+
+Dynamic / Pooled NAT (DNAT) : Assigns IP address to a machine only when it is
+tryign to communicate with something over the internet. The problem is that
+routers only have a finite amount of IPs to give out and if we need more
+machines on the internal network , and are using DNAT , we are shit outta luck.
+
+LAN Address vs WAN address
+
+% }}}
+
+
+\subsectionend
+% }}} END SUB-SECTION : protocols
+
+
+
+
+\sectionend
+% }}} END SECTION : layer_3_network

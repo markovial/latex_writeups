@@ -1,0 +1,467 @@
+Use of "Konjunktiv I"
+Indirect speech
+
+Konjunktiv I is used primarily for indirect speech. Indirect speech is when the narrator communicates what has been said by another person.
+
+You can see this more clearly with a couple of examples:
+
+
+You can see that the clause with Konkunktiv I ("er habe Durst") is accompanied by a main clause in the Indicative ("Hans sagt").
+The verbs used most often with indirect speech
+
+    erzählen (to narrate, to tell)
+    fragen (to ask)
+    hören (to hear)
+    lesen (to read)
+    sagen (to say, to tell)
+    vermuten (to assume, to suppose)
+    versprechen (to promise)
+
+Indirect speech without "Konjunktiv I"
+
+    If you use the particle "dass", it is correct if the subordinate clause is in the indicative instead of Konjunktiv I:
+
+Konjunktiv I
+Correct	Hans sagt, er sei 30 Jahre alt
+Konjunktiv I + dass
+Correct	Hans sagt, dass er Durst habe
+Indikativ + dass
+Correct	Hans sagt, dass er Durst hat
+Indikativ sin dass
+Incorrect
+Even though you can hear people speak this way	
+
+    If the Konjunktiv I is the same in the Indikativ (something that happens quite often), usually the Konjunktiv II is used in place of Konjunktiv I for indirect speech. 
+
+Conjugation of "Konjunktiv I"
+
+Konjunktiv I exists in the following verb tenses:
+
+    Präsens
+    Perfekt
+    Futur I
+    Futur II (rarely used)
+
+Präsens
+Conjugation of regular verbs
+
+As an example, let's check out the verb malen (to paint):
+	Indikativ	Konjunktiv I
+ich	mal -e	mal -e
+du	mal -st	mal -est
+er/sie/es	mal -t	mal -e
+wir	mal -en	mal -en
+ihr	mal -t	mal -et
+sie	mal -en	mal -en
+
+You can see that the persons ich, wir and sie are the same as the Indikativ.
+Depending on the verb stem (for example, if the stem ends with -t, such as
+arbeiten), it is possible that the forms du and ihr also are the same as the
+indicative. For this reason, the only form that is always different is the 3rd
+person singular.  Conjugation of irregular verbs
+
+Let's look at the verb lesen (to read):
+	Indikativ	Konjunktiv I
+ich	les-e	les-e
+du	lies -t	les -est
+er/sie/es	lies -t	les -e
+wir	les-en	les-en
+ihr	les-t	les-et
+sie	les-en	les-en
+
+As a reminder, strong verbs were the ones that changed their stem in the 2nd and
+3rd person singular forms in the present indicative. That stem change disappears
+in the subjunctive.  Conjugation of auxiliary verbs "sein" and "haben"
+
+	The conjugation of the Konjunktiv I of the verb sein has many peculiarities
+	in its stem: Sei is the 1st and 3rd person singular form (with the "-e"
+	ending) The conjugation of haben for Konjuktiv I is regular.
+
+
+	sein	haben
+ich	sei	habe
+du	seist / seiest	hab-est
+er/sie/es	sei	hab-e
+wir	sei-en	hab-en
+ihr	sei-et	hab-et
+sie	sei-en	hab-en
+Perfekt
+
+The Perfekt of "Konjunktiv I" is constructed like this:
+
+Verb sein or haben in the present of subjunctive I + Participle II.
+	Indikativ	Konjunktiv I
+ich	habe gemalt	habe gemalt
+du	hast gemalt	habest gemalt
+er/sie/es	hat gemalt	habe gemalt
+wir	haben gemalt	haben gemalt
+ihr	habt gemalt	habet gemalt
+sie	haben gemalt	haben gemalt
+Futur I
+
+The conjugation of Futur I in "Konjunktiv I" is:
+
+The verb werden in the subjunctive I present + the infinitive.
+
+	Indikativ	Konjunktiv I
+ich	werde malen	werde malen
+du	wirst malen	werdest malen
+er/sie/es	wird malen	werde malen
+wir	werden malen	werden malen
+ihr	werdet malen	werdet malen
+sie	werden malen	werden malen
+Futur II
+
+The conjugation of Futur II in Konjunktiv I is:
+Verb werden in subjunctive I present = Partizip II + the verb sein or haben in the infinitive.
+
+Futur II of Konjunktiv I exists but is not used.
+	Indikativ	Konjunktiv I
+ich	werde gemalt haben	werde gemalt haben
+du	wirst gemalt haben	werdest gemalt haben
+er/sie/es	wird gemalt haben	werde gemalt haben
+wir	werden gemalt haben	werden gemalt haben
+ihr	werdet gemalt haben	werdet gemalt haben
+sie	werden gemalt haben	werden gemalt haben
+
+-------------------------------------------
+
+
+
+The Special Subjunctive Mood in English:
+
+English, like German, has a special subjunctive, employed mostly in formulating third-person commands:
+
+    "So be it."
+    "Long live the king!"
+    "May he rot in hell."
+
+It may also be used in clauses that concede a point:
+
+    "Be it ever so humble, there's no place like home."
+    "Be he alive, or be he dead, I'll grind his bones to make my bread."
+
+As the examples suggest, the special subjunctive is largely obsolete and can usually be found only in set expressions from an earlier time.
+
+The Special Subjunctive Mood in German (Konjunktiv I):
+
+Just like English, German bases the special subjunctive on the stem of the present tense forms. It then adds the same endings as does the general subjunctive (Konjunktiv II):
+ ich mache/ habe/ fahre/ sehe  	 wir machen/ haben/ fahren/ sehen 
+ du machest/ habest/ fahrest/ sehest  	 ihr machet/ habet/ fahret/ sehet 
+	 Sie machen/ haben/ fahren/ sehen 
+ er/sie/es mache/ habe/ fahre/ sehe  	 sie machen/ haben/ fahren/ sehen 
+
+Note that all of these forms are completely regular, regardless of whether or not the verb is strong. The only exception is "sein:"
+ ich sei  	 wir seien 
+ du seist  	 ihr seiet 
+	 Sie seien 
+ er/sie/es sei  	 sie seien 
+
+With the exception of "sein," many special subjunctive forms are indistinguishable from the ordinary present tense: e.g. ich mache, wir haben, Sie fahren, sie sehen.
+
+Indirect Discourse:
+
+The special subjunctive appears most frequently in restatements of what someone else has claimed. Let us assume, for example, that a politician asserts:
+"Ich bin ein ehrlicher Mensch. Ich habe kein Geld gestohlen." 	I am an honest person. I haven't stolen any money.
+
+A newspaper would report this statement as follows:
+Er sagte, er sei ein ehrlicher Mensch. Er habe kein Geld gestohlen. 	He said that he was an honest person. He hadn't stolen any money.
+
+By using the special subjunctive, the newspaper is asserting its own neutrality concerning the claim's veracity. English does not provide so elegant a means. "He said that he was an honest person" - as opposed to "He said that he is an honest person" - is a kind of modified subjunctive that provides some distance, but it cannot be sustained over longer passages as easily as German's special subjunctive. Instead, English must rely on words like "allegedly" and frequent repetitions of "he said...."
+
+Here is part of an interview that the Bildzeitung conducted with Katherina Reiche, a politician who was expecting a baby:
+BILD: Haben Sie keine Angst, dass der Wahlkampfstress Ihnen oder Ihrem ungeborenen Kind schadet? 	BILD: Aren't you afraid that the stress of a campaign will hurt you or your unborn child?
+Katherina Reiche: Nein! Ich habe eine robuste Konstitution, stehe unter ständiger ärztlicher Betreuung. Die Nottasche fürs Krankenhaus steht bereit. 	Katherina Reiche: No! I have a robust constitution, am constantly under a doctor's care. The emergency bag for the hospital is already packed.
+BILD: Was wird es denn? 	BILD: What is the baby going to be?
+Katherina Reiche: Es wird ein Mädchen. Wir haben auch schon einen Namen, aber der wird nicht verraten. 	Katherina Reiche: "It's a girl. We already have a name, but it won't be revealed."
+
+A report of this interview might read:
+Die Bildzeitung fragte, ob sie keine Angst habe, dass der Wahlkampfstress ihr oder ihrem ungeborenen Kind schade. Katherina Reiche antwortete, nein, sie habe eine robuste Konstitution, stehe unter ständiger ärztlicher Betreuung. Die Nottasche fürs Krankenhaus stehe bereit. Gefragt, was es denn werde, antwortete Frau Reiche, dass es ein Mädchen werde. Sie haben auch schon einen Namen, aber der werde nicht verraten.
+
+German can also use the general subjunctive in indirect discourse: "sie hätte keine Angst"; "Die Nottasche fürs Krankenhaus stände bereit." This form is more colloquial, however. Depending on the context, it can also imply disbelief. But even a formal, neutral report might employ the general subjunctive when the special subjunctive form is ambiguous, i.e. when there is no distinction between the special subjunctive and indicative forms. Instead of "sie haben schon einen Namen," which might or might not be subjunctive, one might write the unambiguous "sie hätten schon einen Namen." It is thus possible to use both the special and general subjunctives within the same sentence: "Sie hätten auch schon einen Namen, aber der werde nicht verraten."
+
+If the original quotation contained a general subjunctive form, it is retained:
+"Ich würde es tun, wenn ich könnte, aber ich bin jetzt zu krank." 	I would do it if I could, but now I am too sick.
+
+This becomes:
+Er würde es tun, wenn er könnte, aber er sei jetzt zu krank.
+
+Tenses in the Special Subjunctive:
+
+While the general subjunctive offers only two tenses, the special subjunctive has four:
+
+
+Some Other Uses of Special Subjunctive:
+
+    1) As in English, the special subjunctive can be used for third-person commands:
+    Es lebe der König! 	Long live the king!
+    Gott gebe, dass wir sicher ankommen. 	May God grant that we arrive safely.
+    Hole ihn der Teufel! 	The devil take him!
+    Möge sie glücklich sein. 	May she be happy.
+    Er komme! 	Let him come!
+    Gott sei Dank. 	Thanks be to God.
+
+    2) Somewhat more common in third-person commands is "mögen" in the special subjunctive:
+    Möge sie glücklich sein. 	May she be happy.
+    Möge dir Gott helfen. 	May God help you.
+
+    3) Consistent with such commands, recipes in old-fashioned cookbooks are often written in the special subjunctive:
+    Man erhitze die Artischockenherzen in etwas Olivenöl. 	Heat the artichoke hearts in some olive oil.
+
+    4) German has no word for "unless." It can - albeit rarely - use "außer dass" or "außer wenn", but most common is the special subjunctive phrase, "es sei denn,...":
+    Wir fahren morgen früh, es sei denn, du willst länger schlafen. 	We're leaving tomorrow morning, unless you want to sleep late.
+    Wir fahren mit deinem Wagen, es sei denn, dass du etwas dagegen hast. 	We'll go in your car, unless you have something against that.
+    Sie kommt bald, es sei denn, dass sie den Bus verpasst hat. 	She's coming soon, unless she missed the bus.
+
+    5) As in English, the special subjunctive can be used to concede a point, although such constructions are largely obsolete:
+    Sei der Berg auch noch so hoch, wir werden ihn ersteigen. 	However high the mountain may be, we'll climb it.
+    Er möge schreien, soviel er will, wir kaufen es ihm nicht. 	He can yell as much as he wants, but we won't buy it for him.
+
+
+--------------------------------------------------
+
+
+In this lesson, we will learn about the German Konjunktiv I (subjunctive I), how to build it in the present, past and future tense, and how to use it in different sentences.
+The German Konjunktiv I
+
+If you want to talk about something another person said, you may use one of the two special moods in German - the Konjunktiv I (Subjunctive I).
+
+This is not a very common form, since it's primarily used for indirect speech. It's rarely used in spoken language, but you will find it in newspapers and articles. Let's learn how to build the Konjunktiv I in the present, past and future tense.
+When to Use the Konjunktiv I
+
+We use the Konjunktiv I primarily for indirect speech, for example:
+
+    Mein Bruder sagt, er komme später. (My brother says that he is coming later.)
+    Er sagt, er habe Deutsch gelernt. Sie meint, er lüge. (He says that he learned German. She thinks that he is lying.)
+
+Some of the common verbs used with the Konjunktiv I and indirect speech are:
+
+    sagen (say)
+    fragen (ask)
+    antworten (answer)
+    erklären (explain)
+    versprechen (promise)
+    vermuten (assume)
+
+Translation: She says that she is coming later. aaa
+
+Konjunktiv I is also used in some specific idioms, for example:
+
+    Es lebe der König! (Long live the king!)
+    Gott sei dank! (Thank God!)
+    Ruhe in Frieden. (Rest in peace.)
+    Man nehme 150 Gramm Mehl für den Teig. (Take 150 gram of flour for the dough. (Used for recipes))
+
+
+The Konjunktiv I can appear in four different tenses: present tense, past tense and the two different future tenses. We will see how to form the Konjunktiv I for each of these tenses.
+
+Let's first learn how to form the Konjunktiv I present with the example of the verb machen (make, do):
+
+Pronoun 	Conjugation
+ich 	mache
+du 	machest
+er, sie, es 	mache
+wir 	machen
+ihr 	machet
+sie 	machen
+Sie 	machen
+
+As you will notice, the Konjunktiv looks very similar to the present tense, using many of the same endings -e, -st, -t, -en, -t, -en. The only difference is the added -e between the verb and the ending in the second person singular (du machest') and first person plural (ihr machet).
+Konjunktiv I Present of Auxiliary verbs
+
+As per usual, the auxiliary verbs sein (to be) and haben (to have) will have a special conjugation. Let's see them:
+
+Pronoun 	Sein 	Haben
+ich 	sei 	habe
+du 	seist/seiest 	habest
+er, sie, es 	sei 	habe
+wir 	seien 	haben
+ihr 	seiet 	habet
+sie 	seien 	haben
+Sie 	seien 	haben
+
+Let's see the forms in a few examples:
+
+
+Translation: He explains that she is no longer here. aaa
+
+
+The Konjunktiv I can also appear in the Perfect, the past tense. It is constructed with the Konjunktiv I present of the auxiliary verbs haben (to have) and sein (to be) and the Partizipple II. Here it is using the verb kochen (to cook):
+
+Pronoun 	Conjugation
+ich 	habe gekocht
+du 	habest gekocht
+er, sie, es 	habe gekocht
+wir 	haben gekocht
+ihr 	habet gekocht
+sie 	haben gekocht
+Sie 	haben gekocht
+
+For example:
+
+
+Konjunktiv I in the Futur I
+
+The future tense of the Konjunktiv I is constructed with the Konjunktiv I present of the verb werden (to become) and the infinitive. Let's see a table with the example of the verb kaufen (to buy): 
+
+PAYWALLLL PepeHands
+
+------------------------------------------------------------
+
+
+Konjunktiv 1
+
+Mit dem Konjunktiv 1 wird die  Äußerung eines Dritten wiedergegeben. Dies geschieht häufig  durch die  indirekte Rede. Sie wird häufig in Protokollen, Berichten oder anderen Textsorten verwendet. Der Konjunktiv I wird mit dem Wortstamm des Infinitiv gebildet:
+Konjunktiv (Möglichkeitsform) und Indikativ (Wirklichkeitsform)
+
+Der Konjunktiv ist die Möglichkeitsform.
+
+An den Stamm (Infinitiv minus -(e)n: lauf·en, sei·n) werden die Endungen des Konjunktiv angefügt. Der Konjunktiv I wird vom Präsens abgeleitet. Die Verwendung der alten Konjunktivformen ist rückläufig.
+
+Bildung des Konjunktiv I, Hilfsverben haben, sein
+	Konjunktiv 1 	sein 	haben
+ ich 	-e 	bin 	sei 	habe 	habe
+ du 	-est 	bist 	seiest 	hast 	habest
+ er/sie/es 	-e 	ist 	sei 	hat 	habe
+ wir 	-en 	sind 	seien 	haben 	haben
+ ihr 	-et 	seid 	seiet 	habt 	habet
+ sie 	-en 	sind 	seien 	haben 	haben
+
+Übung sein im Konjunktiv 1
+Bildung Konjunktiv I, Modalverben können u. müssen
+	Konjunktiv 1 	können 	müssen
+ ich 	-e 	kann 	könne 	muss 	müsse
+ du 	-est 	kannst 	könnest 	musst 	müssest
+ er/sie/es 	-e 	kann 	könne 	muss 	müsse
+ wir 	-en 	können 	können 	müssen 	müssen
+ ihr 	-et 	könnt 	könnet 	müsst 	müsset
+ sie 	-en 	können 	können 	müssen 	müssen
+
+Bildung Konjunktiv I, Modalverben dürfen und wollen
+	Konjunktiv 1 	dürfen 	wollen
+ ich 	-e 	darf 	dürfe 	will 	wolle
+ du 	-est 	darfst 	dürfest 	willst 	wollest
+ er/sie/es 	-e 	darf 	dürfe 	will 	wolle
+ wir 	-en 	dürfen 	dürfen 	wollen 	wollen
+ ihr 	-et 	dürft 	dürfet 	wollt 	wollet
+ sie 	-en 	dürfen 	dürfen 	wollen 	wollen
+
+Bildung Konjunktiv I, starke Verben, schwache Verben
+	Konjunktiv 1 	reden 	laufen
+ ich 	-e 	rede 	rede 	laufe 	laufe
+ du 	-est 	redest 	redest 	läufst 	laufest
+ er/sie/es 	-e 	redet 	rede 	läuft 	laufe
+ wir 	-en 	reden 	reden 	laufen 	laufen
+ ihr 	-et 	redet 	redet 	lauft 	laufet
+ sie 	-en 	reden 	reden 	laufen 	laufen
+
+Übung zu starken und schwachen Verben
+Die Anwendung des Konjunktiv 1
+
+Den Konjunktiv I verwendet man vor allem in der indirekten Rede (in der Schriftsprache). Übungen zur indirekten Rede.
+
+Beispiele für diedirekte Rede und die indirekte Rede
+
+Übungen zur indirekten Rede im Konjunktiv 1
+Lautet der Konjunktiv I genauso wie der Indikativ, dann verwendet man den Konjunktiv 2.
+
+Beispiele - direkte Rede und die indirekte Rede im Konjunktiv II
+
+Konjunktiv 1 Regeln
+Konjunktiv 1
+
+Mit dem Konjunktiv 1 wird die  Äußerung eines Dritten wiedergegeben. Dies geschieht häufig  durch die  indirekte Rede. Sie wird häufig in Protokollen, Berichten oder anderen Textsorten verwendet. Der Konjunktiv I wird mit dem Wortstamm des Infinitiv gebildet:
+Beispiel: Sie meinte, man könne nicht so früh Feierabend machen.
+Beispielsätze im Konjunktiv 1
+
+
+Konjunktiv (Möglichkeitsform) und Indikativ (Wirklichkeitsform)
+Der Konjunktiv ist die Möglichkeitsform.
+
+An den Stamm (Infinitiv minus -(e)n: lauf·en, sei·n) werden die Endungen des Konjunktiv angefügt. Der Konjunktiv I wird vom Präsens abgeleitet. Die Verwendung der alten Konjunktivformen ist rückläufig.
+
+
+
+
+    Startseite
+    Deutsch
+    Grammatik
+    Rechtschreibung
+    Englisch
+    Mathematik
+    Geschichte
+
+    Du übst gerade...
+    Deutsch
+    Deutsch Grammatik
+    Indirekte Rede
+    1 Indirekte Rede - Regeln
+    2 indirekte Rede Übung
+    3 Indirekte Rede Übungen
+    4 Indirekte Rede Deutsch
+    5 Indirekte Rede Pronomen
+    6 Indirekte Rede Pronomen
+    7 Indirekte Rede Pronomen
+    8 Arbeitsblätter
+
+    Konjunktiv 1 und 2
+    Grammatik ABs
+
+
+----------------------
+
+Beispiele Umwandlung direkte - indirekte Rede
+
+
+ Lautet der Konjunktiv I genauso wie der Indikativ, dann verwendet man den Konjunktiv II (zwei).
+Beispiele - direkte Rede - indirekte Rede Konjunktiv II
+
+Wörtliche Rede: Tobias sagte gestern: „Ob ich wohl eine Erkältung habe?"
+Indirekte Rede:Tobias fragte, ob er wohl eine Erkältung (habe) hätte.
+
+Der Konjunktiv 1 wird meist nur in Tageszeitungen, Rundfunk- und TV-Nachrichten sowie offiziellen Berichten verwendet.
+Die indirekte Rede mit einem Infinitiv
+
+
+In der Umgangssprache benutzt man die indirekte Rede mit dem Konjunktiv kaum. Im Alltag verwendet man den Indikativ und einen Nebensatz.
+Den Nebensatz leitet man mit "dass" ein.
+
+
+------------
+
+https://online-lernen.levrai.de/deutsch-uebungen/grammatik_5_7/29_konjunktiv/konjunktiv_1.htm
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,58 @@
+This is BibTeX, Version 0.99d (TeX Live 2022/Arch Linux)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: document.aux
+The style file: rusnat.bst
+Database file #1: 1_bibliography/references.bib
+Warning--I didn't find a database entry for "www.overleaf.org"
+Warning--to sort, need author or key in wiki_filesystem
+Warning--to sort, need author or key in likegeeks_filesystem
+Warning--to sort, need author or key in linux_filesystem
+Warning--to sort, need author or key in wiki_posix
+Warning--to sort, need author or key in linuxtopia
+Warning--empty year in likegeeks_filesystem; set to ????
+Warning--empty year in linux_filesystem; set to ????
+Warning--empty year in linuxtopia; set to ????
+Warning--empty year in wiki_posix; set to ????
+Warning--empty year in wiki_filesystem; set to ????
+You've used 5 entries,
+            1755 wiz_defined-function locations,
+            432 strings with 3362 characters,
+and the built_in function-call counts, 1134 in all, are:
+= -- 95
+> -- 0
+< -- 0
++ -- 7
+- -- 0
+* -- 80
+:= -- 150
+add.period$ -- 15
+call.type$ -- 5
+change.case$ -- 0
+chr.to.int$ -- 3
+cite$ -- 25
+duplicate$ -- 55
+empty$ -- 161
+format.name$ -- 0
+if$ -- 261
+int.to.chr$ -- 3
+int.to.str$ -- 1
+missing$ -- 0
+newline$ -- 32
+num.names$ -- 0
+pop$ -- 65
+preamble$ -- 1
+purify$ -- 15
+quote$ -- 0
+skip$ -- 25
+stack$ -- 0
+substring$ -- 40
+swap$ -- 9
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 15
+warning$ -- 10
+while$ -- 0
+width$ -- 0
+write$ -- 61
+(There were 11 warnings)

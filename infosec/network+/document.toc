@@ -1,0 +1,87 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{\numberline {1}Layer 1 : Physical}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Telephony}{2}{subsection.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.1}SONET}{2}{subsubsection.1.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.2}Trunk Lines}{3}{subsubsection.1.1.2}%
+\contentsline {subsubsection}{\numberline {1.1.3}ISDN}{3}{subsubsection.1.1.3}%
+\contentsline {subsubsection}{\numberline {1.1.4}PBX}{3}{subsubsection.1.1.4}%
+\contentsline {subsubsection}{\numberline {1.1.5}VoIP}{3}{subsubsection.1.1.5}%
+\contentsline {subsection}{\numberline {1.2}802.3 : Ethernet}{3}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}802.11 : Wireless}{3}{subsection.1.3}%
+\contentsline {subsubsection}{\numberline {1.3.1}Antennas}{4}{subsubsection.1.3.1}%
+\contentsline {subsubsection}{\numberline {1.3.2}802.11 Coverage}{4}{subsubsection.1.3.2}%
+\contentsline {subsubsection}{\numberline {1.3.3}Wireless Access Points}{5}{subsubsection.1.3.3}%
+\contentsline {subsubsection}{\numberline {1.3.4}WEP}{6}{subsubsection.1.3.4}%
+\contentsline {subsubsection}{\numberline {1.3.5}WPS}{6}{subsubsection.1.3.5}%
+\contentsline {subsubsection}{\numberline {1.3.6}WPA}{6}{subsubsection.1.3.6}%
+\contentsline {subsubsection}{\numberline {1.3.7}EAP / 802.1X}{6}{subsubsection.1.3.7}%
+\contentsline {subsubsection}{\numberline {1.3.8}Access Control Lists (ACL)}{6}{subsubsection.1.3.8}%
+\contentsline {subsubsection}{\numberline {1.3.9}Users}{7}{subsubsection.1.3.9}%
+\contentsline {subsection}{\numberline {1.4}802.15.1 : Bluetooth}{7}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Internet of Things (IOT)}{7}{subsection.1.5}%
+\contentsline {subsubsection}{\numberline {1.5.1}ANT+}{7}{subsubsection.1.5.1}%
+\contentsline {subsubsection}{\numberline {1.5.2}NFC}{7}{subsubsection.1.5.2}%
+\contentsline {subsubsection}{\numberline {1.5.3}Infrared}{7}{subsubsection.1.5.3}%
+\contentsline {subsubsection}{\numberline {1.5.4}RFID}{7}{subsubsection.1.5.4}%
+\contentsline {subsubsection}{\numberline {1.5.5}Z-Wave}{7}{subsubsection.1.5.5}%
+\contentsline {subsubsection}{\numberline {1.5.6}802.15.4 : Zigbee}{7}{subsubsection.1.5.6}%
+\contentsline {subsection}{\numberline {1.6}Modems}{7}{subsection.1.6}%
+\contentsline {subsubsection}{\numberline {1.6.1}802.3b : Cable}{7}{subsubsection.1.6.1}%
+\contentsline {subsubsection}{\numberline {1.6.2}DSL}{8}{subsubsection.1.6.2}%
+\contentsline {subsubsection}{\numberline {1.6.3}Satellite}{8}{subsubsection.1.6.3}%
+\contentsline {subsection}{\numberline {1.7}Cellular Network}{9}{subsection.1.7}%
+\contentsline {subsubsection}{\numberline {1.7.1}Generations}{10}{subsubsection.1.7.1}%
+\contentsline {subsubsection}{\numberline {1.7.2}802.16 : WiMAX}{10}{subsubsection.1.7.2}%
+\contentsline {subsection}{\numberline {1.8}Protocols}{11}{subsection.1.8}%
+\contentsline {section}{\numberline {2}Layer 2 : Data Link}{11}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Switches}{11}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}MAC / EUI Addresses}{12}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Protocols}{12}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}VLANs}{12}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}PPP}{13}{subsection.2.5}%
+\contentsline {subsubsection}{\numberline {2.5.1}AAA}{13}{subsubsection.2.5.1}%
+\contentsline {subsubsection}{\numberline {2.5.2}RADIUS}{13}{subsubsection.2.5.2}%
+\contentsline {subsubsection}{\numberline {2.5.3}TACACS+}{13}{subsubsection.2.5.3}%
+\contentsline {subsection}{\numberline {2.6}Kerberos}{13}{subsection.2.6}%
+\contentsline {subsection}{\numberline {2.7}Layer 2 VPNs}{13}{subsection.2.7}%
+\contentsline {section}{\numberline {3}Layer 3 : Network}{14}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Routers}{14}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}NAT}{14}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.2}PAT}{14}{subsubsection.3.1.2}%
+\contentsline {subsubsection}{\numberline {3.1.3}Routing Tables}{14}{subsubsection.3.1.3}%
+\contentsline {subsubsection}{\numberline {3.1.4}Routing Protocols}{15}{subsubsection.3.1.4}%
+\contentsline {subsection}{\numberline {3.2}IPv4}{16}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}IPv6}{16}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Firewalls}{17}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}IDS}{18}{subsection.3.5}%
+\contentsline {subsection}{\numberline {3.6}IPS}{18}{subsection.3.6}%
+\contentsline {subsection}{\numberline {3.7}Layer 3 VPNs}{18}{subsection.3.7}%
+\contentsline {subsection}{\numberline {3.8}Protocols}{18}{subsection.3.8}%
+\contentsline {section}{\numberline {4}Layer 4 : Transport}{19}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Proxy Servers}{19}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}TCP}{19}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}UDP}{19}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Ports / Port Numbers}{20}{subsection.4.4}%
+\contentsline {section}{\numberline {5}Layer 5 : Session}{20}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Protocols}{20}{subsection.5.1}%
+\contentsline {section}{\numberline {6}Layer 6 : Presentation}{21}{section.6}%
+\contentsline {subsection}{\numberline {6.1}DHCP}{21}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}DNS Server}{21}{subsection.6.2}%
+\contentsline {subsubsection}{\numberline {6.2.1}DNS Hierarchy}{21}{subsubsection.6.2.1}%
+\contentsline {subsubsection}{\numberline {6.2.2}Lookup Zones}{22}{subsubsection.6.2.2}%
+\contentsline {subsubsection}{\numberline {6.2.3}DNS Records}{22}{subsubsection.6.2.3}%
+\contentsline {subsubsection}{\numberline {6.2.4}DDNS}{22}{subsubsection.6.2.4}%
+\contentsline {subsection}{\numberline {6.3}Protocols}{22}{subsection.6.3}%
+\contentsline {section}{\numberline {7}Layer 7 : Application}{23}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Protocols}{23}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Domain Names / Host Names}{23}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Layer 7 VPNs}{24}{subsection.7.3}%
+\contentsline {section}{\numberline {8}Security}{25}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Symmetric Encryption}{25}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Asymmetric Encryption}{25}{subsection.8.2}%
+\contentsline {subsubsection}{\numberline {8.2.1}hashing}{25}{subsubsection.8.2.1}%
+\contentsline {subsubsection}{\numberline {8.2.2}Digital Signatures}{25}{subsubsection.8.2.2}%
+\contentsline {subsubsection}{\numberline {8.2.3}Certificates}{25}{subsubsection.8.2.3}%
+\contentsline {subsection}{\numberline {8.3}Wireless Security}{26}{subsection.8.3}%
+\contentsline {section}{\numberline {9}References}{27}{section.9}%
+\contentsfinish 

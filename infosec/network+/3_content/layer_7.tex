@@ -1,0 +1,153 @@
+
+% SECTION : layer_7_application {{{
+\section{Layer 7 : Application}
+\label{sec:layer_7_application}
+\parindent=0em
+
+Layer 7, the Application Layer
+
+This layer works at the user end to interact with user applications. QoS (quality of service), file transfer and email are the major popular services of the application layer.
+
+This layer uses following protocols: HTTP, SMTP, DHCP, FTP, Telnet, SNMP and SMPP.
+% cookies {{{
+
+Cookies
+
+A cookie is a plain text file created by a website when you visit it. The purpose of cookies is to store session information so that the website can be personalized for you. For example, cookies may record information you type into forms, preferences you choose for the way the site works, and so on. They may also be used to display targeted advertising to you or collect information (metadata) about the browser you are using, your IP address, the links you click, how often you visit a site, and so on. An IP address can often be tied quite closely to a geographic location.
+
+This sort of information is referred to as Personally Identifiable Information (PII). Anyone able to collect this information might be able to track the sites you visit and work out where you live. You can configure browser settings to try to limit the way sites can gather PII from your browser.
+
+There are two classes of cookies:
+
+- First-party cookies—set by the domain you visit. For example, if you browse comptia.org and the server creates a cookie owned by comptia.org then this is a first-party cookie.
+
+- Third-party cookies—set by another domain. For example, if you browse comptia.org and a widget on the site tries to create a cookie for adtrack.com, this is a third-party cookie. 
+
+Cookies cannot spread malware, but if your computer is infected with a virus or a Trojan, it may be able to steal the information contained within cookies. 
+
+Spyware and adware may make use of cookies to track what sites you visit and
+display targeted adverts.
+
+
+% }}}
+
+% 	SUB-SECTION : protocols {{{
+\subsection{Protocols}
+\label{ssec:protocols}
+
+
+
+\subsectionend
+% }}} END SUB-SECTION : protocols
+
+% 	SUB-SECTION : domain_names {{{
+\subsection{Domain Names / Host Names}
+\label{ssec:domain_names}
+
+Host / Node : a host is a network end point. Some say that a computer 'hosts' or
+'serves' the clients that use an application. This is the orgin of the terms
+host and server. A host is not neccessarilly a single computer. It is possible
+for a single computer to use multiple IP addresses, especially when it is
+providing multiple services such as an e-mail server and a web server at the
+same time. One IP address will be used to identify the e-mail server software,
+the other IP address will identify the web server software but both server
+applications are running at the same time on the same computer. The IP addresses
+allow each to be accessed individually.
+
+
+Hostname : A hostname is just the name given to an IP host. A hostname can be
+configured as any string with up to 256 alphanumeric characters (plus the
+hyphen), though most hostnames are much shorter. The hostname can be combined
+with information about the domain in which the host is located to produce a
+Fully Qualified Domain Name (FQDN). For example, if www is a host name, then the
+FQDN of the host www within the comptia.org domain is www.comptia.org. 
+
+A hostname is a label assigned to a device (a host) on a network. It
+distinguishes one device from another on a specific network or over the
+internet. The hostname for a computer on a home network may be something like
+new laptop, Guest-Desktop, or FamilyPC.
+
+Hostnames are also used by DNS servers so you can access a website by a common,
+easy-to-remember name. This way, you don't have to remember a string of numbers
+(an IP address) to open a website.
+
+Each of the following is an example of a Fully Qualified Domain Name with its
+hostname written off to the side:
+
+    www.google.com: www
+    images.google.com: images
+    products.office.com: products
+    www.microsoft.com: www
+
+The hostname (like products) is the text that precedes the domain name (for
+example, office), which is the text that comes before the top-level domain
+(.com).
+
+A fully qualified domain name (FQDN) contains both a host name and a domain name. For a landing page, the fully qualified domain name usually represents the full URL or a major portion of the top-level address.
+
+In looking at a fully qualified domain name, the host name typically comes before the domain name. The host name represents the network or system used to deliver a user to a certain address or location. The domain name represents the site or project that the user is accessing.
+
+One example is the use of various networks to access educational websites. Typically, the domain name will consist of the identifier for a specific school’s web domain, along with the top-level .edu suffix. For example, the domain name for America University would be americauniversity.edu. The host name would consist of either "www" where the global internet is the host, or some proprietary network name that represents the host – for example, if the school uses a custom internal network called "myAUnet" then "myAUnet" would be the host name.
+
+
+
+URL : Uniform Resource Locators . When a web browser is used to request a record
+from a web server, the request must have some means of specifying the location
+of the web server and the resource on the web server that the client wants to
+retrieve. This information is provided as a Uniform Resource Locator (URL).  The
+URL (or web address) contains the information necessary to identify and (in most
+cases) access an item. 
+
+Protocol : 
+https://
+
+hostname : www.
+
+domain name : comptia
+
+top level comain : .com
+
+filepath : /home/index.html
+
+A URL consists of the following parts:
+
+1. Protocol—this describes the access method or service type being used. URLs
+can be used for protocols other than HTTP/HTTPS. The protocol is followed by the
+characters ://
+
+2. Host location—this could be an IP address, but as IP addresses are very hard
+for people to remember, it is usually represented by a Fully Qualified Domain
+Name (FQDN). DNS allows the web browser to locate the IP address of a web server
+based on its FQDN.
+
+3. File path—specifies the directory and file name location of the resource, if
+required. Each directory is delimited by a forward slash. The file path may or
+may not be case-sensitive, depending on how the server is configured. If no file
+path is used, the server will return the default (home) page for the website. 
+
+\subsectionend
+% }}} END SUB-SECTION : domain_names
+
+% 	SUB-SECTION : layer_7_vpns {{{
+\subsection{Layer 7 VPNs}
+\label{ssec:layer_7_vpns}
+Application layer VPNs have especially been designed with specified specific applications, unlike the other two categories.
+
+Some justifying examples of Application Layer VPNs include the VPNs such as SSL-based VPNs. SSL based VPNs provide encryption between the Web browsing and webs serving while running the SSL.
+
+A second suitable example for application layer VPNs is functioning of SSH, which is pushed as an encrypting mechanism dedicated to the secure login sessions to access various network devices. SSH tends to encrypt, thus by encrypting it can create suitable VPNs for different other similar functioning application layer protocols, for example, FTP and HTTP.
+
+However, one persistent drawback that has been seen continuously while running Application Layer VPNs is its non-seamless functioning.
+
+The users of this VPN are asked to enable the end devices for the creation of a better VPN designated to each application.
+
+Just as more services for corresponding applications are being added, it is inevitable to create the development for them separately as well.
+
+This functioning feature of Application Layer VPNs differs from the Network Layer and Link Layer VPNs. Those two VPNs are responsible for providing seamless VPN connectivity for all the setup applications.
+
+\subsectionend
+% }}} END SUB-SECTION : layer_7_vpns
+
+
+\sectionend
+% }}} END SECTION : layer_7_application

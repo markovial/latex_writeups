@@ -1,0 +1,237 @@
+
+
+% SECTION : univariate_linear_regression {{{
+\section{Univariate Linear Regression}
+\label{sec:univariate_linear_regression}
+\parindent=0em
+
+% 		SUB-SUB-SECTION : equation {{{
+\subsubsection{Hypothesis Equation}
+\label{sssec:equation}
+
+\[ h_{\theta}(x) = \theta_{0} + \theta_{1} \cdot x \tag{1} \]
+
+or more formally :
+
+\[
+	\begin{aligned}
+		h : x^{(i)} \rightarrow y^{(i)}
+		& , &
+		x^{(i)} \in X=\{x_1 , \ldots , x_m \}
+		\\
+	\end{aligned}
+\]
+
+% TABULAR TABLE : univariate_regression_notation {{{
+
+\tabulartable
+{ 0.5\columnwidth }
+{ lll }
+{
+
+
+Input Variable                   & : & \( x \) \\
+Output Variable                  & : & \( y \) \\
+Training Example                 & : & \( (x,y) \) \\
+\( i^{th} \) training example    & : & \( ( x^{(i)} , y^{(i)} ) \) \\
+Training Set                     & : & \( i = 1 , \ldots , m \) \\
+Number of training examples      & : & \( m \) \\
+Hypothesis Function / Prediction & : & \( h_{\theta}(x) \) / \( \hat{y} \) \\
+Slope                            & : & \( \theta_1 \) \\
+Intercept                        & : & \( \theta_0 \) \\
+Learning Rate                    & : & \( \alpha \) \\
+
+}
+
+
+% }}} End TABULAR TABLE :  Univariate Regression Notation
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : equation
+% 		SUB-SUB-SECTION : cost_function {{{
+\subsubsection{Cost Function}
+\label{sssec:cost_function}
+
+\[
+\begin{aligned}
+	J(\theta_{0}, \theta_{1}) & = 
+	\frac{1}{2}
+	\cdot \frac{1}{m}
+	\cdot \sum_{i=0}^{m}
+	\{
+( h_{\theta}(x)^{(i)} - y^{(i)} )^{2}
+\} \\
+\end{aligned}
+\tag{2}
+\]
+
+\( \min_{ \theta_0 , \theta_1 } J(\theta_0,\theta_1) \)
+\pagebreak
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : cost_function
+% 		SUB-SUB-SECTION : gradient_descent {{{
+\subsubsection{Gradient Descent}
+\label{sssec:gradient_descent}
+
+\[ 
+\begin{aligned} 
+	& \text{repeat until convergence  }
+	\{ \\ 
+	& \hspace{0.5cm}
+	\theta_j :=
+	\theta_j
+	- \alpha
+	\cdot \frac{\partial}{\partial \theta_j} J(\theta_0,\theta_1) 
+	\hspace{0.5cm} 
+	\text{(for j=0 and j=1)} 
+	\\
+	&
+	\} \\
+\end{aligned}
+\]
+\[
+\begin{aligned}
+	&\frac{\partial}{\partial \theta_j}
+	J(\theta_{0}, \theta_{1}) \\
+	& =
+	\frac{\partial}{\partial \theta_j}
+	\left(
+		\frac{1}{2}
+		\cdot \frac{1}{m}
+		\cdot \sum_{i=0}^{m}
+			\left\{
+				\left(
+					h_{\theta}(x)^{(i)} - y^{(i)}
+				\right)^{2}
+			\right\}
+	\right)
+	\\
+	& =
+	\frac{\partial}{\partial \theta_j}
+	\left(
+		\frac{1}{2}
+		\cdot \frac{1}{m}
+		\cdot \sum_{i=0}^{m}
+			\left\{
+				\left(
+					\left(
+						\theta_{0} + \theta_{1} \cdot x^{(i)}
+					\right)
+					- y^{(i)}
+				\right)^{2}
+			\right\}
+	\right)
+	\\
+\end{aligned}
+\]
+
+\[
+\begin{aligned}
+	& \frac{\partial}{\partial \theta_0} J(\theta_{0}, \theta_{1}) \\
+	& =
+	\frac{\partial}{\partial \theta_0}
+	\left(
+		\frac{1}{2}
+		\cdot \frac{1}{m}
+		\cdot \sum_{i=0}^{m}
+			\left\{
+				\left(
+					\left(
+						\theta_{0} + \theta_{1} \cdot x^{(i)}
+					\right)
+					- y^{(i)}
+				\right)^{2}
+			\right\}
+	\right)
+	\\
+	& =
+	\phantom{ \frac{\partial}{\partial \theta_0} }
+	% align parenthesis 
+	\left(
+		\frac{1}{m}
+		\cdot \sum_{i=0}^{m}
+			\left\{
+				\left(
+					h_{\theta}(x)^{(i)} - y^{(i)}
+				\right)^{2}
+			\right\}
+	\right)
+	\\
+\end{aligned}
+\]
+
+\[
+\begin{aligned}
+	& \frac{\partial}{\partial \theta_1} J(\theta_{0}, \theta_{1}) \\
+	& =
+	\frac{\partial}{\partial \theta_1}
+	\left(
+		\frac{1}{2}
+		\cdot \frac{1}{m}
+		\cdot \sum_{i=0}^{m}
+			\left\{
+				\left(
+					\left(
+						\theta_{0} + \theta_{1} \cdot x^{(i)}
+					\right)
+					- y^{(i)}
+				\right)^{2}
+			\right\}
+	\right)
+	\\
+	& =
+	\phantom{ \frac{\partial}{\partial \theta_0} }
+	% align parenthesis
+	\left(
+	\frac{1}{m}
+	\cdot \sum_{i=0}^{m}
+		\left\{
+			\left(
+				h_{\theta}(x)^{(i)} - y^{(i)}
+			\right)^{2}
+		\right\}
+	\right)
+	\cdot (x)^{\left(i\right)}
+	\\
+\end{aligned}
+\]
+\pagebreak
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : gradient_descent
+% 		SUB-SUB-SECTION : update_rule {{{
+\subsubsection{Update Rule}
+\label{sssec:update_rule}
+
+Following is the \textbf{INCORRECT} way of implementing the update rule :
+\[
+\begin{aligned}
+	temp0 &:= \theta_0 - \alpha
+	\cdot \frac{\partial}{\partial \theta_0} J(\theta_0,\theta_1) \\
+	\theta_0 &:= temp0 \\
+	temp1 &:= \theta_1 - \alpha
+	\cdot \frac{\partial}{\partial \theta_1} J(\theta_0,\theta_1) \\
+	\theta_1 &:= temp1 \\
+\end{aligned}
+\]
+
+Following is the \textbf{CORRECT} way to implement a simultaneous update.
+\[
+\begin{aligned}
+	temp0 &:= \theta_0 - \alpha
+	\cdot \frac{\partial}{\partial \theta_0} J(\theta_0,\theta_1) \\
+	temp1 &:= \theta_1 - \alpha
+	\cdot \frac{\partial}{\partial \theta_1} J(\theta_0,\theta_1) \\
+	\theta_0 &:= temp0 \\
+	\theta_1 &:= temp1 \\
+\end{aligned}
+\]
+
+Basically do all your calculations before you do all your assignments.
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : update_rule
+
+\sectionend
+% }}} END SECTION : univariate_linear_regression
+
+

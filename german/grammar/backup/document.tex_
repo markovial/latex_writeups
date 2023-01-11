@@ -1,0 +1,1498 @@
+% =============================================================================
+
+% PACKAGES ---------------------------------------------------------------- {{{
+
+% DOCUMENT CLASS , ENCODING , TITLE -------------------------------------- {{{
+
+\documentclass[a4paper,twocolumn,10pt]{article}
+\setlength{\columnsep}{20pt}
+%\setlength{\columnseprule}{1pt}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\title{This will be some super impressive title}
+\author{Ishan Tiwathia}
+\date{\today}
+
+% }}}
+% PAGE FORMAT ------------------------------------------------------------ {{{
+
+
+\usepackage{courier}
+
+\usepackage[document]{ragged2e} % Text alignment package
+\usepackage{enumitem}           %
+\usepackage{setspace}           %
+\singlespacing                  %
+
+% \onehalfspacing
+% \doublespacing
+% \setstretch{1.1}
+
+\usepackage{geometry}           %
+\geometry{
+	a4paper,
+	total = {170mm,257mm},
+	top=20mm,
+	left=20mm,
+	right=20mm,
+	bottom=20mm
+}
+
+\usepackage[switch,displaymath,mathlines]{lineno}
+%\modulolinenumbers[5]
+\linenumberfont{\normalfont\large\sffamily}
+\renewcommand\thelinenumber{\color{gray}\arabic{linenumber}}
+\setlength\linenumbersep{0.5cm}
+
+
+% }}}
+% TEXT FORMAT ------------------------------------------------------------ {{{
+
+\usepackage[activate={true,nocompatibility},
+final,
+tracking=true,
+kerning=true,
+spacing=true,
+factor=1100,
+stretch=10,
+shrink=10]{microtype}
+% prevents a certiain amount of overfull hbox badness
+% helps with other margin stuff
+
+\usepackage{verbatim}
+\makeatletter
+\newcommand{\verbatimfont}[1]{\def\verbatim@font{#1}}%
+\makeatother%\verbatimfont{courier}
+
+\usepackage{type1cm}  % Allows font resizing
+\usepackage{lettrine} % Allows font calligraphy (enlarge first char)
+\renewcommand{\LettrineTextFont}{\rmfamily}
+
+
+% }}}
+% TITLE FORMAT  ---------------------------------------------------------- {{{
+
+\usepackage[export]{adjustbox}
+\usepackage{changepage}
+\usepackage[compact,explicit]{titlesec} % Allows customization of section head
+
+% compact : reduces spaces before and after sections
+% explicit : allows for expicit positioning of title statement with #1
+
+% title_format : command,shape,format,label,sep,before,after
+% title-brackets : {}[]{}{}{}{}[] , basically only shape and aftercode have []
+
+% Section Title Settings {{{
+\titleformat {\section}
+	[hang]
+	{\color{black}\Large\bfseries}
+	{}
+	{0em}
+	{
+	\nolinenumbers
+	\begin{section-box}
+	\thesection. #1
+	\end{section-box}
+	}
+[
+\linenumbers
+]
+
+% left before-sep after-sep right-sep
+\titlespacing{\section}{0cm}{0cm}{0cm}[0cm]
+
+% }}}
+
+% Sub-Section Title Settings {{{
+\titleformat {\subsection}
+	[hang]
+	{\color{black}\small\bfseries}
+	{}
+	{0em}
+	{
+	\nolinenumbers
+	\begin{subsection-box}
+		\thesubsection. #1
+	\end{subsection-box}
+	}
+[
+\linenumbers
+]
+
+% left before-sep after-sep right-sep
+\titlespacing*{\subsection}{0cm}{0cm}{0cm}[0em]
+
+% }}}
+
+% Sub-Sub-Section Title Settings {{{
+\titleformat {\subsubsection}
+	[hang]
+	{\color{black}\small\bfseries}
+	{}
+	{0em}
+	{
+	\nolinenumbers
+	\begin{subsubsection-box}
+		\thesubsubsection. #1
+	\end{subsubsection-box}
+	}
+[
+\linenumbers
+]
+
+% left before-sep after-sep right-sep
+\titlespacing{\subsubsection}{0cm}{0cm}{0cm}[0em]
+
+% }}}
+
+% }}}
+% HYPERLINKS ------------------------------------------------------------- {{{
+
+\usepackage{hyperref} % auto hyperlinks toc , refrences
+                      % others can be manually specified
+
+\hypersetup{
+colorlinks = true,
+linktoc    = all,
+citecolor  = purple,
+filecolor  = black,
+linkcolor  = black,
+urlcolor   = black
+}
+
+
+% }}}
+% HEADER , FOOTER -------------------------------------------------------- {{{
+
+\usepackage{fancyhdr} % allows for header and footer customizations
+\pagestyle{fancy}     %
+\fancyhf{}            %
+
+\renewcommand{\headrulewidth}{0.2pt} % draw line at header
+\lhead{\textit{\leftmark}}           % LEFT  : show section name at header
+\rhead{\textit{\thepage}}            % RIGHT : Show page number
+% \chead{ }
+
+\renewcommand{\footrulewidth}{0pt} % draw line at footer
+%\lfoot{\textit{Last Edited : \today}}
+%\cfoot{center foot}
+%\rfoot{\textit{tiwathia \thepage}}
+
+\pagenumbering{arabic} % Specify type of number characters to use
+
+% }}}
+% COLORS ----------------------------------------------------------------- {{{
+
+\usepackage  {xcolor, colortbl}
+
+% Section Colors {{{
+
+\definecolor {section-bg}         {HTML} { 767676}
+\definecolor {subsection-bg}      {HTML} { aaaaaa}
+\definecolor {subsubsection-bg}   {HTML} { dddddd}
+\definecolor {section-font}       {RGB}  { 0,0,0}
+\definecolor {subsection-font}    {RGB}  { 0,0,0}
+\definecolor {subsubsection-font} {RGB}  { 0,0,0}
+
+% }}}
+
+% Table Colors {{{
+
+\definecolor {cell-lightblue}     {HTML} { b2cce5}
+\definecolor {cell-lightgray}     {HTML} { d8deda}
+\definecolor {cell-lightorange}   {HTML} { F6C396}
+\definecolor {cell-lightred}      {HTML} { F1A099}
+\definecolor {cell-lightgreen}    {HTML} { C6DA7F}
+\definecolor {cell-lightpurple}   {HTML} { CCB2E5}
+\definecolor {cell-lightyellow}   {HTML} { FFF09A}
+
+% }}}
+
+% Tcolorbox Tables {{{
+
+\definecolor {defn-bg}       {HTML} {F2F3F4}
+\definecolor {defn-title}    {HTML} {A9A9A9}
+\definecolor {defn-theword}  {HTML} {EDA72D}
+
+\definecolor {note-bg}       {HTML} {F2F3F4}
+\definecolor {note-theword}  {HTML} {E25A22}
+
+\definecolor {table-bg}      {HTML} {F2F3F4}
+\definecolor {table-title}   {HTML} {A9A9A9}
+\definecolor {table-theword} {HTML} {9ACD32}
+
+\definecolor {image-bg}      {HTML} {F2F3F4}
+\definecolor {image-title}   {HTML} {A9A9A9}
+\definecolor {image-theword} {HTML} {0067A5}
+
+% }}}
+
+\definecolor {gray-dark}          {RGB}  { 71,77,80}
+\definecolor {gray-medium}        {RGB}  { 95,103,107}
+\definecolor {gray-light}         {RGB}  { 228,230,221}
+
+\definecolor {green-goethe}       {RGB}  { 160,200,20}
+\definecolor {green-goethe-light} {RGB}  { 219,243,134}
+
+% }}}
+% TABLES & IMAGES -------------------------------------------------------- {{{
+
+\usepackage{booktabs}   %
+\usepackage{multirow}   %
+\usepackage{tabularx}   % allow tables to stretch to page length
+%\usepackage{longtable}  % allows tables to span pages
+%\usepackage{ltablex}    % combination of longtable and tabularx
+\usepackage{xtab} % allows page breaking tables inline
+
+\usepackage{graphicx}   %
+\usepackage{subcaption} %
+\usepackage{wrapfig}    % wrap images around text
+\usepackage{capt-of}    % define captions independent of figures
+\usepackage{float}
+\usepackage{varwidth}
+\graphicspath{{images/}} % define folder for images
+
+% TCOLORBOX -------------------------------------------------------------- {{{
+
+\usepackage[skins,breakable]{tcolorbox}
+% skins allows use of enhanced options
+% breakable allows breaking boxes between pages
+
+% 	IMAGE TABLES (TCOLORBOX) {{{
+
+\newtcolorbox{image-bg}[2][]{
+	enhanced,
+	colback           = image-bg,
+	colframe          = image-bg,
+	fonttitle         = \bfseries,
+%	width             = 0.98\linewidth,
+	beforeafter skip  = 0.5cm,
+	drop fuzzy shadow = gray,
+%	boxrule         = 0mm,
+%	top             = 0mm,
+%	bottom          = 0mm,
+%	left            = 0mm,
+%	right           = 0mm,
+	title = #2,#1
+}
+
+\newtcolorbox{image-title}[2][]{
+	enhanced,
+	colback           = image-title,
+	colframe          = image-title,
+	fonttitle         = \bfseries,
+	height            = 0.6cm,
+	drop fuzzy shadow = gray,
+	beforeafter skip  = 0pt,
+	grow to left by   = 0.7cm,
+	boxrule           = 0mm,
+	top               = 0.5mm,
+	bottom            = 0mm,
+	left              = 1mm,
+	right             = 0mm,
+	sharp corners,
+	title = #2,#1
+}
+
+\newtcolorbox{image-theword}{
+	enhanced,
+	colback           = image-theword,
+	colframe          = image-theword,
+	fonttitle         = \bfseries,
+	drop fuzzy shadow = gray,
+	width             = 1.3cm,
+	height            = 0.5cm,
+	beforeafter skip  = 0pt,
+	grow to left by   = 0.7cm,
+	boxrule           = 0mm,
+	top               = 0.5mm,
+	bottom            = 0mm,
+	left              = 1mm,
+	right             = 0mm,
+	sharp corners,
+}
+
+\newtcolorbox{image-content}{
+	enhanced,
+	colback         = image-bg,
+	colframe        = image-bg,
+	fonttitle       = \bfseries,
+%	enlarge top by  = -0.5cm,
+	enlarge right by = 5cm,
+	width           = \linewidth,
+	boxrule         = 0mm,
+	top             = 2mm,
+	bottom          = 0mm,
+	left            = 0mm,
+	right           = 0mm,
+%	show bounding box
+}
+
+
+\newtcolorbox{image-caption}[2][]{
+	enhanced,
+	colback           = defn-title,
+	colframe          = defn-title,
+	fonttitle         = \bfseries,
+	halign            = center,
+	height            = 0.6cm,
+	drop fuzzy shadow = gray,
+	before skip       = 5pt,
+%	grow to right by  = 1.055\linewidth,
+	enlarge bottom by = -1cm,
+	boxrule           = 0mm,
+	top               = 0.5mm,
+	bottom            = 0mm,
+	left              = 2mm,
+	right             = 0mm,
+	sharp corners,
+	title = #2,#1
+}
+
+
+% }}}
+
+% 	REGULAR TABLES (TCOLORBOX) {{{
+
+\newtcolorbox{table-bg}[2][]{
+	enhanced,
+%	float,
+%	breakable,
+	colback           = table-bg,
+	colframe          = table-bg,
+	fonttitle         = \bfseries,
+%	width             = 0.98\linewidth,
+	beforeafter skip  = 0.5cm,
+	drop fuzzy shadow = gray,
+%	boxrule         = 0mm,
+%	top             = 0mm,
+%	bottom          = 0mm,
+%	left            = 0mm,
+%	right           = 0mm,
+	title = #2,#1
+}
+
+\newtcolorbox{table-theword}{
+	enhanced,
+	colback           = table-theword,
+	colframe          = table-theword,
+	fonttitle         = \bfseries,
+	drop fuzzy shadow = gray,
+	width             = 1.5cm,
+	height            = 0.5cm,
+	beforeafter skip  = 0pt,
+	grow to left by   = 0.7cm,
+	boxrule           = 0mm,
+	top               = 0.5mm,
+	bottom            = 0mm,
+	left              = 1mm,
+	right             = 0mm,
+	sharp corners,
+}
+
+\newtcolorbox{table-title}[2][]{
+	enhanced,
+	colback           = table-title,
+	colframe          = table-title,
+	fonttitle         = \bfseries,
+	height            = 0.6cm,
+	drop fuzzy shadow = gray,
+	beforeafter skip  = 0pt,
+	grow to left by   = 0.7cm,
+	boxrule           = 0mm,
+	top               = 0.5mm,
+	bottom            = 0mm,
+	left              = 1mm,
+	right             = 0mm,
+	sharp corners,
+	title = #2,#1
+}
+
+
+\newtcolorbox{table-content}{
+	enhanced,
+	colback         = table-bg,
+	colframe        = table-bg,
+	fonttitle       = \bfseries,
+	before skip = 0.5cm,
+%	enlarge top by  = -0.5cm,
+%	enlarge right by = 5cm,
+	width           = \linewidth,
+	boxrule         = 0mm,
+	top             = 2mm,
+	bottom          = 0mm,
+	left            = 0mm,
+	right           = 0mm
+	%show bounding box
+}
+
+% }}}
+
+% 	DEFINITION TABLE (TCOLORBOX) {{{
+
+% \newtcbox[init options]{name}[number][default]{options}
+
+\newtcolorbox{defn-bg}{
+	enhanced,
+	colback           = defn-bg,
+	colframe          = defn-bg,
+	fonttitle         = \bfseries,
+	drop fuzzy shadow = gray,
+	width             = 0.95\linewidth,
+	beforeafter skip  = 0.5cm,
+	arc is angular,
+}
+
+\newtcolorbox{defn-theword}{
+	enhanced,
+	colback           = defn-theword,
+	colframe          = defn-theword,
+	fonttitle         = \bfseries,
+	drop fuzzy shadow = gray,
+	width             = 2.5cm,
+	height            = 0.5cm,
+	beforeafter skip  = 0pt,
+	grow to left by   = 0.7cm,
+	boxrule           = 0mm,
+	top               = 0.5mm,
+	bottom            = 0mm,
+	left              = 1mm,
+	right             = 0mm,
+	sharp corners,
+}
+
+\newtcolorbox{defn-title}[2][]{
+	enhanced,
+	colback           = defn-title,
+	colframe          = defn-title,
+	fonttitle         = \bfseries,
+	height            = 0.6cm,
+	drop fuzzy shadow = gray,
+	beforeafter skip  = 0pt,
+	grow to left by   = 0.7cm,
+	boxrule           = 0mm,
+	top               = 0.5mm,
+	bottom            = 0mm,
+	left              = 1mm,
+	right             = 0mm,
+	sharp corners,
+	title = #2,#1
+}
+
+\newtcolorbox{defn-content}{
+	enhanced,
+	colback         = defn-bg,
+	colframe        = defn-bg,
+	fonttitle       = \bfseries,
+%	enlarge top by  = -0.5cm,
+%	enlarge right by = -5cm,
+%	width           = 13cm,
+%	boxrule         = 0mm,
+%	top             = 1mm,
+%	bottom          = 0mm,
+%	left            = 4mm,
+%	right           = 10mm,
+%	show bounding box
+}
+
+% }}}
+
+% 	NOTE TABLE (TCOLORBOX) {{{
+
+\newtcolorbox{note-bg}{
+	enhanced,
+	colback           = note-bg,
+	colframe          = note-bg,
+	fonttitle         = \bfseries,
+	drop fuzzy shadow = gray,
+	width             = 0.95\linewidth,
+	before skip  = 0.5cm,
+	after skip  = 0.5cm,
+	arc is angular,
+}
+
+\newtcolorbox{note-theword}{
+	enhanced,
+	colback           = note-theword,
+	colframe          = note-theword,
+	fonttitle         = \bfseries,
+	drop fuzzy shadow = gray,
+	width             = 0.7cm,
+	height            = 0.5cm,
+	beforeafter skip  = 0pt,
+	grow to left by   = 0.7cm,
+	boxrule           = 0mm,
+	top               = 0.5mm,
+	bottom            = 0mm,
+	left              = 1mm,
+	right             = 0mm,
+	sharp corners,
+}
+
+\newtcolorbox{note-content}{
+	enhanced,
+	colback         = note-bg,
+	colframe        = note-bg,
+	fonttitle       = \bfseries,
+%	enlarge top by  = -0.6cm,
+%	enlarge left by = 1.5cm,
+%	width           = 13cm,
+%	boxrule         = 0mm,
+%	top             = 0mm,
+%	bottom          = 0mm,
+%	left            = 0mm,
+%	right           = 0mm
+}
+
+
+% }}}
+
+% 	SECTION TITLES (TCOLORBOX) {{{
+
+\newtcolorbox{section-box}{
+	enhanced,
+	colback          = section-bg,
+	colframe         = section-bg,
+	fonttitle        = \bfseries,
+	width            = \linewidth,
+	height           = 1cm,
+	beforeafter skip = 0pt,
+	sharp corners 
+}
+
+\newtcolorbox{subsection-box}{
+	enhanced,
+	colback           = subsection-bg,
+	colframe          = subsection-bg,
+	fonttitle         = \bfseries,
+	width             = \linewidth,
+	height = 0.6cm,
+	sharp corners,
+	beforeafter skip  = 0pt,
+	boxrule           = 0mm,
+	top               = 0.5mm,
+	bottom            = 0mm,
+	left              = 1mm,
+	right             = 0mm
+}
+
+\newtcolorbox{subsubsection-box}{
+	enhanced,
+	colback   = subsubsection-bg,
+	colframe  = subsubsection-bg,
+	fonttitle = \bfseries,
+	width     = \linewidth,
+	height = 0.6cm,
+	sharp corners,
+	beforeafter skip  = 0pt,
+	boxrule           = 0mm,
+	top               = 0.5mm,
+	bottom            = 0mm,
+	left              = 1mm,
+	right             = 0mm
+}
+
+% }}}
+
+% }}}
+
+% }}}
+% CODE / CODE DISPLAY ---------------------------------------------------- {{{
+
+\usepackage{listings}
+
+
+\definecolor{codebackground}{RGB}{239,239,239}
+\definecolor{codecomments}{RGB}{169,169,169}
+\definecolor{codekeyword}{RGB}{249,38,114}
+\definecolor{codestrings}{HTML}{ECE47E}
+\definecolor{coderegular}{RGB}{39,40,34}
+
+\lstset{
+basicstyle       = \footnotesize\ttfamily,
+backgroundcolor  = \color{codebackground},
+commentstyle     = \color{codecomments}, % comment style
+keywordstyle     = \color{codekeyword},  % keyword style
+stringstyle      = \color{codestrings},  % string literal style
+rulecolor        = \color{black},        % if not set, the frame-color may be changed on line-breaks
+frame            = single,               % adds a frame around the code
+basicstyle       = \footnotesize,        % the size of the fonts that are used for the code
+keepspaces       = true,                 % keeps spaces in text, useful for keeping indentation of code
+tabsize          = 2,                    % sets default tabsize
+breaklines       = true,                 % sets automatic line breaking
+captionpos       = b,                    % sets the caption-position to bottom
+numbers          = left,
+numberstyle      = \tiny,
+numbersep        = 10pt,
+frame            = tb,
+columns          = fixed,
+showstringspaces = false,
+showtabs         = false,
+keepspaces,
+% escapeinside={\%*}{*)},  % if you want to add LaTeX within your code
+framextopmargin=10pt,    % margin for the top background border
+framexbottommargin=10pt, % margin for the bot background border
+framexleftmargin=0pt,    % margin for the left background border
+framexrightmargin=0pt    % margin for the right background border
+}
+
+
+% }}}
+% MATH / GRAPHING  ------------------------------------------------------- {{{
+
+\usepackage{amsmath} % basic math package
+\usepackage{amssymb} % allows more math symbols
+\usepackage{amsthm}  % allows custom therorem,defn,corll etc... definitions
+
+\newtheorem{mydef}{DEFINITION}[section]
+\newtheorem{myimage}{IMAGE}[section]
+\newtheorem{mytable}{TABLE}[section]
+
+% TIKZ -------------------------------------------------------------------- {{{
+\usepackage{tikz}
+% }}}
+
+% }}}
+% BIBLIOGRAPHY / REFERENCES / FOOTNOTES ---------------------------------- {{{
+
+\usepackage[nottoc,numbib]{tocbibind}  % to show references line in toc
+\usepackage{cleveref}
+\renewcommand{\thefootnote}{\roman{footnote}} % footnote style
+
+
+
+
+% }}}
+% TABLE OF CONTENTS ------------------------------------------------------ {{{
+
+\usepackage{titletoc}
+% margin from RHS
+%\contentsmargin{1cm}
+
+% \dottedcontents {section}[left]{above}{label-width}{leader-width}
+%\dottedcontents{section}[1.8cm]{\bfseries}{3.2em}{1pc}
+%\dottedcontents{subsection}[1.8cm]{}{3.2em}{1pc}
+%\dottedcontents{subsubsection}[1.8cm]{}{2.8em}{1pc}
+
+
+% }}}
+% CUSTOM COMMANDS -------------------------------------------------------- {{{
+
+\newcommand{\newpar}
+{\par \vspace{0.3cm}}
+
+
+% New Commands : Sectioning {{{
+
+\newcommand{\sectionend}
+{
+\nolinenumbers
+\begin{center}
+	\textbf{---------}
+	$\blacksquare$
+	\textbf{---------}
+\end{center}
+\clearpage
+\linenumbers
+}
+
+\newcommand{\subsectionend}
+{
+\nolinenumbers
+\begin{center}
+	\textbf{---------}
+	\hspace{0.2cm}
+	\textsection 
+	\hspace{0.05cm}
+	\thesubsection
+	\hspace{0.2cm}
+	\textbf{---------}
+\end{center}
+\linenumbers
+}
+
+\newcommand{\subsubsectionend}
+{
+\nolinenumbers
+\begin{center}
+	\textbf{---------}
+	\hspace{0.2cm}
+	\textsection
+	\hspace{0.05cm}
+	\thesubsubsection
+	\hspace{0.2cm}
+	\textbf{---------}
+\end{center}
+\linenumbers
+}
+
+% }}}
+
+% New Commands : Symbols {{{
+
+\newcommand{\bulletpoint}
+{ $\bullet$  }
+
+% }}}
+
+% New Commands : Tcolorbox {{{
+
+\newcommand{\tcolorboxstart}
+{
+	\nolinenumbers
+	\vspace{0.2cm}
+	\centering
+}
+
+\newcommand{\tcolorboxend}
+{
+	\justifying
+	\vspace{0.2cm}
+	\linenumbers
+}
+
+% Definition {{{
+
+\newcommand{\tcolorboxdefinition}[3]
+{
+
+\tcolorboxstart
+\begin{defn-bg}
+
+	\begin{defn-title}[width=7cm]{}
+	{
+		\normalsize \textbf{\textit{#1}}
+	}
+	\end{defn-title}
+
+	\begin{defn-theword}
+	{
+		\footnotesize
+		\begin{mydef}
+		\label{def:}
+		\end{mydef}
+	}
+	\end{defn-theword}
+
+
+	\begin{defn-content}
+
+	\justify
+	#3
+
+	\end{defn-content}
+
+\end{defn-bg}
+\tcolorboxend
+}
+
+% }}}
+
+
+% }}}
+
+% New Commands : Tables {{{
+
+\newcommand{\tablestart}
+{
+	\nolinenumbers
+	\vspace{0.5cm}
+}
+
+\newcommand{\tableend}
+{
+	\vspace{0.5cm}
+	\linenumbers 
+}
+
+
+% }}}
+
+
+
+
+
+% }}}
+% TESTING ---------------------------------------------------------------- {{{
+
+\usepackage{lipsum}  % generates filler text
+\usepackage{blindtext} % generates non-latin filler text
+
+% }}}
+
+% }}}
+
+% ============================================================================ 
+\begin{document}
+% ----------------------------------------------------------------------------- 
+% TOC & SETUP {{{
+\raggedbottom
+\onecolumn
+
+\tableofcontents
+\pagebreak
+
+\listoftables
+\clearpage
+\twocolumn
+\justifying
+
+
+\linenumbers
+
+% }}}
+% ----------------------------------------------------------------------------- 
+
+% SECTION : nouns {{{
+\section{{Nouns}}
+\label{sec:nouns}
+
+
+% DEFINITION : nouns_substantives {{{
+% {title} {label} {content}
+
+\tcolorboxdefinition
+{Nouns / Substantives}
+{nouns_substantives}
+{
+Substantives/Nouns are people, animals, things, concepts and ideas.
+}
+
+% }}} END DEFINITION : nouns_substantives
+
+
+
+
+
+\lettrine[lines=3, findent=3pt, nindent=0pt]{S}{ubstantives}\footnote{In german
+	a substantive is spelled as substantiv so over the course of this document I
+	will probably end up using both, so yeah, if someone besides me (or more
+	probably my future self) is reading this, dont give me shit for having
+	spelling mistakes everywhere. This statement applies for a whole bunch of
+	words.} are more commonly known as a nouns. Calling something a substantive
+is just a more grammatical jargony way of referring to a noun. The reason that
+there are two names for the same thing goes back to latin , where the phrase
+\textit{Nomen Substantivus} or \textit{the name of substance} was used. I assume
+lazy humans just split this \textit{(Definition~\ref{def:substantives})}   into two words meaning the same thing over the
+course of history.\newpar
+
+German Nouns / Substantives have two defining characteristics that will help you
+identify them in a german sentence. They are :
+
+\begin{enumerate}[noitemsep]
+	\item The first character of a noun is always uppercase.
+	\item Every noun is preceded by a grammatically gendered article.
+	\item German Nouns are declined.
+\end{enumerate}
+
+% 	SUB-SECTION : plurals {{{
+\subsection{Plurals}
+\label{ssec:plurals}
+
+German just like English build plurals out of nouns by appending certain endings
+to the noun. Its a bit more involved than english however, since english has
+only the -s ending, german has a few more. The ending appended is realtively
+arbitrary so there are few choices but to learn the plural formation along with
+the original noun, although after a while you should get a feel for what kind of
+word will get what kind of plural formation.\newpar
+
+Below are some general guidelines to building the plural formation for a noun
+:\cite{em},\cite{germanveryeasy}
+
+% 		SUB-SUB-SECTION : plurals_masculine_nouns {{{
+\textbf{\subsubsection{Plurals : Masculine Nouns}}
+\label{sec:plurals_masculine_nouns}
+
+The following list shows some common transformations to make masculine nouns
+plural :
+
+% TABLE : plural_masculine_nouns {{{
+
+
+\nolinenumbers
+
+\vspace{0.2cm}
+
+\begin{xtabular}{lll}
+
+
+		\rowcolor{white} $\bullet$ -ich  & -e     & \textcolor{gray}{\textit{der Teppich , die Teppiche} }\\
+		\rowcolor{white} $\bullet$ -ig   & -e     & \textcolor{gray}{\textit{der König, die Könige} }\\
+		\rowcolor{white} $\bullet$ -ling & -e     & \textcolor{gray}{\textit{der Schmetterling, die Schmetterlinge} }\\
+		\rowcolor{white} $\bullet$ -är   & -e     & \textcolor{gray}{\textit{der Veterinär,die Veterinäre} }\\
+		\rowcolor{white} $\bullet$ -eur   & -e    & \textcolor{gray}{\textit{der Friseur,die Friseure} }\\
+		\rowcolor{white} $\bullet$       & \"{-}e & \textcolor{gray}{ \textit{der Platz , die Plätze} }\\
+		\rowcolor{white}                 &        & \textcolor{gray}{ \textit{der Kuss , die Küsse} }\\
+		\rowcolor{white}                 &        & \textcolor{gray}{ \textit{der Arzt , die Ärzte} }\\
+		\rowcolor{white} $\bullet$       & -      & \textcolor{gray}{ \textit{der Schüler , die Schüler} }\\
+		\rowcolor{white} $\bullet$ -er   & \"{-}  & \textcolor{gray}{ \textit{der Vater , die Väter} }\\
+		\rowcolor{white} $\bullet$ -el   & \"{-}  & \textcolor{gray}{ \textit{der Mantel , die Mäntel} }\\
+		\rowcolor{white} $\bullet$ -us   & -usse  & \textcolor{gray}{ \textit{der Bus , die Busse} }\\
+
+
+
+\end{xtabular}
+
+\vspace{0.2cm}
+
+\linenumbers
+
+% }}} End TABLE : plural masculine nouns
+
+Please keep in mind that the list above shows trasformations in general and is
+not meant to serve as a list of rules for converting nouns with the given
+endings into thier respective plural forms. They are only meant to serve as
+educated guesses.\newpar
+
+A lot of masculine nouns ending in -e also follow the rules for n-Declination.
+So check out Section~\ref{ssec:n_declension} for more details.
+
+% }}} END SUB-SUB-SECTION : plurals_masculine_nouns
+
+% 		SUB-SUB-SECTION : plurals_feminine_nouns {{{
+\textbf{\subsubsection{Plurals : Feminine Nouns}}
+\label{sec:plurals_feminine_nouns}
+
+The following tables illustrates the plural formations for feminine nouns :
+
+% TABLE : plurals_feminine_nouns {{{
+
+\nolinenumbers
+
+\vspace{0.2cm}
+
+\begin{xtabular}{lll}
+
+		\rowcolor{white} $\bullet$  -ei    & -en & \textcolor{gray}{ \textit{die Datei , die Dateien} }\\
+		\rowcolor{white} $\bullet$ -ung    & -en & \textcolor{gray}{ \textit{} }\\
+		\rowcolor{white} $\bullet$ -heit   & -en & \textcolor{gray}{ \textit{} }\\
+		\rowcolor{white} $\bullet$ -keit   & -en & \textcolor{gray}{ \textit{} }\\
+		\rowcolor{white} $\bullet$ -ion    & -en & \textcolor{gray}{ \textit{} }\\
+		\rowcolor{white} $\bullet$ -schaft & -en & \textcolor{gray}{ \textit{} }\\
+		\rowcolor{white} $\bullet$ -ik     & -en & \textcolor{gray}{ \textit{} }\\
+		\rowcolor{white} $\bullet$ -eur    & -en & \textcolor{gray}{ \textit{} }\\
+		\rowcolor{white} $\bullet$ -enz    & -en & \textcolor{gray}{ \textit{} }\\
+		\rowcolor{white} $\bullet$ -tät    & -en & \textcolor{gray}{ \textit{} }\\
+		\rowcolor{white} $\bullet$ -itis   & -en & \textcolor{gray}{ \textit{} }\\
+		\rowcolor{white} $\bullet$ -sis    & -en & \textcolor{gray}{ \textit{} }\\
+		\rowcolor{white} $\bullet$ -ung    & -en & \textcolor{gray}{ \textit{} }\\
+		\rowcolor{white} $\bullet$ -ung    & -en & \textcolor{gray}{ \textit{} }\\
+
+		\midrule
+		\rowcolor{white} $\bullet$ -ie  & -n & \textcolor{gray}{ \textit{die Fantasie, die Fantasien} }\\
+		\rowcolor{white} $\bullet$ -ade  & -n & \textcolor{gray}{ \textit{..} }\\
+		\rowcolor{white} $\bullet$ -age  & -n & \textcolor{gray}{ \textit{..} }\\
+		\rowcolor{white} $\bullet$ -ere  & -n & \textcolor{gray}{ \textit{..} }\\
+		\rowcolor{white} $\bullet$ -ine  & -n & \textcolor{gray}{ \textit{..} }\\
+		\rowcolor{white} $\bullet$ -isse & -n & \textcolor{gray}{ \textit{..} }\\
+		\rowcolor{white} $\bullet$ -ive  & -n & \textcolor{gray}{ \textit{..} }\\
+		\rowcolor{white} $\bullet$ -se   & -n & \textcolor{gray}{ \textit{..} }\\
+
+		\midrule
+		\rowcolor{white} $\bullet$ -in   & -nen    & \textcolor{gray}{ \textit{..} }\\
+		\rowcolor{white} $\bullet$ -      & \"{-}e & \textcolor{gray}{ \textit{..} }\\
+		\rowcolor{white} $\bullet$ -nis  & -nisse  & \textcolor{gray}{ \textit{..} }\\
+		\rowcolor{white} $\bullet$ -xis  & -xien   & \textcolor{gray}{ \textit{..} }\\
+		\rowcolor{white} $\bullet$ -itis & -iden   & \textcolor{gray}{ \textit{..} }\\
+		\rowcolor{white} $\bullet$ -aus  & -äuse   & \textcolor{gray}{ \textit{..} }\\
+		\rowcolor{white} $\bullet$ -      & \"{-}   & \textcolor{gray}{ \textit{die Mutter,die Mütter} }\\
+		\rowcolor{white} $\bullet$ -      & \"{-}en & \textcolor{gray}{ \textit{die Werkstatt , die Werkstätten } }\\
+
+	\end{xtabular}
+
+\vspace{0.2cm}
+
+\linenumbers
+
+% }}} End TABLE : plurals_feminine_nouns
+
+
+% }}} END SUB-SUB-SECTION : plurals_feminine_nouns
+
+% 		SUB-SUB-SECTION : plurals_neuter_nouns {{{
+\textbf{\subsubsection{Plurals Neuter Nouns}}
+\label{sec:plurals_neuter_nouns}
+
+
+
+% }}} END SUB-SUB-SECTION : plurals_neuter_nouns
+
+% }}} END SUB-SECTION : plurals
+
+
+
+\sectionend
+% }}} END SECTION : nouns
+
+
+
+
+% SECTION : verbs {{{
+\section{{Verbs}}
+\label{sec:verbs}
+
+
+% DEFINITION : verbs {{{
+
+\vspace{0.2cm}
+\centering
+\nolinenumbers
+\begin{defn-bg}
+
+\label{def:verbs_infinitives}
+	\begin{defn-title}[width=7cm]{}
+		{\normalsize \textbf{\textit{Verbs}} }
+	\end{defn-title}
+
+	\begin{defn-theword}
+	{
+		\footnotesize \begin{mydef} \end{mydef}
+	}
+	\end{defn-theword}
+
+	\begin{defn-content}
+		\justify
+	
+\textbf {Verbs} are words that refer to actions. These actions are happening to
+the nouns (substantives).
+
+	\end{defn-content}
+
+\end{defn-bg}
+
+\justifying
+\linenumbers
+
+% }}} END DEFINITION : verbs
+
+
+\lettrine[lines=3, findent=3pt, nindent=0pt]{A} verb is basically any word that
+allows us to describe an action, an ongoing process or a state of being. E.g. :
+to walk (laufen), to sing (singen).  Verbs are made up of two parts : the
+stem which is the main body of the verb, and the ending.\\
+
+\noindent
+E.g : Laufen , Singen , Haben , Machen\\
+
+Every verb must be \textbf{\textit{Conjugated}}. To conjugate a verb means to
+change it from it's base infinitive form to a form matching the pronoun that we
+are using in the current sentence.
+
+
+
+% DEFINITION : infinitive {{{
+
+\vspace{0.2cm}
+\centering
+\nolinenumbers
+\begin{defn-bg}
+
+\label{def:infinitive}
+	\begin{defn-title}[width=7cm]{}
+		{\normalsize \textbf{\textit{Infinitive}} }
+	\end{defn-title}
+
+
+
+	\begin{defn-content}
+		\justify
+		Infinitive is the base form of any verb. This is the unconjugated form.
+	\end{defn-content}
+
+\end{defn-bg}
+
+\justifying
+\linenumbers
+
+% }}} END DEFINITION : infinitive
+
+
+When we say we are conjugating / declining a verb, we mean that we are changing
+the stems and endings of the verbs in order to suit the pronoun that we are
+currently using.\\
+
+In german verbs can be broken up into two different forms according to the way
+that we are going to conjugate them. These two forms are depend on wether we
+change only the ending during conjugation , or wether we change both the ending
+and the stem during the conjugation process. All verbs in german fall into one
+of the two following categories :
+
+
+% LIST : Regular Verbs Conjugation {{{
+
+\vspace{0.3cm}
+\begin{tabular}{l l l l}
+
+\rowcolor{white} $\bullet$ Change & e  & to & ie\\
+\rowcolor{white} $\bullet$ Change & e  & to & i\\
+\rowcolor{white} $\bullet$ Change & el & to & il\\
+\rowcolor{white} $\bullet$ Change & eh & to & im\\
+\rowcolor{white} $\bullet$ Change & a  & to & ä\\
+
+\end{tabular}
+\vspace{0.3cm}
+\newline
+
+% }}} End LIST : Regular verbs Conjugation
+% LIST : Irregular Verbs Conjugation {{{
+
+\vspace{0.3cm}
+\begin{tabular}{l l l l}
+
+\rowcolor{white} $\bullet$ Change & e  & to & ie\\
+\rowcolor{white} $\bullet$ Change & e  & to & i\\
+\rowcolor{white} $\bullet$ Change & el & to & il\\
+\rowcolor{white} $\bullet$ Change & eh & to & im\\
+\rowcolor{white} $\bullet$ Change & a  & to & ä\\
+
+\end{tabular}
+\vspace{0.3cm}
+\newline
+
+% }}} End LIST : Irregular verbs Conjugation
+
+% 	SUB-SECTION : imperative {{{
+\subsection{Imperative}
+\label{ssec:imperative}
+
+The german imperative is a way of basically ordering someone to do something
+instead of asking them politely. The imperative can be formed using three
+differnt ways, depending on the count and politeness that we wish to employ. The
+pronoun is never used when we are trying to build an imperative sentence. The
+conjugation of the verb is also a bit different. The three main forms that will
+change are as follows :\newpar
+
+
+% TABLE : imperative_explanation {{{
+
+\nolinenumbers
+
+\vspace{0.5cm}
+
+\begin{tabularx}{0.95\linewidth}{llX}
+
+\rowcolor{white} \bulletpoint du  & : & The -st(or just -t) ending on the conjugation will
+go away.  \\
+
+\rowcolor{white} & e.g  & \textcolor{gray}{iss deine Essen.}\\
+\rowcolor{white} \bulletpoint Sie & : & The conjugation stays the same. \\
+\rowcolor{white} \bulletpoint ihr & : & The conjugation stays the same. \\
+
+\end{tabularx}
+
+\vspace{0.5cm}
+
+\linenumbers
+
+% }}} End TABLE : Imperative Explanation
+
+if the umlaut is in the infinitive, then the du form will remain the same in the
+imperative , i.e.\ it will still have the umlaut.\
+
+if the umlaut is not there in the infinitive, but it appears due to it being a
+irregular verb, then it will go away in the imperative form.\
+
+if the umlaut is not there in the infinitive, but it appears due to it being a
+irregular verb, then it will go away in the imperative form.\
+
+
+% }}} END SUB-SECTION : imperative
+
+% 	SUB-SECTION : present_tense {{{
+\textbf{\subsection{Present Tense}}
+\label{sec:present_tense}
+
+
+
+% }}} END SUB-SECTION : present_tense
+
+% 	SUB-SECTION : past_tense {{{
+\textbf{\subsection{Past Tense}}
+\label{sec:past_tense}
+
+
+
+% }}} END SUB-SECTION : past_tense
+
+% 	SUB-SECTION : future_tense {{{
+\textbf{\subsection{Future Tense}}
+\label{sec:future_tense}
+
+
+
+% }}} END SUB-SECTION : future_tense
+
+% 	SUB-SECTION : special_verbs {{{
+\textbf{\subsection{Special Verbs}}
+\label{sec:special_verbs}
+
+% 		SUB-SUB-SECTION : werden {{{
+\textbf{\subsubsection{Werden}}
+\label{sec:werden}
+
+
+
+% }}} END SUB-SUB-SECTION : werden
+
+% 		SUB-SUB-SECTION : lassen {{{
+\textbf{\subsubsection{Lassen}}
+\label{sec:lassen}
+
+
+
+% }}} END SUB-SUB-SECTION : lassen
+
+% }}} END SUB-SECTION : special_verbs
+
+% 	SUB-SECTION : modal_verbs {{{
+\textbf{\subsection{Modal Verbs}}
+\label{sec:modal_verbs}
+
+
+% DEFINITION : modal_verbs {{{
+
+\vspace{0.2cm}
+\centering
+\nolinenumbers
+\begin{defn-bg}
+
+\label{def:modal_verbs}
+	\begin{defn-title}[width=7cm]{}
+		{\normalsize \textbf{\textit{Modal Verbs}} }
+	\end{defn-title}
+
+	\begin{defn-theword}
+	{
+		\footnotesize \begin{mydef} \end{mydef}
+	}
+	\end{defn-theword}
+
+	\begin{defn-content} \justify Modal Verbs are verbs that allow us to change
+		/ modify the original sentence to add degrees of permission and
+		necessity.
+
+	\end{defn-content}
+
+\end{defn-bg}
+
+\justifying
+\linenumbers
+
+% }}} END DEFINITION : modal_verbs
+
+Modal Verbs are always used in conjunction with a another verb. The modal verbs
+action is to indication to what extent the action specified by the other verb is
+necessary or allowed in the current sentence.\\
+
+Modal verbs are also often called \textbf{\textit{auxiliary / helping verbs}}
+(Die Hilfsverben)\\
+
+When we are building a sentence with a modal verb, we put the modal verb in its
+conjugated form in the second place of the sentence, and send the original verb
+that was supposed to be in the second place all the way to the end of the
+sentence. Another thing to note is that we should not conjugate the second
+verb.\\
+
+The general sentence structure in the present tense is as follows :\\
+
+Pronoun - Modal Verb (conj.) - frequency/time - other words - second verb
+(unconj.)\\
+
+In the case of W-questions , or Ja / Nien Questions the sentence structure
+remains the same as before with the modal verb in place 1 for Ja / Nien
+Questions, and in position 2 in W-Style questions. The most common modal verbs
+are :
+
+% LIST : modal_verbs_list {{{
+
+\vspace{0.3cm}
+\begin{tabular}{l l}
+
+\rowcolor{white} $\bullet$ dürfen & (to be allowed)  \\
+\rowcolor{white} $\bullet$ können & (to be able)  \\
+\rowcolor{white} $\bullet$ mögen & (would like to)  \\ 
+\rowcolor{white} $\bullet$ wollen & (want to)  \\
+\rowcolor{white} $\bullet$ sollen & (should)\\
+\rowcolor{white} $\bullet$ mussen & (must) \\
+
+\end{tabular}
+\vspace{0.3cm}
+\newline
+
+% }}} End LIST : modal_verbs_list
+
+Be careful with saying „Ich will“ as it sounds impolite if you are asking for
+something. It is more appropriate to say “Ich möchte“ or “Ich hätte
+gern“.\\
+
+A table of all modal verbs with conjugations is shown below :
+
+
+
+
+% TABLE : modal_verbs {{{
+
+\nolinenumbers
+
+\begin{table-bg}[width=\textwidth]{}
+
+\label{table:modal_verbs}
+
+	\begin{table-title}[width=6.5cm]{}
+		\captionsetup{labelformat=empty}
+		\captionof{table}{Modal Verbs}
+	\end{table-title}
+
+	\begin{table-theword}
+		\footnotesize \begin{mytable} \end{mytable}
+	\end{table-theword}
+
+	\begin{table-content}
+	\begin{tabularx}{\textwidth}{X|X|X|X|XXX}
+&
+\cellcolor{gray-light} \textbf{ich} &
+\cellcolor{gray-light} \textbf{du} &
+\cellcolor{gray-light} \textbf{er/sie/es} &
+\cellcolor{gray-light} \textbf{wir} &
+\cellcolor{gray-light} \textbf{ihr} &
+\cellcolor{gray-light} \textbf{sie/Sie} \\
+\midrule
+
+\cellcolor{gray-light} \textbf{\textit{dürfen}} &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white} \\
+
+\cellcolor{gray-light} \textbf{\textit{können}} &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white} \\
+
+\cellcolor{gray-light} \textbf{\textit{mögen}} &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white} \\
+
+\cellcolor{gray-light} \textbf{\textit{wollen}} &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white} \\
+
+\cellcolor{gray-light} \textbf{\textit{sollen}} &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white} \\
+
+\cellcolor{gray-light} \textbf{\textit{mussen}} &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white} \\
+
+
+
+	\end{tabularx}
+	\end{table-content}
+
+\end{table-bg}
+
+\linenumbers
+
+% }}} End TABLE : modal_verbs
+
+
+% }}} END SUB-SECTION : modal_verbs
+
+% 	SUB-SECTION : reflexive_verbs {{{
+\textbf{\subsection{Reflexive Verbs}}
+\label{sec:reflexive_verbs}
+
+
+% DEFINITION : copulative_verb {{{
+
+\vspace{0.2cm}
+\centering
+\nolinenumbers
+\begin{defn-bg}
+
+
+	\begin{defn-title}[width=7cm]{}
+		{\normalsize \textbf{\textit{Copulative Verb}} }
+	\end{defn-title}
+
+	\begin{defn-theword}
+	{
+		\footnotesize \begin{mydef}~\label{def:copulative_verb}\end{mydef}
+	}
+	\end{defn-theword}
+
+	\begin{defn-content}
+		\justify
+		A copulative verb is one that serves to link the subject of the sentence
+		with the predicate in the
+		sentence.\newpar
+		The word ``{\textit{is}}'' in the sentence:\newpar
+		The sky is blue.~\footnote{
+			\url{https://en.wikipedia.org/wiki/Copula\_(linguistics)}}~\footnote{In the german context the main copulative verbs are :
+			\textit{sein} , \textit{werden} and \textit{bleiben} }
+
+	\end{defn-content}
+
+\end{defn-bg}
+
+\justifying
+\linenumbers
+
+% }}} END DEFINITION : copulative_verb
+
+% }}} END SUB-SECTION : reflexive_verbs
+
+% 	SUB-SECTION : conjunctive_ii {{{
+\textbf{\subsection{Conjunctive II}}
+\label{sec:conjunctive_ii}
+
+
+
+% }}} END SUB-SECTION : conjunctive_ii
+
+
+\sectionend
+
+
+% }}} END SECTION : verbs
+
+
+% ----------------------------------------------------------------------------- 
+% BIBLIOGRAPHY & FIGURE LISTS {{{
+
+\onecolumn
+\nolinenumbers
+\bibliographystyle{unsrt}
+\bibliography{bibliography/references}
+
+
+% }}}
+% -----------------------------------------------------------------------------
+\end{document}
+% =============================================================================
+% - EOF - EOF - EOF - EOF - EOF - EOF - EOF - EOF - EOF - EOF - EOF - EOF -
+% =============================================================================
+

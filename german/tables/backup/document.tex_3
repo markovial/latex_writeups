@@ -1,0 +1,5988 @@
+% =============================================================================
+
+% PACKAGES ---------------------------------------------------------------- {{{
+
+% DOCUMENT CLASS , ENCODING , TITLE -------------------------------------- {{{
+
+\documentclass[a4paper,twocolumn,10pt]{article}
+\setlength{\columnsep}{20pt}
+%\setlength{\columnseprule}{1pt}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\title{This will be some super impressive title}
+\author{Ishan Tiwathia}
+\date{\today}
+
+% }}}
+% FONTS ------------------------------------------------------------------ {{{
+
+\usepackage{courier}     % courier font
+\usepackage{fontawesome} % font awesome glyphs
+\usepackage{setspace}    % inter line spacing
+\singlespacing           % set spacing to single spaced
+
+% \onehalfspacing
+% \doublespacing
+% \setstretch{1.1}
+
+
+% }}}
+% PAGE FORMAT ------------------------------------------------------------ {{{
+
+\usepackage[document]{ragged2e} % Text alignment package
+\usepackage{enumitem}           %
+\usepackage{geometry}           %
+\geometry{
+	a4paper,
+	total = {170mm,257mm},
+	top=20mm,
+	left=20mm,
+	right=20mm,
+	bottom=20mm
+}
+
+\usepackage[switch,displaymath,mathlines]{lineno}
+%\modulolinenumbers[5]
+\linenumberfont{\normalfont\large\sffamily}
+\renewcommand\thelinenumber{\color{gray}\arabic{linenumber}}
+\setlength\linenumbersep{0.5cm}
+
+
+% }}}
+% TEXT FORMAT ------------------------------------------------------------ {{{
+
+\usepackage[activate={true,nocompatibility},
+final,
+tracking=true,
+kerning=true,
+spacing=true,
+factor=1100,
+stretch=10,
+shrink=10]{microtype}
+% prevents a certiain amount of overfull hbox badness
+% helps with other margin stuff
+
+\usepackage{verbatim}
+\makeatletter
+\newcommand{\verbatimfont}[1]{\def\verbatim@font{#1}}%
+\makeatother%\verbatimfont{courier}
+
+\usepackage{type1cm}  % Allows font resizing
+\usepackage{lettrine} % Allows font calligraphy (enlarge first char)
+\renewcommand{\LettrineTextFont}{\rmfamily}
+
+
+% }}}
+% TITLE FORMAT  ---------------------------------------------------------- {{{
+
+\usepackage[export]{adjustbox}
+\usepackage{changepage}
+\usepackage[compact,explicit]{titlesec} % Allows customization of section head
+
+% compact : reduces spaces before and after sections
+% explicit : allows for expicit positioning of title statement with #1
+
+% title_format : command,shape,format,label,sep,before,after
+% title-brackets : {}[]{}{}{}{}[] , basically only shape and aftercode have []
+
+% Section Title Settings {{{
+\titleformat {\section}
+	[hang]
+	{\color{black}\Large\bfseries}
+	{}
+	{0em}
+	{
+	\nolinenumbers
+	\begin{section-box}
+	\thesection. #1
+	\end{section-box}
+	}
+[
+\linenumbers
+]
+
+% left before-sep after-sep right-sep
+\titlespacing{\section}{0cm}{0cm}{0cm}[0cm]
+
+% }}}
+
+% Sub-Section Title Settings {{{
+\titleformat {\subsection}
+	[hang]
+	{\color{black}\small\bfseries}
+	{}
+	{0em}
+	{
+	\nolinenumbers
+	\begin{subsection-box}
+		\thesubsection. #1
+	\end{subsection-box}
+	}
+[
+\linenumbers
+]
+
+% left before-sep after-sep right-sep
+\titlespacing*{\subsection}{0cm}{0cm}{0cm}[0em]
+
+% }}}
+
+% Sub-Sub-Section Title Settings {{{
+\titleformat {\subsubsection}
+	[hang]
+	{\color{black}\small\bfseries}
+	{}
+	{0em}
+	{
+	\nolinenumbers
+	\begin{subsubsection-box}
+		\thesubsubsection. #1
+	\end{subsubsection-box}
+	}
+[
+\linenumbers
+]
+
+% left before-sep after-sep right-sep
+\titlespacing{\subsubsection}{0cm}{0cm}{0cm}[0em]
+
+% }}}
+
+% }}}
+% HYPERLINKS ------------------------------------------------------------- {{{
+
+\usepackage{hyperref} % auto hyperlinks toc , refrences
+                      % others can be manually specified
+
+\hypersetup{
+colorlinks = true,
+linktoc    = all,
+citecolor  = purple,
+filecolor  = black,
+linkcolor  = black,
+urlcolor   = black
+}
+
+
+% }}}
+% HEADER / FOOTER -------------------------------------------------------- {{{
+
+\usepackage{fancyhdr} % allows for header and footer customizations
+\pagestyle{fancy}     %
+\fancyhf{}            %
+
+\renewcommand{\headrulewidth}{0.2pt} % draw line at header
+\lhead{\textit{\leftmark}}           % LEFT  : show section name at header
+\rhead{\textit{\thepage}}            % RIGHT : Show page number
+% \chead{ }
+
+\renewcommand{\footrulewidth}{0pt} % draw line at footer
+%\lfoot{\textit{Last Edited : \today}}
+%\cfoot{center foot}
+%\rfoot{\textit{tiwathia \thepage}}
+
+\pagenumbering{arabic} % Specify type of number characters to use
+
+% }}}
+% COLORS ----------------------------------------------------------------- {{{
+
+\usepackage  {xcolor, colortbl}
+
+% Section Colors {{{
+
+\definecolor {section-bg}         {HTML} { 767676}
+\definecolor {subsection-bg}      {HTML} { aaaaaa}
+\definecolor {subsubsection-bg}   {HTML} { dddddd}
+\definecolor {section-font}       {RGB}  { 0,0,0}
+\definecolor {subsection-font}    {RGB}  { 0,0,0}
+\definecolor {subsubsection-font} {RGB}  { 0,0,0}
+
+% }}}
+
+% Table Colors {{{
+
+\definecolor {table-topic}        {HTML} {aeb4b8}
+\definecolor {table-subtopic}     {HTML} {c2c7ca}
+\definecolor {table-subsubtopic}  {HTML} {d6d9db}
+
+\definecolor {table-alternating-blue}    {HTML} {F2F3F4}
+\definecolor {table-alternating-white}    {HTML} {FFFFFF}
+
+\definecolor {cell-lightblue}     {HTML} { b2cce5}
+\definecolor {cell-lightgray}     {HTML} { d8deda}
+\definecolor {cell-lightorange}   {HTML} { F6C396}
+\definecolor {cell-lightred}      {HTML} { F1A099}
+\definecolor {cell-lightgreen}    {HTML} { C6DA7F}
+\definecolor {cell-lightpurple}   {HTML} { CCB2E5}
+\definecolor {cell-lightyellow}   {HTML} { FFF09A}
+
+% }}}
+
+% Tcolorbox Tables {{{
+
+\definecolor {defn-bg}       {HTML} {F2F3F4}
+\definecolor {defn-title}    {HTML} {A9A9A9}
+\definecolor {defn-theword}  {HTML} {EDA72D}
+
+\definecolor {note-bg}       {HTML} {F2F3F4}
+\definecolor {note-theword}  {HTML} {E25A22}
+
+\definecolor {table-bg}      {HTML} {F2F3F4}
+\definecolor {table-title}   {HTML} {A9A9A9}
+\definecolor {table-theword} {HTML} {9ACD32}
+
+\definecolor {image-bg}      {HTML} {F2F3F4}
+\definecolor {image-title}   {HTML} {A9A9A9}
+\definecolor {image-theword} {HTML} {0067A5}
+
+% }}}
+
+\definecolor {gray-dark}          {RGB}  { 71,77,80}
+\definecolor {gray-medium}        {RGB}  { 95,103,107}
+\definecolor {gray-light}         {RGB}  { 228,230,221}
+
+\definecolor {red-flame}       {HTML}  {E25822}
+\definecolor {green-goethe}       {RGB}  {160,200,20}
+\definecolor {green-goethe-light} {RGB}  {219,243,134}
+
+% }}}
+% TABLES & IMAGES -------------------------------------------------------- {{{
+
+\usepackage{booktabs}   %
+\usepackage{multirow}   %
+\usepackage{tabularx}   % allow tables to stretch to page length
+%\usepackage{longtable}  % allows tables to span pages
+%\usepackage{ltablex}    % combination of longtable and tabularx
+\usepackage{xtab} % allows page breaking tables inline
+
+\usepackage{graphicx}   %
+\usepackage{subcaption} %
+\usepackage{wrapfig}    % wrap images around text
+\usepackage{capt-of}    % define captions independent of figures
+\usepackage{float}
+\usepackage{varwidth}
+\graphicspath{{images/}} % define folder path for images
+
+% TCOLORBOX -------------------------------------------------------------- {{{
+
+\usepackage[skins,breakable]{tcolorbox}
+% skins allows use of enhanced options
+% breakable allows breaking boxes between pages
+
+% 	IMAGE TABLES (TCOLORBOX) {{{
+
+\newtcolorbox{image-bg}[2][]{
+	enhanced,
+	colback           = image-bg,
+	colframe          = image-bg,
+	fonttitle         = \bfseries,
+%	width             = 0.98\linewidth,
+	beforeafter skip  = 0.5cm,
+	drop fuzzy shadow = gray,
+%	boxrule         = 0mm,
+%	top             = 0mm,
+%	bottom          = 0mm,
+%	left            = 0mm,
+%	right           = 0mm,
+	title = #2,#1
+}
+
+\newtcolorbox{image-title}[2][]{
+	enhanced,
+	colback           = image-title,
+	colframe          = image-title,
+	fonttitle         = \bfseries,
+	height            = 0.6cm,
+	drop fuzzy shadow = gray,
+	beforeafter skip  = 0pt,
+	grow to left by   = 0.7cm,
+	boxrule           = 0mm,
+	top               = 0.5mm,
+	bottom            = 0mm,
+	left              = 1mm,
+	right             = 0mm,
+	sharp corners,
+	title = #2,#1
+}
+
+\newtcolorbox{image-theword}{
+	enhanced,
+	colback           = image-theword,
+	colframe          = image-theword,
+	fonttitle         = \bfseries,
+	drop fuzzy shadow = gray,
+	width             = 1.8cm,
+	height            = 0.5cm,
+	beforeafter skip  = 0pt,
+	grow to left by   = 0.7cm,
+	boxrule           = 0mm,
+	top               = 0.5mm,
+	bottom            = 0mm,
+	left              = 1mm,
+	right             = 0mm,
+	sharp corners,
+}
+
+\newtcolorbox{image-content}{
+	enhanced,
+	colback         = image-bg,
+	colframe        = image-bg,
+	fonttitle       = \bfseries,
+%	enlarge top by  = -0.5cm,
+	enlarge right by = 5cm,
+	width           = \linewidth,
+	boxrule         = 0mm,
+	top             = 2mm,
+	bottom          = 0mm,
+	left            = 0mm,
+	right           = 0mm,
+%	show bounding box
+}
+
+
+\newtcolorbox{image-caption}[2][]{
+	enhanced,
+	colback           = defn-title,
+	colframe          = defn-title,
+	fonttitle         = \bfseries,
+	halign            = center,
+	height            = 0.6cm,
+	drop fuzzy shadow = gray,
+	before skip       = 5pt,
+%	grow to right by  = 1.055\linewidth,
+	enlarge bottom by = -1cm,
+	boxrule           = 0mm,
+	top               = 0.5mm,
+	bottom            = 0mm,
+	left              = 2mm,
+	right             = 0mm,
+	sharp corners,
+	title = #2,#1
+}
+
+
+% }}}
+
+% 	REGULAR TABLES (TCOLORBOX) {{{
+
+\newtcolorbox{table-bg}[2][]{
+	enhanced,
+%	float,
+%	breakable,
+	colback           = table-bg,
+	colframe          = table-bg,
+	fonttitle         = \bfseries,
+%	width             = 0.98\linewidth,
+	beforeafter skip  = 0.5cm,
+	drop fuzzy shadow = gray,
+%	boxrule         = 0mm,
+%	top             = 0mm,
+%	bottom          = 0mm,
+%	left            = 0mm,
+%	right           = 0mm,
+	title = #2,#1
+}
+
+\newtcolorbox{table-theword}{
+	enhanced,
+	colback           = table-theword,
+	colframe          = table-theword,
+	fonttitle         = \bfseries,
+	drop fuzzy shadow = gray,
+	width             = 1.5cm,
+	height            = 0.5cm,
+	beforeafter skip  = 0pt,
+	grow to left by   = 0.7cm,
+	boxrule           = 0mm,
+	top               = 0.5mm,
+	bottom            = 0mm,
+	left              = 1mm,
+	right             = 0mm,
+	sharp corners,
+}
+
+\newtcolorbox{table-title}[2][]{
+	enhanced,
+	colback           = table-title,
+	colframe          = table-title,
+	fonttitle         = \bfseries,
+	height            = 0.6cm,
+	drop fuzzy shadow = gray,
+	beforeafter skip  = 0pt,
+	grow to left by   = 0.7cm,
+	boxrule           = 0mm,
+	top               = 0.5mm,
+	bottom            = 0mm,
+	left              = 1mm,
+	right             = 0mm,
+	sharp corners,
+	title = #2,#1
+}
+
+
+\newtcolorbox{table-content}{
+	enhanced,
+	colback         = table-bg,
+	colframe        = table-bg,
+	fonttitle       = \bfseries,
+	before skip = 0.5cm,
+%	enlarge top by  = -0.5cm,
+%	enlarge right by = 5cm,
+	width           = \linewidth,
+	boxrule         = 0mm,
+	top             = 2mm,
+	bottom          = 0mm,
+	left            = 0mm,
+	right           = 0mm
+	%show bounding box
+}
+
+% }}}
+
+% 	DEFINITION TABLE (TCOLORBOX) {{{
+
+% \newtcbox[init options]{name}[number][default]{options}
+
+\newtcolorbox{defn-bg}{
+	enhanced,
+	colback           = defn-bg,
+	colframe          = defn-bg,
+	fonttitle         = \bfseries,
+	drop fuzzy shadow = gray,
+	width             = 0.95\linewidth,
+	beforeafter skip  = 0.5cm,
+	arc is angular,
+}
+
+\newtcolorbox{defn-theword}{
+	enhanced,
+	colback           = defn-theword,
+	colframe          = defn-theword,
+	fonttitle         = \bfseries,
+	drop fuzzy shadow = gray,
+	width             = 2.5cm,
+	height            = 0.5cm,
+	beforeafter skip  = 0pt,
+	grow to left by   = 0.7cm,
+	boxrule           = 0mm,
+	top               = 0.5mm,
+	bottom            = 0mm,
+	left              = 1mm,
+	right             = 0mm,
+	sharp corners,
+}
+
+\newtcolorbox{defn-title}[2][]{
+	enhanced,
+	colback           = defn-title,
+	colframe          = defn-title,
+	fonttitle         = \bfseries,
+	height            = 0.6cm,
+	drop fuzzy shadow = gray,
+	beforeafter skip  = 0pt,
+	grow to left by   = 0.7cm,
+	boxrule           = 0mm,
+	top               = 0.5mm,
+	bottom            = 0mm,
+	left              = 1mm,
+	right             = 0mm,
+	sharp corners,
+	title = #2,#1
+}
+
+\newtcolorbox{defn-content}{
+	enhanced,
+	standard jigsaw,%allows transparency
+	opacityback=1,
+	fonttitle       = \bfseries,
+%	enlarge top by  = -0.5cm,
+%	enlarge right by = -5cm,
+%	width           = 13cm,
+	boxrule         = 0mm
+%	top             = 1mm,
+%	bottom          = 0mm,
+%	left            = 4mm,
+%	right           = 10mm,
+%	show bounding box
+}
+
+% }}}
+
+% 	NOTE TABLE (TCOLORBOX) {{{
+
+\newtcolorbox{note-bg}{
+	enhanced,
+	colback           = note-bg,
+	colframe          = note-bg,
+	fonttitle         = \bfseries,
+	drop fuzzy shadow = gray,
+	width             = 0.95\linewidth,
+	before skip  = 0.5cm,
+	after skip  = 0.5cm,
+	arc is angular,
+}
+
+\newtcolorbox{note-theword}{
+	enhanced,
+	colback           = note-theword,
+	colframe          = note-theword,
+	fonttitle         = \bfseries,
+	drop fuzzy shadow = gray,
+	width             = 0.7cm,
+	height            = 0.5cm,
+	beforeafter skip  = 0pt,
+	grow to left by   = 0.7cm,
+	boxrule           = 0mm,
+	top               = 0.5mm,
+	bottom            = 0mm,
+	left              = 1mm,
+	right             = 0mm,
+	sharp corners,
+}
+
+\newtcolorbox{note-content}{
+	enhanced,
+	colback         = note-bg,
+	colframe        = note-bg,
+	fonttitle       = \bfseries,
+%	enlarge top by  = -0.6cm,
+%	enlarge left by = 1.5cm,
+%	width           = 13cm,
+%	boxrule         = 0mm,
+%	top             = 0mm,
+%	bottom          = 0mm,
+%	left            = 0mm,
+%	right           = 0mm
+}
+
+
+% }}}
+
+% 	SECTION TITLES (TCOLORBOX) {{{
+
+\newtcolorbox{section-box}{
+	enhanced,
+	colback          = section-bg,
+	colframe         = section-bg,
+	fonttitle        = \bfseries,
+	width            = \linewidth,
+	height           = 1cm,
+	beforeafter skip = 0pt,
+	sharp corners 
+}
+
+\newtcolorbox{subsection-box}{
+	enhanced,
+	colback           = subsection-bg,
+	colframe          = subsection-bg,
+	fonttitle         = \bfseries,
+	width             = \linewidth,
+	height = 0.6cm,
+	sharp corners,
+	beforeafter skip  = 0pt,
+	boxrule           = 0mm,
+	top               = 0.5mm,
+	bottom            = 0mm,
+	left              = 1mm,
+	right             = 0mm
+}
+
+\newtcolorbox{subsubsection-box}{
+	enhanced,
+	colback   = subsubsection-bg,
+	colframe  = subsubsection-bg,
+	fonttitle = \bfseries,
+	width     = \linewidth,
+	height = 0.6cm,
+	sharp corners,
+	beforeafter skip  = 0pt,
+	boxrule           = 0mm,
+	top               = 0.5mm,
+	bottom            = 0mm,
+	left              = 1mm,
+	right             = 0mm
+}
+
+% }}}
+
+
+
+
+% }}}
+
+% }}}
+% CODE / CODE DISPLAY ---------------------------------------------------- {{{
+
+\usepackage{listings}
+
+
+\definecolor{codebackground}{RGB}{239,239,239}
+\definecolor{codecomments}{RGB}{169,169,169}
+\definecolor{codekeyword}{RGB}{249,38,114}
+\definecolor{codestrings}{HTML}{ECE47E}
+\definecolor{coderegular}{RGB}{39,40,34}
+
+\lstset{
+basicstyle       = \footnotesize\ttfamily,
+backgroundcolor  = \color{codebackground},
+commentstyle     = \color{codecomments}, % comment style
+keywordstyle     = \color{codekeyword},  % keyword style
+stringstyle      = \color{codestrings},  % string literal style
+rulecolor        = \color{black},        % if not set, the frame-color may be changed on line-breaks
+frame            = single,               % adds a frame around the code
+basicstyle       = \footnotesize,        % the size of the fonts that are used for the code
+keepspaces       = true,                 % keeps spaces in text, useful for keeping indentation of code
+tabsize          = 2,                    % sets default tabsize
+breaklines       = true,                 % sets automatic line breaking
+captionpos       = b,                    % sets the caption-position to bottom
+numbers          = left,
+numberstyle      = \tiny,
+numbersep        = 10pt,
+frame            = tb,
+columns          = fixed,
+showstringspaces = false,
+showtabs         = false,
+keepspaces,
+% escapeinside={\%*}{*)},  % if you want to add LaTeX within your code
+framextopmargin=10pt,    % margin for the top background border
+framexbottommargin=10pt, % margin for the bot background border
+framexleftmargin=0pt,    % margin for the left background border
+framexrightmargin=0pt    % margin for the right background border
+}
+
+
+% }}}
+% MATH / GRAPHING  ------------------------------------------------------- {{{
+
+\usepackage{amsmath} % basic math package
+\usepackage{amssymb} % allows more math symbols
+\usepackage{amsthm}  % allows custom therorem,defn,corll etc... definitions
+\usepackage{mathrsfs} % some new fonts for math mode
+
+\newtheorem{mydef}{DEFINITION}[section]
+\newtheorem{myimage}{IMAGE}[section]
+\newtheorem{mytable}{TABLE}[section]
+
+% TIKZ -------------------------------------------------------------------- {{{
+\usepackage{tikz}
+% }}}
+
+% }}}
+% BIBLIOGRAPHY / REFERENCES / FOOTNOTES ---------------------------------- {{{
+
+\usepackage[nottoc,numbib]{tocbibind} % to show references line in toc
+\usepackage[super]{natbib}            % superscript the citations
+
+%\usepackage[superscript,biblabel]{cite}
+%\usepackage{cleveref}
+
+
+\renewcommand{\thefootnote}{\roman{footnote}} % footnote style
+
+
+
+
+% }}}
+% TABLE OF CONTENTS ------------------------------------------------------ {{{
+
+\usepackage{titletoc}
+% margin from RHS
+%\contentsmargin{1cm}
+
+% \dottedcontents {section}[left]{above}{label-width}{leader-width}
+%\dottedcontents{section}[1.8cm]{\bfseries}{3.2em}{1pc}
+%\dottedcontents{subsection}[1.8cm]{}{3.2em}{1pc}
+%\dottedcontents{subsubsection}[1.8cm]{}{2.8em}{1pc}
+
+
+% }}}
+% CUSTOM COMMANDS -------------------------------------------------------- {{{
+
+\newcommand{\newpar}
+{\par \vspace{0.3cm}}
+
+% New Commands : Sectioning {{{
+
+\newcommand{\sectionend}
+{
+\nolinenumbers
+\begin{center}
+%	\textbf{---------}
+	$\blacksquare$
+%	\textbf{---------}
+\end{center}
+\clearpage
+\linenumbers
+}
+
+\newcommand{\subsectionend}
+{
+\nolinenumbers
+%\begin{center}
+%	\textbf{---------}
+%	\hspace{0.2cm}
+%	\textsection 
+%	\hspace{0.05cm}
+%	\thesubsection
+%	\hspace{0.2cm}
+%	\textbf{---------}
+%\end{center}
+\linenumbers
+}
+
+\newcommand{\subsubsectionend}
+{
+\nolinenumbers
+%\begin{center}
+%	\textbf{---------}
+%	\hspace{0.2cm}
+%	\textsection
+%	\hspace{0.05cm}
+%	\thesubsubsection
+%	\hspace{0.2cm}
+%	\textbf{---------}
+%\end{center}
+\linenumbers
+}
+
+% }}}
+
+% New Commands : Symbols {{{
+
+\newcommand{\bulletpoint}
+{ $\bullet$  }
+
+% }}}
+
+% New Commands : Tcolorbox {{{
+
+%	General {{{
+
+\newcommand{\tcolorboxstart}
+{
+	\nolinenumbers
+	\vspace{0.2cm}
+	\centering
+}
+
+\newcommand{\tcolorboxend}
+{
+	\justifying
+	\vspace{0.2cm}
+	\linenumbers
+}
+
+% }}}
+
+%	Definition {{{
+
+\newcommand{\tcolorboxdefinition}[3]
+{
+
+\tcolorboxstart
+\begin{defn-bg}
+
+	\begin{defn-title}[width=7cm]{}
+	{
+		\normalsize \textbf{\textit{#1}}
+	}
+	\end{defn-title}
+
+	\begin{defn-theword}
+	{
+		\footnotesize
+		\begin{mydef} #2
+%		\label{def:{#2}}
+		\end{mydef}
+	}
+	\end{defn-theword}
+
+
+	\begin{defn-content}
+
+	\justify
+	#3
+
+	\end{defn-content}
+
+\end{defn-bg}
+\tcolorboxend
+}
+
+% }}}
+
+%	Note {{{
+
+\newcommand{\tcolorboxnote}[1]
+{
+
+\tcolorboxstart
+\begin{note-bg}
+
+	\begin{note-theword}
+		{\footnotesize \textbf{NOTE} }
+	\end{note-theword}
+
+	\begin{note-content} \justifying
+
+		#1
+
+	\end{note-content}
+
+\end{note-bg}
+\tcolorboxend
+}
+
+
+
+
+% }}}
+
+%	Table {{{
+
+
+\newcommand{\tcolorboxtable}[5]
+{
+\tcolorboxstart
+\begin{table-bg}#3{}
+
+	\begin{table-title}[width=6.5cm]{}
+		\captionsetup{labelformat=empty}
+		\captionof{table}{#1}
+	\end{table-title}
+
+	\begin{table-theword}
+		\footnotesize
+		\begin{mytable}
+		#2
+		\end{mytable}
+	\end{table-theword}
+
+	\begin{table-content}
+	\begin{tabularx}{\textwidth}{#4}
+
+		#5
+		
+	\end{tabularx}
+	\end{table-content}
+
+\end{table-bg}
+\tcolorboxend
+}
+
+% }}}
+
+%	Image {{{
+
+\newcommand{\tcolorboxfigure}[4]
+{
+\tcolorboxstart
+\begin{image-bg}[width=\linewidth]{}
+
+	\begin{image-title}[width=5cm]{}
+		\captionsetup{labelformat=empty}
+		\captionof{figure}{#1}
+	\end{image-title}
+
+	\begin{image-theword}
+		\footnotesize
+		\begin{myimage}
+		#2
+		\end{myimage}
+	\end{image-theword}
+
+	\begin{image-content}
+		\includegraphics[width=\linewidth]{#3}
+		\href{#4}{Source}
+	\end{image-content}
+
+\end{image-bg}
+\tcolorboxend
+}
+
+% }}}
+
+% }}}
+
+% New Commands : Tables {{{
+
+\newcommand{\tabularxtable}[3]
+{
+
+	\vspace{0.5cm}
+	\nolinenumbers
+
+	\begin{tabularx}{#1}{#2}
+		#3
+	\end{tabularx}
+
+	\linenumbers
+	\vspace{0.5cm}
+}
+
+\newcommand{\xtabulartable}[2]
+{
+
+	\vspace{0.25cm}
+	\nolinenumbers
+
+	\begin{xtabular}{#1}
+		#2
+	\end{xtabular}
+
+	\vspace{0.25cm}
+	\linenumbers
+}
+
+
+
+
+
+
+
+% }}}
+
+% New Commands : References {{{
+
+\newcommand{\refsec}[1]
+{
+	\hyperref[sec:#1]
+	{
+		(\textsection~\ref{sec:#1})
+	}
+}
+
+\newcommand{\refssec}[1]
+{
+	\hyperref[sec:#1]
+	{
+		(\textsection~\ref{ssec:#1})
+	}
+}
+
+\newcommand{\refsssec}[1]
+{
+	\hyperref[sec:#1]
+	{
+		(\textsection~\ref{sssec:#1})
+	}
+}
+
+\newcommand{\refdef}[1]
+{
+	\hyperref[def:#1]
+	{
+		\textit{(Def.~\ref{def:#1})}
+	}
+}
+
+\newcommand{\reffig}[1]
+{
+	\hyperref[fig:#1]
+	{
+		(Fig.~\ref{fig:#1})
+	}
+}
+
+\newcommand{\reftable}[1]
+{
+	\hyperref[table:#1]
+	{
+		(Table.~\ref{table:#1})
+	}
+}
+% }}}
+
+% }}}
+% TESTING ---------------------------------------------------------------- {{{
+
+\usepackage{lipsum}    % generates filler text
+\usepackage{blindtext} % generates non-latin filler text
+
+% }}}
+
+\usetikzlibrary{arrows} 
+\usetikzlibrary{positioning}
+
+
+
+% }}}
+
+% ============================================================================ 
+\begin{document}
+% ----------------------------------------------------------------------------- 
+% TOC & SETUP {{{
+\raggedbottom
+\onecolumn
+
+\tableofcontents
+\pagebreak
+
+\listoftables
+\clearpage
+\twocolumn
+\justifying
+
+
+\linenumbers
+
+% }}}
+% ----------------------------------------------------------------------------- 
+
+% SECTION : nouns {{{
+\section{{Nouns}}
+\label{sec:nouns}
+
+
+% DEFINITION : nouns {{{
+% {title} {label} {content}
+
+\tcolorboxdefinition
+{Nouns}
+{\label{def:nouns}}
+{
+
+
+		Substantives/Nouns are people, animals, things, concepts and ideas.
+
+}
+
+% }}} END DEFINITION : nouns
+
+\lettrine[lines=3, findent=3pt, nindent=0pt]{S}{ubstantives}\footnote{In German
+	a substantive is spelled as substantiv so over the course of this document I
+	will probably end up using both, so yeah, if someone besides me (or more
+	probably my future self) is reading this, dont give me shit for having
+	spelling mistakes everywhere. This statement applies for a whole bunch of
+	words.} are more commonly known as a nouns. Calling something a substantive
+is just a more grammatical jargony way of referring to a noun. The reason that
+there are two names for the same thing goes back to latin , where the phrase
+\textit{Nomen Substantivus} or \textit{the name of substance} was used. I assume
+lazy humans just split this into two words meaning the same thing over the
+course of history.\newpar
+
+German Nouns / Substantives have two defining characteristics that will help you
+identify them in a German sentence. They are :
+
+\begin{enumerate}[noitemsep]
+	\item The first character of a noun is always uppercase.
+	\item Every noun is preceded by a grammatically gendered article.
+	\item German Nouns are declined.
+\end{enumerate}
+
+% 	SUB-SECTION : gendered_nouns {{{
+\subsection{Gendered Nouns}
+\label{ssec:gendered_nouns}
+
+German is a gendered language therefore every substantive comes with one of
+three genders. In German the gender is known as \textit{Genus}. German
+dileniates between three grammatical genders and they are :
+
+\nolinenumbers
+\begin{enumerate}[noitemsep]
+	\item \textbf{Maskulin }: der
+	\item \textbf{Feminin} : die
+	\item \textbf{Neuter}  : das
+\end{enumerate}
+\linenumbers
+
+The words attached to each gender der , die , and das are what we use to
+indicate that a particular noun belongs to a certain gender class. These three
+words are called \textit{articles}. These are talked about in more detail in the
+next sub section.\newpar
+
+It is very important to note that the gender of a noun is NOT related to its
+physical or biological gender, so please keep this in mind. As an exaple a young
+girl is : \textit{das Madchen} , which is the article for a neuter noun, even
+though we would assume that a young girl would be assigned the feminine article.
+It is important to keep the differnce between grammatical gender and physical
+gender distict in your mind to avoid making mistakes.
+
+
+\subsectionend
+% }}} END SUB-SECTION : gendered_nouns
+
+% 	SUB-SECTION : articles {{{
+\subsection{Articles}
+\label{ssec:articles}
+
+As mentioned in Section~\ref{ssec:gendered_nouns}, every German noun has a corresponding
+grammatical article. There are two types of article a noun can have  , and they
+are :
+
+\nolinenumbers
+\begin{itemize}[noitemsep]
+	\item \textbf{Definite Articles} : The english equivalent is the word ``{\textit{the}}''
+	\item \textbf{In-definite Articles} : The english equivalent is the word ``{\textit{a}}''
+\end{itemize}
+\linenumbers
+
+There are vairous things that affect what the exact article is for the word that
+we are using. The main things to keep into consideration for each German noun
+are :
+
+\nolinenumbers
+\begin{itemize}[noitemsep]
+	\item Grammatical Gender
+	\item Count (Singular / Plural)
+	\item Case
+\end{itemize}
+\linenumbers
+
+Based on these three things the article we are using for each noun becomes very
+specific and gives a detailed description of the function this noun is serving
+in the sentence.\newpar
+
+Since there is no noun without an article in German, the basis for discussing
+articles only arises when we understand the German cases. So cases and articles
+changes are discussed in Section~\ref{sssec:article_tips_neuter_das_} which is
+exclusively about articles and Cases.\newpar
+
+So we need to learn every noun in German along with its corresponding article. I
+really don't expect most sane humans will bother sitting around memorizing the
+article for each word, so the next couple of subsections have some tricks to
+help in guessing them.
+
+
+% NOTE : Article Importance {{{
+
+\tcolorboxnote
+{
+
+		The importance of articles in German cannot be emphasized enough. In no
+		correctly formed German sentence will there exist a noun without its
+		definite or indefinite article.\newpar
+
+		Every single noun, in every single sentence MUST be written with a
+		corresponding grammatical article (in the correct case of course).
+
+}
+
+
+
+% }}} END NOTE : article_importance
+
+
+% 		SUB-SUB-SECTION : article_tips_masculine_der_ {{{
+\subsubsection{Article Tips : Masculine (Der)}
+\label{sssec:article_tips_masculine_der_}
+
+The following list provides some common roots / endings of words that will
+recieve the \textbf{\textit{der (Maskulin)}} article.
+
+% LIST : der (Maskulin) {{{
+
+\tabularxtable
+{ 0.95\linewidth }
+{ lrX }
+{
+
+\rowcolor{white} $\bullet$ -ant   & e.g. & der Konsonant\\
+\rowcolor{white} $\bullet$ -ast   & e.g. & der Gast     \\
+\rowcolor{white} $\bullet$ -ich   & e.g. & der Teppich  \\
+\rowcolor{white} $\bullet$ -ismus & e.g. & der Marxismus\\
+\rowcolor{white} $\bullet$ -ling  & e.g. & der Häftling \\
+\rowcolor{white} $\bullet$ -us    & e.g. & der Rythmus  \\
+\rowcolor{white} $\bullet$ -er    & e.g. & der Sommer   \\
+
+}
+
+% }}} End LIST : der (Maskulin)
+
+A note about the last one with the -er ending. This one not only means that the
+grammatical gender of the noun is masculine, but most of the time often is also
+referring to the physical gender. E.g.\ der Lehrer (the male teacher), der
+Amerikaner (the male American), der Fahrer (the male driver).\newpar
+
+The following things will always be masculine regardless of what the noun ending
+is :
+
+% ITEMIZE : always_masculine_nouns {{{
+
+\begin{itemize}[noitemsep]
+	\item \textbf{Times of the day} \textit{ (Tageszeiten) }
+
+\noindent
+\textit{der Morgen , der Vormittag , der Mittag , der Nachmittag ,
+	der Abend , der Nacht}\\
+\textcolor{gray} { \textit{( Morning , Late Morning, Noon , Afternoon , Evening
+		, Night)} } \newpar
+
+	\item \textbf{Days of the week} \textit{ (Wochentage) }
+
+\noindent
+\textit{der Monntag , der Deinstag , der Mittwoch , der Donnerstag , der Freitag
+, der Samstag , der Sonntag}\\
+\textcolor{gray} { \textit{( Monday , Tuesday , Wednesday, Thursday , Friday ,
+		Saturday , Sunday )} } \newpar
+
+	\item \textbf{Months} \textit{ (Monate) }
+
+\noindent \textit{der Januar ,der Februar ,der Marz ,der April ,der Mai ,der
+	Juni ,der Juli ,der August , der September ,der Oktober ,der November ,der
+	Dezember }\\
+\textcolor{gray} { \textit{( January , February , March , April , May , June ,
+		July , August , October , November , December  )} } \newpar
+
+	\item \textbf{Seasons} \textit{ (Jahrezeiten) }
+		
+		\noindent
+		\textit{der Sommer , der Frühling , der Herbst , der Winter }\\
+		\textcolor{gray} { \textit{( Summer , Spring  , Fall , Winter  )} } \newpar
+		
+	\item \textbf{Weather} \textit{ (Wetter) }
+
+		
+		\noindent
+		\textit{der Wind , der Regen , der Schnee , \ldots}\\
+		\textcolor{gray} { \textit{( Windy , Rainy , Snowy \ldots )} } \newpar
+		
+		An excpetion is \textit{die wolke} (the thunder)\\
+
+	\item \textbf{Cardinal Directions} \textit{ (Wochentage) }
+
+A note about the cardinal directions. When we are using them we can basically
+have two forms : aus der Norden , or \\
+
+
+
+	\item \textbf{Alcoholic drinks} \textit{ (Alkoholische getranke) }
+
+		
+		\noindent
+		\textit{der Wein , der Schnapps , Der vodka, \ldots}\\
+		\textcolor{gray} { \textit{( Wine , Schnapps, Vodka , \ldots )} } \newpar 
+		The exception to the alcoholic drinks rule is Beer which is always
+		\textit{das Bier}\\
+
+
+\end{itemize}
+
+% }}} END-ITEMIZE : Always masculine nouns
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : article_tips_masculine_der_
+
+% 		SUB-SUB-SECTION : article_tips_feminine_die_ {{{
+\subsubsection{Article Tips : Feminine (Die)}
+\label{sssec:article_tips_feminine_die_}
+
+The following list provides some common roots / endings of words that will
+recieve the \textbf{\textit{die (feminin)}} article.
+
+% LIST : die_article_tricks {{{
+
+\nolinenumbers
+
+\vspace{0.2cm}
+
+\begin{xtabular}{l r l}
+
+\rowcolor{white}  $\bullet$ -ung    & e.g. & die Entscheidung \\
+\rowcolor{white}  $\bullet$ -tät    & e.g. & die Universität  \\
+\rowcolor{white}  $\bullet$ -tion   & e.g. & die Explosion    \\
+\rowcolor{white}  $\bullet$ -sion   & e.g. & die              \\
+\rowcolor{white}  $\bullet$ -schaft & e.g. & die Gesellschaft \\
+\rowcolor{white}  $\bullet$ -heit   & e.g. & die Schönheit    \\
+\rowcolor{white}  $\bullet$ -keit   & e.g. & die              \\
+\rowcolor{white}  $\bullet$ -ie     & e.g. & die Geographie   \\
+\rowcolor{white}  $\bullet$ -enz    & e.g. & die              \\
+\rowcolor{white}  $\bullet$ -anz    & e.g. & die Toleranz     \\
+\rowcolor{white}  $\bullet$ -ei     & e.g. & die Schlägerei   \\
+\rowcolor{white}  $\bullet$ -ur     & e.g. & die Natur        \\
+\rowcolor{white}  $\bullet$ -in     & e.g. & die Boxerin      \\
+\rowcolor{white}  $\bullet$ -itis   & e.g. & \\
+\rowcolor{white}  $\bullet$ -sis    & e.g. & \\
+\rowcolor{white}  $\bullet$ -ik     & e.g. & \\
+\rowcolor{white}  $\bullet$ -ade    & e.g. & \\
+\rowcolor{white}  $\bullet$ -age    & e.g. & \\
+\rowcolor{white}  $\bullet$ -ine    & e.g. & \\
+\rowcolor{white}  $\bullet$ -ere    & e.g. & \\
+\rowcolor{white}  $\bullet$ -isse   & e.g. & \\
+\rowcolor{white}  $\bullet$ -ive    & e.g. & \\
+\rowcolor{white}  $\bullet$ -se     & e.g. & \\
+
+\end{xtabular}
+
+\vspace{0.2cm}
+
+\linenumbers
+
+% }}} End TABLE : die_article_tricks
+
+Just like the note about the -er in the der section, the last point with the -in
+ending not only means that the grammatical gender of the noun is
+feminine, but most of the time often is also reffering to the phyisical gender.
+E.g.\ die Lehrerin (the female teacher) , die Fahrerin (the female driver), die
+Amerikanerin (the female american)
+
+
+
+% NOTE : Die Article Note {{{
+
+\tcolorboxnote
+{
+	The large majority of nouns which end in -e
+		are feminine, e.g. : die Lampe (the lamp), die Rede (the speech), and
+		die Bühne (the stage).\newpar
+
+		This is true roughly 80\% of the time opposed to being a grammatical
+		rule, which is why this information is in a note as opposed to in the
+		list above.
+
+
+
+}
+
+
+
+% }}} END NOTE : die_article_note
+
+The following things will always be feminine regardless of what the noun ending
+is :
+
+% ITEMIZE : always_feminine_nouns {{{
+
+\begin{itemize}[noitemsep]
+
+	\item \textbf{Motobike Brands} \textit{ (Motorradmarken) }
+
+
+\noindent
+\textit{die Yamaha , die Harley-Davidson}\\
+
+
+
+
+
+\end{itemize}
+
+% }}} END-ITEMIZE : Always feminine nouns
+
+
+
+\
+
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : article_tips_feminine_die_
+
+% 		SUB-SUB-SECTION : article_tips_neuter_das_ {{{
+\subsubsection{Article Tips : Neuter (Das)}
+\label{sssec:article_tips_neuter_das_}
+
+The following list provides some common roots / endings of words that will
+recieve the \textbf{\textit{das (neuter)}} article.
+
+% LIST : das (neutrum)  {{{
+
+\nolinenumbers
+
+\vspace{0.2cm}
+
+\begin{tabularx}{\linewidth}{l r l}
+
+\rowcolor{white} $\bullet$ -chen & e.g. & Das Häuschen \\
+\rowcolor{white} $\bullet$ -lein & e.g. & Das Büchlein \\
+\rowcolor{white} $\bullet$ -um & e.g. & Das Wachstum \\
+
+\end{tabularx}
+
+\vspace{0.2cm}
+
+\linenumbers
+
+
+% }}} End LIST : das (neutrum)
+
+% NOTE : das article note {{{
+\nolinenumbers
+\vspace{0.2cm}
+\centering
+\begin{note-bg}
+
+	\begin{note-theword}
+		{\footnotesize \textbf{NOTE} }
+	\end{note-theword}
+
+	\begin{note-content} \justifying Similar to the note in the femnine article
+		tips section, a lot of the German nouns that begin with Ge- are neuter
+		but not all, which is why you are reading this in a note right now and
+		not the main list above.
+
+	\end{note-content}
+
+\end{note-bg}
+\linenumbers
+\justifying
+
+% }}} END NOTE : das_article_note
+
+The following things will always be neutral regardless of what the noun ending
+is :
+
+% ITEMIZE : always_feminine_nouns {{{
+
+\begin{itemize}[noitemsep]
+
+	\item \textbf{Names of Colors} \textit{ (Farbnamen) }
+
+
+\noindent
+\textit{das Weiß , das Blau , das Rot , das Grau , das Schwarz , \ldots}\\
+\textcolor{gray} { \textit{( white , blue , red , gray , black , \ldots )} } \newpar
+
+
+	\item The exception from the der section on alcoholic drinks : \textit{das
+			Bier}
+
+\end{itemize}
+
+% }}} END-ITEMIZE : Always feminine nouns
+
+
+
+
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : article_tips_neuter_das_
+
+
+\subsectionend
+% }}} END SUB-SECTION : articles
+
+% 	SUB-SECTION : plurals {{{
+\subsection{Plurals}
+\label{ssec:plurals}
+
+German just like English build plurals out of nouns by appending certain endings
+to the noun. Its a bit more involved than english however, since english has
+only the -s ending, German has a few more. The ending appended is realtively
+arbitrary so there are few choices but to learn the plural formation along with
+the original noun, although after a while you should get a feel for what kind of
+word will get what kind of plural formation.\newpar
+
+Below are some general guidelines to building the plural formation for a noun
+:\cite{em},\cite{Germanveryeasy},\cite{deutschlingola}
+
+% 		SUB-SUB-SECTION : plurals_masculine_nouns {{{
+\textbf{\subsubsection{Plurals : Masculine Nouns}}
+\label{sec:plurals_masculine_nouns}
+
+The following list shows some common transformations to make masculine nouns
+plural :
+
+% TABLE : plural_masculine_nouns {{{
+
+
+\nolinenumbers
+
+\vspace{0.2cm}
+
+\begin{xtabular}{lll}
+
+
+		\rowcolor{white} $\bullet$ -ich  & -e     & \textcolor{gray}{\textit{der Teppich , die Teppiche} }\\
+		\rowcolor{white} $\bullet$ -ig   & -e     & \textcolor{gray}{\textit{der König, die Könige} }\\
+		\rowcolor{white} $\bullet$ -ling & -e     & \textcolor{gray}{\textit{der Schmetterling, die Schmetterlinge} }\\
+		\rowcolor{white} $\bullet$ -är   & -e     & \textcolor{gray}{\textit{der Veterinär,die Veterinäre} }\\
+		\rowcolor{white} $\bullet$ -eur   & -e    & \textcolor{gray}{\textit{der Friseur,die Friseure} }\\
+		\rowcolor{white} $\bullet$       & \"{-}e & \textcolor{gray}{ \textit{der Platz , die Plätze} }\\
+		\rowcolor{white}                 &        & \textcolor{gray}{ \textit{der Kuss , die Küsse} }\\
+		\rowcolor{white}                 &        & \textcolor{gray}{ \textit{der Arzt , die Ärzte} }\\
+		\rowcolor{white} $\bullet$       & -      & \textcolor{gray}{ \textit{der Schüler , die Schüler} }\\
+		\rowcolor{white} $\bullet$ -er   & \"{-}  & \textcolor{gray}{ \textit{der Vater , die Väter} }\\
+		\rowcolor{white} $\bullet$ -el   & \"{-}  & \textcolor{gray}{ \textit{der Mantel , die Mäntel} }\\
+		\rowcolor{white} $\bullet$ -us   & -usse  & \textcolor{gray}{ \textit{der Bus , die Busse} }\\
+
+
+
+\end{xtabular}
+
+\vspace{0.2cm}
+
+\linenumbers
+
+% }}} End TABLE : plural masculine nouns
+
+Please keep in mind that the list above shows trasformations in general and is
+not meant to serve as a list of rules for converting nouns with the given
+endings into thier respective plural forms. They are only meant to serve as
+educated guesses.\newpar
+
+A lot of masculine nouns ending in -e also follow the rules for n-Declination.
+So check out \refssec{n_declination}for more details.
+
+
+
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : plurals_masculine_nouns
+
+% 		SUB-SUB-SECTION : plurals_feminine_nouns {{{
+\textbf{\subsubsection{Plurals : Feminine Nouns}}
+\label{sec:plurals_feminine_nouns}
+
+The following tables illustrates the plural formations for feminine nouns :
+
+% TABLE : plurals_feminine_nouns {{{
+
+\nolinenumbers
+
+\vspace{0.2cm}
+
+\begin{xtabular}{lll}
+
+		\rowcolor{white} $\bullet$  -ei    & -en & \textcolor{gray}{ \textit{die Datei , die Dateien} }\\
+		\rowcolor{white} $\bullet$ -ung    & -en & \textcolor{gray}{ \textit{} }\\
+		\rowcolor{white} $\bullet$ -heit   & -en & \textcolor{gray}{ \textit{} }\\
+		\rowcolor{white} $\bullet$ -keit   & -en & \textcolor{gray}{ \textit{} }\\
+		\rowcolor{white} $\bullet$ -ion    & -en & \textcolor{gray}{ \textit{} }\\
+		\rowcolor{white} $\bullet$ -schaft & -en & \textcolor{gray}{ \textit{} }\\
+		\rowcolor{white} $\bullet$ -ik     & -en & \textcolor{gray}{ \textit{} }\\
+		\rowcolor{white} $\bullet$ -eur    & -en & \textcolor{gray}{ \textit{} }\\
+		\rowcolor{white} $\bullet$ -enz    & -en & \textcolor{gray}{ \textit{} }\\
+		\rowcolor{white} $\bullet$ -tät    & -en & \textcolor{gray}{ \textit{} }\\
+		\rowcolor{white} $\bullet$ -itis   & -en & \textcolor{gray}{ \textit{} }\\
+		\rowcolor{white} $\bullet$ -sis    & -en & \textcolor{gray}{ \textit{} }\\
+		\rowcolor{white} $\bullet$ -ung    & -en & \textcolor{gray}{ \textit{} }\\
+		\rowcolor{white} $\bullet$ -ung    & -en & \textcolor{gray}{ \textit{} }\\
+
+		\midrule
+		\rowcolor{white} $\bullet$ -ie  & -n & \textcolor{gray}{ \textit{die Fantasie, die Fantasien} }\\
+		\rowcolor{white} $\bullet$ -ade  & -n & \textcolor{gray}{ \textit{..} }\\
+		\rowcolor{white} $\bullet$ -age  & -n & \textcolor{gray}{ \textit{..} }\\
+		\rowcolor{white} $\bullet$ -ere  & -n & \textcolor{gray}{ \textit{..} }\\
+		\rowcolor{white} $\bullet$ -ine  & -n & \textcolor{gray}{ \textit{..} }\\
+		\rowcolor{white} $\bullet$ -isse & -n & \textcolor{gray}{ \textit{..} }\\
+		\rowcolor{white} $\bullet$ -ive  & -n & \textcolor{gray}{ \textit{..} }\\
+		\rowcolor{white} $\bullet$ -se   & -n & \textcolor{gray}{ \textit{..} }\\
+
+		\midrule
+		\rowcolor{white} $\bullet$ -in   & -nen    & \textcolor{gray}{ \textit{..} }\\
+		\rowcolor{white} $\bullet$ -      & \"{-}e & \textcolor{gray}{ \textit{..} }\\
+		\rowcolor{white} $\bullet$ -nis  & -nisse  & \textcolor{gray}{ \textit{..} }\\
+		\rowcolor{white} $\bullet$ -xis  & -xien   & \textcolor{gray}{ \textit{..} }\\
+		\rowcolor{white} $\bullet$ -itis & -iden   & \textcolor{gray}{ \textit{..} }\\
+		\rowcolor{white} $\bullet$ -aus  & -äuse   & \textcolor{gray}{ \textit{..} }\\
+		\rowcolor{white} $\bullet$ -      & \"{-}   & \textcolor{gray}{ \textit{die Mutter,die Mütter} }\\
+		\rowcolor{white} $\bullet$ -      & \"{-}en & \textcolor{gray}{ \textit{die Werkstatt , die Werkstätten } }\\
+
+	\end{xtabular}
+
+\vspace{0.2cm}
+
+\linenumbers
+
+% }}} End TABLE : plurals_feminine_nouns
+
+
+% }}} END SUB-SUB-SECTION : plurals_feminine_nouns
+
+% 		SUB-SUB-SECTION : plurals_neuter_nouns {{{
+\textbf{\subsubsection{Plurals Neuter Nouns}}
+\label{sec:plurals_neuter_nouns}
+
+
+
+% }}} END SUB-SUB-SECTION : plurals_neuter_nouns
+
+
+\subsectionend
+% }}} END SUB-SECTION : plurals
+
+% 	SUB-SECTION : cases {{{
+\subsection{Cases}
+\label{ssec:cases}
+
+There are four ``{ \textbf{\textit{cases}} }'' in German, which correspond to
+four different roles a noun can play in a sentence.  There is no such thing as a
+case in English, therefore it is difficult to form an equivalence relation with
+something that you might already know. The easiest way to go about understanding
+cases is to consider the following questions when constructing sentences in
+German :
+
+\nolinenumbers
+\begin{enumerate}[noitemsep]
+	\item Who is doing the action ?
+	\item Who or what is being directly affected by the action ?
+	\item Who or what is being indirectly affected by the action ?
+	\item Who is indicating ownership of what ?
+\end{enumerate}
+\linenumbers
+
+Based on the answers to the questions above, every German noun falls into a
+category called a case \textit{(fall , die falle)} . We already know that German
+is a gendered language, and based on the grammatical gender of the noun, the
+article of the changes between masculine, feminine and neuter.\newpar
+
+Now, an added degree of complication is that based on the case, the article of
+the noun will further change. Essentially cases just serve as extremely specific
+articles (instead of just the simple 3 masculine , feminine and neuter) when
+talking about German nouns.Basically, in every sentence  when we have a person
+or a thing (noun) performing some actions (verbs). Depending on how the noun
+(person/thing) is interacting with the verb(action) the article (how we refer to
+the person / thing) will slightly change. This slight change is called the
+application of a case to that noun.\newpar
+
+A case is called a Falle in German.  In German we have four cases :
+
+% LIST : German_cases_basic_list {{{
+\nolinenumbers
+
+\vspace{0.2cm}
+
+\begin{tabularx}{0.95\linewidth}{lllX}
+
+\rowcolor{white} \bulletpoint & \cellcolor{cell-lightred} Nominative    & : & Der Nominativ\\
+\rowcolor{white}              &                                         &   & \textcolor{gray}{ \textit{Der Werfall} }\\
+\rowcolor{white} \bulletpoint & \cellcolor{cell-lightyellow} Accusative & : & Der Akkusativ\\
+\rowcolor{white}              &                                         &   & \textcolor{gray}{ \textit{Der Wenfall} }\\
+\rowcolor{white} \bulletpoint & \cellcolor{cell-lightgreen} Dative      & : & Der Dativ\\
+\rowcolor{white}              &                                         &   & \textcolor{gray}{ \textit{Der Wemfall} }\\
+\rowcolor{white} \bulletpoint & \cellcolor{cell-lightblue} Genetive     & : & Der Genetiv\\
+\rowcolor{white}              &                                         &   & \textcolor{gray}{ \textit{Der Wesfall} }\\
+
+\end{tabularx}
+
+\linenumbers
+
+\vspace{0.2cm}
+% }}} End LIST : German cases basic list
+
+The cases are color coded to make it easier to identify which object, is in
+which case in the examples given in the following sections. The tables in the
+pronouns section will also use the same colors in order to maintain consistency
+throughout the document.\newpar
+
+A short summary of when to use the cases is in the bullet points below, and a
+thorough explanation is further below in the sepreate sub-sections.
+
+% LIST : cases_basic_explanation {{{
+
+\nolinenumbers
+
+\vspace{0.2cm}
+
+\begin{tabularx}{0.95\linewidth}{lllX}
+
+
+\rowcolor{white} \bulletpoint Nominativ & : &  Subject \\
+\rowcolor{white} & &\textcolor{gray}{ \textit{Who is performing the action} }\\
+
+\rowcolor{white} \bulletpoint Akkusativ & : &  Direct object\\
+\rowcolor{white} & &\textcolor{gray}{ \textit{Who / what is the action being} }\\
+\rowcolor{white} & &\textcolor{gray}{ \textit{being performed on ?} }\\
+
+\rowcolor{white}  \bulletpoint Dativ & : &  Indirect object \\
+
+\rowcolor{white} & &\textcolor{gray}{ \textit{Who / what is the action } }\\
+\rowcolor{white} & &\textcolor{gray}{ \textit{ affecting aside from the direct } }\\
+\rowcolor{white} & &\textcolor{gray}{ \textit{ object ?} }\\
+
+\rowcolor{white}  \bulletpoint Genetiv & : &  Possession\\
+
+\end{tabularx}
+
+\vspace{0.2cm}
+
+\linenumbers
+
+% }}} End LIST : cases basic explanation
+
+A full table of article changes according to the specific case is shown below.
+This table can be super useful when making new sentences as a reference guide.
+It will only make complete sense however after you have been through all of the
+following sections explaining all four cases in detail.\newpar
+
+A good thing to meintion here would be that cases change articles as both
+definite and indefinite articles for the given noun change.
+
+
+% 		SUB-SUB-SECTION : nominative {{{
+\textbf{\subsubsection{Nominative}}
+\label{sec:nominative}
+
+To understand the nominative case, and any subsequent cases we have to
+understand the two main parts that make up any sentence both in English and in
+German. These two things are : \textbf{\textit{the grammatical subject}} , and ,
+\textbf{\textit{the predicate}} .  Both of these things are defined below :
+
+
+
+% DEFINITION : grammatical_subject {{{
+% {title} {label} {content}
+
+\tcolorboxdefinition
+{Grammatical Subject}
+{\label{def:grammatical_subject}}
+{
+The grammmatical subject is the person or thing about whom the current statement
+is being made.\newpar
+
+In lingustic jargon : The subject is the word or phrase that controls the
+verb or the clause.~\footnote{\url{https://en.wikipedia.org/wiki/Subject\_(grammar)}}
+
+}
+
+% }}} END DEFINITION : grammatical_subject
+
+% DEFINITION : predicate {{{
+% {title} {label} {content}
+
+\tcolorboxdefinition
+{Predicate}
+{\label{def:predicate}}
+{
+
+The predicate is the part of the sentence (or clause), that tells us where the
+subject is, or what the subject does or is.\newpar
+
+Basically the predicate is everything that is not the subject
+itself.~\footnote{\url{https://www.grammar-monster.com/glossary/predicate.htm}}
+
+}
+
+% }}} END DEFINITION : predicate
+
+
+ The subject in the sentence will always take the nominative case and therefore
+ the corresponding gendered nominative article. The main subject (as is defined
+ above) is the noun that is performing some action. The action here will be
+ specified by the verb. The list of both definite and indefinite nominative
+ articles in German is shown below :\newpar
+
+
+% TABLE : Nominative Articles {{{
+\nolinenumbers
+
+\vspace{0.5cm}
+
+\begin{tabularx}{0.94\linewidth}{l|XXXX}
+
+		&
+		\cellcolor{table-subtopic} \textbf{\textit{MAS.}} &
+		\cellcolor{table-subtopic} \textbf{\textit{NEU.}}  &
+		\cellcolor{table-subtopic} \textbf{\textit{FEM.}}  &
+		\cellcolor{table-subtopic} \textbf{\textit{PLU.}} \\
+		\midrule
+
+		\cellcolor{table-subtopic} \textbf{\textit{NOM.}} &
+		\cellcolor{cell-lightpurple}  der            &
+		\cellcolor{cell-lightorange}  das            &
+		\cellcolor{cell-lightblue} die               &
+		\cellcolor{cell-lightblue} die \\
+
+		\midrule
+
+		\cellcolor{table-subtopic} \textbf{\textit{NOM.}} &
+		\cellcolor{cell-lightpurple}  ein            &
+		\cellcolor{cell-lightorange}  ein            &
+		\cellcolor{cell-lightblue} eine              &
+		\cellcolor{table-bg} - \\
+
+\end{tabularx}
+
+\vspace{0.5cm}
+
+\linenumbers
+% }}} END-TABLE : Nominative Articles
+
+An example is shown below to further clarify this concept :\newpar
+
+\noindent
+\textit{Der Hund beißt den Mann.}\\
+\textcolor{gray} { \textit{( The dog bites the man. )} } \newpar
+
+The action (verb) being performed is beißen (to bite). The thing doing the
+action is the dog. Therefore the dog will be in the nominative case and will
+have the ‘normal’ masculine article of \textit{der}.\newpar
+
+Overall, the nominative case is used in the following situations :\newpar
+
+\nolinenumbers
+\begin{itemize}[noitemsep]
+	\item If the word is isolated , e.g. One word answers like
+		``{\textit{Name}}''.
+	\item If the word makes up part of the subject.
+	\item If the word forms part of the object of the predicate, and the
+			sentence is formed with the copulative verb
+			\textit{(Definition~\ref{def:copulative_verb})}. 
+\end{itemize}
+\linenumbers
+
+
+% NOTE : nominative_clarification {{{
+
+\tcolorboxnote
+{
+		Every single sentence in German will always have a nominative object in
+		it. The nominative is the only case where this is fact is true, due to
+		fact that there is no such thing as a nominative preposition.
+
+
+}
+
+
+
+% }}} END NOTE : nominative_clarification_
+
+
+
+
+
+
+% }}} END SUB-SUB-SECTION : nominative
+
+% 		SUB-SUB-SECTION : accusative {{{
+\textbf{\subsubsection{Accusative}}
+\label{sec:accusative}
+
+The second German case is called \textbf{\textit{the Accusative (Der Akkusativ /
+		Der Wenfall)}} .  The accusative case (or more specifically the
+accusative grammatical article) applies on the direct object / person (noun)
+that the action (verb) is being performed on by the subject (nominative noun).
+Read the last sentence again, because it is a little dense the first time
+around, but nonetheless important. \newpar
+
+The accusative gendered articles are mainly the same as the nominative case,
+with the only exception being the masculine accusative. All the articles are
+shown in a table below :
+
+% TABLE : Accusative Articles {{{
+
+\nolinenumbers
+\vspace{0.5cm}
+\begin{tabularx}{0.94\linewidth}{l|XXXX}
+
+		&
+		\cellcolor{table-subtopic} \textbf{\textit{MAS.}} &
+		\cellcolor{table-subtopic} \textbf{\textit{NEU.}}  &
+		\cellcolor{table-subtopic} \textbf{\textit{FEM.}}  &
+		\cellcolor{table-subtopic} \textbf{\textit{PLU.}} \\
+		\midrule
+
+		\cellcolor{table-subtopic} \textbf{\textit{ACC.}} &
+		\cellcolor{cell-lightgreen} den              &
+		\cellcolor{cell-lightorange}  das            &
+		\cellcolor{cell-lightblue}  die              &
+		\cellcolor{cell-lightblue} die \\
+
+		\midrule
+
+		\cellcolor{table-subtopic} \textbf{\textit{ACC.}} &
+\cellcolor{cell-lightgreen} einen            &
+\cellcolor{cell-lightorange}  ein            &
+\cellcolor{cell-lightblue}  eine             &
+\cellcolor{table-bg} - \\
+
+
+\end{tabularx}
+
+\vspace{0.5cm}
+
+\linenumbers
+
+% }}} END-TABLE : Accusative Articles
+
+The distinction between the direct object, and the subject is easily explained
+through the same example that we dealt with in the nominative section, which is
+:\newpar
+
+\noindent
+\textit{Der Hund beißt den Mann.}\\
+\textcolor{gray} { \textit{( The dog bites the man. )} } \newpar
+
+As mentioned earlier, the thing doing the action is the dog, so the dog gets the
+nominative article. The action being done is biting (beißen), but who is the
+action being done to , or, who/what is being directly affected by the action ?
+In this specific example : Who is being bitten ? : The Mann (Der Mann). The
+normal article for the man is the masculine \textit{der} , but in this sentence,
+we will use the masculine der, but in its accusative form \textit{der} . The
+reason the above is a good example is that we have two nouns, which are both
+masculine , both the two take different cases. This allows us to see the
+nominative and the accusative case functioning simultaneously.\newpar
+
+
+Although the accusative object is defined as the direct object, there are also
+other ways that an object might be assigned the accusative grammatical article,
+even though they are not being directly affected by the verb. The most common
+way that this occurs is through certain prepositions in German. When a word is
+being affected by these prepositions in a sentence, it will always take the
+accusative case, therfore now we have the following situations in which we will
+give an object its acccusative grammatival article :\newpar
+
+\nolinenumbers
+\begin{itemize}[noitemsep]
+
+	\item If the word is a direct object in the english version of the sentence
+		(i.e.\ it is the noun that the verb is acting on), then 90\% of the time
+		this word will take the accusative case in German.
+
+	\item If the word is being affected by either an accusative preposition
+		\textit{( Table~\ref{table:prepositions_accusative} )} or a wechsel
+		preposition \textit{( Table~\ref{table:prepositions_wechsel} )} , then
+		it will take the accusative case.~\footnote{More information about how
+			to distingush between when to use wechsel prepositions for
+			accusative and when for dative is provided in the prepositions
+			section.} These prepositions are listed here and then again in the
+		Prepositions Section. \textit{(Section~\ref{sec:prepositions})}
+	
+
+	\begin{itemize}[noitemsep]
+
+		\item durch, für , entlang, gegen, ohne, um \ldots herum, hinter, in,
+			neben, über, unter, vor, zwischen, wider
+
+	\end{itemize}
+
+\end{itemize}
+\linenumbers
+
+Rememember that just because there is not direct object in the sentence, does
+not mean that there is no accusative object. Since we can have an accusative
+object in a sentence as is defined by the preposition.\newpar
+
+This also implies that we can have two ` \textit{Accusative Objects} ' in one
+sentnce since, we can have a regular direct object and we also have another
+object that is accusative according to one of the accusative prepositions listed
+above, or a movement based wechsel preposition.\newpar
+
+For the sake of illustration, here is another example which has two accusative
+objects in it :
+
+% }}} END SUB-SUB-SECTION : accusative
+
+% 		SUB-SUB-SECTION : dative {{{
+\textbf{\subsubsection{Dative}}
+\label{sec:dative}
+
+The third German case is called \textbf{\textit{the Dative Case (Der Dativ Fall
+		/ Der Wemfall)}} If you have understood and internalized the accusative
+case, then the dative case should not be too much of a stretch to master. The
+dative case applies when there is an object in the sentence that is being
+indirectly impacted by the action (verb).\newpar
+
+Unlike in the accusative where only the masculine article changes, all the
+articles change for an object that is  under the dative case which it is worth
+mentioning includes the plural, since up until people learn about the Dative
+case most people take for granted that plural article will always be
+\textit{`die'}, and this is no longer the case. The dative case articles along
+with the articles for all the other cases that we have learned so far are shown
+in a table below :\newpar
+
+% TABLE : Dative Articles {{{
+
+\vspace{0.5cm}
+
+\nolinenumbers
+
+\begin{tabularx}{0.94\linewidth}{l|XXXX}
+
+		&
+		\cellcolor{table-subtopic} \textbf{\textit{MAS.}} &
+		\cellcolor{table-subtopic} \textbf{\textit{NEU.}}  &
+		\cellcolor{table-subtopic} \textbf{\textit{FEM.}}  &
+		\cellcolor{table-subtopic} \textbf{\textit{PLU.}} \\
+
+		\midrule
+
+		\cellcolor{table-subtopic} \textbf{\textit{DAT.}} &
+		\cellcolor{cell-lightred} dem               &
+		\cellcolor{cell-lightred} dem               &
+		\cellcolor{cell-lightpurple} der               &
+		\cellcolor{cell-lightgreen} den \\
+
+		\midrule
+
+		\cellcolor{table-subtopic} \textbf{\textit{DAT.}} &
+		\cellcolor{cell-lightred} einem              &
+		\cellcolor{cell-lightred} einem              &
+		\cellcolor{cell-lightpurple} einer           &
+		\cellcolor{table-bg} - \\
+
+\end{tabularx}
+
+\vspace{0.5cm}
+
+\linenumbers
+
+% }}} END-TABLE : Dative Articles
+
+Similar to the accusative case, there are also situations where an object will
+take the dative grammatical article and not be the inderect object in the
+sentence. This occurs when the noun in question is subject to a dative
+preposition. Therefore now we have the following situations in which a noun will
+have the dative grammatical article :\newpar
+
+\nolinenumbers
+\begin{itemize}[noitemsep]
+
+	\item If the word is an \textbf{\textit{in-direct object}} in the english
+		version of the sentence (i.e.\ it is the noun that is being affected by
+		the verb, but not the noun that is being directly acted on), then 90\%
+		of the time this word will take the Dative case in German.
+
+   \item If the word is being mentioned along with either a Dative preposition
+	   \textit{( Table~\ref{table:prepositions_dative} )} or a wechsel
+	   preposition \textit{( Table~\ref{table:prepositions_wechsel} )} , then it
+	   will take the Dative case.~\footnote{See previous footnote.} 
+
+\end{itemize}
+\linenumbers
+
+Just like the previous sections let us consider an example for clarification
+:\newpar
+
+\noindent
+\textit{Ich schenke dir das Heft.}\\
+\textcolor{gray} { \textit{( I gift you the notebook. )} } \newpar
+
+The sentence above can be broken down in the following way :
+
+% TABLE : dative_example_clarification {{{
+
+\nolinenumbers
+
+\vspace{0.2cm}
+
+\begin{tabularx}{0.95\linewidth}{lllX}
+
+\rowcolor{white} \bulletpoint Subject (Nominative) & : & I (ich)   & \\
+\rowcolor{white} \bulletpoint Verb                 & : & schenken (to gift) & \\
+\rowcolor{white} \bulletpoint Direct Object        & : & das Heft (the notebook)  & \\
+\rowcolor{white} \bulletpoint Indirect Object      & : & you (dir)\footnote{more
+about pronouns (i.e.\ why dir and not du) in \textit{(Section~\ref{sec:pronouns})}  } & \\
+
+\end{tabularx}
+
+\vspace{0.2cm}
+
+\linenumbers
+
+% }}} End TABLE : dative example clarification
+
+Another example, just in case the one above was not clear is as follows :
+\newpar
+
+\noindent
+\textit{Wir machen das mit einem Computer}\\
+\textcolor{gray} { \textit{( We are doing that with a computer. )} } \newpar
+
+Before ananlysing the sentence, please note that the das used in the example is
+not actually a grammatical gender for any noun in the sentence, rather it is the
+German equivalent word for that, as is evident in the translation. Das will also
+always take the accusative case, since it is always the direct object when the
+word that appears in a sentence.\newpar
+
+That being said, this example is a little easier because we know (if we have
+already been through the prepositions section) that the preposition mit is a
+dative preposition, therefore the thing that is being accompanied with the
+dative preposition must take its grammatical gender in the dative case.\newpar
+
+However if we did not know about mit being a dative preposition then the breakup
+of the sentence would look something like the following :\newpar
+
+% TABLE : dative_example_clarification_2 {{{
+
+\nolinenumbers
+
+\vspace{0.2cm}
+
+\begin{tabularx}{0.95\linewidth}{llX}
+
+\rowcolor{white} \bulletpoint Subject (Nominative) & : & Wir (we)   \\
+\rowcolor{white} \bulletpoint Verb                 & : & machen (to do) \\
+\rowcolor{white} \bulletpoint Direct Object        & : & das (that)  \\
+\rowcolor{white} \bulletpoint Indirect Object      & : & the computer (einem
+Computer) \\
+
+\end{tabularx}
+
+\vspace{0.2cm}
+
+\linenumbers
+
+% }}} End TABLE : dative example clarification_2
+
+So the only thing I think that is worth mentioning here is the computer. The
+computer takes the masculine gender in German , so der computer, and it is in
+the dative case here so dem computer. Also worth noting in the above example is
+that I have used the indefinite (einem) version of the grammatical gender as
+opposed to the definite version(dem), just to spice things up a little and to
+provide examples for as many scenarios as I can.\newpar
+
+To finish things off, here is an example that has no accusative object, and two
+dative objects : \newpar
+
+
+
+
+
+% }}} END SUB-SUB-SECTION : dative
+
+% 		SUB-SUB-SECTION : genetive {{{
+\textbf{\subsubsection{Genetive}}
+\label{sec:genetive}
+
+The fourth and last case in German , is called \textbf{\textit{the Genetive Case
+		(Der Genetiv Fall /  Der Wesfall)}} . The genetive case is mainly used
+when we are trying to indicate posession of something. As is with the previously
+mentioned cases (except nominative) , the Genetive has its own set of
+prepositoins, the creatively name : genetive prepositions. If an object is being
+affected by these prepositions, then it will take the genetive grammtical
+article.\newpar
+
+The table for the definite and indefinite genetive articles is as follows
+:\newpar
+
+The english equivalent of displaying possession is when we add the apostrophe s
+to the end of a word to show belonging.\ e.g.\ John's book , Mary's car , etc
+\ldots
+
+% TABLE : Genetive_Articles {{{
+
+\vspace{0.5cm}
+
+\nolinenumbers
+
+\begin{tabularx}{0.94\linewidth}{l|XXXX}
+
+		&
+		\cellcolor{table-subtopic} \textbf{\textit{MAS.}} &
+		\cellcolor{table-subtopic} \textbf{\textit{NEU.}}  &
+		\cellcolor{table-subtopic} \textbf{\textit{FEM.}}  &
+		\cellcolor{table-subtopic} \textbf{\textit{PLU.}} \\
+
+		\midrule
+
+		\cellcolor{table-subtopic} \textbf{\textit{GEN.}} &
+		\cellcolor{cell-lightyellow} des               &
+		\cellcolor{cell-lightyellow} des               &
+		\cellcolor{cell-lightpurple} der               &
+		\cellcolor{cell-lightpurple} der \\
+
+		\midrule
+
+		\cellcolor{table-subtopic} \textbf{\textit{GEN.}} &
+		\cellcolor{cell-lightyellow} eines               &
+		\cellcolor{cell-lightyellow} eines               &
+		\cellcolor{cell-lightpurple} einer               &
+		\cellcolor{cell-lightpurple} einer \\
+
+
+\end{tabularx}
+
+\vspace{0.5cm}
+
+\linenumbers
+
+% }}} END-TABLE : Genetive_Articles
+
+A noun will recieve Genetive grammatical article in the following situations
+:\newpar 
+\nolinenumbers
+\begin{itemize}[noitemsep]
+
+	\item     If the word is after the word ` \textit{of} ' in English
+
+	\item If it follows a preposition that is Genitive (anstatt, aufgrund,
+	außerhalb, dank, statt, während, wegen)
+
+\end{itemize}
+\linenumbers
+
+An example to aid in the clarification of the Genetive case is :\newpar
+
+
+\noindent
+\textit{Die Zukunft des Buches ist schwer}\\
+\textcolor{gray} { \textit{( The future of the book is difficult )} } \newpar
+
+Just like the previous section here is a breakdown of all of the objects in the
+sentence.
+
+
+*(In English genitive’s expressed with of or by adding an apostrophe to show
+possession. Des Buches is translated as of the book or the book’s)
+
+The genitive is not used as often by Germans as the three
+other previous cases.
+
+
+Often, a noun object is made with the preposition von +
+Dative and the genitive preposition are sometimes used incorrectly as if they
+were dative.
+
+
+You have to keep in mind that one word can fit the rules of different cases
+simultaneously.
+
+
+For example, it can be a subject while being a
+part of a noun object and follow a preposition that is dative. Which case would
+it be then?  Nominative because it’s the subject, Genitive, because it’s the
+noun object or dative because it is after a preposition?  The answer is that the
+priorities are in this order: Following a preposition (governing with
+Accusative, Dative or Genitive) Being part of a genitive object (Genitive) The
+rest of the rules
+
+% }}} END SUB-SUB-SECTION : genetive
+
+Following we have all the cases with thier correponding articles in two tables,
+one for all the definite articles and one for the indefinite ones :\newpar
+
+
+
+% TBOX TABLE : definite_articles {{{
+
+\tcolorboxtable
+{ Definite Articles }
+{ \label{table:definite_articles} }
+{ [width=\linewidth] }
+{ l|XXXX }
+{
+
+		&
+		\cellcolor{table-subtopic} \textbf{\textit{MAS.}}  &
+		\cellcolor{table-subtopic} \textbf{\textit{NEU.}}  &
+		\cellcolor{table-subtopic} \textbf{\textit{FEM.}}  &
+		\cellcolor{table-subtopic} \textbf{\textit{PLU.}} \\
+
+		\midrule
+
+		\cellcolor{table-subtopic} \textbf{\textit{NOM.}} &
+		\cellcolor{cell-lightpurple}  der            &
+		\cellcolor{cell-lightorange}  das            &
+		\cellcolor{cell-lightblue}    die            &
+		\cellcolor{cell-lightblue}    die \\
+
+		\cellcolor{table-subtopic} \textbf{\textit{ACC.}} &
+		\cellcolor{cell-lightgreen}   den            &
+		\cellcolor{cell-lightorange}  das            &
+		\cellcolor{cell-lightblue}    die            &
+		\cellcolor{cell-lightblue}    die \\
+
+		\cellcolor{table-subtopic} \textbf{\textit{DAT.}} &
+		\cellcolor{cell-lightred}    dem             &
+		\cellcolor{cell-lightred}    dem             &
+		\cellcolor{cell-lightpurple} der             &
+		\cellcolor{cell-lightgreen}  den \\
+
+		\cellcolor{table-subtopic} \textbf{\textit{GEN.}} &
+		\cellcolor{cell-lightyellow} des               &
+		\cellcolor{cell-lightyellow} des               &
+		\cellcolor{cell-lightpurple} der               &
+		\cellcolor{cell-lightpurple} der \\
+
+
+
+}
+
+% }}} End TBOX TABLE : definite_articles
+
+
+
+% TBOX TABLE : indefinite_articles {{{
+
+\tcolorboxtable
+{ Indefinite Articles }
+{ \label{table:indefinite_articles} }
+{ [width=\linewidth] }
+{ l|XXXX }
+{
+
+		&
+		\cellcolor{table-subtopic} \textbf{\textit{MAS.}} &
+		\cellcolor{table-subtopic} \textbf{\textit{NEU.}}  &
+		\cellcolor{table-subtopic} \textbf{\textit{FEM.}}  &
+		\cellcolor{table-subtopic} \textbf{\textit{PLU.}}~\footnote{In German
+			sometimes the word \textit{einige (some) } is used to refer to an indefinite
+number of objects in plural.} \\
+
+\midrule
+
+\cellcolor{table-subtopic} \textbf{\textit{NOM.}} &
+\cellcolor{cell-lightpurple}  ein            &
+\cellcolor{cell-lightorange}  ein            &
+\cellcolor{cell-lightblue} eine              &
+\cellcolor{table-bg} - \\
+
+\cellcolor{table-subtopic} \textbf{\textit{ACC.}} &
+\cellcolor{cell-lightgreen} einen            &
+\cellcolor{cell-lightorange}  ein            &
+\cellcolor{cell-lightblue}  eine             &
+\cellcolor{table-bg} - \\
+
+\cellcolor{table-subtopic} \textbf{\textit{DAT.}} &
+\cellcolor{cell-lightred} einem              &
+\cellcolor{cell-lightred} einem              &
+\cellcolor{cell-lightpurple} einer           &
+\cellcolor{table-bg} - \\
+
+\cellcolor{table-subtopic} \textbf{\textit{GEN.}} &
+\cellcolor{cell-lightyellow} eines           &
+\cellcolor{cell-lightyellow} eines           &
+\cellcolor{cell-lightpurple} einer           &
+\cellcolor{table-bg} - \\
+
+
+}
+
+% }}} End TBOX TABLE : indefinite_articles
+
+
+\subsectionend
+% }}} END SUB-SECTION : cases
+
+% 	SUB-SECTION : n_declination {{{
+\subsection{n-Declination}
+\label{ssec:n_declination}
+
+There are certain nouns in German that are also conjugated / declined just like
+verbs. The rules by which these nouns are declined a is known as n-Declination
+(n-Deklination) . This is because these nouns get an n ending appended to them.\newpar
+
+Although the actual ` declination ' is pretty easy becuase the ending that is
+appended will always be just a -n, we still have to figure out which nous are
+going to be declined and which not.\newpar
+
+Most masculine nouns and a new neuter nouns are going to be follow n-declension
+structure. Some masculine nouns are ` \textit{weak} '  , which basically means
+that they will take a n ending in all cases except the nominative case.\newpar
+
+It is impractical to go around memorizing nouns according to wether they are
+weak or strong. We have enough information per noun to deal with articles
+attached to each noun.\newpar
+
+Therefore it is best to just look at a whole bunch of examples for weak nouns
+and after a period of time you will begin ` recognizing ' these nouns, and
+automatically place them in the weak category.\newpar
+
+Weak nouns basically fall into two groups :
+
+\begin{enumerate}[noitemsep]
+
+	\item ending in -e and referring to people / animals\\
+
+		e.g.\ der Kunde , der Neffe , der Russe\\
+
+		this is not a guranteed rule. A counter example is der Käse\\
+
+		Another thing to keep in mind with this group is that some of these -e
+		ending nouns will keep the genetive -s ending after the -n ending. These
+		are nouns that are basically not referring to a people or animals but
+		are still ending in an -e ,  e.g.\ der Wille (the volition, the will) ,
+		der Gedanke (the thought).\\
+
+	\item The second group of ` weak ' nouns are ones that have certain Latin /
+		Greek endings. This group is super fuzzy and does not have hard
+		boundaries like the previous group. Essentially the words in German that
+		sound very close to thier English equivalents often fall into the
+		category of weak nouns.\\
+
+		e.g.\ der Kapitalist , der Kommunist , der Diplomat , der Astronaut
+		\ldots
+
+\end{enumerate}
+
+There are a whole lot more weak nouns , that dont fit into either of the two
+categories defined above. As mentioned earlier dont try to memorize all of them,
+because that is just not pratical.~\footnote{ If you still insist on
+	memorization, there is a full list at :  \url{http://Germanforenglishspeakers.com/nouns/weak-nouns-the-n-declension/} }
+
+
+
+All the nouns that fall under one the following rules will be n-declined
+:\newpar
+
+\nolinenumbers
+\begin{itemize}[noitemsep]
+	\item If the noun is masculine and :
+
+	\vspace{0.5cm}
+	\begin{tabularx}{0.95\linewidth}{llX}
+
+		\rowcolor{white} \bulletpoint Is a person & , e.g , & \textcolor{gray}{der Junge} \\
+		\rowcolor{white} & & \textcolor{gray}{der Kunde} \\
+		\rowcolor{white} & & \textcolor{gray}{der Neffe} \\
+		\rowcolor{white} \bulletpoint Is a nationality & , e.g , & \textcolor{gray}{der Greiche} \\
+		\rowcolor{white} & & \textcolor{gray}{der Chinese} \\
+		\rowcolor{white} & & \textcolor{gray}{der Russe} \\
+		\rowcolor{white} \bulletpoint Is an animal & , e.g , & \textcolor{gray}{der Rabe} \\
+		\rowcolor{white} & & \textcolor{gray}{der Affe} \\
+		\rowcolor{white} & & \textcolor{gray}{der Löwe} \\
+
+	\end{tabularx}
+
+
+	\item All nouns with Latin and Greek roots with the following endings :
+
+
+\vspace{0.5cm}
+\begin{tabularx}{0.95\linewidth}{lllX}
+
+\rowcolor{white} \bulletpoint -ant & , e.g. , & der Elefant  \\
+\rowcolor{white} \bulletpoint -and & , e.g. , & der Doktorand\\
+\rowcolor{white} \bulletpoint -ent & , e.g. , & der Student, der Präsident\\
+\rowcolor{white} \bulletpoint -ist & , e.g. , & der Journalist , der Idealist\\
+\rowcolor{white} \bulletpoint -oge & , e.g. , & \\
+\rowcolor{white} \bulletpoint -at & , e.g. , & der Bürokrat , der Diplomat\\
+\end{tabularx}
+
+	\item All nouns that are internationally derived , e.g. , der Architekt
+		(Architecht) , der Fotograf (the photograph) , der Philosoph (the
+		philosopher)
+
+		
+	\item If the noun is masculine and is a living (lebewesen) 
+\end{itemize}
+\linenumbers
+
+
+% NOTE : n-Declination exception {{{
+
+\tcolorboxnote
+{
+There is one exception to the rules listed above. A non grammatically masculine
+noun that takes the n-declination ending : das Herz (the heart).
+}
+
+
+
+% }}} END NOTE : n_declination_exception
+
+
+
+
+
+
+The generale table to keep in mind when trying to figure out n-Declination is
+:\newpar
+
+
+
+
+
+
+
+It is important to make a mental distinction between what ending is being given
+to a noun for the reason of case, and which due to the reason of
+n-declination. Consider the following example : \newpar
+
+
+
+
+\subsectionend
+% }}} END SUB-SECTION : n_declination
+
+% 	SUB-SECTION : clauses {{{
+\subsection{Clauses}
+\label{ssec:clauses}
+
+
+\subsectionend
+% }}} END SUB-SECTION : clauses
+
+% 	SUB-SECTION : noun_contractions {{{
+\subsection{Noun Contractions}
+\label{ssec:noun_contractions}
+
+
+\subsectionend
+% }}} END SUB-SECTION : noun_contractions
+
+\sectionend
+
+% }}} END SECTION : nouns
+
+% SECTION : verbs {{{
+\section{{Verbs}}
+\label{sec:verbs}
+
+% DEFINITION : verbs {{{
+
+\vspace{0.2cm}
+\centering
+\nolinenumbers
+\begin{defn-bg}
+
+\label{def:verbs_infinitives}
+	\begin{defn-title}[width=7cm]{}
+		{\normalsize \textbf{\textit{Verbs}} }
+	\end{defn-title}
+
+	\begin{defn-theword}
+	{
+		\footnotesize \begin{mydef} \end{mydef}
+	}
+	\end{defn-theword}
+
+	\begin{defn-content}
+		\justify
+	
+\textbf {Verbs} are words that refer to actions. These actions are happening to
+the nouns (substantives).
+
+	\end{defn-content}
+
+\end{defn-bg}
+
+\justifying
+\linenumbers
+
+% }}} END DEFINITION : verbs
+
+\lettrine[lines=3, findent=3pt, nindent=0pt]{V}{erbs} are basically any word that
+allows us to describe an action, an ongoing process or a state of being. E.g. :
+to walk (laufen), to sing (singen).  Verbs are made up of two parts : the
+stem which is the main body of the verb, and the ending.\newpar
+
+\noindent
+E.g : Laufen , Singen , Haben , Machen\newpar
+
+Every verb must be \textbf{\textit{Conjugated / Declined}}. To conjugate a verb
+means to change it from it's base infinitive form to a form matching the pronoun
+and tense that we are using in the current sentence.\newpar
+
+As a note on jargon , some people say we are conjugating the verb , some say we
+are declining it. The terminology changes based on where you learned your German
+from, but it all means the same thing. I thought I would mention both terms in
+order to preempt any sort of confusion that might occur. \newpar
+
+% DEFINITION : infinitive {{{
+% {title} {label} {content}
+
+\tcolorboxdefinition
+{Infinitive}
+{\label{def:infinitive}}
+{
+
+		Infinitive is the base form of any verb. This is the unconjugated form.
+
+}
+
+% }}} END DEFINITION : infinitive
+
+When we say we are conjugating / declining a verb, we mean that we are changing
+the stems and endings of the verbs in order to suit the pronoun that we are
+currently using.\newpar
+
+These two sub-categories of verbs depend on whether we change only the ending
+during conjugation , i.e.\ is the verb conjugated according to the regular rules
+, or whether we change both the ending and the stem during the conjugation
+process , i.e.\ is the verb conjugated according to the irregular rules. All
+verbs in German fall into one of the three following categories :\newpar
+
+% ITEMIZE : german_verb_types {{{
+
+\begin{itemize}[noitemsep]
+	
+	\item \textbf{Regular / Weak Verbs} : Most people just refer to weak /
+		regular verbs as just verbs, since this is the most common verb type
+		encountered in the German language. A weak verb is a German verb whose
+		stem does not change its vowel to form the imperfect tense and the past
+		participle. Its past participle \refdef{participle} is formed by adding a -t to the stem of
+		the verb. These are also called regular verbs, or just verbs.
+
+
+	\newpar
+
+	\item \textbf{Irregular / Strong Verbs} : A strong verb is type of germ verb
+		, whose stem changes its vowel to form the imperfect tense and the past
+		participle. Its past participle is \textbf{not} formed by adding a -t to
+		the verb stem. Strong verbs are also known as irregular verbs
+
+	\newpar
+
+	\item \textbf{Mixed Verbs} : A mixed verb is one where the stem changes its
+		vowel to form the imperfect tense and the past participle tense, similar
+		to strong verbs. The past participle is formed however by adding -t to
+		the verb stem just like weak verbs\cite{collins_german_grammar}. So it
+		has characteristics of both weak and strong verbs therefore the
+		name.\newpar
+
+		Examples of mixed verbs are : 
+
+
+\end{itemize}
+
+% }}} END-ITEMIZE : German verb types
+
+% LIST : Regular Verbs Conjugation {{{
+
+\vspace{0.3cm}
+\begin{tabular}{l l l l}
+
+\rowcolor{white} $\bullet$ Change & e  & to & ie\\
+\rowcolor{white} $\bullet$ Change & e  & to & i\\
+\rowcolor{white} $\bullet$ Change & el & to & il\\
+\rowcolor{white} $\bullet$ Change & eh & to & im\\
+\rowcolor{white} $\bullet$ Change & a  & to & ä\\
+
+\end{tabular}
+\vspace{0.3cm}
+\newline
+
+% }}} End LIST : Regular verbs Conjugation
+% LIST : Irregular Verbs Conjugation {{{
+
+\vspace{0.3cm}
+\begin{tabular}{l l l l}
+
+\rowcolor{white} $\bullet$ Change & e  & to & ie\\
+\rowcolor{white} $\bullet$ Change & e  & to & i\\
+\rowcolor{white} $\bullet$ Change & el & to & il\\
+\rowcolor{white} $\bullet$ Change & eh & to & im\\
+\rowcolor{white} $\bullet$ Change & a  & to & ä\\
+
+\end{tabular}
+\vspace{0.3cm}
+\newline
+
+% }}} End LIST : Irregular verbs Conjugation
+
+% 	SUB-SECTION : imperative {{{
+\subsection{Imperative}
+\label{ssec:imperative}
+
+The German imperative is a way of basically ordering someone to do something
+instead of asking them politely. The imperative can be formed using three
+differnt ways, depending on the count and politeness that we wish to employ. The
+pronoun is never used when we are trying to build an imperative sentence. The
+conjugation of the verb is also a bit different. The three main forms that will
+change are as follows :\newpar
+
+
+% TABLE : imperative_explanation {{{
+
+\nolinenumbers
+
+\vspace{0.5cm}
+
+\begin{tabularx}{0.95\linewidth}{llX}
+
+\rowcolor{white} \bulletpoint du  & : & The -st(or just -t) ending on the conjugation will
+go away.  \\
+
+\rowcolor{white} & e.g  & \textcolor{gray}{iss deine Essen.}\\
+\rowcolor{white} \bulletpoint Sie & : & The conjugation stays the same. \\
+\rowcolor{white} \bulletpoint ihr & : & The conjugation stays the same. \\
+
+\end{tabularx}
+
+\vspace{0.5cm}
+
+\linenumbers
+
+% }}} End TABLE : Imperative Explanation
+
+if the umlaut is in the infinitive, then the du form will remain the same in the
+imperative , i.e.\ it will still have the umlaut.\
+
+if the umlaut is not there in the infinitive, but it appears due to it being a
+irregular verb, then it will go away in the imperative form.\
+
+if the umlaut is not there in the infinitive, but it appears due to it being a
+irregular verb, then it will go away in the imperative form.\
+
+
+\subsectionend
+% }}} END SUB-SECTION : imperative
+
+% 	SUB-SECTION : irregular_verbs {{{
+\subsection{Irregular / Strong Verbs}
+\label{ssec:irregular_verbs}
+
+
+
+
+\subsectionend
+% }}} END SUB-SECTION : irregular_verbs
+
+% 	SUB-SECTION : tenses {{{
+\subsection{Tenses}
+\label{ssec:tenses}
+
+% DEFINITION : tense {{{
+\tcolorboxdefinition
+{Tense}
+{\label{def:tense}}
+{
+
+A \textbf{\textit{Tense}} is the grammarians’ preferred word for “time.”
+Depending when the action that you’re talking about is taking place, you pick a
+tense. The ways to look at the concept of time differ.
+
+}
+
+% }}} END DEFINITION : tense
+
+An explanation of the present tense is mainly the same thing as an explanation
+of the infinitve, where we first talked about how and we we go about using
+verbs. All of those explanations are given in the present tense.\newpar
+
+Basically when we say we are changing the tense in German, we mean that we will
+be using a different schema to conjugate the verb in the sentence. That is all a
+tense means, a different conjugation. This is why the tenses section is
+considered a subset of the verbs section, as well as , why I said any
+explanation of the infinitive above can also be considered an explanation of the
+present tense in German. 
+
+% DEFINITION : participle {{{
+\tcolorboxdefinition
+{Participle}
+{\label{def:participle}}
+{
+
+	Every time we conjugate a verb, we make a new word. These words formed by
+	conjugating verbs are called \textbf{\textit{participles}}.
+
+}
+
+% }}} END DEFINITION : participle
+
+As we have already seen a tense is basically what results when a conjugate a
+verb differently (the ` normal ' way being the present tense). Therefore based
+on how the verb is conjugated we end up with different tenses as well as
+participles. So essentially participle is jargon for the verb conjugation that
+is being used to implement the current tense.\newpar
+
+Since we have multiple tenses , we also end up with multiple kinds of
+participles :
+
+% ITEMIZE : participletypes {{{
+\begin{itemize}[noitemsep]
+
+	\item Participle I : Partizip I (Partzip Präsens)
+	\item Participle II : Partizip II (Partzip Perfekt)
+
+\end{itemize}
+% }}} END-ITEMIZE : participle types
+
+We will discuss both these participle types in thier individual sub-sections
+below.\newpar
+
+First lets get started with the most basic of all of the tenses, the present
+tense.
+
+
+% 		SUB-SUB-SECTION : present {{{
+\subsubsection{Present (Präsens)}
+\label{sssec:present}
+
+
+Following is a table to indicate the verb conjugation
+for making a sentence in the present tense : \newpar
+
+% TABULARX TABLE : present_tense_conjugation {{{
+
+\tabularxtable
+{0.95\linewidth}
+{l|l|llX}
+{
+ich & -e  & ich lerne  & , & I learn\\
+du  & -st & du lernst  & , & You learn\\
+er  & -t  & er lernt   & , & He learns\\
+sie & -t  & sie lernt  & , & She learns\\
+es  & -t  & es lernt   & , & It learns\\
+man & -t  & man lernt  & , & One learns\\
+wir & -en & wir lernen & , & We learn\\
+ihr & -t  & ihr lernt  & , & They learn\\
+sie & -en & sie lernen & , & they learn\\
+Sie & -en & Sie lernen & , & You learn\\
+}
+
+% }}} End TABULARX TABLE : Present Tense Conjugation
+
+The present tense is the most versatile tense in German. Unlike english, the
+present tense has a multitude of uses, and is not not restricted to only one
+type of sentence. The biggest differnce that Englsih speakers would notice is
+that the German language does not make a distinction between the present and
+present continuous tenses. They both fall under the present (Präsens) category.
+All the situations where we would use the Präsens tense are shown below along
+with examples :\newpar
+
+% ITEMIZE : When to use the present tense {{{
+\begin{itemize}[noitemsep]
+	\item A fact or a condition in the present. \\
+
+		\textit{Ich denke.}\\
+		\textcolor{gray} { \textit{( I think. )} } \\
+		\textcolor{gray} { \textit{( I do think. )} } \newpar
+	
+		Both of the above will be acceptable interpretations of the given German
+		sentence.
+
+		\textit{Das ist Felix.}\\
+		\textcolor{gray} { \textit{( That is Felix. )} } \\
+
+	\item An ongoing action in the present.\\
+
+		\textit{Ich denke.}\\
+		\textcolor{gray} { \textit{( I am thinking. )} } \newpar
+
+	\item An action that takes place in the present once, repeatedly, or never.
+
+		
+		\noindent
+		\textit{Jeden Dienstag geht er zum Fußballtraining.}\\
+		\textcolor{gray} { \textit{( Every teusday I go to football training.  )} } \newpar
+		
+
+
+		\textit{Freitags gehe ich oft ins Kino.}\\
+		\textcolor{gray} { \textit{( On Fridays, I often go to the movies. )} } \newpar
+		
+		
+	\item A situation in the past being talked about in the present.\\
+	\item To describe a situation that has not yet, but is going to happen.
+		
+		
+		\noindent
+		\textit{Morgen fährt meine Freundin nach Dänemark.}\\
+		\textcolor{gray} { \textit{( Tomorrow my girlfriend will drive to
+				Denkmark. )} } \newpar
+		
+		A situation that will cocur in the future being talked about through
+		the lens of the present. In this case the sentence will always contain
+		the verb werden.\\
+
+	\item An action that expresses how long something has been going on.
+
+		
+		\noindent
+		\textit{Er spielt seit fünf Jahren Fußball.}\\
+		\textcolor{gray} { \textit{( He has been playing football for five
+				years. )} } \newpar
+		
+
+\end{itemize}
+
+
+% }}}
+
+% NOTE : present tense talking about future {{{
+
+\tcolorboxnote
+{
+
+Using a present tense conjugation of the verb werden is a very common way of
+talking about future events in German, particularly if there’s a time expression
+in the sentence that anchors the action clearly in the future — for example,
+nächste Woche (next week) or morgen (tomorrow).\newpar
+
+This formation using werden is therefore considered both talking in the present
+tense and talking in the future tense.
+
+}
+
+% }}} END NOTE : present_tense_talking_about_future
+
+
+
+
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : present
+
+% 		SUB-SUB-SECTION : partizip_i {{{
+\subsubsection{Partizip I (Partizip Präsens)}
+\label{sssec:partizip_i}
+
+
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : partizip_i
+
+% 		SUB-SUB-SECTION : partizip_ii {{{
+\subsubsection{Partizip II (Partzip Perfekt)}
+\label{sssec:partizip_ii}
+
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : partizip_i
+
+% 		SUB-SUB-SECTION : present_perfect {{{
+\subsubsection{Present Perfect (Perfekt)}
+\label{sssec:present_perfect}
+
+
+% DEFINITION : present_perfect_tense_perfekt_ {{{
+\tcolorboxdefinition
+{Present Perfect Tense (Perfekt)}
+{\label{def:present_perfect_tense_perfekt_}}
+{
+
+
+The simple past tense, also known as the past simple, the past tense or the
+preterite, expresses completed actions in the recent and distant past.
+
+
+
+
+}
+
+% }}} END DEFINITION : present_perfect_tense_perfekt_
+
+The present perfect tense is the victim of a very unfortunate naming convention.
+I say this because the present perfect tense or the Perfekt tense is actually
+used to talk about the past. This can cause some severe headaches if it is not
+clarfied at the onset of learing more about this tense. So please bear this in
+mind.\newpar
+
+Another thing to clarify / keep in mind is that the present perfect is known as
+the simple past tense , or the preterite tense in English.  Please do not
+confuse the english terminology with the German tenses though, since there is no
+such thing as a preterite / simple past tense in German. There is only the
+Perfekt tense.\newpar
+
+O.k.\ got all that squared away and internalized ? Good, cause it caused me a
+lot of personal greif when trying to figure all of this out for the first
+time.\newpar
+
+The \textbf{\textit{perfect tense}} , also called \textbf{\textit{present
+		perfect (Perfekt)}} , is a past tense. We use it to speak about actions
+completed in the recent past. In spoken German, the present perfect tense is
+often used instead of the past tense. German distinguishes between the way the
+perfekt tense is used when writing and how it is used when speaking. As I
+meantioned earlier all distinctions between tenses amount to nothing but
+changing the conjugation of the verbs. So essentially we have the following
+:\newpar
+
+% ITEMIZE : perfect_vs_prateritum {{{
+
+\begin{itemize}[noitemsep]
+
+	\item \textbf{Perfekt} : Used when talking about events in the past. Perfekt is also
+		used when we are quoting someone, i.e., when we are writing down what
+		someone has said verbally we will not change it to its präteritum
+		formation.\\
+
+	\item \textbf{Präteritum} : Used when writing about events in the past.\\
+
+\end{itemize}
+
+% }}} END-ITEMIZE : perfect vs prateritum
+
+The current section will only talk about the perfekt tense in the spoken
+context. The following sub-sub-section \refsssec{prateritum} will handle the
+Präteritum verb formations.\newpar
+
+The situations that we will use the perfekt tense in are as follows :
+
+% ITEMIZE : present_perfect_usage_situations {{{
+\begin{itemize}[noitemsep]
+
+	\item The main past tense used in the spoken form.
+	
+	
+	\noindent
+	\textit{Was hast du gestern abend gemacht ?}\\
+	\textcolor{gray} { \textit{( What did you do yesterday evening ? )} } \newpar 
+
+	\item Abgeschlossene Vorgänge in der Vergangenheit mit Gegenwartbezug
+	
+	
+	\noindent
+	\textit{Seit ihr wegezogen ist sehen wir uns nur noch selten.}\\
+	\textcolor{gray} { \textit{( EXAMPLE TRANSLATION )} } \newpar
+
+	\item When talking from the prespective of the past, about the present /
+		future.
+
+	
+	\noindent
+	\textit{Morgen in einer Woche habe ich die Arbeiten an diesem Projekt
+		abgeschlossen.}\\
+	\textcolor{gray} { \textit{( EXAMPLE TRANSLATION )} } \newpar
+	
+
+	\item INSERT CITATIONS FOR THESE EXAMPLES
+			
+\end{itemize}
+% }}} END-ITEMIZE : Present Perfect Situations
+
+\hrule
+
+The way that we will form the present perfect version of a verb, is by using two
+things the \textbf{\textit{past pasticiple (Partizip II)}} , and an
+\textbf{\textit{auxiliary / helping verb}} .  These helping verbs are always
+either \textit{haben} or \textit{sein}. The partizip II formations can be a
+little more involved, which is why I dedicated an entire sub-section to Partizip
+II.\ Helping verbs as well as how to choose which, are also discussed later in
+the same section.\newpar
+
+O.k.\ keeping in mind that whenever we want to form the past participle, the
+verb will come with an accompanying helping verb (dont worry about which haben /
+sein right now) , we have to figure out verb positioning again. The verbs will
+now be arranged into positions as follows :\newpar
+
+
+% ITEMIZE : past_participle_sentence_structures {{{
+
+\textbf{Past Participle Sentence Structures}
+\newpar
+
+\begin{itemize}[noitemsep]
+
+	\item \textbf{Helping / Auxiliary Verb} : The helping verb will take the
+position of the regular verb in the sentence , i.e., the helping verb will go in
+position 2.\\
+
+	\item \textbf{Regular Verb} : The past participle of the regular verbs will be sent
+		to the end of a sentence, in its unconjugatred form, but with a ge-
+		appended to the beggining of the verb.\ e.g.\   \\
+
+	\item \textbf{Seperable Verb} : When forming the past participle of a seperable verb,
+		we no longer seperate the verb, however the ge- addition that around
+		95\% of the verbs get will not be at the starting of the sentence,
+		rather it will be after the seperable prefix, but before the main verb.\
+		e.g.\ \\
+
+	\item \textbf{Modal Verb} : How do we resolve modal verbs then ? because now we have
+		the helping verb in position 2 ? You know I have no fucking clue.\\
+
+\end{itemize}
+
+% }}} END-ITEMIZE : past participle sentence structures
+
+The first thing that we need to know is that , while past participle will go at the absolute end of the sentence.
+Here we already have a couple of distinctions based the what the infinitive form
+of the verb was, namely :\newpar
+
+Now that the general structure is out of the way let us talk about how we are
+going to select which one of the two helping verbs : haben / sein we shouls use
+with which verbs. 
+
+% ITEMIZE : choosing_helping_verbs {{{
+
+\textbf{Choosing Helping Verbs}
+
+\begin{itemize}[noitemsep]
+
+	\item \textbf{Sein} :  Sein will be a rarer use case. It will mainly be used
+		when, there is some form of change of state or movement involved.\\
+
+		\textit{Meine Freundin ist nach Dänemark gefahren.}\\
+		\textcolor{gray} { \textit{( My girlfriend has gone to / went to
+				Denkmark. )} } \newpar
+		
+		\textit{Ich bin in hamburg gewesen.}\\
+		\textcolor{gray} { \textit{( I have been to Hamburg. / I was in Hamburg. )} } \newpar
+		
+		\textit{Du bist mit dem Auto gekommen.}\\
+		\textcolor{gray} { \textit{( You came by car. / You have come by car. )} } \newpar
+	
+	Not in the example above, even though we have the verb sein , the
+	translation still reads you have come \ldots
+
+	\item \textbf{Haben} : Most verbs will use haben , as long as there is no
+		movement or state change going on.\\
+
+		\textit{David hat mir geholfen.}\\
+		\textcolor{gray} { \textit{( David has helped me / has been helping me /
+				helped me. )} } \newpar
+		
+		\textit{Anna hat die Zeitung gelesen.}\\
+		\textcolor{gray} { \textit{( Anna has read the newspaper. )} } \newpar
+		
+		\textit{Ich habe den Film gesehen.}\\
+		\textcolor{gray} { \textit{( I have seen the film. / I saw the film. )} } \newpar
+
+\end{itemize}
+
+% }}} END-ITEMIZE : choosing helping verbs
+
+O.k.\ now that we know about the helping verbs, lets give a little more detail
+to the past participle formations.
+
+
+% TABULARX TABLE : present_perfect_tense_conjugation {{{
+
+\tabularxtable
+{0.95\linewidth}
+{l|l|llX}
+{
+
+ich & ich bin  & gegangen  , & ich habe  & \\
+du  & du bist  & ,           & du hast   & \\
+er  & er ist   & ,           & er hat    & \\
+sie & sie ist  & ,           & sie hat   & \\
+es  & es ist   & ,           & es hat    & \\
+man & man ist  & ,           & man hat   & \\
+wir & wir sind & ,           & wir haben & \\
+ihr & ihr seid & ,           & ihr habt  & \\
+sie & sie sind & ,           & sie haben & \\
+Sie & Sie sind & ,           & Sie haben & \\
+}
+
+% }}} End TABULARX TABLE : Present Perfect Tense Conjugation
+
+Below is a more involved table for Partizip II formation :\newpar
+
+
+The past participle (Partizip II) is formed in the following ways:
+
+Regular Verbs also known as weak verbs (schwache Verben) form the past
+participle with ge…t and the verb stem.
+
+Example:
+    lernen – gelernt
+
+Irregular verbs are verbs that change their verb stem in simlpe past and/or the
+participle form (see list of irregular verb). There are two kinds of irregular
+verbs in German grammar: strong verbs (starke Verben) and mixed verbs (gemischte
+Verben).
+
+Strong Verbs form the past particple with mit ge…en.
+
+Example:
+sehen – gesehen (sehen-sah-gesehen)
+gehen – gegangen (gehen-ging-gegangen)
+
+Mixed Verbs form the past participle with ge…t.
+
+Example:
+haben – gehabt (haben-hatte-gehabt)
+bringen – gebracht
+(bringen-brachte-gebracht)
+
+Exceptions
+
+We add an -et to weak/mixed verbs when the word stem ends in d/t.
+
+Example:
+warten – gewartet
+
+Verbs that end in -ieren form their past participle without
+ge.
+
+Example:
+studieren – studiert
+
+Inseparable verbs form the past participle
+without ge.
+
+Example:
+verstehen – verstanden
+
+For separable verbs, the ge
+comes after the prefix.
+
+Example:
+ankommen –
+angekommen
+
+Forming the past participle of a weak verb
+
+Here is the formula for forming the past participle of a weak verb:
+
+ge + verb stem (the infinitive minus -en) + (e) t = past participle
+
+For example, for the verb fragen (to ask), here’s how the formula would play
+out:
+
+ge + frag + t = gefragt
+Forming the past participle of a strong verb
+
+Here is the formula for forming the past participle of a strong verb:
+
+ge + verb stem (the infinitive minus -en) + en = past participle
+
+For the verb kommen(to come), the past participle would be:
+
+ge + komm + en = gekommen
+
+Writing about the past: Using simple past tense
+
+Simple past tense is used all the time in newspapers, books, and so on, but it
+is less common in speech. One exception is the simple past tense of sein (to
+be). This is often used in preference to perfect tense in both speech and
+writing. Table 1 shows you the various forms of the simple past tense of sein.
+
+
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : present_perfect
+
+% 		SUB-SUB-SECTION : simple_past {{{
+\subsubsection{Simple Past (Präteritum)}
+\label{sssec:simple_past}
+This is your bread and butter tense for writing about events in the past.
+However when we want to \textbf{talk} about events in the past then we tend to
+use the present perfect (perfekt) tense more often than this one.\newpar
+
+
+sein , haben , es gibt, gehen,
+We use the präteritum for the following two situations :
+
+\begin{enumerate}
+	\item A completed action in the past, with a focus on the result of the
+		action.
+	\begin{itemize}
+		\item Gestern hat Michael sein Büro aufgeräumt.
+
+	\vspace{0.25cm}
+
+		When Yesterday ,
+		\vspace{0.25cm}
+		\textit {Current result}: Office is now clean.
+	\end{itemize}
+	\item An action that will be completed by a certain point in the future.
+\end{enumerate}
+
+Following is a table for the simple past tense conjugation of sein :~\footnote{\url{https://www.dummies.com/languages/German/getting-to-know-german-verb-tenses/} }
+% TABULARX TABLE : simple_past_tense_sein_conjugation {{{
+
+\tabularxtable
+{0.95\linewidth}
+{llX}
+{
+
+ich & war  & \\
+du  & warst  & \\
+er  & war   & \\
+sie & war   & \\
+es  & war   & \\
+man & war   & \\
+wir & waren & \\
+ihr & wart & \\
+sie & waren & \\
+Sie & waren & \\
+}
+
+% }}} End TABULARX TABLE : simple_past_tense_sein_conjugation
+
+% NOTE : Spoken Prateritum {{{
+
+\tcolorboxnote
+{
+A thing to remember regarding the usage of the prätertium tense is that although
+it is used exlusively when writing there are a couple of verbs that are an
+exception to this rule. Namely : sein , haben , all modal verb.\newpar
+
+We use the prateritum formation, while using these verbs to talk about the past.
+
+}
+
+
+
+% }}} END NOTE : spoken_prateritum
+
+The stem changes are in \textcolor{red-flame}{this color} , and the ending /
+root changes are in \textcolor{green-goethe}{this color} in the following
+tables, in order to help distinguish between what is being changed and why
+(since stem changes only occur in irregular verbs and the root changes will
+occur in all the verbs formations).\newpar
+
+% TABULARX TABLE : prateritum_regular_verb_formation {{{
+
+
+To conjugate weak or regular verbs in the simple past, add ``{\textit{te}}'' to
+the verb ending, and then add the present tense personal conjugation
+ending.\newpar
+
+
+Note that for verbs that end in ``{\textit{t}}'' or ``{\textit{d}}'' , we add an
+extra ``{\textit{e}}'' before the 
+``{\textit{te}}'' ,  instead of using just the ``{\textit{te}}'' so that
+pronunciation of the word is a little easier. The table below shows examples of
+verbs in both cases, the -et , and the -ete case.\newpar
+
+\textbf{Präteritum : Regular Verbs}\cite{em}
+\tabularxtable
+{0.95\linewidth}
+{X|XX}
+{
+
+	&
+	\textit{fragen} &
+	\textit{warten} \\
+	\midrule
+
+	\cellcolor{table-subtopic} ich &
+	frag\textcolor{green-goethe}{\textbf{-te}} &
+	wart\textcolor{green-goethe}{\textbf{-e-te}} \\
+
+	\cellcolor{table-subtopic} du &
+	\cellcolor{table-alternating-blue}
+	frag\textcolor{green-goethe}{\textbf{-te}}-st &
+	\cellcolor{table-alternating-blue}
+	wart\textcolor{green-goethe}{\textbf{-e-te}}-st \\
+
+	\cellcolor{table-subtopic} er / sie / es &
+	frag\textcolor{green-goethe}{\textbf{-te}} &
+	wart\textcolor{green-goethe}{\textbf{-e-te}} \\
+
+	\cellcolor{table-subtopic} wir &
+	\cellcolor{table-alternating-blue}
+	frag\textcolor{green-goethe}{\textbf{-te}}-n &
+	\cellcolor{table-alternating-blue}
+	wart\textcolor{green-goethe}{\textbf{-e-te}}-n \\
+
+	\cellcolor{table-subtopic} ihr &
+	frag\textcolor{green-goethe}{\textbf{-te}}-t &
+	wart\textcolor{green-goethe}{\textbf{-e-te}}-t \\
+
+
+	\cellcolor{table-subtopic} sie / Sie &
+	\cellcolor{table-alternating-blue}
+	frag\textcolor{green-goethe}{\textbf{-te}}-n &
+	\cellcolor{table-alternating-blue}
+	wart\textcolor{green-goethe}{\textbf{-e-te}}-n \\
+
+
+}
+
+% }}} End TABULARX TABLE : Prateritum Regular Verb Formation
+
+% TABULARX TABLE : prateritum_irregular_verb_formation {{{
+
+\textbf{Präteritum : Irregular Verbs}\cite{em}
+
+The irregular präteritum verbs do not follow the same rules as above. We will
+not add anything to the root \ ending of the verb. So the overall conjugation
+will remain the same , but we will however be making some changes to the stem.
+There are no definitive rules regarding the correct präteritum irregular
+formations, so the only real option is to memorize them. That being said , here
+are a couple of examples :\newpar
+
+\tabularxtable
+{0.95\linewidth}
+{l|XX}
+{
+	&
+	\textit{kommen} &
+	\textit{sehen} \\
+	\midrule
+
+
+	\cellcolor{table-subtopic} ich &
+	k\textcolor{green-goethe}{\textbf{a}}m &
+	s\textcolor{green-goethe}{\textbf{a}}h \\
+
+	\cellcolor{table-subtopic} du &
+	\cellcolor{table-alternating-blue} k\textcolor{green-goethe}{\textbf{a}}m-st &
+	\cellcolor{table-alternating-blue} s\textcolor{green-goethe}{\textbf{a}}h-st\\
+
+	\cellcolor{table-subtopic} er / sie / es &
+	k\textcolor{green-goethe}{\textbf{a}}m &
+	s\textcolor{green-goethe}{\textbf{a}}h \\
+
+	\cellcolor{table-subtopic} wir &
+	\cellcolor{table-alternating-blue} k\textcolor{green-goethe}{\textbf{a}}m-en &
+	\cellcolor{table-alternating-blue} s\textcolor{green-goethe}{\textbf{a}}h-en \\
+
+	\cellcolor{table-subtopic} ihr &
+	k\textcolor{green-goethe}{\textbf{a}}m-t &
+	s\textcolor{green-goethe}{\textbf{a}}h-t \\
+
+	\cellcolor{table-subtopic} sie / Sie &
+	\cellcolor{table-alternating-blue} k\textcolor{green-goethe}{\textbf{a}}m-en &
+	\cellcolor{table-alternating-blue} s\textcolor{green-goethe}{\textbf{a}}h-en \\
+
+}
+
+% }}} End TABULARX TABLE : Prateritum Irregular verb formation
+
+% TABULARX TABLE : prateritum_modal_verb_formation {{{
+
+\textbf{Präteritum : Modal Verbs}\cite{em}
+\tabularxtable
+{0.95\linewidth}
+{l|X}
+{
+
+	&
+	\textit{können} \\
+	\midrule
+
+	\cellcolor{table-subtopic} ich &
+	k\textcolor{red-flame}{\textbf{a}}m \\
+
+	\cellcolor{table-subtopic} du &
+	\cellcolor{table-alternating-blue} k\textcolor{red-flame}{\textbf{a}}m\textcolor{green-goethe}{\textbf{st}}\\
+
+	\cellcolor{table-subtopic} er / sie / es &
+	k\textcolor{red-flame}{\textbf{a}}m\textcolor{green-goethe}{\textbf{ete}} \\
+
+	\cellcolor{table-subtopic} wir &
+	\cellcolor{table-alternating-blue}
+	k\textcolor{red-flame}{\textbf{a}}m\textcolor{green-goethe}{\textbf{en}} \\
+
+	\cellcolor{table-subtopic} ihr &
+	k\textcolor{red-flame}{\textbf{a}}m\textcolor{green-goethe}{\textbf{t}} \\
+
+	\cellcolor{table-subtopic} sie / Sie &
+	\cellcolor{table-alternating-blue}
+	k\textcolor{red-flame}{\textbf{a}}m\textcolor{green-goethe}{\textbf{en}} \\
+
+
+
+}
+
+
+% NOTE : Modal Präteritum Do not Confuse {{{
+
+\tcolorboxnote
+{
+
+The präteritum conjugation of modal verbs is very similar to the konjunktiv II
+conjugation, the only difference being the addition of umlauts in konjunktiv
+II.\ This however completely changes the meaning of the word , so be very very
+careful when conjugating modal verbs in prateritum.
+
+}
+
+
+
+% }}} END NOTE : modal_präteritum_do_not_confuse
+
+
+
+
+
+% }}} End TABULARX TABLE : prateritum modal verb formation
+
+% TABULARX TABLE : prateritum_helping_auxiliary_verb_formation {{{
+
+\textbf{Präteritum : Helping / Auxiliary Verbs}\cite{em}
+
+\textit{Sein} and \textit{haben} are super duper special in German. They havent
+really followed any of the regular conjugation rules so far, so the tradition
+contiunues and these two troublemakers will get thier own extra special
+conjugations even in the Präteritum case. Haben kind of follows some of the
+rules, but sein is just goes full loco. These conjugations are listed in the table
+below :\newpar
+
+\tabularxtable
+{0.95\linewidth}
+{l|XX}
+{
+	&
+	\textit{sein} &
+	\textit{haben} \\
+	\midrule
+
+	\cellcolor{table-subtopic} ich &
+	war &
+	ha\textcolor{green-goethe}{\textbf{-tte}} \\
+
+	\cellcolor{table-subtopic} du &
+	\cellcolor{table-alternating-blue} warst &
+	\cellcolor{table-alternating-blue} ha\textcolor{green-goethe}{\textbf{-tte}}-st \\
+
+	\cellcolor{table-subtopic} er / sie / es &
+	war&
+	ha\textcolor{green-goethe}{\textbf{-tte}} \\
+
+	\cellcolor{table-subtopic} wir &
+	\cellcolor{table-alternating-blue} waren  &
+	\cellcolor{table-alternating-blue}
+	ha\textcolor{green-goethe}{\textbf{-tte}}-n \\
+
+	\cellcolor{table-subtopic} ihr &
+	wart &
+	ha\textcolor{green-goethe}{\textbf{-tte}}-t \\
+
+
+	\cellcolor{table-subtopic} sie / Sie &
+	\cellcolor{table-alternating-blue} waren &
+	\cellcolor{table-alternating-blue} ha\textcolor{green-goethe}{\textbf{-tte}}-n \\
+
+}
+
+% }}} End TABULARX TABLE : prateritum helping / auxiliary verb formation
+
+% TABULARX TABLE : prateritum_mixed_verb_formation {{{
+
+\textbf{Präteritum : Mixed Verbs}\cite{em}
+\tabularxtable
+{0.95\linewidth}
+{l|X}
+{
+	&
+	\textit{denken} \\
+	\midrule
+
+	\cellcolor{table-subtopic} ich &
+	d\textcolor{green-goethe}{\textbf{achte}} \\
+
+	\cellcolor{table-subtopic} du &
+	\cellcolor{table-alternating-blue}
+	d\textcolor{green-goethe}{\textbf{achtest}} \\
+
+	\cellcolor{table-subtopic} er / sie / es &
+	d\textcolor{green-goethe}{\textbf{achte}} \\
+
+	\cellcolor{table-subtopic} wir &
+	\cellcolor{table-alternating-blue} d\textcolor{green-goethe}{\textbf{achten}} \\
+
+	\cellcolor{table-subtopic} ihr &
+	d\textcolor{green-goethe}{\textbf{achtet}} \\
+
+	\cellcolor{table-subtopic} sie / Sie &
+	\cellcolor{table-alternating-blue} d\textcolor{green-goethe}{\textbf{achten}} \\
+
+
+
+}
+
+% }}} End TABULARX TABLE : prateritum mixed verb formation
+
+
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : simple_past
+
+% 		SUB-SUB-SECTION : past_perfect {{{
+\subsubsection{Past Perfect (Plusquamperfekt)}
+\label{sssec:past_perfect}
+
+
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : past_perfect
+
+% 		SUB-SUB-SECTION : future_i {{{
+\subsubsection{Future (Futur I)}
+\label{sssec:future_i}
+
+In German, the future tense is not used as consistently as it is in English. In
+many situations, you can use the present tense instead. When talking about
+things that are going to take place in the future, you can, of course, use
+future tense. The way to form future tense in German is pretty similar to
+English. You take the verb werden(to become) and add an infinitive.
+
+Table 2 shows you the forms of werden in the present tense.
+
+Table 2 Present Tense Forms of werden And this is how you incorporate future
+tense into sentences:
+
+    Ich werde anrufen.(I am going to call.)
+	Wir werden morgen kommen.(We will come tomorrow.)
+	Es wird regnen.    (It will rain. / It’s going to rain.)
+
+
+% TABULARX TABLE : present_tense_werden_conjugation {{{
+
+\tabularxtable
+{0.95\linewidth}
+{llX}
+{
+
+ich & werde  & \\
+du  & wirst  & \\
+er  & wird   & \\
+sie & wird   & \\
+es  & wird   & \\
+man & wird   & \\
+wir & werden & \\
+ihr & werdet & \\
+sie & werden & \\
+Sie & werden & \\
+}
+
+% }}} End TABULARX TABLE : present_tense_werden_conjugation
+
+
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : future_
+
+% 		SUB-SUB-SECTION : future_ii {{{
+\subsubsection{Future Perfect (Futur II)}
+\label{sssec:future_ii}
+
+
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : future_
+
+% 		SUB-SUB-SECTION : konjunktiv_i {{{
+\subsubsection{Konjunktiv I}
+\label{sssec:konjunktiv_i}
+
+
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : konjunktiv_i
+
+% 		SUB-SUB-SECTION : konjunktiv_ii {{{
+\subsubsection{Konjunktiv II}
+\label{sssec:konjunktiv_ii}
+
+
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : konjunktiv_ii
+
+\subsectionend
+% }}} END SUB-SECTION : tenses
+
+% 	SUB-SECTION : special_verbs {{{
+\subsection{Special Verbs}
+\label{ssec:special_verbs}
+
+% 		SUB-SUB-SECTION : werden {{{
+\subsubsection{Werden}
+\label{sssec:werden}
+
+
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : werden
+% 		SUB-SUB-SECTION : lassen {{{
+\subsubsection{Lassen}
+\label{sssec:lassen}
+
+
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : lassen
+
+
+
+\subsectionend
+% }}} END SUB-SECTION : special_verbs
+
+% 	SUB-SECTION : modal_verbs {{{
+\subsection{Modal Verbs}
+\label{ssec:modal_verbs}
+
+
+% DEFINITION : modal_verbs {{{
+\tcolorboxdefinition
+{Modal Verbs}
+{\label{def:modal_verbs}}
+{
+
+Modal Verbs are verbs that allow us to change / modify the original sentence to
+add degrees of ability, permission and necessity.
+
+
+}
+
+% }}} END DEFINITION : modal_verbs
+
+Modal Verbs are always used in conjunction with a another verb. The modal verbs
+action is to indication to what extent the action specified by the other verb is
+necessary or allowed in the current sentence.\newpar
+
+Modal verbs are also often called \textbf{\textit{auxiliary / helping verbs}}
+(Die Hilfsverben)\newpar
+
+When we are building a sentence with a modal verb, we put the modal verb in its
+conjugated form in the second place of the sentence, and send the original verb
+that was supposed to be in the second place all the way to the end of the
+sentence. Another thing to note is that we should not conjugate the second
+verb.\newpar
+
+The general sentence structure in the present tense is as follows :\newpar
+
+Pronoun - Modal Verb (conj.) - frequency/time - other words - second verb
+(unconj.)\newpar
+
+In the case of W-questions , or Ja / Nien Questions the sentence structure
+remains the same as before with the modal verb in place 1 for Ja / Nien
+Questions, and in the second position in W-Style questions. The most common modal verbs
+are :
+
+% LIST : modal_verbs_list {{{
+
+\vspace{0.3cm}
+\begin{tabular}{l l}
+
+\rowcolor{white} \bulletpoint dürfen & (to be allowed)  \\
+\rowcolor{white} \bulletpoint können & (to be able)  \\
+\rowcolor{white} \bulletpoint mögen  & (would like to)  \\
+\rowcolor{white} \bulletpoint wollen & (want to)  \\
+\rowcolor{white} \bulletpoint sollen & (should)\\
+\rowcolor{white} \bulletpoint mussen & (must) \\
+
+\end{tabular}
+\vspace{0.3cm}
+
+% }}} End LIST : modal_verbs_list
+
+Be careful with saying „ \textit{Ich will} “ as it sounds impolite if you are
+asking for something. It is more appropriate to say “Ich möchte“ or “Ich hätte
+gern“.\newpar
+
+A table of all modal verbs with conjugations is shown below : 
+
+
+
+% TBOX TABLE : modal_verbs {{{
+
+\tcolorboxtable
+{ Modal Verbs }
+{ \label{table:modal_verbs} }
+{ [width=\textwidth] }
+{ X|X|X|X|X|X|X }
+{
+
+	&
+	\cellcolor{gray-light} \textbf{ich} &
+	\cellcolor{gray-light} \textbf{du} &
+	\cellcolor{gray-light} \textbf{er/sie/es} &
+	\cellcolor{gray-light} \textbf{wir} &
+	\cellcolor{gray-light} \textbf{ihr} &
+	\cellcolor{gray-light} \textbf{sie/Sie} \\
+
+	\midrule
+
+	\cellcolor{gray-light} \textbf{\textit{dürfen}} &
+	\cellcolor{white} darf                          &
+	\cellcolor{white} darfst                        &
+	\cellcolor{white} darf                          &
+	\cellcolor{white} dürfen                        &
+	\cellcolor{white} dürft                         &
+	\cellcolor{white} dürfen \\
+
+	\cellcolor{gray-light} \textbf{\textit{können}} &
+	\cellcolor{white} kann                          &
+	\cellcolor{white} kannst                        &
+	\cellcolor{white} kann                          &
+	\cellcolor{white} können                        &
+	\cellcolor{white} könnt                         &
+	\cellcolor{white} können\\
+
+	\cellcolor{gray-light} \textbf{\textit{mögen}} &
+	\cellcolor{white} mag                          &
+	\cellcolor{white} magst                        &
+	\cellcolor{white} mag                          &
+	\cellcolor{white} mögen                        &
+	\cellcolor{white} mögt                         &
+	\cellcolor{white} mögen\\
+
+	\cellcolor{gray-light} \textbf{\textit{wollen}} &
+	\cellcolor{white} will                          &
+	\cellcolor{white} willst                        &
+	\cellcolor{white} will                          &
+	\cellcolor{white} wollen                        &
+	\cellcolor{white} wollt                         &
+	\cellcolor{white} wollen\\
+
+	\cellcolor{gray-light} \textbf{\textit{sollen}} &
+	\cellcolor{white} soll                          &
+	\cellcolor{white} sollst                        &
+	\cellcolor{white} soll                          &
+	\cellcolor{white} sollen                        &
+	\cellcolor{white} sollt                         &
+	\cellcolor{white} sollen\\
+
+	\cellcolor{gray-light} \textbf{\textit{mussen}} &
+	\cellcolor{white} muss                          &
+	\cellcolor{white} musst                         &
+	\cellcolor{white} muss                          &
+	\cellcolor{white} müssen                        &
+	\cellcolor{white} müsst                         &
+	\cellcolor{white} müssen\\
+
+}
+
+% }}} End TBOX TABLE : modal_verbs
+
+% NOTE : lassen as a modal {{{
+
+\tcolorboxnote
+{
+
+Lassen is also considered a modal verb, since it functions exactly like one, but
+I have not included it in this table (or section) , since it is a little bit
+more complicated than your regular modal verb. Therefore it has been given its
+own complete subsection \refsssec{lassen}
+
+}
+
+
+
+% }}} END NOTE : lassen_as_a_modal
+
+\subsectionend
+% }}} END SUB-SECTION : modal_verbs
+
+% 	SUB-SECTION : reflexive_verbs {{{
+\subsection{Reflexive Verbs}
+\label{ssec:reflexive_verbs}
+
+
+\subsectionend
+% DEFINITION : copulative_verb {{{
+
+\vspace{0.2cm}
+\centering
+\nolinenumbers
+\begin{defn-bg}
+
+
+	\begin{defn-title}[width=7cm]{}
+		{\normalsize \textbf{\textit{Copulative Verb}} }
+	\end{defn-title}
+
+	\begin{defn-theword}
+	{
+		\footnotesize \begin{mydef}~\label{def:copulative_verb}\end{mydef}
+	}
+	\end{defn-theword}
+
+	\begin{defn-content}
+		\justify
+		A copulative verb is one that serves to link the subject of the sentence
+		with the predicate in the
+		sentence.\newpar
+		The word ``{\textit{is}}'' in the sentence:\newpar
+		The sky is blue.~\footnote{
+			\url{https://en.wikipedia.org/wiki/Copula\_(linguistics)}}~\footnote{In the German context the main copulative verbs are :
+			\textit{sein} , \textit{werden} and \textit{bleiben} }
+
+	\end{defn-content}
+
+\end{defn-bg}
+
+\justifying
+\linenumbers
+
+% }}} END DEFINITION : copulative_verb
+
+% }}} END SUB-SECTION : reflexive_verbs
+
+% 	SUB-SECTION : verb_contraction {{{
+\subsection{Verb Contraction}
+\label{ssec:verb_contraction}
+
+
+\subsectionend
+% }}} END SUB-SECTION : verb_contraction
+
+\sectionend
+% }}} END SECTION : verbs
+
+% SECTION : pronouns {{{
+\section{{Pronouns}}
+\label{sec:pronouns}
+
+% 	SUB-SECTION : personal {{{
+\subsection{Personal}
+\label{ssec:personal}
+
+Like articles and adjectives, pronouns in German vary according to gender and
+case. But this time it should be slightly more familiar, as English has kept
+some of these distinctions too. Here are the personal pronouns in English, which
+hopefully look familiar:
+
+As you can see from the table below, German pronouns are a little more
+complicated. Three important things to notice:
+
+    German pronouns often distinguish between the accusative and the dative
+	case, while English pronouns never do. Old English did have this
+	distinction, but even by the time of Chaucer it was gone (e.g.\ thee was both
+	accusative and dative).
+	    German has a second person plural (ihr) that’s different from the
+		singular (du); English uses you for both, except in casual/regional
+		plurals like y’all or you guys.
+		    German adds a formal “you” (Sie), which is both singular and plural.
+			These ie forms share the same conjugation as the third person
+			plural, but are capitalized.
+
+The genitive forms (last row) are grayed out because they're almost never used.
+We've included them mainly because they give you the stems of the possessive
+articles (mein, dein, sein, etc.) that are used instead (see II.3). Indeed,
+saying der Hund meiner instead of mein Hund would be just as awkward as
+saying the dog of me in English.
+
+When to use the Sie form rather than du or ihr is one of the most common
+questions for German learners, and there's no simple answer. Like most proper
+forms of address (“sir/ma’am” in English, vous in French) it’s no longer used in
+every situation where the teachers and textbooks suggest that it is. However,
+it’s still important to use Sie with police officers (in Germany this is
+actually the law) and other authority figures. It’s also polite to use it with
+anyone in a service position, like waiters, clerks or salespeople.
+
+After that, it’s largely a matter of familiarity and age – both the absolute age
+of the person you’re talking to (older people are more likely to expect Sie),
+and their age relative to yours. It can be about the setting, too: sometimes the
+same two people will address each other with Sie in the office and du in the bar
+after work. It’s also about the tone you’re trying to adopt, and sometimes even
+a touch of politics; for example, it was kind of a Hippie thing to use du with
+everyone as a statement of egalitarian values. Anyway, you should never use Sie
+with children, but otherwise it’s safer to fall back on Sie whenever you’re not
+sure.
+
+\subsectionend
+% }}} END SUB-SECTION : personal
+
+% 	SUB-SECTION : possessive {{{
+\subsection{Possessive}
+\label{ssec:possessive}
+
+
+\subsectionend
+% }}} END SUB-SECTION : possessive
+
+% 	SUB-SECTION : reflexive {{{
+\subsection{Reflexive}
+\label{ssec:reflexive}
+Reflexive pronouns (myself, yourself, etc) are more common in German than in
+English, because there are many more verbs that require them. (Reflexive verbs
+will be covered in Section V.12.) By default, a reflexive pronoun is the direct
+or indirect object of a verb, so it can only take the accusative or dative case.
+As you can see, there's a great deal of overlap between the reflexive pronouns
+and the personal pronouns:
+	Singular 	Plural 	Formal
+		1st 	2nd 	3rd 	1st 	2nd 	3rd 	2nd
+		ACC 	mich 	dich 	sich 	uns 	euch 	sich 	sich
+		DAT 	mir 	dir
+		English 	myself 	yourself 	him-/her-/
+		itself 	ourselves 	yourselves 	themselves 	[yourself/
+		yourselves]
+
+		By the way, those plural forms can also be used to mean “each other” or
+		“one another.” For example, “wir sehen uns” doesn’t mean that we'll see
+		ourselves, it means we’ll see each other – or translating more
+		idiomatically, “see you later.”
+
+\subsectionend
+% }}} END SUB-SECTION : reflexive
+
+% 	SUB-SECTION : indefinite_pronouns {{{
+\subsection{Indefinite Pronouns}
+\label{ssec:indefinite_pronouns}
+
+This is a very small group of pronouns containing words that are not referring
+to something / someone in particular. The most common ones are :
+
+
+% ITEMIZE : indefinite_pronouns {{{
+
+\begin{itemize}[noitemsep]
+	\item everything 
+	\item anybody
+	\item nobody
+\end{itemize}
+
+% }}} END-ITEMIZE : indefinite pronouns
+
+
+\subsectionend
+% }}} END SUB-SECTION : indefinite_pronouns
+
+% 	SUB-SECTION : relative_pronouns_dative {{{
+\subsection{Relative Pronouns : Dative}
+\label{ssec:relative_pronouns_dative}
+
+
+Relative Pronouns
+
+The function of relative pronouns in English is usually served by “that,” “who”
+or “which.” In German these relative pronouns are fully declined, and the
+relative clause is usually set off with commas:
+	Das Auto, das ich sah, war blau.
+	The car that I saw was blue. 	Der Mann, der fuhr, hatte einen Hut auf.
+	The man who was driving had a hat on.
+
+	Note that “das” in the first sentence above is in the accusative case, as
+	the car is the direct object of the verb “see” in the relative clause. The
+	“der” in the second sentence is nominative, as the man is the subject of the
+	relative clause.
+
+	As you may have noticed, relative pronouns in German decline for the most
+	part the same way as the definite article “the.” The only differences are in
+	the dative plural and the genitive:
+		Masculine 	Feminine 	Neuter 	Plural
+		Nominative 	der 	die 	das 	die
+		Accusative 	den 	die 	das 	die
+		Dative 	dem 	der 	dem 	denen
+		Genitive 	dessen 	deren 	dessen 	deren
+
+		Those genitive forms of the relative pronoun would usually translate to
+		whose or of which in English. Since genitive constructions always
+		involve two nouns – possessor and possessed – they can be a little
+		tricky to decline. The relative pronoun takes its gender and number from
+		the possessor:
+
+		Der Mann, dessen Hunde du hörst, ist mein Nachbar.
+		The man whose dogs you hear is my neighbor.
+
+
+\subsectionend
+% }}} END SUB-SECTION : relative_pronouns_dative
+
+% 	SUB-SECTION : relative_pronouns_accusative {{{
+\subsection{Relative Pronouns : Accusative}
+\label{ssec:relative_pronouns_accusative}
+
+
+\subsectionend
+% }}} END SUB-SECTION : relative_pronouns_accusative
+
+\sectionend
+% }}} END SECTION : pronouns
+
+% SECTION : prepositions {{{
+\section{{Prepositions}}
+\label{sec:prepositions}
+
+
+% DEFINITION : preposition {{{
+% {title} {label} {content}
+
+\tcolorboxdefinition
+{Preposition}
+{\label{def:preposition}}
+{
+A preposition is any word that indicates a spatial or temporal relationship
+between two nouns or pronouns in a sentence.
+
+}
+
+% }}} END DEFINITION : preposition
+
+\lettrine[lines=3, findent=3pt, nindent=0pt]{P}{repositions} indicate the
+relationship of a noun (or pronoun) to another element in the sentence.
+Prepositions tend to be some of the most commonly used words in a language.
+Following are some examples of prepositions : We are going to the
+Apartment. (Wir gehen zu die Wohnung) The food is inside the refrigerator. (Das
+Essen ist innen die Kuhlschrank.) It is behind the chair. (Es ist hinter den
+Stühl) Prepositions work in much the same way in German, except for the added
+complication that the nouns and pronouns that they are refereeing to are going
+to change according to the articles of the nouns that we are using the
+preposition to refer to. Some prepositions are specific to certain cases, i.e.,
+certain prepositions will always invoke the dative or the accusative case. These
+are explained in more detail in separate sections below.
+
+
+Depending on the article of the noun that we are using the preposition with, the
+form of the preposition might change. The change is basically that the
+preposition gets contracted (see contractions section above) with the article of
+the noun in the dative case.
+Normally “bei dem,” “von dem,” “zu dem,” and “zu der” are the ones that are most
+commonly contracted.  They are contracted into the following forms :
+
+bei + dem = beim
+von + dem = vom
+zu + dem = zum
+zu + der = zur
+
+If we have any other article preposition combination except for the ones listed
+above, just write the full preposition and article out. For example :
+zu + die =/= zuie , it will remain as zu die
+bei + der =/= bier , it will remain as bei der
+
+
+Unlike dative or accusative prepositions that we learned earlier, which can only
+be used in their respective cases, Wechsel Prepositions are prepositions that
+can be used in two different cases, namely wechsel prepositions can be used with
+objects that are in the dative case (indirect objects) and in the accusative
+case (direct objects). Wechsel prepositions are known as dual prepositions in
+English since they can be used with two cases.
+The easiest way to determine if in a given sentence we are using the dative or
+the accusative version of the wechsel preposition is by looking the question
+that the sentence is answering. Extremely simply If the sentence is answering
+a wo (where) question about the object, then we are using the wechsel
+preposition in the accusative case. If the sentence is answering a wohin (where
+to) question about the object then we are using the wechsel preposition in the
+dative case.
+One thing to clarify when talking about wechsel prepositions is – the fact that
+when we say we are using the preposition in the accusative or dative case, the
+preposition itself is not changing. What we actually mean is that the article of
+the noun that the preposition is talking about will get changed into either it’s
+helps to think about the movement of the object in the sentence. A way to think
+about it in English is using the two phrases “he jumps into the water”
+versus “he is swimming in the water.” The first answers a “where to” question:
+Where is he jumping? Into the water. Or in German, in das Wasser or ins Wasser.
+He is changing location by moving from the land into the water. The second
+phrase represents a “where” situation. Where is he swimming? In the water.
+In German, in dem Wasser or im Wasser. He is swimming inside the body of water
+and not moving in and out of that one location.
+
+
+So basically :
+Use the accusative if there is a significant change of location / position
+happening to the object in the sentence, i.e., if the action (verb) is resulting
+in the object being moved from one place to a different place then we will use
+the accusative case with the wechsel preposition.
+If there is no significant change in movement then, the action is occurring in a
+confined space and little or no movement is taking place. Then we will use the
+dative article for the object with the wechsel preposition.
+
+
+% NOTE : prepostion rules {{{
+
+\tcolorboxnote
+{
+In german , there is ALWAYS a noun , or a articel , or a adjective after a
+preposition. 
+}
+
+
+
+% }}} END NOTE : prepostion_rules
+
+% 	SUB-SECTION : accusative_prepositions {{{
+\subsection{Accusative prepositions}
+\label{ssec:accusative_prepositions}
+
+
+% TBOX TABLE : prepositions_accusative {{{
+
+\tcolorboxtable
+{ Prepositions : Accusative }
+{ \label{table:prepositions_accusative} }
+{ [width=\linewidth] }
+{ l|XX }
+{
+
+		\cellcolor{gray-light} B&
+		\cellcolor{white} bis &
+		\cellcolor{white} until , up-to \\
+
+		\cellcolor{gray-light} D&
+		\cellcolor{white} durch &
+		\cellcolor{white} through \\
+
+
+		\cellcolor{gray-light} E&
+		\cellcolor{white} entlang &
+		\cellcolor{white} along \\
+
+
+		\cellcolor{gray-light} F&
+		\cellcolor{white} für &
+		\cellcolor{white} for \\
+
+
+		\cellcolor{gray-light} G&
+		\cellcolor{white} gegen &
+		\cellcolor{white} against / opposite \\
+
+
+		\cellcolor{gray-light} O&
+		\cellcolor{white} ohne &
+		\cellcolor{white}  without\\
+
+
+		\cellcolor{gray-light} U&
+		\cellcolor{white} um \ldots herum &
+		\cellcolor{white}  around\\
+
+
+		\cellcolor{gray-light} H&
+		\cellcolor{white} hinter &
+		\cellcolor{white}  behind\\
+
+
+		\cellcolor{gray-light} I&
+		\cellcolor{white} in &
+		\cellcolor{white} in , inside \\
+
+
+		\cellcolor{gray-light} N&
+		\cellcolor{white} neben &
+		\cellcolor{white} next to , beside \\
+
+
+		\cellcolor{gray-light} Ü&
+		\cellcolor{white} über &
+		\cellcolor{white} over , above \\
+
+
+		\cellcolor{gray-light} U&
+		\cellcolor{white} unter &
+		\cellcolor{white} among ,under, below \\
+
+
+		\cellcolor{gray-light} V&
+		\cellcolor{white} vor &
+		\cellcolor{white} ahead of, in front of \\
+
+
+		\cellcolor{gray-light} Z&
+		\cellcolor{white} zwischen &
+		\cellcolor{white}  between\\
+
+
+		\cellcolor{gray-light} W&
+		\cellcolor{white} wider &
+		\cellcolor{white} against \\
+
+
+}
+
+% }}} End TBOX TABLE : prepositions_accusative
+
+% }}} END SUB-SECTION : accusative_prepositions
+
+% 	SUB-SECTION : dative_prepositions {{{
+\subsection{Dative Prepositions}
+\label{ssec:dative_prepositions}
+
+
+% TBOX TABLE : prepositions_dative {{{
+
+\tcolorboxtable
+{ Prepositions : Dative }
+{ \label{table:prepositions_dative} }
+{ [width=\linewidth] }
+{ l|XX }
+{
+
+
+		\cellcolor{gray-light} V&
+		\cellcolor{white} von &
+		\cellcolor{white} of / from \\
+
+		\cellcolor{gray-light} Z&
+		\cellcolor{white} zu &
+		\cellcolor{white} to / for \\
+
+
+		\cellcolor{gray-light} S&
+		\cellcolor{white} seit &
+		\cellcolor{white} since \\
+
+
+		\cellcolor{gray-light} N&
+		\cellcolor{white} nach &
+		\cellcolor{white} towards / to / past (time) / after\\
+
+
+		\cellcolor{gray-light} A&
+		\cellcolor{white} aus &
+		\cellcolor{white} out of / from / made of \\
+
+
+		\cellcolor{gray-light} M&
+		\cellcolor{white} mit &
+		\cellcolor{white} with\\
+
+
+		\cellcolor{gray-light} B&
+		\cellcolor{white} bei &
+		\cellcolor{white}  with / by\\
+
+
+		\cellcolor{gray-light} A&
+		\cellcolor{white} außer &
+		\cellcolor{white}  besides\\
+
+
+		\cellcolor{gray-light} G&
+		\cellcolor{white} gegenüber &
+		\cellcolor{white} against \\
+
+
+}
+
+% }}} End TBOX TABLE : prepositions_dative
+
+% }}} END SUB-SECTION : dative_prepositions
+
+% 	SUB-SECTION : wechsel_prepositions {{{
+\subsection{Wechsel Prepositions}
+\label{ssec:wechsel_prepositions}
+
+Wechsel accusative if the preposition indicates movement.
+
+Wechsel dative if the preposition does not indicate movement.
+
+% TBOX TABLE : prepositions_wechsel {{{
+
+\tcolorboxtable
+{ Prepositions : Wechsel }
+{ \label{table:prepositions_wechsel} }
+{ [width=\linewidth] }
+{ l|XX }
+{
+		\cellcolor{gray-light} Z &
+		\cellcolor{white} zwischen &
+		\cellcolor{white} between\\
+
+		\cellcolor{gray-light} U&
+		\cellcolor{white} unter &
+		\cellcolor{white} under\\
+
+		\cellcolor{gray-light} N&
+		\cellcolor{white} neben &
+		\cellcolor{white} next to\\
+
+		\cellcolor{gray-light} Ü&
+		\cellcolor{white} über &
+		\cellcolor{white} above\\
+
+		\cellcolor{gray-light} H&
+		\cellcolor{white} hinter &
+		\cellcolor{white} behind \\
+
+		\cellcolor{gray-light} A&
+		\cellcolor{white} an &
+		\cellcolor{white} at \\
+
+		\cellcolor{gray-light} V&
+		\cellcolor{white} vor &
+		\cellcolor{white} in front of \\
+
+		\cellcolor{gray-light} A&
+		\cellcolor{white} auf &
+		\cellcolor{white} on \\
+
+		\cellcolor{gray-light} I&
+		\cellcolor{white} in &
+		\cellcolor{white} in \\
+
+
+}
+
+% }}} End TBOX TABLE : prepositions_wechsel
+
+% }}} END SUB-SECTION : wechsel_prepositions
+
+% 	SUB-SECTION : genetiv_prepositions {{{
+\subsection{Genetive Prepositions}
+\label{ssec:genetiv_prepositions}
+
+während is also used as as connector and a preposition.\\
+während : three meanings\\
+
+während : while (connector)\\
+während : during (preposition)\\
+
+
+% TBOX TABLE : prepositions_genetive {{{
+
+\tcolorboxtable
+{ Prepositions : Genetive }
+{ \label{table:prepositions_genetive} }
+{ [width=\linewidth] }
+{ l|XX }
+{
+
+}
+
+% }}} End TBOX TABLE : prepositions_genetive
+
+
+% }}} END SUB-SECTION : genetiv_prepositions
+
+% 	SUB-SECTION : pronouns_with_prepositions {{{
+\subsection{Pronouns with Prepositions}
+\label{ssec:pronouns_with_prepositions}
+
+daran , darüber , \ldots
+\subsectionend
+% }}} END SUB-SECTION : pronouns_with_prepositions
+
+% 	SUB-SECTION : verbs_with_prepositions {{{
+\subsection{Verbs with prepositions}
+\label{ssec:verbs_with_prepositions}
+
+
+\subsectionend
+% }}} END SUB-SECTION : verbs_with_prepositions
+
+
+% 	SUB-SECTION : zu {{{
+\subsection{Zu}
+\label{ssec:zu}
+
+\textbf{Zu} is a preposition that might create a fair amount of confusion whent
+rying to learn german. So I thought I would give it its own sub-section to
+clarify and all all questions that at least came up in mind.\newpar
+
+, Zu ` can be used as :\newpar
+
+% ITEMIZE : zu_uses {{{
+
+\begin{itemize}[noitemsep]
+	\item Locative preposition 
+	\item Temporal preposition 
+	\item Causal preposition
+	\item An adverb
+	\item A conjunction
+\end{itemize}
+
+% }}} END-ITEMIZE : zu uses
+
+Given the number of use cases listed above , it is no surprise that , zu `
+causes so many problems in comprehension.\newpar
+
+\subsectionend
+% }}} END SUB-SECTION : zu
+
+% 	SUB-SECTION : contractions {{{
+\subsection{Contractions}
+\label{ssec:contractions}
+
+This section should be read after going through the prepositions
+section\refsec{prepositions}. Contractions in German are basically the fusion of
+two words into one. The most common occurance of this is between articles and
+prepositions. To be more specific definite articles and some preopsitions. Not
+all preposition and noun combinations can be fused into a contracted word.
+Following is a list of all the most common contractions in use in German today : 
+
+% TABULARX TABLE : contractions {{{
+
+\tabularxtable
+{0.95\linewidth}
+{llllX}
+{
+
+an    & + & das & = & ans \\
+an    & + & dem & = & am\\
+auf   & + & das & = & aufs\\
+bei   & + & dem & = & beim\\
+durch & + & das & = & durchs\\
+für   & + & das & = & fürs\\
+in    & + & das & = & ins\\
+in    & + & dem & = & im\\
+um    & + & das & = & ums\\
+von   & + & dem & = & vom\\
+zu    & + & der & = & zur\\
+zu    & + & dem & = & zum\\
+
+
+
+}
+
+% }}} End TABULARX TABLE : Contractions
+
+\subsectionend
+
+% }}} END SUB-SECTION : contractions
+
+\sectionend
+% }}} END SECTION : prepositions
+
+% SECTION : adjectives {{{
+\section{{Adjectives}}
+\label{sec:adjectives}
+
+% DEFINITION : adjective {{{
+\tcolorboxdefinition
+{Adjective}
+{\label{def:adjective}}
+{
+
+An adjective is any word that serves to describe a given noun.
+
+}
+
+% }}} END DEFINITION : adjective
+
+\lettrine[lines=3, findent=3pt, nindent=0pt]{A}{djectives} are words like young,
+old, tall, thin, \ldots . All of these words serve to add a description to the
+noun (or pronoun), in some way. They most commonly appear right before a noun in
+a sentence , but can also be seperate by a verb like \textit{sein
+	\textcolor{gray}{(to be)} , ansehen \textcolor{gray}{(to look)}, fühlen
+	\textcolor{gray}{(to feel)} }\ldots \newpar
+
+The difference between German and English adjectives is that like everything
+else in German, the adjectives change according to the article of the noun that
+they are being used to describe , i.e.\ , the adjectives are also declined. So
+essentially based on gender, count and case the formation of the adjectives will
+change. Wether an adjective is declined or not depends on the positioning of the
+adjective in the sentence relative to the noun and the verb.\newpar
+
+
+% ITEMIZE : adjective_positioning {{{
+
+\begin{itemize}[noitemsep]
+	\item If the adjective is \textbf{before} the noun but \textbf{after} the
+		verb, then it will be declined according to the gender of the noun.\\
+
+E.g.\ :
+
+\noindent
+\textit{Ich kann das \textbf{alt\textcolor{green-goethe}{e}} Haus sehen. \ Ich
+	kann ein \textbf{alt\textcolor{green-goethe}{es}} Haus sehen.}\\
+\textcolor{gray} { \textit{( I can see the old house. \ I can see an old house. )} } \newpar
+
+	\item If the adjective comes directly \textbf{after} the verb then it will
+		not be declined and it will stay in its base form \textit{(grund
+			form)}\\
+
+\noindent
+\textit{Das Buch ist \textbf{neu}}\\
+\textcolor{gray} { \textit{( The book is new )} } \newpar
+
+
+
+
+\end{itemize}
+
+% }}} END-ITEMIZE : adjective positioning
+
+Keep in mind that both the article itself as well as the adjective will
+change, according to the function of the noun in the sentence.\newpar
+
+% Adjectives definite articles {{{
+\textbf{Adjective Endings : Definite Articles}\newpar
+
+When we are using nouns with the definite articles : \textbf{\textit{der}} ,
+\textbf{\textit{die}} , \textbf{\textit{das}} , the endings for the adjectives
+will be as follows :
+
+% TBOX TABLE : adjective_endings_definite {{{
+
+\tcolorboxtable
+{ Adjective Endings : Definite }
+{ \label{table:adjective_endings_definite} }
+{ [width=\linewidth] }
+{l|XXXX }
+{
+
+&
+\cellcolor{table-subtopic} \textbf{\textit{MAS.}} &
+\cellcolor{table-subtopic} \textbf{\textit{NEU.}}  &
+\cellcolor{table-subtopic} \textbf{\textit{FEM.}}  &
+\cellcolor{table-subtopic} \textbf{\textit{PLU.}} \\
+\midrule
+
+\cellcolor{table-subtopic} \textbf{\textit{NOM.}} &
+\cellcolor{cell-lightred}  -e                &
+\cellcolor{cell-lightred}  -e                &
+\cellcolor{cell-lightred}  -e                &
+\cellcolor{cell-lightblue} -en \\
+
+\cellcolor{table-subtopic} \textbf{\textit{ACC.}} &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightred}  -e                &
+\cellcolor{cell-lightred}  -e                &
+\cellcolor{cell-lightblue} -en \\
+
+\cellcolor{table-subtopic} \textbf{\textit{DAT.}} &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightblue} -en \\
+
+\cellcolor{table-subtopic} \textbf{\textit{GEN.}} &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightblue} -en \\
+
+
+
+}
+
+% }}} End TBOX TABLE : adjective_endings_definite
+
+A thing to keep in mind is that some adjectives will change spelling (for
+phonetical reasons) based on which declination the adjective is under. An
+example is with the adjective \textit{hoch \textcolor{gray}{(high)}}.
+
+\noindent
+\textit{Das Gebäude ist hoch.}\\
+\textcolor{gray} { \textit{( The building is high. )} } \newpar
+
+\noindent
+\textit{Das ist ein hohes Gebäude.}\\
+\textcolor{gray} { \textit{( That is a high building. )} } \newpar
+
+The general rule for spelling changes are as follows :
+
+
+% ITEMIZE : adjective_spelling_changes {{{
+
+\begin{itemize}[noitemsep]
+	\item Adjectives ending in -el lose -e when declined.
+\end{itemize}
+
+% }}} END-ITEMIZE : adjective spelling changes
+
+
+
+
+% }}}
+
+% Adjectives indefinite articles {{{
+
+\textbf{Adjective Declination : Indefinite Articles}\newpar
+
+The adjective endings used along with \textbf{\textit{ein}} ,
+\textbf{\textit{irgendein}} , \textbf{\textit{kein}} are as follows :\newpar
+
+
+% TBOX TABLE : adjective_endings_indefinite {{{
+
+\tcolorboxtable
+{ Adjective Endings : Indefinite }
+{ \label{table:adjective_endings_indefinite} }
+{ [width=\linewidth] }
+{ l|XXXX }
+{
+
+&
+\cellcolor{table-subtopic} \textbf{\textit{MAS.}} &
+\cellcolor{table-subtopic} \textbf{\textit{NEU.}}  &
+\cellcolor{table-subtopic} \textbf{\textit{FEM.}}  &
+\cellcolor{table-subtopic} \textbf{\textit{PLU.}} \\
+\midrule
+
+\cellcolor{table-subtopic} \textbf{\textit{NOM.}} &
+\cellcolor{cell-lightgreen}   -er             &
+\cellcolor{cell-lightorange} -es             &
+\cellcolor{cell-lightred}    -e              &
+\cellcolor{cell-lightblue}   -en \\
+
+\cellcolor{table-subtopic} \textbf{\textit{ACC.}} &
+\cellcolor{cell-lightblue}   -en             &
+\cellcolor{cell-lightorange} -es             &
+\cellcolor{cell-lightred}    -e              &
+\cellcolor{cell-lightblue}   -en \\
+
+\cellcolor{table-subtopic} \textbf{\textit{DAT.}} &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightblue} -en \\
+
+\cellcolor{table-subtopic} \textbf{\textit{GEN.}} &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightblue} -en \\
+
+
+
+}
+
+% }}} End TBOX TABLE : adjective_endings_indefinite
+
+% }}}
+
+% Adjectives no articles {{{
+
+\textbf{Adjective Declination : Nouns with no articles}\newpar
+
+There are also times when adjectives are used independent of articles, at that
+point the declination of the adjective will be applied according to the
+following table :\newpar
+
+% TBOX TABLE : adjective_endings_no_article {{{
+
+\tcolorboxtable
+{ Adjective Endings : No Article }
+{ \label{table:adjective_endings_no_article} }
+{ [width=\linewidth] }
+{ l|XXXX }
+{
+&
+\cellcolor{table-subtopic} \textbf{\textit{MAS.}} &
+\cellcolor{table-subtopic} \textbf{\textit{NEU.}}  &
+\cellcolor{table-subtopic} \textbf{\textit{FEM.}}  &
+\cellcolor{table-subtopic} \textbf{\textit{PLU.}} \\
+\midrule
+
+\cellcolor{table-subtopic} \textbf{\textit{NOM.}} &
+\cellcolor{cell-lightgreen}   -er             &
+\cellcolor{cell-lightorange} -es             &
+\cellcolor{cell-lightred}    -e              &
+\cellcolor{cell-lightred}   -e\\
+
+\cellcolor{table-subtopic} \textbf{\textit{ACC.}} &
+\cellcolor{cell-lightblue}   -en             &
+\cellcolor{cell-lightorange} -es             &
+\cellcolor{cell-lightred}    -e              &
+\cellcolor{cell-lightred}   -e \\
+
+\cellcolor{table-subtopic} \textbf{\textit{DAT.}} &
+\cellcolor{cell-lightyellow} -em               &
+\cellcolor{cell-lightyellow} -em               &
+\cellcolor{cell-lightgreen} -er              &
+\cellcolor{cell-lightblue} -en \\
+
+\cellcolor{table-subtopic} \textbf{\textit{GEN.}} &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightgreen} -er               &
+\cellcolor{cell-lightgreen} -er \\
+
+
+
+}
+
+% }}} End TBOX TABLE : adjective_endings_no_article
+
+Besides just appllying to adjectives that modify a noun which is not preceded by
+a definite or indefinte article, the no article (or strong declension) adjective
+endings will also apply to the following words, as long as the noun that the
+following words are referring to are not preceded by an article :\newpar
+
+
+% ITEMIZE : adjective_no_article_ending_extra {{{
+
+\begin{itemize}[noitemsep]
+	\item ein bisschen (a little, a bit of)
+
+	\item ein wenig (a little)
+
+		\textit{Morgen hätte ich \textbf{ein wenig}
+			frei\textbf{\textcolor{green-goethe}{e}} Zeit für dich.}\\
+		\textcolor{gray} { \textit{(I could spare you some time tomorrow.)} }
+		\newpar
+
+	\item ein paar (a few , a pair , a couple)
+
+		\textit{Sie hat mir \textbf{ein paar}
+			gut\textbf{\textcolor{green-goethe}{e}} tips gegeben.}\\
+		\textcolor{gray} { \textit{(She gave me a couple of good tips.)} }
+		\newpar
+
+
+	\item weinger (fewer , less) 
+
+		\textit{Er isst \textbf{weniger}
+			frisch\textbf{\textcolor{green-goethe}{es}} Obst als ich.}\\
+		\textcolor{gray} { \textit{(He eats less fresh fruit than me.)} }
+		\newpar
+
+
+	\item einige (plural forms only)
+
+	\item etwas (some,any(singular))
+
+	\item mehr (more)
+
+		\textit{Heutzutage wollen \textbf{mehr}
+			jung\textbf{\textcolor{green-goethe}{e}} Frauen Ingenieurin werden.}\\
+		\textcolor{gray} { \textit{(Nowadays, more young women want to be
+				engineers.)} }
+		\newpar
+
+
+	\item lauter (nothing but, sheer , pure)
+
+	\item solch (such)
+
+		\textit{\textbf{Solche} lecker\textbf{\textcolor{green-goethe}{e}}
+			Schokolade habe ich schon lange nicht mehr gegessen.}\\
+		\textcolor{gray} { \textit{(I haven't had such good chocolate for a long
+				time.)} } \newpar
+
+	\item was für (what , what kind of )
+
+		\newpar
+
+	\item viel (much , many , a lot of )
+
+		\textit{Wir haben \textbf{viel}
+			kostbar\textbf{\textcolor{green-goethe}{e}} Zeit verschwendet.}\\
+		\textcolor{gray} { \textit{(We have wasted a lot of valuable time.)} }
+		\newpar
+
+	\item welch \ldots ! (what \ldots ! , what a \ldots !)
+
+		\textit{\textbf{Welch} herrlich\textbf{\textcolor{green-goethe}{es}}
+			Wetter.}\\
+		\textcolor{gray} { \textit{(What wonderful weather.)} }
+		\newpar
+
+	\item manch (many a)
+
+	\item wenig (little few not much)
+ 
+	\item zwei , drei , etc \ldots
+
+
+\end{itemize}
+
+% }}} END-ITEMIZE : adjective no article ending extra
+
+
+
+
+% }}}
+
+% ITEMIZE : adjective_ending_other_applications {{{
+
+\begin{itemize}[noitemsep]
+	\item \textbf{Question Words (Fragewörtern)} : welcher , welches , welche
+	\item \textbf{Demonstrative Articles (Demnonstrativartikeln)} \\
+		These : dieser , dieses , diese \\
+		That \ those : jener , jenes , jene \\
+		Such : solcher\\
+		Every: jeder
+\end{itemize}
+
+% }}} END-ITEMIZE : adjective ending other applications
+
+Adjectives are very versatile in their use cases, which is to say that with just
+a little bit of tweaking we can use adjectives as nouns and even as adverbs.
+These adjective conversions are talked about in more detail in sections
+\refssec{adjectives_as_nouns} and \refssec{adjectives_as_adverbs} \newpar
+
+Besides just article endings, there is another way that adjectives can be used.
+Adjectives can be used to compare multiple differnt nouns. These are called
+\textbf{\textit{comparatives(komparativ)}} and \textbf{\textit{superlatives
+		(Superlativ)}}. Each one of these has different uses. Together these
+three are called \textbf{\textit{steigerungsformen}}.  Both of which are talked
+about in the following sections.\newpar
+
+% 	SUB-SECTION : comparatives {{{
+\subsection{Comparatives}
+\label{ssec:comparatives}
+
+
+% DEFINITION : comparatives {{{
+% {title} {label} {content}
+
+\tcolorboxdefinition
+{Comparative}
+{\label{def:comparative}}
+{
+
+A \textbf{Comparative} (Komparativ) is a word that is used to compare a
+subjunctive (noun) with another subjunctive (noun). Comparatives are formed out
+of either adjectives or adverbs. E.g. : higher , shorter , etc \ldots \\
+
+}
+
+% }}} END DEFINITION : comparatives
+
+Essentially a comparative is used when we are comparing two nouns togther
+without going to the extremity. If we wish to tlak about which one of the two
+nouns personifies the quality in question to the highest extent then we would
+use a superlative.
+
+To form a comparative we add the ending : \textbf{\textit{-er}} to the
+adjective. Here are a couple of examples :
+
+% TABULARX TABLE : comparative_formation_examples {{{
+
+\tabularxtable
+{0.95\linewidth}
+{XX}
+{
+\rowcolor{table-topic} adjective  & comparative \\
+
+\midrule
+
+\rowcolor{table-alternating-white} schnell &
+schnell\textbf{\textcolor{green-goethe}{-er}} \\
+
+\rowcolor{table-alternating-blue} lang  & lang\textbf{\textcolor{green-goethe}{-er}} \\
+
+\rowcolor{table-alternating-white} alt & ält\textbf{\textcolor{green-goethe}{-er}} \\
+
+\rowcolor{table-alternating-blue} klein  &
+klein\textbf{\textcolor{green-goethe}{-er}} \\
+
+
+
+}
+
+% }}} End TABULARX TABLE : comparative formation examples
+
+\textbf{Umlauts in the adjective formation}\\
+
+The third example above illustrates that sometimes , not only do we add an
+`\textit{-er}' ending to the adjective in question, sometimes we will also add
+an umlaut in the comparative formatiion in the respective position, as is the
+case in : alt , älter~\footnote{as a side note the german youth use alter
+	similar to way that english speaker would use `dude', keep this is mins,
+	becuase when someone says that to you, they are probably not calling you
+	old.}\newpar
+
+\textbf{Comparatives for adjectives with -er endings}\\
+
+The second thing to note is the comparative formation for when we already have
+an adjective with an ` \textit{-er} ' ending.  In this case instead of writing
+\textit{-erer} as the ending, we write ` \textit{-rer} ' deleting the `e' in the
+`-er' ending that comes from the adjective. \newpar
+
+
+
+One thing that trips people up (it certainly
+tripped me up) is that when we are using comparatives there are two types of
+situations based on the positioning of the adjective that we are trying to use
+as a comparative
+
+
+% TBOX TABLE : comparative_and_superlative_adjectives {{{
+
+\tcolorboxtable
+{ Comparative and Superlative Adjectives }
+{ \label{table:comparative_and_superlative_adjectives} }
+{ [width=\linewidth] }
+{ llllll }
+{
+
+\rowcolor{table-topic} \multicolumn{6}{l}{ \textbf{beim Verb} }\\
+
+\cellcolor{table-subtopic} \textbf{\textit{Grund.\ }} &
+\cellcolor{table-alternating-white} \ldots ist        &
+\cellcolor{table-alternating-white}                   &
+\cellcolor{table-alternating-blue}dick                &
+\cellcolor{table-alternating-white}                   &
+\cellcolor{table-alternating-white} \\
+
+\cellcolor{table-subtopic} \textbf{\textit{Kom.\ }} &
+\cellcolor{table-alternating-white}\ldots ist       &
+\cellcolor{table-alternating-white}                 &
+\cellcolor{table-alternating-blue}dick              &
+\cellcolor{table-alternating-white}-er              &
+\cellcolor{table-alternating-white}\\
+
+\cellcolor{table-subtopic} \textbf{\textit{Sup.\ }} &
+\cellcolor{table-alternating-white}\ldots ist       &
+\cellcolor{table-alternating-white}am               &
+\cellcolor{table-alternating-blue}dick              &
+\cellcolor{table-alternating-white}-st              &
+\cellcolor{table-alternating-white}-en \\
+
+\multicolumn{6}{l}{}\\
+
+\rowcolor{table-topic} \multicolumn{6}{l}{ \textbf{beim Nomen} }\\
+\cellcolor{table-subtopic} \textbf{\textit{Grund.\ }} &
+\cellcolor{table-alternating-white}ein        &
+\cellcolor{table-alternating-white}                   &
+\cellcolor{table-alternating-blue}dick                &
+\cellcolor{table-alternating-white}                   &
+\cellcolor{table-alternating-white}-er \\
+
+\cellcolor{table-subtopic} \textbf{\textit{Kom.\ }} &
+\cellcolor{table-alternating-white}ein       &
+\cellcolor{table-alternating-white}                 &
+\cellcolor{table-alternating-blue}dick              &
+\cellcolor{table-alternating-white}-er              &
+\cellcolor{table-alternating-white}-er\\
+
+\cellcolor{table-subtopic} \textbf{\textit{Sup.\ }} &
+\cellcolor{table-alternating-white}der       &
+\cellcolor{table-alternating-white}                 &
+\cellcolor{table-alternating-blue}dick              &
+\cellcolor{table-alternating-white}-st              &
+\cellcolor{table-alternating-white}-e \\
+
+
+
+
+}
+
+% }}} End TBOX TABLE : comparative_and_superlative_adjectives
+
+
+% ITEMIZE : comparative_situations {{{
+
+\begin{enumerate}[noitemsep]
+	\item The adjective is before the noun , i.e.\ , the adjective is modifying
+		the noun. In this case we will give the adjective ending.
+	\item The adjective is after the noun, i.e.\ , it is not modifying the noun.
+\end{enumerate}
+
+% }}} END-ITEMIZE : Comparative situations
+
+Mostly the sentence structure for a comparative sentence looks something like
+this :\\
+
+
+% TABULARX TABLE : comparative_irregularities {{{
+
+\tabularxtable
+{0.95\linewidth}
+{XlXlX}
+{
+\bulletpoint edel     & - & edler     & - & am edelsten \\
+\bulletpoint sensibel & - & sensibler & - & am sensibelsten \\
+\bulletpoint dunkel   & - & dunkler   & - & am dunkelsten\\
+\bulletpoint flexibel & - & flexibler & - & am flexibelsten\\
+}
+
+% }}} End TABULARX TABLE : comparative irregularities
+
+Look at the following examples :\newpar
+
+
+\noindent
+\textit{Peter ist groß, aber Hubert ist größer}\\
+\textcolor{gray} { \textit{( Peter is tall , but Hubert is taller )} } \newpar
+
+In the above sentence the adjective is groß , but we are comparing two things by
+size, therefore one must be bigger. So just like english we add an -en to the
+ending of the adjective to indicate a comparative. Another example with schön
+:\newpar
+
+
+\noindent
+\textit{Gestern war das Wetter schön, und heute wird es noch schöner.}\\
+\textcolor{gray} { \textit{( Yesterday the weather was beautiful, and today it
+		will be even more beautiful. )} } \newpar
+
+
+\textbf{Adjective ending in : -el}\\
+If the adjective ends in -el , then the e in the
+second to last position is deleted when writing the adjective in the comparative
+form. However this deletion of the e is not true in the superlative form.
+
+\textbf{Adjective ending in : -er}\\
+If the adjective ends in -er and we have
+a vowel (a,e,i,o,u) as the last character before the -er ending, then similar to
+the -el ending the e in the second to last position in the word is deleted when
+forming the comparative. If the character before the -er ending is a consonant
+then the comparative form does not change.  Again this is not true for the
+superlative form.
+
+
+% TABULARX TABLE : comparative_irrgularities {{{
+
+\tabularxtable
+{0.95\linewidth}
+{XlXlX}
+{
+\rowcolor{white} $\bullet$ teuer  & - & teurer   & - & am teuersten \\
+\rowcolor{white} $\bullet$ sauer  & - & saurer   & - & am sauersten \\
+\rowcolor{white} $\bullet$ sauber & - & sauberer & - & am saubersten \\
+}
+
+% }}} End TABULARX TABLE : comparative_irrgularities
+
+\textbf{Single Syllable Adjectives} \\
+When we have single syllable adjectives and they have a vowel then we use the
+umlaut version of that vowel in the comparative and the superlative formation.
+
+
+% TABULARX TABLE : comparative_irrgulartities {{{
+
+\tabularxtable
+{0.95\linewidth}
+{XlXlX}
+{
+\rowcolor{white} $\bullet$ groß & - & größer & - & am größten \\
+\rowcolor{white} $\bullet$ klug & - & klüger & - & am klügsten \\
+\rowcolor{white} $\bullet$ alt  & - & älter  & - & am ältesten \\
+
+
+}
+
+% }}} End TABULARX TABLE : Comparative Irrgulartities
+
+
+
+\subsectionend
+% }}} END SUB-SECTION : comparatives
+
+% 	SUB-SECTION : superlatives {{{
+\subsection{Superlatives}
+\label{ssec:superlatives}
+% DEFINITION : superlatives {{{
+% {title} {label} {content}
+
+\tcolorboxdefinition
+{Superlatives}
+{\label{def:superlatives}}
+{
+A \textbf {Superlative} is a word that is used when we a comparing a subjunctive
+to a group of subjunctives. The superlative is used to delineate the upper or
+lower limits of the quality that we are comparing. E.g. : highest, shortest,
+etc \ldots 
+}
+
+% }}} END DEFINITION : superlatives
+
+Similarly, superlatives are used in dealing with extremes of a certain
+comparison. Consider the following example :\\
+\\
+\textit{
+Ute ist klein, Petra ist kleiner und Martina ist die kleinste.\\
+\color{gray} ( Ute is small, Petra is smaller and Martina is the smallest)  \color{black}}
+\\
+
+
+
+
+
+\subsectionend
+% }}} END SUB-SECTION : superlatives
+
+
+% 	SUB-SECTION : indefinite_adjectives {{{
+\subsection{Indefinite Adjectives}
+\label{ssec:indefinite_adjectives}
+
+A a very small group of adjectives that are used to talk about people or things
+in a general way\cite{collins_german_grammar} . They are words like several ,
+all , every.
+
+\subsectionend
+% }}} END SUB-SECTION : indefinite_adjectives
+
+% 	SUB-SECTION : demonstrative_adjectives {{{
+\subsection{Demonstrative Adjectives}
+\label{ssec:demonstrative_adjectives}
+
+\textbf{\textit{Demonstrative adjectives}} are words like \textit{this , that ,
+	these} and \textit{those}. All of these words are used with a noun to poinmt
+out a particular person , thing or groups of things.
+
+\subsectionend
+% }}} END SUB-SECTION : demonstrative_adjectives
+
+% 	SUB-SECTION : adjectives_as_adverbs {{{
+\subsection{Adjectives as Adverbs}
+\label{ssec:adjectives_as_adverbs}
+
+
+\subsectionend
+% }}} END SUB-SECTION : adjectives_as_adverbs
+
+% 	SUB-SECTION : adjectives_as_nouns {{{
+\subsection{Adjectives as Nouns}
+\label{ssec:adjectives_as_nouns}
+
+Often times adjectives can be converted into nouns. There are no hard and fast
+rules to doing this conversion, should you want to, however there are some
+general guidelines that you can follow :\newpar
+
+\subsectionend
+% }}} END SUB-SECTION : adjectives_as_nouns
+
+% 	SUB-SECTION : adjective_contractoins {{{
+\subsection{Adjective Contractoins}
+\label{ssec:adjective_contractoins}
+
+
+\subsectionend
+% }}} END SUB-SECTION : adjective_contractoins
+
+\sectionend
+% }}} END SECTION : adjectives
+
+% SECTION : adverbs {{{
+\section{{Adverbs}}
+\label{sec:adverbs}
+
+
+% DEFINITION : adverbs {{{
+% {title} {label} {content}
+
+\tcolorboxdefinition
+{Adverbs}
+{\label{def:adverbs}}
+{
+
+An \textbf{adverb }is any word that is used with verbs,adjectives or other
+adverbs in order to give more information about when , where , how or in what
+circumstances the situation is taking place.\cite{collins_german_grammar}
+
+}
+
+% }}} END DEFINITION : adverbs
+
+\lettrine[lines=3, findent=3pt, nindent=0pt]{W}{hen} we use a word to further
+accentuate the action that is being performed by a verb, or when we use a word
+to accentuate an adjective that is being used to desribe a noun, this word is
+called an adverb ( I like to think because it is adding to the verb.)\newpar
+
+When an adverb modifies a verb, it usually tells us :
+
+\begin{itemize}[noitemsep]
+	\item \textbf {When} : He ran yesterday.
+	\item \textbf {Where} : He ran here.
+	\item \textbf{How }: He ran barefoot.
+	\item \textbf{To what extent }: He ran fastest.
+\end{itemize}
+
+Adverbs are very versatile und are broadly divided into the following categories
+in German :
+
+% 	SUB-SECTION : temporal_adverbs {{{
+\subsection{Temporal Adverbs}
+\label{ssec:temporal_adverbs}
+
+Temporal Adverbs or adverbs of time function to tell us \textbf {when} the event
+or the current action is happening. These can include the day that the action
+took place or will take place, as well as an abstract time like
+``{\textit{soon}}'' . The most commonly used temporal adverbs shown below.
+Following are all the temporal adverbs as they relate to days : \newpar
+
+% TABULARX TABLE : temporal_adverbs_days {{{
+
+\tabularxtable { 0.95\linewidth  } {lX} { \rowcolor{white}      vorgestern & day
+	before yesterday \\ \rowcolor{gray-light}  gestern    & yesterday \\
+	\rowcolor{white}      heute      & today \\ \rowcolor{gray-light}  morgen &
+	tomorrow\\ \rowcolor{white}      übermorgen & day after tomorrow\\
+
+
+}
+
+% }}} End TABULARX TABLE : temporal_adverbs-days
+
+Following are all the temporal adverbs as they relate to abstract amounts of
+time\newpar
+
+% TABULARX TABLE : temporal_adverbs_abstract_time {{{
+
+\tabularxtable
+{ 0.95\linewidth  }
+{lX}
+{
+\rowcolor{white}     damals & then \\
+\rowcolor{gray-light} früher & earlier \\
+\rowcolor{white}     jetzt  & now \\
+\rowcolor{gray-light} sofort & immediately \\
+\rowcolor{white}     gleich & immediately \\
+\rowcolor{gray-light} bald   & soon \\
+\rowcolor{white}     später & later \\
+\rowcolor{gray-light} dann   & then / after \\
+
+
+
+}
+
+% }}} End TABULARX TABLE : temporal_adverbs_abstract_time
+
+The adverb \textit{gerade} is used to make a sentence in the present continuous.
+For example we have the sentences shown below. The second version ensures
+clarity in that the listener will know that the action is still continiuing as
+opposed to the dual meaning of the first sentence.
+
+\subsectionend
+% }}} END SUB-SECTION : temporal_adverbs
+
+% 	SUB-SECTION : frequency_adverbs {{{
+\subsection{Frequency Adverbs}
+\label{ssec:frequency_adverbs}
+
+
+Frequency Adverbs function to tell us \textbf {how often} the event or the
+current action is happening. Frequency adverbs can be formed out of any time
+period by just adding a -s, or a -lich to the end of the word. This allows us to
+use adverbs like daily, monthly, evenings and so forth. Some examples are shown
+below :
+
+
+% TABULARX TABLE : frequency_adverbs_abstract {{{
+
+\tabularxtable
+{ 0.95\linewidth  }
+{lX}
+{
+\rowcolor{white}     immer      & always \\
+\rowcolor{lightgray} fast immer & almost always \\
+\rowcolor{white}     meistens   & most of the time \\
+\rowcolor{lightgray} häufig     & frequently \\
+\rowcolor{white}     oft        & often \\
+\rowcolor{lightgray} ab und zu  & once in a while \\
+\rowcolor{white}     manchmal   & sometimes \\
+\rowcolor{lightgray} selten     & rarely \\
+\rowcolor{white}     fast nie   & almost never \\
+\rowcolor{lightgray} nie        & never \\
+
+
+}
+
+% }}} End TABULARX TABLE : Frequency adverbs abstract
+
+% TABULARX TABLE : frequency_adverbs_specific {{{
+
+\tabularxtable
+{ 0.95\linewidth  }
+{lX}
+{
+\rowcolor{white}      morgens     & mornings \\
+\rowcolor{lightgray}  nachmittags & afternoons  \\
+\rowcolor{white}      montags     & on mondays \\
+\rowcolor{lightgray}  täglich     & daily \\
+\rowcolor{white}      wochentlich & weekly \\
+\rowcolor{lightgray}  monatlich   & monthly \\
+\rowcolor{white}      jährlich    & yearly / anually \\
+\rowcolor{lightgray}  halbtags    & half days \\
+\rowcolor{white}      feiertags   & all holidays  \\
+
+
+}
+
+% }}} End TABULARX TABLE : Frequency Adverbs Specific
+
+
+
+\subsectionend
+% }}} END SUB-SECTION : frequency_adverbs
+
+% 	SUB-SECTION : spatial_locative_adverbs {{{
+\subsection{Spatial / Locative Adverbs}
+\label{ssec:spatial_locative_adverbs}
+
+Spatial Adverbs as is indicated in the name , serve to describe locations and
+spaces. Therefore they are used to indicate the position of a person or object
+relative to your current position. They can change based on wether you or the
+object are moving, and can also change based on wether you and the object are
+moving away from or towards each other. The most common spatial adverbs for both
+static and movement based scenarios are shown below :
+
+
+
+% TABULARX TABLE : spatial_adverbs_static {{{
+
+\tabularxtable
+{0.95\linewidth}
+{lX}
+{
+
+\rowcolor{white}     vorn / vorne & in front\\
+\rowcolor{lightgray} hinten       & behind\\
+\rowcolor{white}     links        & left\\
+\rowcolor{lightgray} rechts       & right\\
+\rowcolor{white}     oben         & over\\
+\rowcolor{lightgray} unten        & under\\
+\rowcolor{white}     innen        & inside\\
+\rowcolor{lightgray} außen        & outside\\
+\rowcolor{white}     hier         & hier\\
+\rowcolor{lightgray} da           & here/there\\
+\rowcolor{white}     dort         & over there/there\\
+\rowcolor{lightgray} überall      & everywhere\\
+\rowcolor{white}     nirgends     & nowhere\\
+\rowcolor{lightgray} fort      & away\\
+
+
+}
+
+% }}} End TABULARX TABLE : Spatial Adverbs Static
+% TABULARX TABLE : spatial_adverbs_movement {{{
+
+\tabularxtable
+{0.95\linewidth}
+{lX}
+{
+\rowcolor{white}     aufwärts  & upwards\\
+\rowcolor{lightgray} abwärts   & downwards\\
+\rowcolor{white}     vorwärts  & forwards\\
+\rowcolor{lightgray} rückwärts & backwards\\
+\rowcolor{white}     heimwärts & homeward\\
+\rowcolor{lightgray} westwärts & westward\\
+\rowcolor{white}     bergauf   & uphill\\
+\rowcolor{lightgray} bergab    & downhill\\
+
+
+}
+
+% }}} End TABULARX TABLE : Spatial Adverbs Movement
+
+
+
+% 		SUB-SUB-SECTION : hin_and_her_ {{{
+\subsubsection{Hin- and Her-}
+\label{sssec:hin_and_her_}
+
+The prefixes \textit{Hin- }and \textit{Her-} cause a bit of confusion because
+there are no equivalencies in English. German delineates between movement away
+and towards the speaker in a way that english does not. It is to describe this
+delineation that we use the aforementioned prefixes.\newpar
+
+\textbf{\textit{Hin-}} generally indicates movement in a direction away from the speaker toward a
+particular destination. Examples of sentences using the \textit{hin-} prefix are
+shown below :
+\\\\
+\noindent
+Wir gehen zum Hafen hin. : We are going to the harbor.\newpar
+Schau mal hin!           : Look (over there)!
+\\\\
+\textbf{\textit{Her-}} generally indicates movement from a point of origin in a direction toward
+the speaker.
+\\\\
+\noindent
+Komm mal her!                 : Come over here (from there)!\newpar
+Wo bekommen wir das Geld her? : Where will we get the money (from)?
+
+Hin- and her- are used in their most literal sense with verbs of movement (e.g.,
+gehen to go, kommen to come) or activity that involves direction (e.g., sehen to
+look, geben to give, reichen to hand over). Often they appear as separable
+prefixes (e.g., herkommen , herholen, hinlegen, hinschreiben). More specific
+directional adverbs are created through a number of compounds that comine hin
+and her with prepositions that denote direction (e.g., herauf, herab, heraus,
+herein, hinauf, hinüber, hindurch, hinzu) or with other adverbs (e.g., hierher,
+woher, dahin, überallhin).\newpar
+
+\noindent
+Er geht die Treppe hinauf.hinaufHe is going up the stairs.\\
+Er kommt die Treppe herunter.herunterHe is coming down the stairs.\\
+Der Apfel fiel vom Baum herab.herabThe apple fell (down) from the tree.\\
+Der Apfel fiel ins Gras hinunter.hinunterThe apple fell (down) into the grass.
+\newpar
+\noindent
+The most commonly used adverbs with hin and her are shown below :
+
+
+% TABULARX TABLE : spatial_adverbs_hin_her {{{
+
+\tabularxtable
+{0.95\linewidth}
+{lX}
+{
+\rowcolor{white}     heraus & go out (towards the speaker) \\
+\rowcolor{lightgray} herein & go in (towards the speaker)\\
+\rowcolor{white}     hinein & go in (away from speaker)\\
+\rowcolor{lightgray} hinaus & go out (away from the speaker) \\
+
+
+}
+
+% }}} End TABULARX TABLE : Spatial Adverbs Hin Her
+
+
+% NOTE : Hin and Her {{{
+
+\tcolorboxnote
+{
+Even though I havent written the
+verb gehen in the table above , the adverbs above are almost always used with
+some movement related verb which is why the translation column has the words go.
+
+
+}
+
+
+
+% }}} END NOTE : hin_and_her
+
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : hin_and_her_
+
+\subsectionend
+% }}} END SUB-SECTION : spatial_locative_adverbs
+
+% 	SUB-SECTION : causal_conjunctional_adverbs {{{
+\subsection{Causal / Conjunctional Adverbs}
+\label{ssec:causal_conjunctional_adverbs}
+
+Causal adverbs help in explaining a previous action. They are indicating the
+cause for the previous action occuring. Therefore they act almost exactly like
+conjunctions between two sentences are are also known as conjunctional adverbs.
+The most common ones are :
+
+
+% TABULARX TABLE : causal_adverbs {{{
+
+\tabularxtable
+{0.95\linewidth}
+{lX}
+{
+\rowcolor{white}     also / so         & so / therefore \\
+\rowcolor{lightgray} anstandshalber    & for decencys sake\\
+\rowcolor{white}     dadurch           & through that/ because of that\\
+\rowcolor{lightgray} darum             & therefore / because of that\\
+\rowcolor{white}     demnach           & thus / according to that\\
+\rowcolor{lightgray} demzufolge        & whereby / accordingly\\
+\rowcolor{white}     deshalb           & therefore\\
+\rowcolor{lightgray} folglich          & consequently\\
+\rowcolor{white}     sicherheitshalber & preventatively\\
+\rowcolor{lightgray} somit             & thus / therefore\\
+\rowcolor{white}     trotzdem          & despite that\\
+\rowcolor{lightgray} daher             & therefore\\
+
+
+}
+
+% }}} End TABULARX TABLE : Causal Adverbs
+
+\subsectionend
+% }}} END SUB-SECTION : causal_conjunctional_adverbs
+
+% 	SUB-SECTION : interrogative_adverbs {{{
+\subsection{Interrogative adverbs}
+\label{ssec:interrogative_adverbs}
+
+Used when trying to ask questions. These are basically the W-question words.
+Therefore the main explanation for this topic is provided under the questions
+section.
+
+
+% TABULARX TABLE : interrogative_adverbs {{{
+
+\tabularxtable
+{0.95\linewidth}
+{lX}
+{
+\rowcolor{white}     Wer   & Who\\
+\rowcolor{lightgray} Was   & What\\
+\rowcolor{white}     Wann  & When\\
+\rowcolor{lightgray} Wo    & Where\\
+\rowcolor{white}     Warum & Why\\
+
+
+\rowcolor{lightgray} Wofür   & \\
+\rowcolor{white}     Woher &  \\
+\rowcolor{lightgray} Wieso &  \\
+\rowcolor{white}     Wessen &  \\
+\rowcolor{lightgray} Welcher &  \\
+\rowcolor{white}     Wen &  \\
+\rowcolor{lightgray} Wem &  \\
+
+\rowcolor{white}     Wo &  \\
+\rowcolor{lightgray} Woran &  \\
+\rowcolor{white}     Worauf &  \\
+\rowcolor{lightgray} Woraus &  \\
+\rowcolor{white}     Wobei &  \\
+\rowcolor{lightgray} Wogegen &  \\
+\rowcolor{white}     Worin &  \\
+\rowcolor{lightgray} Womit &  \\
+\rowcolor{white}     Worüber &  \\
+\rowcolor{lightgray} Worum &  \\
+\rowcolor{white}     Wozu &  \\
+
+
+}
+
+% }}} End TABULARX TABLE : Interrogative Adverbs
+
+\subsectionend
+% }}} END SUB-SECTION : interrogative_adverbs
+
+% 	SUB-SECTION : adverbs_of_manner {{{
+\subsection{Adverbs of Manner}
+\label{ssec:adverbs_of_manner}
+Modal adverbs or adverbs of manner answer questions of how much of a
+certain thing we are dealing with. So these can be broken up according to how
+much of what we are dealing with. Then we get the following three categories :
+
+\begin{enumerate}[noitemsep]
+	\item Manner : 
+	\item Quantity :
+	\item Restrictive :
+\end{enumerate}
+
+beinahe -- nearly, almost
+besonders -- especially
+bloß -- merely, simply, just
+daneben -- besides, in addition
+ebenfalls -- likewise, also
+ebenso -- equally, similarly
+eigentlich -- actually, in fact
+fast -- almost
+gemeinsam -- in common, jointly
+gern, gerne -- gladly
+hoffentlich -- hopefully
+insgesamt -- in total, altogether
+kaum -- hardly
+leider -- unfortunately
+mindestens -- at least, at minimum
+nämlich -- namely
+natürlich -- naturally
+nebenbei -- by the way, incidentally
+schließlich -- finally
+sehr -- very
+sogar -- even
+sonst -- otherwise
+teilweise -- partially
+übrigens -- by the way
+ungefähr -- approximately
+ursprünglich -- originally
+vielleicht -- perhaps, maybe
+wahrscheinlich -- probably, likely
+wirklich -- really, truly
+ziemlich -- rather, quite
+zufällig -- accidentally, by chance
+zurück -- back
+zusammen -- together
+
+
+
+\subsectionend
+% }}} END SUB-SECTION : adverbs_of_manner
+
+% 	SUB-SECTION : pronoun_adverbs {{{
+\subsection{Pronoun Adverbs}
+\label{ssec:pronoun_adverbs}
+
+Pronomial adverbs are words like : daran , damit, darüber, hierbei, hiermit,
+wovon.  Even though they are referred to as Pronoun Adverbs, they are actually a
+combination of a preposition and a pronoun.\\
+
+\noindent
+Each Pronomialadverbien can be broken up into two parts : The stem and
+The root.\\
+
+\noindent The stem of pronomial adverbs is always one of the following three :
+\textbf{\textit{da-}} , \textbf{\textit{hier-}} , \textbf{\textit{wo-}}.\\
+
+\noindent The endings are determined by what we are actually referring to. The
+adverbs ending will change according to wether we are referring to a person or
+to a thing.\\
+
+
+A complete list of all the pronomial adverbs are shown below, although this is
+just meant as a reference. I would not advise memorizing all of these, and
+rather knowing which preposition is accompanied with which verb we are using,
+and using those to form the appropriate pronoun. Anyway here they are :\\
+
+\textbf {Da-} : 
+dabei
+dadurch
+dafür
+dagegen
+dahinter
+damit
+danach
+daneben
+daran
+darauf
+daraus
+darin
+darum
+darunter
+darüber
+davon
+davor
+dazu
+dazwischen
+
+\textbf {Hier-} : 
+hierfür
+hiermit
+hiervon
+
+\textbf {Wo-}  
+wobei
+wodurch
+wofür
+wogegen
+wohinter
+womit
+wonach
+woneben
+woran
+worauf
+woraus
+worin
+worum
+worunter
+worüber
+wovon
+wovor
+wozu
+wozwischen
+
+
+\subsectionend
+% }}} END SUB-SECTION : pronoun_adverbs
+
+\sectionend
+% }}} END SECTION : adverbs
+
+% SECTION : sentence_structures {{{
+\section{{Sentence Structures}}
+\label{sec:sentence_structures}
+
+% 	SUB-SECTION : clauses {{{
+\subsection{Clauses}
+\label{ssec:clauses}
+
+
+% DEFINITION : clause {{{
+\tcolorboxdefinition
+{Clause}
+{\label{def:clause}}
+{
+
+	A clause is any group of words which contain a
+	verb.\cite{collins_german_grammar}
+
+
+}
+
+% }}} END DEFINITION : clause
+
+
+A \textbf{\textit{coordinate clause}} is \ldots \newpar
+
+A \textbf{\textit{subordinate clause}} is \ldots \newpar
+
+A \textbf{\textit{hauptsatz}} in german is any sentence that has follows a
+regular sentence strucutre. By regular sentence structure I mean , noun /
+pronoun at position 1 , the verb at position 2 and so on \ldots . As the term
+implies the haupt satz can also be considered the `main clause' of the sentence,
+although I would be careful with that since a sentence in german can contain
+multiple haupt clauses, which can cause problems if you are a native english
+speaker (since how can one sentence have multiple main sentences).\newpar
+
+The nebensatz is a sentence structure that is defined according to the
+positioning of the verb as well. Nebensatze have two qualities :
+
+% ENUMERATE : nebensatz_qualities {{{
+
+\begin{enumerate}[noitemsep]
+	\item There is always a connector at the beggining of a nebensatz.
+	\item The verb is sent to the end in a nebensatz.
+	\item A nebensatz is always accompanied with a hauptsatz.
+\end{enumerate}
+
+% }}} END-ENUMERATE : nebensatz qualities
+
+The nebensatz can come before or after a hauptsatz , which is why I have been
+refraining from calling a nebensatz a neighboring sentence even though that is
+what the literal translation would imply. We can begin sentences in german with
+some connectors unlike in english. The list as well as examples of the main
+connectors are given in section \refssec{connectors}. \newpar
+
+
+\subsectionend
+% }}} END SUB-SECTION : clauses
+
+% 	SUB-SECTION : conjunctions {{{
+\subsection{Conjunctions}
+\label{ssec:conjunctions}
+
+\subsectionend
+% }}} END SUB-SECTION : conjunctions
+
+% 	SUB-SECTION : cojunctions_connectors {{{
+\subsection{Cojunctions / Connectors}
+\label{ssec:cojunctions_connectors}
+
+% DEFINITION : conjunction {{{
+\tcolorboxdefinition
+{Conjunction}
+{\label{def:conjunction}}
+{
+
+Words that links together two clauses in a sentence are called conjunctions.\cite{collins_german_grammar}
+}
+
+% }}} END DEFINITION : conjunction
+
+German has two types of conjuctions :
+
+% ITEMIZE : conjunction_types {{{
+
+\begin{itemize}[noitemsep]
+	\item Subordinating Conjunctions  : 
+	\item Coordinating Conjunctions : aber , denn , oder , sondern
+\end{itemize}
+
+% }}} END-ITEMIZE : Conjunction Types
+
+\textbf{aber vs.\ sondern}
+
+Both aber and sondern mean `but' , however the difference between these two
+conjunctions is that sondern is always accompanied with a negation in the
+hauptsatz. An example is provided below :
+
+
+\noindent
+\textit{Ich habe sehr viel Erklärt , aber niemand hat mir verstanden.}\\
+\textcolor{gray} { \textit{( EXAMPLE TRANSLATION )} } \newpar
+
+\noindent
+\textit{Das ist keine Erklärung , sondern ein Beispiel.}\\
+\textcolor{gray} { \textit{( That is not an explanation , but an example. )} } \newpar
+
+aber can also mean ` however ' , in which case it will combe between the subject
+and the clause.
+
+
+% TABULARX TABLE : connectors {{{
+
+\tabularxtable
+{0.95\linewidth}
+{llX}
+{
+deshalb & & \\
+darum & & \\
+deswegen& & \\
+so \ldots dass& & \\
+sodass& & \\
+wegen& & \\
+trotz& & \\
+trotzdem& & \\
+je desto& & \\
+ob& & \\
+obwohl& & \\
+weil& & \\
+wenn& & \\
+als& & \\
+denn& & \\
+}
+
+% }}} End TABULARX TABLE : connectors
+
+\subsectionend
+% }}} END SUB-SECTION : cojunctions_connectors
+
+% 	SUB-SECTION : negation {{{
+\subsection{Negation}
+\label{ssec:negation}
+
+
+\subsectionend
+% }}} END SUB-SECTION : negation
+
+% 	SUB-SECTION : passive_vs_active_statements {{{
+\subsection{Passive vs. Active Statements}
+\label{ssec:passive_vs_active_statements}
+
+
+\subsectionend
+% }}} END SUB-SECTION : passive_vs_active_statements
+
+% 	SUB-SECTION : infinitve_zu {{{
+\subsection{Infinitve + Zu}
+\label{ssec:infinitve_zu}
+
+The \textbf{\textit{infinitive + zu}} formation is a sentence structure used in
+german. As the name indicates , it basically is the use of a verb in its
+infinitive form along with a zu. As a quick reminder an infinitve is a any verb
+in it's unconjugated form, and zu is a prepostion which means ` to '. The only
+things that needs explaining are : when we will use a infinitive+zu structure vs
+when not , and what the sentence structure will look like.\newpar
+
+First thing to note is that the Infinitive+zu formation will always appear in
+the nebensatz.\ Second thing to note is that there are three types of situations
+with regard to this formation. Namely :
+
+
+% ENUMERATE : infinitive_zu_types_of_situations {{{
+
+\begin{enumerate}[noitemsep]
+
+	\item The sentence \textbf{must be} formed with infinitive zu.
+	\item The sentence \textbf{can be }formed with or without infinitive zu.
+	\item The sentence \textbf{must not be} formed with infinitive zu.
+
+\end{enumerate}
+
+% }}} END-ENUMERATE : infinitive zu types of situations
+
+% TABULARX TABLE : infinitive_zu_will_not_be_used {{{
+
+\textbf{Infinitive + Zu : Will not be used cases}\newpar
+
+The situations where we will not use infinitve+zu are the following :\newpar
+
+\tabularxtable
+{0.95\linewidth}
+{lX}
+{
+
+	Modal Verbs & since we are already using the main (non modal) verb as an
+	infinitive.\\
+
+	Verbs with movement & gehen  , kommen , fahren , laufen\\
+
+	Verbs with speaking & sagen , fragen , antworten , berichten , erzählen ,
+	informieren\\
+
+	 & With verbs like shen , hören , spüren , and fühlen\\
+
+	finden/haben + location & The vebs finden and haben in connection with locations\\ 
+	lassen , schicken\\
+
+	Verben mit wahrnehmung & sehen , hören , riechen , spüren , bemerken
+	,lesen\\
+
+	Verbs with knowledge & wissen , zweifeln , vermuten , kennen \\
+
+}
+
+% }}} End TABULARX TABLE : infinitive zu will not be used
+
+% TABULARX TABLE : infinitive_zu_can_be_used {{{
+
+\textbf{Infinitive + Zu : Can be used cases}
+
+The situations where the sentence can be formed with or without infintive zu are
+as follows :\newpar 
+
+\tabularxtable
+{0.95\linewidth}
+{lX}
+{
+
+lernen / helfen & \\
+
+& \textit{Das Kind lernt laufen.}\\
+& \textit{Ich lerne , fehlerfrei \textbf{\textcolor{green-goethe}{zu schreiben}}.}\\
+& \textit{Ich helfe dir tragen.}\\
+& \textit{Er hilft Susi , das Auto zu reparieren.}\\
+
+
+}
+
+% }}} End TABULARX TABLE : infinitive zu can be used
+
+% TABULARX TABLE : infinitive_zu {{{
+
+\textbf{Infinitive + Zu : Must be used cases}\newpar
+
+The list of situations in which we will use it are as follows :\newpar
+
+\tabularxtable
+{0.95\linewidth}
+{XX}
+{
+
+Nomen + Haben              & Angst / Lust / Zeit / den Plan haben\\
+iunpersonlichen ausdrucken & es ist wichtig  , we ist schwerig \\
+Partizip + sein            & verboten / erlaubt / beabsichtigt sein \\
+Verben : Erlaubnis         & erlauben , verbeiten \\
+Verben : Angfang           & anfangen  , beginnen , aufhören\\
+Verben : Absicht           & versuchen , vorhaben , sich vornehmen\\
+Verben : Gefühl            & bedauern , befürchten , hoffen , sich freuen\\
+anderen                    & sein , haben , erinnern , vergessen \\
+                           & bitten , einladen , gefallen \\
+}
+
+% }}} End TABULARX TABLE : Infinitive zu
+
+\subsectionend
+% }}} END SUB-SECTION : infinitve_zu
+% 	SUB-SECTION : um_zu_ {{{
+\subsection{Um .. Zu ..}
+\label{ssec:um_zu_}
+
+
+\subsectionend
+% }}} END SUB-SECTION : um_zu_
+
+% 	SUB-SECTION : double_connectors {{{
+\subsection{Double Connectors}
+\label{ssec:double_connectors}
+
+
+% TABULARX TABLE : zweiteilige_konnektoren {{{
+
+\tabularxtable
+{0.95\linewidth}
+{lllX}
+{
+sowohl     & \ldots & als auch     & das eine und das andere \\
+nicht nur  & \ldots & sondern auch & das eine oder das andere \\
+entweder   & \ldots & oder         & das eine nicht und das andere nicht\\
+weder      & \ldots & noch         & \\
+zwar       & \ldots & aber         & das eine mit Einschränkungen\\
+einerseits & \ldots & andererseits & ein Sache hat zwei seiten\\
+}
+\cite{netzwerk_b1}
+% }}} End TABULARX TABLE : Zweiteilige Konnektoren
+
+
+
+\subsectionend
+% }}} END SUB-SECTION : double_connectors
+
+
+
+\sectionend
+% }}} END SECTION : sentence_structures
+
+% ----------------------------------------------------------------------------- 
+% BIBLIOGRAPHY & FIGURE LISTS {{{
+
+\onecolumn
+\nolinenumbers
+\bibliographystyle{unsrt}
+\bibliography{bibliography/references}
+
+
+% }}}
+% -----------------------------------------------------------------------------
+\end{document}
+% =============================================================================
+% - EOF - EOF - EOF - EOF - EOF - EOF - EOF - EOF - EOF - EOF - EOF - EOF -
+% =============================================================================
+

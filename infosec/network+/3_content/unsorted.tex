@@ -1,0 +1,228 @@
+
+% unsorted {{{
+
+
+
+
+% commands windows {{{
+
+ipconfig /all
+ipconfig /release
+ipconfig /renew
+ipconfig /displaydns
+ipconfig /flushdns
+
+nslookup
+
+arp -a
+netstat
+
+route print
+route print is the exact same as : netstat -r
+
+tracert www.google.com
+pathping www.google.com
+
+ftp
+ftp open <ServerName>
+
+net view
+net user
+net use
+net share <filename>=<filepath>
+net share <foldername>=<folderpath>
+
+
+show current computer name
+nbtstat -n
+
+show remote cache table
+nbtstat -c
+
+
+
+% }}}
+
+% commands linux {{{
+
+
+dig
+ifconfig
+arp -a
+traceroute
+tcpdump
+
+% }}}
+
+
+% qos {{{
+
+QOS (Quality of Service) : QOS Controls help better manage available bandwidth.
+One type of quality of service control is traffic shaping.
+
+Quality of Service is the feature that allows you to prioritize certain types of
+network traffic over other types of lesser importance.
+
+
+Traffic Shaping : We can set the different priorities (based on application /
+MAC etc \ldots ) of the network traffic that is coming through to always make
+maximum use of our bandwidth. Simple QoS on SOHO routers allows priority setting
+for different protocols.
+% }}}
+
+% vpn {{{
+
+The various VPN Tunneling Protocols are :
+
+- PPTP : Point to Point Tunneling Protocol
+- - Encapsulation : Encapsulates PPP frames in IP datagrams
+- - Encryption : PPP frame is encrypted with Microsoft Point to Point Encryption
+(MPPE)
+- - TCP Port 1723
+- - GRE (Protocol 47)
+- - Older and does not provide data integrity ( proof that the data was not
+modified in transit ) , or data origin authentication ( proof that the data was
+sent by the authorized user)
+- - Support was dropped with some newer operating systems.
+
+- L2TP : Layer 2 Tunneling Protocol
+- - Encapsulation : 2 Layers - PPP frame is wrapped in IP datagram then wrapped
+with IPsec Encapsulating Security Protocol (ESP)
+- - Encryption : IPsec encryption algorithm
+- - UDP Port 500 and 4500
+- - ESP (Protocol 50)
+- - Will support most older clients and can use certificates or preshared key
+for IPsec.
+- - Support for 3DES and AES encryption algorithms
+- - Considered secure when using AES and not a pre-shared key
+- - Some difficulty when NAT is involved
+
+- IKEv2 : Internet key exchange version 2
+- - Encapsulation : Uses IPsec and the Encapsulating Security Protcol (ESP)
+- - Encryption : IPsec encryption algorithm
+- - UDP Port 500 and 4500
+- - ESP (Protocol 50)
+- - Mainly supported by newer clients
+- - Some difficulty when NAT is involved
+- - Suppoorts VPN RE-connect , MOBIKE
+
+- SSTP : Secure Socket Tunneling Protocol
+- - Encapsulation : Encapsulates PPP frames in IP datagrams over port 443.
+- - Encryption : Encryption with the SSL channel of the HTTPS protocol.
+- - TCP Port 443
+- - Pretty much always works becuase it only uses port 443.
+- - Support is limited with operating systems other thant windows because it's a
+Microsoft owned protocol.
+
+- OpenVPN : This is an open source technology that uses the OpenSSL library and
+the TLS protocols. It can be similar to SSTP in that it can be configures to use
+port 443. It needs a 3rd party VPN client. Should use with perfect forward
+secrecy (PFS) .
+
+PAP
+CHAP
+MS-CHAP
+
+
+
+% }}}
+
+% Tunneling {{{
+
+IP Tunneling
+
+PPTP ( Point to Point Tunneling Protocol )
+
+VPN : A VPN creates a secure tunnel so that a remote machine or network can be
+part of a local network.
+
+L2TP/IPSec ( Layer 2 Tunneling Protocol )
+
+SSTP ( Secure Socket Tunneling Protocol )
+
+VPN Concentrator : This is a dedicated box that acts as an endpoint for the
+entire network.
+
+client-to-site VPN : A client-to-site VPN connects a remote computer to a local
+network.
+
+site-to-site VPN : A site-to-site VPN connects distant networks into a single
+network.
+
+
+% }}}
+
+% Remote Desktop {{{
+
+Introduced by CITRIX
+
+TightVNC : Port 5900
+
+Remote Desktop Server : RDP : Port 3389
+
+
+% }}}
+
+% san {{{
+
+Storage Area Network (SAN) : A SAN is a high speed network that stores and
+provides access to large amounts of data. This is basically a dedicated networok
+(or subnet) that is use donly for data storage. This is in opposition to a NAS (
+Network attached storage ) device since a NAS would live on the same network but
+comes with the disadvantage of a single point of failure. As an example if the
+power supply to the NAS fails , then all the computers on that network cannot
+use it. A SAN contains mutiple disk arrays , its own siwtches and servers. Since
+there are multiple disks arrays that share the data this makes the SAN a lot
+more fault tolerant than a NAS. When a server accesses a drive on the SAN it is
+accessed as a local drive , as opposed to a network drive as we would see in
+NAS. SANs are also very scalable since we can just add more disks and disk
+arrays. Another adavantage is that SANs are not affected by the actual network
+traffic , so there is no danger of not being able to access files becuase the
+network is clogged up. All this being said SANs cost a lot of money so they are
+only used by huge companies.
+% }}}
+
+% DMZ demilitarized zone {{{
+
+A dmz allows unsoliticied internet traffic from outside the local network to
+enter inside. The difference between this and port forwarding is that the DMZ
+will send all traffic that tries to get in to one specified machine. Port
+forwarding however works on pre specified ports or port ranges that can span
+multiple machines. You are basically placing this machine outside of military
+procetion zone of your router.
+
+
+This is super scary cause all bad evil internet traffic can
+get in and wreck you. So do not do this on SOHO routers.
+
+DMZs are used to protect public-facingservers by creating an isolated area for
+those devices.
+
+Two firewalls are used in a DMZ : one allowing unsolicited traffic to the public
+service , and the second maintaining isolation of the private network.
+
+
+
+
+
+% }}}
+
+% Load Balancing {{{
+
+Load Balancing : This is basically the act of being able to handle the amount of
+traffic that is being requested from them. The easiest way to do this is to just
+plug in more servers , all of which are serving the exact same content as the
+original. But now we need to spread the traffic out amongst all of these so as
+not to cause one to overload. This can be done in a variety of ways such as :
+
+
+ - DNS Load balancing : This can be done using DNS servers. We can send
+the information to the servers using a round robin scheduling algorithmn. If the
+servers are in different physical locations though (like different continents)
+then we want to use the server that would be physically the closest one.
+
+- Server Side Load balancing :
+
+% }}}
+
+% }}}

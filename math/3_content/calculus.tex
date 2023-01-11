@@ -1,0 +1,160 @@
+
+
+% SECTION : calculus {{{
+\section{Calculus}
+\label{sec:calculus}
+\parindent=0em
+
+
+
+\textbf{Derivative} \\
+How much the value of the function \( f(x) \) changes between a point \( x \) , and another point \( \Delta x \) away from \( x \) as the distance between the points approaches 0.
+\[
+	\frac{df}{dx} = \lim_{\Delta x \to 0} \left( \frac{f(x+\Delta x) - f(x)}{\Delta x} \right)
+\]
+
+\textbf{Sum Rule}
+\[
+	\frac{d}{dx} \left( f(x) \pm g(x) \right) = \frac{d}{dx}f(x) \pm \frac{d}{dx}g(x)
+\]
+
+
+\textbf{Power Rule}
+\[
+\begin{aligned}
+	F(x)              & = (f(x))^{n} \\
+	F'(x)             & = n(f(x))^{n-1} \cdot f'(x) \\
+\end{aligned}
+\]
+
+\textbf{Product Rule}
+\[
+\begin{aligned}
+	F(x)  & = f(x) \cdot g(x) \\
+	F'(x) & = f(x)g'(x) + f'(x)g(x)
+\end{aligned}
+\]
+
+
+\textbf{Chain Rule}
+\[
+\begin{aligned}
+%F(x)            & = f \circ g = f(g(x)) \\
+F'(x)           & = f'(g(x)) \cdot g'(x)                      \\
+%\frac{d}{dx} F  & = \frac{d}{dg} f(g) \cdot \frac{d}{dx} g(x) \\
+                %& = \frac{df}{dg} \cdot \frac{dg}{dx}         \\
+\end{aligned}
+\]
+%\[
+	%\frac{d}{dx} u^n = nu^{n-1} \cdot u'
+%\]
+
+\textbf{Quotient Rule}
+\[
+\begin{aligned}
+	\frac{d}{dx} \frac{f(x)}{g(x)} = \frac{f'(x)g(x) - f(x)g'(x)}{g(x)^2}
+\end{aligned}
+\]
+
+\textbf{Second Derivative Test}\\
+If \( f'(c) = 0 \) , and \( f'' \) is continuous over the interval containing \( c \) then : \\
+\( f''(c) < 0 \Rightarrow f \) has local maximum at \( x = c \)\\
+\( f''(c) > 0 \Rightarrow f \) has local minimum at \( x = c \)\\
+\( f''(c) = 0 \Rightarrow f \) test is inconclusive \\
+
+\textbf{Common Derivatives}
+\[
+\begin{aligned}
+	f(x) = \frac{1}{x} \;\; & , \;\; f'(x) = \frac{1}{-x^2} \\
+	f(x) = e^x         \;\; & , \;\; f'(x) = e^x \\
+	f(x) = \ln(x)      \;\; & , \;\; f'(x) = \frac{1}{x} \\
+	f(x) = 2^x         \;\; & , \;\; f'(x) = 2^x \ln{(x)} \\
+	f(x) = \sqrt{x}    \;\; & , \;\; f'(x) = \frac{1}{2 \cdot \sqrt{x}} \\
+	f(x) = sin(x)      \;\; & , \;\; f'(x) = cos(x) \\
+	f(x) = cos(x)      \;\; & , \;\; f'(x) = -sin(x) \\
+	f(x) = sin^{-1}(x) \;\; & , \;\; f'(x) =  \frac{1}{\sqrt{(1-x^{2})}}\\
+	f(x) = cos^{-1}(x) \;\; & , \;\; f'(x) =  -\frac{1}{\sqrt{(1-x^{2})}}\\
+	f(x) = tan^{-1}(x) \;\; & , \;\; f'(x) =  \frac{1}{1+x^2}\\
+\end{aligned}
+\]
+
+\textbf{Maclaurin Series}
+
+\textbf{Taylor Series}
+
+\sectionend
+% }}} END SECTION : calculus
+
+% SECTION : multivariable_calculus {{{
+\section{Multivariable Calculus}
+\label{sec:multivariable_calculus}
+\parindent=0em
+
+Assume the other variables are just constants , and differentiate that way.
+
+\textbf{Notation }
+\[
+	\frac{\delta}{\delta x}f = f_x
+\]
+
+\textbf{Multivariate Chain Rule}
+\[
+	\frac{d}{dx} f(x,y,z) =
+	\frac{\delta f}{\delta x}\frac{dx}{dt} +
+	\frac{\delta f}{\delta y}\frac{dy}{dt} +
+	\frac{\delta f}{\delta z}\frac{dz}{dt}
+\]
+
+\textbf{Gradient} \\
+The derivative of a vector sent to a scalar , i.e. , \( f: \mathbb{R}^n \rightarrow \mathbb{R}  \)\\
+
+The direction of steepest descent in a specific direction \( \hat{v} \) : \( \nabla_x f(x) \bullet \hat{v} \)
+\[
+	\nabla_x f(x_1,x_2,\ldots,x_n) = 
+	\left[ {
+		\begin{array}{c}
+			\frac{\delta f}{\delta x_1} \\
+			\frac{\delta f}{\delta x_2} \\
+			\vdots \\
+			\frac{\delta f}{\delta x_n} \\
+		\end{array}
+	} \right]
+\]
+
+\textbf{Directional Derivative}
+
+
+\textbf{Jacobian}\\
+A vector pointing in the direction of steepest uphill slope
+
+The derivative of a vector sent to another vector , i.e. , \( f: \mathbb{R}^n \rightarrow \mathbb{R}^n  \)
+\[
+	f : \mathbb{R}^n \rightarrow \mathbb{R}^m
+\]
+\[
+	f(x_1,x_2,x_3,\ldots)
+\]
+\[
+	J =
+	\left[ {
+		\begin{array}{cc cc cc c}
+			\frac{\delta f}{\delta x_1} & , &
+			\frac{\delta f}{\delta x_2} & , &
+			\frac{\delta f}{\delta x_3} & , &
+			\ldots \\
+		\end{array}
+	} \right]
+\]
+
+
+\textbf{Hessian Matrix}
+
+\textbf{Multivariate 2nd derivative test}
+
+\textbf{Multivariate Taylor Series}
+
+\textbf{Lagrangian Method}
+
+\sectionend
+% }}} END SECTION : multivariable_calculus
+

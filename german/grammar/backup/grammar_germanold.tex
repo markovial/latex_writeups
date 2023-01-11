@@ -1,0 +1,3250 @@
+
+% =============================================================================
+
+% PACKAGES ---------------------------------------------------------------- {{{
+
+% DOCUMENT CLASS , ENCODING , TITLE --------------------------------------- {{{
+
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\title{This will be some super impressive title}
+\author{Ishan Tiwathia}
+\date{\today}
+
+% }}}
+% PAGE DIMENSIONS , HEADER , FOOTER --------------------------------------- {{{
+
+\usepackage[utf8]{inputenc}
+\usepackage{courier}
+\usepackage[english]{babel}
+\usepackage[document]{ragged2e}%Text alignment package
+\usepackage{enumitem}
+\usepackage{setspace}
+\singlespacing
+%\onehalfspacing
+%\doublespacing
+%\setstretch{1.1}
+\usepackage{geometry}
+\geometry{
+	a4paper,
+	total = {170mm,257mm},
+	top=20mm,
+	left=20mm,
+	right=20mm,
+	bottom=20mm
+}
+
+\usepackage{verbatim}
+\makeatletter
+\newcommand{\verbatimfont}[1]{\def\verbatim@font{#1}}%
+\makeatother%\verbatimfont{courier}
+
+% Header , Footer & Page Number Settings
+\usepackage{fancyhdr}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\pagestyle{fancy}
+\fancyhf{}
+% \rhead{Last Edited : \today}
+% \lhead{Guides and tutorials}
+\lfoot{\textit{Last Edited : \today}}
+\rfoot{\textit{tiwathia \thepage}}
+\pagenumbering{arabic}
+
+% }}}
+% SECTION INDENTATION  ---------------------------------------------------- {{{
+
+
+\usepackage{geometry}
+\usepackage{changepage}
+\usepackage{lipsum}
+\usepackage{titlesec}
+\titleformat {\section} [display] {\normalfont\Large\bfseries}
+{} % section label
+{0em} % seperation between label and title, must be non empty
+{
+% section upper line settings
+	\rule{\textwidth}{1pt}
+%	\vspace{1ex}
+	\centering
+}
+[
+	% section lower line settings
+	\vspace{-0.5ex}%
+	\rule{\textwidth}{0.3pt}
+]
+%\titleformat  {\section} [block] {\bfseries} {\thesection.}{1em}{}
+\titleformat{\subsection}[block]{}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}[block]{}{\thesubsubsection}{1em}{}
+\titlespacing*{\subsection}{2em}{3.25ex plus 1ex minus.2ex}{1.5ex plus.2ex}
+\titlespacing*{\subsubsection}{3em}{3.25ex plus 1ex minus.2ex}{1.5ex plus.2ex}
+
+
+
+% }}}
+% COLORS ------------------------------------------------------------------ {{{
+
+\usepackage{xcolor, colortbl}
+\definecolor{amber_2}{rgb}{1.0, 0.49, 0.0}
+\definecolor{burntorange}{rgb}{1.8, 0.33, 0.0}
+\definecolor{charcoal}{rgb}{0.21, 0.27, 0.31}
+\definecolor{darkred}{rgb}{1.55, 0.0, 0.0}
+\definecolor{flame}{rgb}{1.89, 0.35, 0.13}
+\definecolor{anti-flashwhite}{rgb}{0.95, 0.95, 0.96}
+\definecolor{goethe_green}{RGB}{160,200,20}
+\definecolor{goethegreenlight}{RGB}{219,243,134}
+\definecolor{darkgray}{RGB}{71,77,80}
+\definecolor{mediumgray}{RGB}{95,103,107}
+\definecolor{lightgray}{RGB}{228,230,221}
+\definecolor{ghostwhite}{rgb}{0.97, 0.97, 1.0}
+\definecolor{lavender}{rgb}{0.9, 0.9, 0.98}
+\definecolor{lavendergray}{rgb}{0.77, 0.76, 0.82}
+\definecolor{lightsalmon}{rgb}{1.0, 0.63, 0.48}
+
+\definecolor{cell-lightblue}{HTML}{b2cce5}
+\definecolor{cell-lightgray}{HTML}{d8deda}
+\definecolor{cell-lightorange}{HTML}{F6C396}
+\definecolor{cell-lightred}{HTML}{F1A099}
+\definecolor{cell-lightgreen}{HTML}{C6DA7F}
+\definecolor{cell-lightpurple}{HTML}{CCB2E5}
+\definecolor{cell-lightyellow}{HTML}{FFF09A}
+% }}}
+% TABLES ------------------------------------------------------------------ {{{ 
+
+\usepackage{booktabs}
+\usepackage{multirow}
+
+% }}}
+% IMAGES ------------------------------------------------------------------ {{{
+
+\usepackage{graphicx}
+\usepackage{subcaption}
+
+% }}}
+% CODE / CODE DISPLAY ----------------------------------------------------- {{{
+
+\usepackage{listings}
+
+
+\definecolor{codebackground}{RGB}{239,239,239}
+\definecolor{codecomments}{RGB}{169,169,169}
+\definecolor{codekeyword}{RGB}{249,38,114}
+\definecolor{codestrings}{HTML}{ECE47E}
+\definecolor{coderegular}{RGB}{39,40,34}
+
+\lstset{
+basicstyle       = \footnotesize\ttfamily,
+backgroundcolor  = \color{codebackground},
+commentstyle     = \color{codecomments}, % comment style
+keywordstyle     = \color{codekeyword},  % keyword style
+stringstyle      = \color{codestrings},  % string literal style
+rulecolor        = \color{black},        % if not set, the frame-color may be changed on line-breaks
+frame            = single,               % adds a frame around the code
+basicstyle       = \footnotesize,        % the size of the fonts that are used for the code
+keepspaces       = true,                 % keeps spaces in text, useful for keeping indentation of code
+tabsize          = 2,                    % sets default tabsize
+breaklines       = true,                 % sets automatic line breaking
+captionpos       = b,                    % sets the caption-position to bottom
+numbers          = left,
+numberstyle      = \tiny,
+numbersep        = 10pt,
+frame            = tb,
+columns          = fixed,
+showstringspaces = false,
+showtabs         = false,
+keepspaces,
+% escapeinside={\%*}{*)},  % if you want to add LaTeX within your code
+framextopmargin=10pt,    % margin for the top background border
+framexbottommargin=10pt, % margin for the bot background border
+framexleftmargin=0pt,    % margin for the left background border
+framexrightmargin=0pt    % margin for the right background border
+}
+
+
+% }}}
+% MATH / GRAPHING  -------------------------------------------------------- {{{
+
+\usepackage{amsthm}
+\newtheorem{mydef}{Definition}
+
+\usepackage{tcolorbox}
+\newtcolorbox{defn-background}[1]
+{
+	colback   = lightgray,
+	colframe  = white,
+	fonttitle = \bfseries,
+	sharp corners,
+	rounded corners = north
+}
+
+\newtcolorbox{note-background}[1]
+{
+	colback   = ghostwhite,
+	colframe  = white,
+	fonttitle = \bfseries,
+	sharp corners,
+	rounded corners = north
+}
+
+
+
+
+% }}}
+
+% }}}
+
+% =============================================================================
+
+\begin{document}
+
+\justify
+\tableofcontents
+\listoftables
+\pagebreak
+
+% SECTION : substantive {{{
+\section{Nouns / Substantive (Nomen / Substantiv)}
+\label{sec:substantive}
+
+\begin{mydef}{\bf{Substantive}}
+\begin{defn-background}
+
+Substantives are people, animals, things, concepts and ideas.
+
+\end{defn-background}
+\end{mydef}
+\vspace{0.25cm}
+
+Substantives are more commonly known as a nouns. Calling something a substantive
+is just a more grammatical jargony way of referring to a noun. The reason that
+there are two names for the same thing goes back to latin , where the phrase
+\textit{Nomen Substantivus} or \textit{the name of substance} was used. I assume
+lazy humans just split this into two words meaning the same thing over the
+course of history.\\
+
+Substantives have two defining characteristics that will help you identify them
+in a german sentence. They are :
+
+\begin{enumerate}[noitemsep]
+	\item The first character of a substantive is always uppercase.
+	\item Every substantive is preceded by a grammatically gendered article
+\end{enumerate}
+
+The first point is pretty self-explanatory so lets talk about the second one.
+German is a gendered language therefore every substantiv comes with one of three
+genders. The genders are more commonly known as the \textit{article} and they
+are :
+
+\begin{enumerate}[noitemsep]
+	\item \textbf{Makulin }: der
+	\item \textbf{Feminin} : die
+	\item \textbf{Neuter}  : das
+\end{enumerate}
+
+
+The articles will change according to case that the noun is operating under.
+Since there is no noun without an article in german, the basis for discussing
+articles only arises when we understand the german cases. So cases and articles
+changes are discussed in Section~\ref{sec:cases} which is exclusively about
+articles and Cases. \\
+
+The gender of a noun is NOT related to its physical or biological gender, so
+please keep this in mind. As an exaple a young girl is : \textit{das Madchen} ,
+which is the article for a neuter noun, even though we would assume that a young
+girl would be assigned the feminine article. It is important to keep the
+differnce between grammatical gender and physical gender distict in your mind to
+avoid making mistakes.\\
+
+So we need to learn every noun in german along with its corresponding article. I
+really dont expect most sane humans will bother sitting around memorizing the
+article for each word, so Section~\ref{sec:article_tricks} has a few tips to
+help guess them.
+
+\begin{note-background}
+
+\color{flame} \textbf {NOTE :} \color{black} In german a
+substantive is spelled as substantiv so over the course of this document I will
+probably end up using both, so yeah, if someone besides me (or more probably my
+future self) is reading this, dont give me shit for having spelling mistakes
+everywhere.\\
+
+\end{note-background}
+
+% 	SUB-SECTION : article_tricks {{{
+\subsection{\bf{Article Tricks}}
+\begin{adjustwidth}{2em}{0pt}
+\label{sec:article_tricks}
+These are some tricks to help figure out which word will have which article.
+\end{adjustwidth}
+
+% 		SUB-SUB-SECTION : der {{{
+\subsubsection{\bf{Der}}
+\begin{adjustwidth}{3em}{0pt}
+\label{sec:der}
+
+The following list provides some common roots / endings of words that will
+recieve the \textbf{\textit{der (Maskulin)}} article.
+
+% LIST : der (Maskulin) {{{
+
+\vspace{0.3cm}
+\begin{tabular}{l r l l}
+
+\rowcolor{white} $\bullet$ -ant   & e.g. & der Konsonant & (the consonant)\\
+\rowcolor{white} $\bullet$ -ast   & e.g. & der Gast      & (the guest)\\
+\rowcolor{white} $\bullet$ -ich   & e.g. & der Teppich   & (the carpet)\\
+\rowcolor{white} $\bullet$ -ismus & e.g. & der Marxismus & (the marxism)\\
+\rowcolor{white} $\bullet$ -ling  & e.g. & der Häftling  & (the prisoner)\\
+\rowcolor{white} $\bullet$ -us    & e.g. & der Rythmus   & (the ryhtmn)\\
+\rowcolor{white} $\bullet$ -er    & e.g. & der Sommer    & (the summer)\\
+
+\end{tabular}
+\vspace{0.3cm}
+\newline
+
+% }}} End LIST : der (Maskulin)
+A note about the last one with the -er ending. This one not only means that the
+grammatical gender of the noun is masculine, but most of the time often is also
+reffering to the phyisical gender. E.g.\ der Lehrer (the male teacher), der
+Amerikaner (the male american), der Fahrer (the male driver).\\
+
+\end{adjustwidth}
+%}}}
+
+% 		SUB-SUB-SECTION : die {{{
+\subsubsection{\bf{Die}}
+\begin{adjustwidth}{3em}{0pt}
+\label{sec:die}
+
+The following list provides some common roots / endings of words that will
+recieve the \textbf{\textit{die (feminin)}} article.
+
+% LIST : die_article_tricks {{{
+
+\vspace{0.3cm}
+\begin{tabular}{l r l l}
+
+\rowcolor{white}  $\bullet$ -ung    & e.g. & die Entscheidung & (the decision)\\
+\rowcolor{white}  $\bullet$ -tät    & e.g. & die Universität  & (the university)\\
+\rowcolor{white}  $\bullet$ -tion   & e.g. & die Explosion    & (the explosion)\\
+\rowcolor{white}  $\bullet$ -sion   & e.g. & die              & \\
+\rowcolor{white}  $\bullet$ -schaft & e.g. & die Gesellschaft & (the society) \\
+\rowcolor{white}  $\bullet$ -heit   & e.g. & die Schönheit    & (the beauty) \\
+\rowcolor{white}  $\bullet$ -keit   & e.g. & die              & \\
+\rowcolor{white}  $\bullet$ -ie     & e.g. & die Geographie   & (the geography) \\
+\rowcolor{white}  $\bullet$ -enz    & e.g. & die              & \\
+\rowcolor{white}  $\bullet$ -anz    & e.g. & die Toleranz     & (the tolerance) \\
+\rowcolor{white}  $\bullet$ -ei     & e.g. & die Schlägerei   & (the fight) \\
+\rowcolor{white}  $\bullet$ -ur     & e.g. & die Natur        & (the nature) \\
+\rowcolor{white}  $\bullet$ -in     & e.g. & die Boxerin      & (the female boxer)\\
+
+\end{tabular}
+\vspace{0.3cm}
+\newline
+
+% }}} End TABLE : die_article_tricks
+
+Just like the note about the -er in the der section, the last point with the -in
+ending not only means that the grammatical gender of the noun is
+feminine, but most of the time often is also reffering to the phyisical gender.
+E.g.\ die Lehrerin (the female teacher) , die Fahrerin (the female driver), die
+Amerikanerin (the female american)
+
+\begin{note-background}
+
+\color{flame} \textbf {NOTE :} \color{black} The large majority of nouns which
+end in -e are feminine, e.g. : die Lampe (the lamp), die Rede (the speech), and die
+Bühne (the stage).\\
+\vspace{0.25cm}
+I added this in a note as opposed to the main list cause this is just an
+observation as opposed to a grammatical rule.\\
+
+\end{note-background}
+
+\end{adjustwidth}
+%}}}
+
+% 		SUB-SUB-SECTION : das {{{
+\subsubsection{\bf{Das}}
+\begin{adjustwidth}{3em}{0pt}
+\label{sec:das}
+
+
+The following list provides some common roots / endings of words that will
+recieve the \textbf{\textit{das (neuter)}} article.
+
+
+% LIST : das (neutrum)  {{{
+
+\vspace{0.3cm}
+\begin{tabular}{l r l l}
+
+\rowcolor{white} $\bullet$ -chen & e.g. & Das Häuschen & (the little house)\\
+\rowcolor{white} $\bullet$ -lein & e.g. & Das Büchlein & (the booklet / small)\\
+\rowcolor{white} $\bullet$ -um & e.g. & Das Wachstum & (the growth) \\
+
+\end{tabular}
+\vspace{0.3cm}
+\newline
+
+% }}} End LIST : das (neutrum)
+
+
+\begin{note-background}
+
+\color{flame} \textbf {NOTE :} \color{black} Similar to the note for the femnine
+section, a lot of the german nouns that begin with Ge- are neuter but not all,
+which is why you are reading a not right now.
+
+\end{note-background}
+
+\end{adjustwidth}
+%}}}
+
+% }}}
+
+% 	SUB-SECTION : n_declination {{{
+\textbf{\subsection{n Declination}}
+\begin{adjustwidth}{2em}{0pt}
+\label{sec:n_declination}
+
+Declination is another word for conjugation. However in this case, we will be
+changing the ends of the nouns opposed to verbs are most readers will be
+commonly accustomed to.
+
+The ending change is called n Declination (n-Deklination) because we will always
+be adding a n at the end of the noun in question.
+
+The way we determine wether we add an n at the end or not is by checking the
+following things :
+
+when it is in the nominative and the noun is also singular we do not have an
+n-declinaiton. If the noun is any other case and count then we check :
+
+
+if(is masculine)
+if(is nominative) then do nothing
+else check the following three conditions :
+
+\begin{itemize}[noitemsep]
+	\item does the noun have an -e ending
+	\item does the noun have an ending amongst : -graf , -ant, -ent, -ist, -at ,
+		-oge
+	\item is the noun a person , profession or animal
+\end{itemize}
+
+
+\end{adjustwidth}
+% }}} END SUB-SECTION : n_declination
+
+
+\pagebreak
+% }}}
+
+% SECTION : infinitive {{{
+\section{Verbs (Verben)}
+\label{sec:infinitive}
+
+\begin{mydef}{\bf{Verb}}
+\begin{defn-background}
+
+\textbf {Verbs} are words that refer to actions. These actions are happening to
+the nouns (substantives).
+
+\end{defn-background}
+\end{mydef}
+\vspace{0.25cm}
+
+A verb is basically any word that allows us to describe an action, an ongoing
+process or a state of being. E.g. : to walk (laufen), to sing (singen).
+Verbs are made up of two parts : the stem which is the main body of the verb,
+and the ending.\\
+
+\noindent
+E.g : Laufen , Singen , Haben , Machen\\
+
+Every verb must be \textbf{\textit{Conjugated}}. To conjugate a verb means to
+change it from it's base infinitive form to a form matching the pronoun that we
+are using in the current sentence.
+
+\begin{mydef}{\bf{Infinitive}}
+\begin{defn-background}
+
+Infinitive is the base form of any verb. This is the unconjugated form.
+
+\end{defn-background}
+\end{mydef}
+\vspace{0.25cm}
+
+All verbs in german are made up of primarily two parts : 
+\noindent
+\color{goethe_green} \textbf{Stem} \color{black} - 
+\color{burntorange} \textbf{Ending} \color{black}
+
+Examples are shown below :\\
+
+% TABLE : verbs_stems_and_endings_examples {{{
+% TITLE : Verbs : Stems and Endings examples
+\vspace{0.3cm}
+\begin{tabular}{l|c c|l}
+
+\toprule
+\cellcolor{lightgray} \textbf{\textit{VERB}}   &
+\cellcolor{lightgray} \textbf{\textit{STEM}}   &
+\cellcolor{lightgray} \textbf{\textit{ENDING}} &
+\cellcolor{lightgray} \textbf{\textit{TRANSLATION}} \\
+\midrule
+
+\cellcolor{white} fragen &
+\cellcolor{white} frag   &
+\cellcolor{white} en     &
+\cellcolor{white} to question     \\
+
+\cellcolor{white} gehen &
+\cellcolor{white} geh   &
+\cellcolor{white} en    &
+\cellcolor{white} to go     \\
+
+\cellcolor{white} haben &
+\cellcolor{white} hab   &
+\cellcolor{white} en    &
+\cellcolor{white} to have     \\
+
+\cellcolor{white} sein &
+\cellcolor{white} sei  &
+\cellcolor{white} n    &
+\cellcolor{white} to be     \\
+
+
+\bottomrule
+\end{tabular}
+\vspace{0.3cm}
+\newline
+
+% }}} End TABLE : verbs_stems_and_endings_examples
+
+When we say we are conjugating / declining a verb, we mean that we are changing
+the stems and endings of the verbs in order to suit the pronoun that we are
+currently using.\\
+
+In german verbs can be broken up into two different forms according to the way
+that we are going to conjugate them. These two forms are depend on wether we
+change only the ending during conjugation , or wether we change both the ending
+and the stem during the conjugation process. All verbs in german fall into one
+of the two following categories :
+
+\begin{itemize}[noitemsep] 
+
+	\item \textbf {Regular Verbs :} A Regular Verb is one that can basically be
+		conjugated by changing the ending of the verb according to the following
+		rules below.\\
+
+% LIST : Regular Verbs Conjugation {{{
+
+\vspace{0.3cm}
+\begin{tabular}{l l l l}
+
+\rowcolor{white} $\bullet$ Change & e  & to & ie\\
+\rowcolor{white} $\bullet$ Change & e  & to & i\\
+\rowcolor{white} $\bullet$ Change & el & to & il\\
+\rowcolor{white} $\bullet$ Change & eh & to & im\\
+\rowcolor{white} $\bullet$ Change & a  & to & ä\\
+
+\end{tabular}
+\vspace{0.3cm}
+\newline
+
+% }}} End LIST : Regular verbs Conjugation
+
+	\item \textbf {Irregular Verbs :} An Irregular Verb is one is conjugated by
+		changing both the stem and the ending of the verb. The changes to the
+		ending remain similar to the ones from regular verb conjugations shown
+		above. Some of the stem change rules that we have seen in class are
+		shown below.\\
+
+% LIST : Irregular Verbs Conjugation {{{
+
+\vspace{0.3cm}
+\begin{tabular}{l l l l}
+
+\rowcolor{white} $\bullet$ Change & e  & to & ie\\
+\rowcolor{white} $\bullet$ Change & e  & to & i\\
+\rowcolor{white} $\bullet$ Change & el & to & il\\
+\rowcolor{white} $\bullet$ Change & eh & to & im\\
+\rowcolor{white} $\bullet$ Change & a  & to & ä\\
+
+\end{tabular}
+\vspace{0.3cm}
+\newline
+
+% }}} End LIST : Irregular verbs Conjugation
+
+% TO BE DONE {{{
+\begin{center}
+\color{red}
+------------------ !! TBD !! TBD !! TBD !! -------------------------
+
+\begin{enumerate}[noitemsep]
+	\item Check the irregular / regular conjugation rules 
+\end{enumerate}
+
+------------------ !! TBD !! TBD !! TBD !! -------------------------
+\color{black}
+\end{center}
+% }}}
+
+\end{itemize}
+
+% 	SUB-SECTION : telling_regular_vs_irregular_verbs_apart {{{
+\textbf{\subsection{Telling Regular vs. Irregular Verbs Apart}}
+\label{sec:telling_regular_vs_irregular_verbs_apart}
+
+For irrelgular verbs the past perfect(ge) the ending is with en, while
+for regular verbs the ending is with the ending t.\\
+
+There is way to figure it out using prateritum. Eg. \\
+
+\noindent
+fragen , prateritum : fragte , pp : gefragt\\
+tragen , prateritum : trug , pp : getragen\\
+fahren , prateritum : fuhr , pp : gefahren\\
+kommen , kam , gekommen\\
+schlafen , schlief, geschlafen\\
+
+the rule is the regular verbs will not chnage in the prateritum form, the stem
+stays the same, then ending is always with en in pp.\\
+
+\noindent
+the stem changes for the irregular verbs, and the ending changes, the ending is
+in the pp form with t.\\
+
+
+% TO BE DONE {{{
+\begin{center}
+\color{red}
+------------------ !! TBD !! TBD !! TBD !! -------------------------
+
+\begin{enumerate}[noitemsep]
+	\item Clean this section up
+\end{enumerate}
+
+------------------ !! TBD !! TBD !! TBD !! -------------------------
+\color{black}
+\end{center}
+% }}}
+
+
+
+% }}} END SUB-SECTION : telling_regular_vs_irregular_verbs_apart
+
+% 	SUB-SECTION : modal_verben {{{
+\subsection{\bf{Modal Verben}}
+\begin{adjustwidth}{2em}{0pt}
+\label{sec:modal_verben}
+
+\begin{mydef}{\bf{Modal Verbs (Modal Verben)}}
+\begin{defn-background}
+
+Modal Verbs are verbs that allow us to change / modify the original sentence to
+add degrees of permission and necessity.
+
+\end{defn-background}
+\end{mydef}
+\vspace{0.25cm}
+
+Modal Verbs are always used in conjucation with a another verb. The modal verbs
+action is to indication to what extent the action specified by the other verb is
+necessary or allowed in the current sentence.\\
+
+Modal verbs are also often called \textbf{\textit{auxiliary / helping verbs}}
+(Die Hilfsverben)\\
+
+When we are building a sentence with a modal verb, we put the modal verb in its
+conjugated form in the second place of the sentence, and send the original verb
+that was supposed to be in the second place all the way to the end of the
+sentence. Another thing to note is that we should not conjugate the second
+verb.\\
+
+The general sentence structure in the present tense is as follows :\\
+
+Pronoun - Modal Verb (conj.) - frequency/time - other words - second verb
+(unconj.)\\
+
+In the case of W-questions , or Ja / Nien Questions the sentence structure
+remains the same as before with the modal verb in place 1 for Ja / Nien
+Questions, and in position 2 in W-Style questions. The most common modal verbs
+are :
+
+% LIST : modal_verbs_list {{{
+
+\vspace{0.3cm}
+\begin{tabular}{l l}
+
+\rowcolor{white} $\bullet$ dürfen & (to be allowed)  \\
+\rowcolor{white} $\bullet$ können & (to be able)  \\
+\rowcolor{white} $\bullet$ mögen & (would like to)  \\ 
+\rowcolor{white} $\bullet$ wollen & (want to)  \\
+\rowcolor{white} $\bullet$ sollen & (should)\\
+\rowcolor{white} $\bullet$ mussen & (must) \\
+
+\end{tabular}
+\vspace{0.3cm}
+\newline
+
+% }}} End LIST : modal_verbs_list
+
+Be careful with saying „Ich will“ as it sounds impolite if you are asking for
+something. It is more appropriate to say “Ich möchte“ or “Ich hätte
+gern“.\\
+
+A table of all modal verbs with conjugations is shown below :
+
+\justify
+% TABLE : modal_verbs_conjugated {{{
+
+\vspace{0.3cm}
+\begin{tabular}{l|c|c|c|c|c|c}
+
+\toprule
+\rowcolor{goethe_green}
+\multicolumn{7}{c}
+{\color{white} \textbf{Modal Verbs} \color{black}} \\
+\midrule
+
+
+&
+\cellcolor{lightgray} \textbf{ich} &
+\cellcolor{lightgray} \textbf{du} &
+\cellcolor{lightgray} \textbf{er/sie/es} &
+\cellcolor{lightgray} \textbf{wir} &
+\cellcolor{lightgray} \textbf{ihr} &
+\cellcolor{lightgray} \textbf{sie/Sie} \\
+\midrule
+
+\cellcolor{lightgray} \textbf{\textit{dürfen}} &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white} \\
+
+\cellcolor{lightgray} \textbf{\textit{können}} &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white} \\
+
+\cellcolor{lightgray} \textbf{\textit{mögen}} &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white} \\
+
+\cellcolor{lightgray} \textbf{\textit{wollen}} &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white} \\
+
+\cellcolor{lightgray} \textbf{\textit{sollen}} &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white} \\
+
+\cellcolor{lightgray} \textbf{\textit{mussen}} &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white}                  &
+\cellcolor{white} \\
+
+
+
+\bottomrule
+\end{tabular}
+\vspace{0.3cm}
+\newline
+
+% }}} End TABLE : modal_verbs_conjugated
+
+
+\end{adjustwidth}
+% }}}
+
+% 	SUB-SECTION : seperable_verbs {{{
+\subsection{\bf{Seperable Verbs}}
+\begin{adjustwidth}{2em}{0pt}
+\label{sec:seperable_verbs}
+
+Separable verbs on the other hand are verbs that are conjugated by splitting
+apart the verb word. Separable verbs are usually made up of three parts. The
+three parts of the verb are :
+Prefix – stem – ending
+The main difference in conjugation of the separable verb is that the prefix of
+the verb will be moved to the end of the current sentence, while the other parts
+of the verb (the stem and the ending) will be treated just like any other verb,
+i.e., the verb will be in position 2 of a regular sentence or w-style question,
+or position 1 for a yes /no question. The verb ending will also be conjugated
+according to the conjugation tables that we have learned for regular verbs
+above. I am not sure wether we can have irregular seperable verbs or not, since
+I have yet to encounter or find (not for lack of trying) an irregular separable
+verb.
+Since in German separable verbs are called trennbar verbs, the prefixes attached
+to these verbs are therefore called trennbare präfixe.
+Examples of sentences using separable verbs are shown below : 
+ anrufen : Heute ruft er seine Freundin an. :  Today he’s calling his girlfriend
+(up)
+aufstehen : Hans steht jeden Tag um 9.00 Uhr auf. : Hans gets up every day at
+9:00.
+When we use separable verbs with modal verbs, we follow the same rule as any
+other verb, i.e., the helping verb, which is the separable verb in this case
+will occur in its full un-conjugated form at the end of the sentence. The
+following example shows how to use separable verbs along with modal verbs.
+The most common way of figuring out weather a verb is a separable verb is by
+looking at the first couple of letter of the verb. The following prefixes more
+often than not will indicate that we are dealing with a separable verb. The
+prefixes all have their own meanings which are also explained below, as knowing
+the meaning of the prefix might indicate a little what the entire separable verb
+means. They are shown along with a couple of examples for each :
+Ab- : from : 
+abkommem (get away)
+abziehen (deduct, withdraw, print [photos])
+An- : at,to : 
+anfangen (begin, start)
+ankommen (arrive)
+Auf- : on,out,up,un– : 
+aufgeben (give up; check [luggage])
+aufschließen (unlock; develop [land])
+Aus- : out,from : 
+ausgehen (go out)
+ausmachen (10 different meanings, lul)
+Bei- : along, with : 
+beitreten (join)
+beibringen (teach; inflict)
+Durch-: through :
+durchhalten (withstand, endure; hold out)
+durchfahren (drive through)
+Ein- : in,into,inward,down : 
+eingehen (enter, sink in, be received)
+einkaufen (to go shopping)
+Fort- : away,forth,onward : 
+fortsetzen (continue)
+fortpflanzen (propagate, reproduce; be transmitted)
+Mit- : along,with,co- : 
+mitbringen (bring along)
+mitfahren (go/travel with, get a lift)
+Nach- : after,copy,re- : 
+nachfüllen (refill, top up/off) , nachahmen (imitate, emulate, copy)
+Vor-: before,forward,pre-,pro- : 
+vorführen (present, perform)
+vorgehen (proceed, go on, go first)
+Weg-: away,off : 
+wegfahren (leave, drive off, sail away)
+weghaben (have got done, have got done)
+Zu-: shut/closed,to,towards,upon
+zubringen (bring/take to)
+zunehmen (increase, gain, add weight)
+Zurück-: back,re- :
+zurücksetzen (reverse, mark down, put back)
+zurückweisen (refuse, repulse, turn back/away)
+Zusammen- : together :
+zusammenkommen (meet, come together)
+zusammenbauen (assemble)
+
+\end{adjustwidth}
+% }}}
+
+% 	SUB-SECTION : reflexiv_verben {{{
+\subsection{\bf{Reflexiv Verben}}
+\begin{adjustwidth}{2em}{0pt}
+\label{sec:reflexiv_verben}
+
+
+
+\end{adjustwidth}
+% }}}
+
+% 	SUB-SECTION : special_irregular_verb_formations {{{
+\subsection{\bf{Special / Irregular Verb Formations}}
+\begin{adjustwidth}{2em}{0pt}
+\label{sec:special_irregular_verb_formations}
+
+
+
+
+
+% SUB-SUB-SECTION : werden {{{
+\subsubsection{Werden}
+\begin{adjustwidth}{3em}{0pt}
+\label{sec:werden}
+
+And by meaning I mean what the word werden means for the German language.
+Because it not only a word. Werden is a philosophy… okay,maybe that is a little
+too much but werden is a really important word for the German language. Why?
+Because it has 3 functions.  It is a “normal” verb, nothing special. Just
+something that’s at the heart of all life. Then, it is also used to build the
+future tense and last but not least it is the tool to build the passive voice.
+That’s what we’ll talk about today. But not so much the grammar. We will explore
+WHY German uses werden for those 3 things. Why does it mean to become, what
+happened to the German bekommen, why does German use werden for future, why do
+we use it for passive when so many other languages use to be \ldots and finally
+we’ll find out about some crazy things that we can do with the German passive
+that is impossible in other languages.  So… sounds like we’ve got a lot ahead of
+us. Are you ready to dive in? Coooooool.\  of “werden” and “bekommen”
+
+Werden is the German word for to become. And before we go on there, let’s quickly talk about one thing that many find confusing. German has the bekommen. That  looks a lot like to become and they words are obviously brothers. But bekommen is to receive. How weird. How could 2 obviously related words take on completely different meanings. But is the combination to receive/to become really that weird? It is not… in fact English has a word that means both. To get.
+
+    I got an e-mail…. you receive something
+    I got tired…. you become tired.
+
+The underlying idea is that you “reach” something. And that can happen in 2
+ways. It reaches you.. then you receive it. Or you reach it.. then you become.
+Of course you have to put on your abstract glasses :).  Back in the old
+Indo-European language this phenomenon was quite common. Verbs would have 2
+directions. And there are still some verbs like this around. Like to get. It can
+mean to obtain, but also to become and even to reach places (get home). Another
+example is to make. You can make a salad or you can make a bus. Same sentence
+structure. Just one word was changed. But the meanings are completely different.
+A German example that is similar to this is the verb schaffen (to create, to
+pull of successfully).  The ancestor of to become/bekommen, *bikweman, used to
+be one of those verbs, too. But German and English very early on started to go
+for one of meanings… English chose one, German the other and today they seem
+totally different. Now, what’s interesting is why the languages chose different
+versions. I don’t know it for fact why they decided the way they did. I wasn’t
+there because I was sick at the time. But it might have gone down like this:
+
+“Hey fellow English men, we have this word bikweman
+and it means 2 things… that is confusing. Let’s pick one.”
+“Yay!”
+“Which one should we pick then.”
+“We have to get for to recei \ldots”
+“To get kicks ASS… best word ever.”
+“But we also have wean for the other mea \ldots"
+“Whatever weon sucks anyway. Let’s use bikweman instead.”
+“Okay…so from now on bikweman shall be our new word
+for wean.”
+“I have a question… can we use to get for that too? Pleeeaase???”
+“Uhg… fine.”
+
+Shortly after in Germany…
+
+“Hey fellow Germans. We have this bikweman and it means 2
+things. Brits just picked one. Let’s pick one, too.”
+“Jaaaa.”
+“Brits picked to become. Should we do the same?”
+“But we have werden for to become and we DON’T really have a
+word for to receive.”
+“Oh… oh you’re right… okay I guess we don’t really have a “Wahl” then. From now on bikweman shall be our word
+for to receive, and for to receive only.”
+“My god, that will be confusing for soooo many.”
+
+ So… long story short… English once had a version of werden too but it got rid of it. German on the other hand loved werden and is using it to this day in the old meaning…
+
+    How can I become fluent in just a matter of days? (the answer: you can’t unless you’re a snowman)
+    Wie kann ich in wenigen Tagen fliessend werden?
+    (not the most idiomatic German sentence ever)
+
+    Maria explains why she became a vegetarian.
+    Maria erklärt, warum sie Vegetarierin wurde.
+
+    Thomas becomes more and more arrogant.
+    Thomas wird immer arroganter.
+
+Now… English actually uses a wide variety to express the idea of self development. English actually uses a wide variety of phrasings… 
+
+    Maria is getting tired.
+    Maria wird müde.
+
+    Sarah becomes/turns 24 this November.
+    Sarah wird diesen November 24.
+
+    Man, you’ve grown tall.
+    Man, bist du groß geworden.
+
+    Thomas is going crazy.
+    Thomas wird verrückt.
+
+German uses werden for all those situations. So whenever the core is self development or changing from one state to another state…  werden is probably the word you need because the concept is the very core of that verb.
+
+Now, it hasn’t always been that way \ldots the origins of werden is a actually a
+root that meant to turn, to wind. Looks like a rather specific activity… but man
+oh man… you have no idea how many words come from that root.\ it brought us words
+like
+
+    vortex, work,to wind, vertical, warp, versus,
+    worth, ergonomic or worm
+
+and in German we can find even more
+
+    Wert (worth, value), wirken(have an effect, seem), werfen (throw),
+    werden, Wand (wall), wenden (turn), winden (to wind)
+    Windel (diaper), Werft (shipyard) and many many more…
+
+When I first read that I was like… wait … how? I mean… we’ve seen Star Trek so I  now that warp and worm are related … (get it, get it… worm hole and stuff?) but  hat does work have to do with turning or bending?
+Of course we can’t analyze all of them here but let’s do some examples.  The word Wand (wall) for instance is related to winding and bending because  lack in the days you’d “weave” your walls and fences from bast fibers or straw. And that is also how work ties in there. Originally, working meant to construct stuff by weaving. Or take the German werfen (to throw). That makes sense as soon as you realize that is is simply a description of your arm movement… you turn your arm in a way.
+If you want to know more about the other ones , just leave me a comment and we can try to figure it out :). But now let’s get back to werden.
+
+So… it comes from a word that meant to turn, to bend and the question is: How does that connect to the current meaning? Well…  it is actually not big of a distance. If you want to become something you kind of have to turn in that direction. Let’s say you’re a social worker but you want to become an investment banker like everyone else… then you will take steps to reach that goal. You’ll go to school, buy a suit, cut your hair, watch “Wall Street” … you will “turn” toward that goal, you turn yourself and your life if that makes sense. And if it doesn’t … well, we don’t even have to make many words. Let’s just look at this again.
+
+    In fall the leaves turn red and yellow.
+
+I can also use to become here. It is the same thing. We’re using the word to turn in sense of to become. That is exactly what happened with werden. It lost the turning part. And English had the very same word werden once… people just didn’t like it and so they got rid of it.
+Germans didn’t. And then they didn’t even more… wait… that sound odd… anyway.
+Soon Germans started to use their werden to build and express other ideas… and
+one of them is the future.\
+werden – the future
+
+
+English mainly uses will to express future tense. German uses werden.
+
+    Ich werde morgen ins Ballet gehen… Spaß, natürlich nicht.
+    I will go to a ballet tomorrow… kidding, of course not.
+
+    Ich frage mich ob die Menschen in der Zukunft mal auf dem Mars leben werden.
+    I ask myself whether people will be living on Mars in the future.
+
+Hmmm… curious. In relation to, say, Chinese, German and English are little more than dialects of the same language. So why would they use different words to build the future, to begin with? The answer to that is that …oh wait… Steve,my producer, wants something… … … what?… I….. I don’t understand, what do you mean “out of time?!”…  … but… but… I can’t just stop here. We just started intensive-season man! How intensive is it to just stop right when we got going… ….. oh… … … oh yeah? well tell the network executives to go hang themselves off a cliff if that is so cool… … … … fine.
+
+So guys… as it seems we have to stop here, because the network thinks the show is “too long”. I know it sucks but so does Kanye West.
+That didn’t even make sense.
+So… if you have any questions about werden so far or you want to complain about the sudden stop, just leave me a comment. I hope you liked it and see you next time.
+
+If you’re curious you continue with part 2 right away here:
+
+
+What we’ve learned so far is that werden originally meant to turn before it .. ahem… turned into a word that expresses self development; just like to become. And it is not a weird change of meaning because it happened with the English to turn, too.
+
+    Die Milch wird sauer.
+    The milk turns sour.
+
+    The leaves are turning yellow and red.
+    Die Blätter werden gelb und rot.
+
+Then, we started talking about the second usage of werden – a helper verb for the future tense.
+And that’s where we’ll pick up today. And first we’ll explore how and why werden became the German counterpart of will. 
+Why “werden” and “will” express future
+
+
+Latin had a grammatical future tense 2000 years ago, but the Germanic languages actually didn’t. They did not bother expressing future with a special tense at all. They just made a distinction between things that are past and all the rest. And German is still very Germanic about that, because in daily conversation, it uses present tense for future events about 80% of the time.
+
+    Nächsten Sommer fahre ich ans Meer.
+    Next summer, I go to the sea (lit.)
+
+The Germanic tribes then started to have more and more contact with Latin and long after the Roman empire had fallen, Latin remained THE language for science and the church. Kind of ironic actually, since the two hated each other for quite a while.
+But yeah, so the Germanic languages came under the influence of Latin and at some point, they were like “Hey, I want my own future tense.” and so they came up with ways to express the future-ness of some action using grammar.
+English ended up used the word will, which was originally doing nothing more than stating an intention. This:
+
+    I will have another beer….
+
+used to mean (and in German still means) this:
+
+    I want to have another beer….
+    Ich will noch ein Bier.
+
+Maybe English speaker were just incredibly optimistic about achieving whatever they wanted and so will changed from expressing intentions into expressing the future . 
+
+    Thomas will become bald because his dad is too.
+
+Today, the intention-part has almost disappeared…. just like Thomas’ dad’s hair. But if you really look closely you can find some left overs of the old intentional-will.
+
+    Make of that whatever you will. 
+
+By the way… the shift of will from intention to helper is the reason why English, unlike German or French or Spanish, does NOT have a modal verb that expresses desire anymore. English uses to want for that but this is NOT a modal verb in English.
+Yes, you may use that info to impress people at the next party. Work great.
+
+Now, in German, they didn’t change their version of will (wollen). Instead they used werden to do the job of expressing future. And unlike the English will, werden didn’t even have to give up its “normal” meaning. Both functions exist side by side.
+And now the big question is: why? How? What has becoming, which is the “normal” meaning of werden to do with the future?
+Well… it is not that big of a stretch because…  becoming implies that something isn’t YET but it’s on its way.
+
+    I become tired.
+    Ich werde müde.
+
+You’re not tired yet, but you’re in the process of becoming it, so in the near future you will be.  There you have it –  being is the future of becoming, if that makes sense.
+So it is completely understandable that people would start using such a verb to express future…. I mean … why not?
+In English, they expressed it using intentions. In German, they expressed it using the process of self development. And to give you some other options – in Swedish, they are using “shall” and “comes at, arrive”, in Dutch they also use “shall” and “to go” .
+All those do make sense and there is  no better or cooler. It is evolved differently. Do the different ways tell us something about the way of thinking, about ways of looking at the future? I really don’t know… I’d actually say no. Maybe it does tell us something about the people who lived when these forms evolved…  for us today it is mainly a grammatical concept that we have hard wired in our brains.
+Anyway … here’s the core of what we’ve talked about in the best form – the example form :)
+
+    Ich werde nächste Woche viel arbeiten.
+    I turn/wind working a lot next week (using the original meaning of werden).
+    I become working a lot next week. (super literal)
+    I will work a lot next week.  (actual meaning)
+
+and here is the future-werden back to back with the becoming-werden…
+
+    Wer wird die Wahl gewinnen? Wer wird der nächste Kanzler?
+    Who will win the elections? Who will become the next chancellor?
+
+Notice something? We’re talking about the exact same event :). In first sentence we’re using the future, in the second we don’t. That is to say, in German we don’t because German doesn’t use the future tense that much.
+But the example leads us to an interesting question: how would we build the future of werden itself?
+future-werden in practice
+
+How would we say this for instance…
+
+    The students know very well that they will become tired when the professor talk about grammar.
+
+Could it possibly be a double werden? Wouldn’t that be too strange even by German standards? Let’s take a look…
+
+    Die Studenten wissen ganz genau, dass sie, wenn ihr Professor über Grammatik redet, müde werden werden.
+    The students know all too well, that they will get tired when their prof talks about grammar.
+
+Ohhhhhh… and it is a double werden… and it is at the end. German, you language you, you did it again!
+Seriously though, this sentence is a little contrived and it is definitely bad style. And since it wouldn’t make any noteworthy difference in meaning anyway, people would just leave out one werden. Which one? The blue one of course. Keep that in mind for your next test… don’t leave out the green one ;).
+Now… although this very example was weird the combination of becoming-werden and future-werden is actually acceptable. When there is no context, we even need the double werden to make clear that it is future.
+
+    Ich werde müde.
+    I am getting tired.
+
+    I will get tired.
+    Ich werde müde werden.
+
+Does that sound weird or funny? Not so much actually… no more than this…
+
+    I will want to remember that…
+    (at least to me, with my German “ich
+    will”-glasses on, that is a bit like intending to intend)
+
+or this…
+
+    Next week,I am going to go to Berlin.
+
+All right. Now, I don’t want to discuss all the grammar of the German future tense here, or give you loads of examples because… you don’t really ever need to use it. In daily conversation, German really mostly do it the old way and just use the present.
+Maybe also because we have yet another opportunity to use our beloved werden… the passive voice. But before we get to that I want to quickly mention one very common idiom, which is a good example for how close the becoming-werden and the future werden really are…
+
+    Das wird schon.
+    It‘ll be alright.
+
+This is used to reassure people when they stress about something , for instance
+your classmate is worried that he or she might not pass the test , then you can
+say “Das wird schon”. It sounds really nice. It kind of has a built in “Don’t
+worry" . Now, although I translated it using the English future tense, to me
+this is actually more the becoming werden.\ mainly because there is no other
+verb in there. But it doesn’t matter after all.
+
+    I become…
+    I will be…
+
+Those are the same just with a different focus… become focuses on the process of
+“evolving”, will be focuses on the result. And with those 2 points of view, we
+can now dive right into the passive.\
+werden – the passive
+
+The passive voice is a grammatical role reversal. Sounds abstract. Is abstract. In fact, passive is one of the last things kids learn in their native language BECAUSE it is so abstract. Imagine a 3 year old watching mom open the box of the frozen piz… mix flour, yeast and olive oil for the pizza dough… what does the toddler see?
+
+    Mama makes pizza.
+    A pizza is being made by mama.
+
+The second example is soooo much more complicated because the passive artificially switches grammatical roles while the real roles remain the same. What do I mean by grammatical roles? Well, for many activities, like reading, seeing, buying or opening we have to have at least 2 participants. First, we need someone who does it. In linguistics they call that agent but we’ll call it the do-er. On the other hand we’ve got to have something that is being read, seen or bought and we’ll cal the done to-er. Do-er and done to-er are roles in the real world. They have little to do with grammar.
+Now, in a normal sentence the do-er will have the grammatical role of a subject and the done to-er will be in the role of the direct object.
+
+    I read a book.
+
+And the passive reverses the grammatical roles.
+
+    The book is being read by me.
+
+The book is still the done to-er but it is the grammatical subject now.
+Okay… and… why should we do such a thing anyway? Why make things complicated?
+Well, for this example it is not really useful, but passive is neat and handy whenever the do-er is unknown or uninteresting or if the effect, the result matters…. I’ll just do one example…
+
+    The diamonds were stolen last night…. sound more elegant than
+    Someone stole the diamonds last night.
+
+So… passive may be abstract but it’s good to have it. And all languages I know of do have a way to build it. English as well as all the Roman languages (I don’t know how it works for Slavic languages) use the helper verb to be to form the passive.
+
+    Thomas painted a picture.
+    A picture was painted by Thomas.
+
+German uses werden.
+
+    Thomas hat ein Bild gemalt.
+    Ein Bild wurde von Thomas gemalt.
+
+There are 2 questions that we’ll talk about the first one being of course this:
+
+Does that tie in with the werden we already know?
+
+Yes. It totally does. Let’s recall. Werden has at its core the idea of self development. Now, when a picture is painted it also kind of develops… just the cause is external. So it’s really not that far away. What? Oh it is?… Okay… let me try again then. We’ve seen that werden can also be a translation for to get because to get sometimes expresses development. But what about this:
+
+    The president got elected.
+    The movie got made for the fans…. THAT’S why it blows… hahahaha.. sorry… … I … I  couldn’t resist
+
+Now, what’s up with this got here? Sure, we could say that it is kind of “a change of state” which would be the same got as in “I got tired”… but the reality is, that we can simply replace it by was. Then, the sentences would be a pure passive but the meaning wouldn’t change a bit. So I hope you can see, that from “changing a state” and passive is actually the same when the reason for the change is external.
+And if you’re still like… meh, I don’t get it… well, let’s remember that werden used to mean to turn.
+
+    The sky turns dark.
+
+Now… what is that? It is a change of state, that’s for sure. But we can also read future into this because it is obviously not dark yet. And we can even interpret this as a passive because the sky isn’t doing much. It is clouds that do the work. They cover the sky. Or let’s take this…although I don’t know if that is proper English:
+
+    He watches the streets turn wet.
+
+This is a change of state from dry to wet. It is also future because the streets are not wet yet. And it is clearly also passive because the street itself doesn’t squeeze out water. The rain is the do-er.
+So… I hope you can see that it is not too far fetched to use verb that expresses the change of state as a helper for the passive AND the future at the same time.  And that is werden.
+
+    Das Bild wird gemalt.
+    The picture becomes painted.
+
+This would be the literal translation… and it is not that wrong… the only thing is that to become doesn’t really work with an external cause.
+All right.
+Now the second question that is interesting is this:
+
+So… German does it differently than many other languages…
+does that have any effect on the meaning?
+
+And the answer is yes. Using to be and using werden leads to 2 major
+differences.  To understand the first one we need to make a short detour… it is
+really short, I promise. So… for most of the actions we can put a focus either
+on the on going process or the completed process/ the result.
+
+    I was doing the dishes.
+    I have done the dishes.
+
+Both sentences are set in the past but the first one focuses on my doing the
+dishes much more than the second one. The second one is all about the result.
+The dishes are done now.  Now, to be is a verb of state. It talks about how
+something \textbf {is}. Werden on the other hand talks about how something becomes – how
+it \textbf{is changing}. So to be stresses the result, werden stresses ongoing process.
+That also affects the passive, mainly in present tense.
+
+    Die  Pizza wird gegessen.
+
+This is all about the process and if we want to express that in English using
+the state-ish to be, we must somehow add this process idea and our sentence will
+seem a bit complicated.
+
+    The pizza is being eaten.
+
+Or we could also say this, I guess…
+
+    The pizza gets eaten.
+
+You can try it with your own mother tongue. If passive is built using to be,
+then you will have to use a work around to express the German version. Now… as
+soon as we leave present tense, the differences begin to blur but let’s keep
+this for when we actually learn passive. Just keep in mind that the German
+werden adds this idea of ongoing change to the passive that is not there if you
+build it using to be.  Cool… now, there is another difference between German and
+languages that use to be for their passive which is really fascinating.  The
+thing is… to be is a pretty busy verb because in most languages it is also used
+for the past in one way or another. So there is a lot of overlap and that
+restricts the use a bit. The German werden doesn’t have that problem.  And maybe
+that is the reason why in German you can do some funny stuff… and by funny, I
+mean stuff that will drive you INSANE if you build your passive using to be.
+How about a passive of wollen…
+
+    Zuviel wurde gewollt, zu wenig gemacht.
+    Too much was asked for, too little has been done. (lit.)
+    Too much asked for, too little done.
+
+Too easy, you say? Well how about a passive of schlafen then
+
+    Im Bett wird geschlafen.
+
+Yep…the passive voice of to sleep. Try that in English. If you can do it, I you will get* one case of the best German beer (*for money in a store).
+But there is more about this passive of schlafen.  Can you tell me, where the subject is in the German sentence? No… well that’s because there is none. If you’ve learned that German always has a subject in the sentence… well… just forget it…
+
+
+
+
+\end{adjustwidth}
+%}}}
+
+% SUB-SUB-SECTION : lassen {{{
+\subsubsection{Lassen}
+\begin{adjustwidth}{3em}{0pt}
+\label{sec:lassen}
+
+The equivalents of "lassen" in English:
+
+The verbs "to leave" and "to let" correspond to "lassen," which explains the existence of "leave him be" beside the more standard "let him be." Note that both English verbs combine with an infinitive without "to."
+
+"lassen" in German has several distinct functions.
+
+    1) "lassen" means "to leave (behind); to allow to remain in a place or condition." This action can be on purpose or accidental. It always requires an object or other complement (as opposed to the English "let's leave"):
+    Ich lasse das Kind bei meinen Eltern. 	I am leaving the child with my parents.
+    Lässt du den Wagen hier? 	Are you leaving the car here?
+    Sie ließ ihre Brille im Wagen. 	She left her glasses in the car.
+    Lassen Sie einfach alles auf. 	Just leave everything open.
+    Lassen Sie mich in Ruhe. 	Leave me in peace.
+    Sie hat ihr Buch im Büro gelassen. 	She left her book at the office.
+    Sie lässt die Stadt hinter sich. 	She is leaving the city behind.
+    Wir lassen alles beim Alten. 	We're leaving everything as it was.
+    Der Film ließ mich kalt. 	The film left me cold.
+
+    In this meaning, it can also be combined with other verbs as if it were a modal auxiliary. Often special meanings result:
+    Ich ließ den Wagen in der Garage stehen. 	I left my car (standing) in the garage
+    ["stehen lassen" is often used in this sense for things that cannot be carried].
+    Sie lässt alles liegen. 	She's leaving everything as is [in order to do something else]
+    Sie ließen mich im Regen stehen. 	They left me in the rain [abandoned me; left me stranded]
+    Er hat sie sitzen lassen. 	He jilted her.
+    Du hast mich mit den Kindern sitzen lassen. 	You left me to take care of the children.
+
+
+ 
+	
+  	How long is the railroad going to leave its customers out in the rain [stranded]?
+Ahrensburg [name of a town]: No one knows when there will finally be a roof over the train platforms.
+ 
+
+    2)"lassen" also means: "to let, permit, or cause someone else to do something:"
+    Wir lassen ihn fahren. 	We're letting him drive.
+    Ich ließ sie etwas anderes machen. 	I let her do something else.
+    Sollen wir ein Taxi rufen lassen? 	Should we have someone call a taxi?
+    Lässt du ein Haus bauen?. 	Are you having a house built?
+    Er hat sein Referat von einem anderen Studenten schreiben lassen. 	He had his paper written by another student.
+
+    3. "sich lassen" can be used instead of the passive voice, often implying "können:"
+    Der Wagen lässt sich leicht reparieren. 	The car is easy to repair/can be repaired easily.
+    Das Problem ließ sich nur schwer erkennen. 	The problem could be recognized only with difficulty.
+    Das lässt sich hoffen. 	That is to be hoped.
+    Mit Geld lässt sich alles regeln. 	With money you can arrange anything.
+
+	4. It is also possible to use "lassen" for imperatives that combine the
+	first and second person, corresponding in structure to the English
+	"let's \ldots" The form of "lassen" reflects whether one other person is being
+	addressed or more than one, as well as whether or not the speaker uses the
+	familiar or formal pronouns with the addressee(s): Lass uns gehen. 	Let's
+	go.  Lasst uns beten. 	Let us pray.  Lassen Sie uns morgen schwimmen gehen.
+	Let's go swimming tomorrow.
+
+    5. Some other special uses of "lassen:"
+    Das lasse ich mir nicht gefallen. 	I won't put up with that.
+    Er lässt sich alles gefallen. 	He'll put up with anything.
+    Er lässt gerne auf sich warten. 	He doesn't mind making you wait (It's typical of him to keep us waiting).
+    Lass dir das eine Warnung sein. 	Let that be a warning to you.
+    Mein Vater lässt grüßen. 	My father sends his greetings.
+    Er hat sich nicht anmerken lassen, was er denkt. 	He didn't let show what he thinks.
+    Lassen Sie uns wissen, wie es Ihnen geht. 	Let us know how you're doing.
+    Lass ihn nur kommen. 	Just let him come [I'll deal with him].
+    Lassen Sie mal von sich hören. 	Get in touch sometime.
+    Dein Vorschlag lässt viel zu wünschen übrig. 	Your suggestion leaves a lot to be desired.
+    Wir ließen den Arzt kommen. 	We sent for the doctor.
+    Lassen Sie mal sehen. 	Let's have a look.
+    Ihre Antwort lässt mich glauben, dass sie nichts verstanden hat. 	Her answer leads me to believe that she didn't understand anything.
+    Der Professor lässt das Buch herumgehen. 	The professor passes the book around (the table/the room).
+
+\end{adjustwidth}
+%}}}
+
+
+\end{adjustwidth}
+% }}}
+
+\pagebreak
+% }}}
+
+% SECTION : cases {{{
+\section{Cases (Die Falle)}
+\label{sec:cases}
+Cases are different ways of referring to nouns in German. Essentially cases just
+serve as extremely specific articles (instead of just the simple 3 masculine ,
+feminine and neuter) when talking about German nouns.Basically, in every
+sentence  when we have a person or a thing (noun) performing some actions
+(verbs). Depending on how the person or thing is interacting with the verb the
+article (how we refer to the person / thing) will slightly change. This slight
+change is called the application of a case to that pronoun.
+A case is called a Falle in German.
+In German we have four cases :
+1. Nominative : Nominativ
+2. Accusative : Akkusativ
+3. Dative : Dativ
+4. Genetiv : Genetiv
+
+
+The cases are color coded to make it easier to identify which object, is in
+which case in the examples given.
+A short summary of when to use the cases is in the bullet points below, and a
+thorough explanation is further below under the separate title headings.
+Nominative : Who is the subject ? , i.e. , Who is performing the action ?
+Accusative : Who / What is the direct object ? , i.e. , Who or what is the
+action being performed on ?
+Dative : Who / What is the indirect object ? , i.e. , Who is getting indirectly
+acted upon through the sentence.
+Genetiv : Who does the direct object belong to ? , i.e., Whose thing is it that
+is getting acted upon ?
+There is no such thing as a case in English, therefore it is difficult to form
+an equivalence relation with something that you might already know.
+Following are some examples of objects under different cases :
+Examples:
+„Das Pferd ist weiß.“(The Horse is White) (das Pferd = nominative)
+„Das Pferd des Bauers ist weiß.“(The Farmers horse)(des Bauers = genitive)
+„Der Mann schenkt der Frau das Pferd.“ (The man presents a horse to
+the woman.)(der Frau = dative)  (das Pferd = accusative)
+
+
+% TABLE : cases_definite_articles {{{
+
+\vspace{0.3cm}
+\begin{tabular}{l|c c c c}
+
+\toprule
+\rowcolor{goethe_green}
+\multicolumn{5}{c}
+{\color{white} \textbf{Cases : Definite Articles} \color{black}} \\
+\midrule
+
+
+
+&
+\cellcolor{lightgray} \textbf{\textit{MAS. }} &
+\cellcolor{lightgray} \textbf{\textit{NEU.}}  &
+\cellcolor{lightgray} \textbf{\textit{FEM.}}  &
+\cellcolor{lightgray} \textbf{\textit{PLU.}} \\
+\midrule
+
+\cellcolor{lightgray} \textbf{\textit{NOM.}} &
+\cellcolor{cell-lightpurple}  der                &
+\cellcolor{cell-lightorange}  das               &
+\cellcolor{cell-lightblue} die                &
+\cellcolor{cell-lightblue} die \\
+
+\cellcolor{lightgray} \textbf{\textit{ACC.}} &
+\cellcolor{cell-lightgreen} den               &
+\cellcolor{cell-lightorange}  das                &
+\cellcolor{cell-lightblue}  die               &
+\cellcolor{cell-lightblue} die \\
+
+\cellcolor{lightgray} \textbf{\textit{DAT.}} &
+\cellcolor{cell-lightred} dem               &
+\cellcolor{cell-lightred} dem               &
+\cellcolor{cell-lightpurple} der               &
+\cellcolor{cell-lightgreen} den \\
+
+\cellcolor{lightgray} \textbf{\textit{GEN.}} &
+\cellcolor{cell-lightyellow} des               &
+\cellcolor{cell-lightyellow} des               &
+\cellcolor{cell-lightpurple} der               &
+\cellcolor{cell-lightpurple} der \\
+
+
+
+
+
+
+
+\bottomrule
+\end{tabular}
+\vspace{0.3cm}
+\newline
+
+% }}} End TABLE : cases_definite_articles
+
+
+
+% 	SUB-SECTION : nominative_case_der_nominativ_der_werfall_ {{{
+\subsection{\bf{Nominative Case (Der Nominativ / Der Werfall)}}
+\begin{adjustwidth}{2em}{0pt}
+\label{sec:nominative_case_der_nominativ_der_werfall_}
+
+
+
+\end{adjustwidth}
+% }}} END SUB-SECTION : nominative_case_der_nominativ_der_werfall_
+
+
+The first case that we have learned in class is called the Nominative Case. The
+nominative case applies to the main subject / person in the sentence. The main
+subject is the thing that is doing the action specified by the verb.
+To solidify this concept an example is shown below :
+„Der Hund  beisst den Mann.“ (The dog bites the man)
+The action (verb) being performed is beissen (biting). The thing doing the
+action is the dog. Therefore the dog will be in the nominative case and will
+have the ‘normal’ masculine article that we learned in class, namely Der Hund.
+While the main object that receives the accusative masculine article den,
+instead of der.
+The articles for the nominative case, are the “regular” , articles that we have
+learned in class. This is for both the definite and indefinite case. As a
+refresher for these for both the definite and indefinite articles, are shown
+below :
+
+
+% 	SUB-SECTION : accusative_case_akkusativ_wenfall_ {{{
+\subsection{\bf{Accusative Case (Der Akkusativ / Der Wenfall)}}
+\begin{adjustwidth}{2em}{0pt}
+\label{sec:accusative_case_akkusativ_wenfall_}
+
+
+
+\end{adjustwidth}
+% }}} END SUB-SECTION : accusative_case_akkusativ_wenfall_
+
+\vspace{0.25cm}
+\color{flame} \textbf {NOTE :} \color{black} 
+
+The Accusative Case, is the second German case. The accusative case applies on
+the direct thing / person (noun) that the action (verb) is being performed on by
+the subject (nominative noun).
+Therefore, if we have two nouns and a verb in a sentence, one of the two nouns
+is guaranteed to be in the nominative and the other in the accusative. To
+explain this concept further let us consider the same sentence from the
+nominative case example above :
+„Der Hund  beisst den Mann.“ (The dog bites the man)
+Both the dog (der Hund) and the man (der Mann) have are masculine, however since
+the verb (biting) is being performed on the man. Therefore the man is the direct
+object in this sentence, and will receive the masculine accusative article  den
+instead of the masculine nominative article der.
+To clarify the difference between subject and object again :
+Nominative : Who / What is doing the given action ?
+Accusative : Who / What is the action being done to, i.e., who is the receiver
+of the action ?
+
+
+
+% 	SUB-SECTION : dative_case_dativ_wemfall_ {{{
+\subsection{\bf{Dative Case (Der Dativ / Der Wemfall)}}
+\begin{adjustwidth}{2em}{0pt}
+\label{sec:dative_case_dativ_wemfall_}
+
+
+
+\end{adjustwidth}
+% }}} END SUB-SECTION : dative_case_dativ_wemfall_
+
+
+\vspace{0.25cm}
+\color{flame} \textbf {NOTE :} \color{black} 
+
+
+The dative case is the third case in German. So far we have learnt the following
+two cases which are shown below as a refresher :
+Nominative : The nominative case applies when we are dealing with a  subject in
+a sentence.
+Accusative : The accusative case applies to the thing that is receiving the
+direct action of the verb in the sentence.
+The third case is called the Dative case. This case applies to the objects in a
+sentence that are being indirectly impacted. We can illustrate this using the
+following example :
+Wir machen das mit einem Computer.
+(We do that with a computer.)
+Nominative Subject: Wir (Who is doing the action ? We are.)
+Accusative Direct Object : das (What is being done ? Das is getting done.
+Whatever das might be, it is still directly impacted by the verb machen)
+Dative Indirect Object : einem Computer (What is being indirectly impacted by us
+having to do daswork ? The computer.)
+If we identify something in the sentence that is being affected indirectly by
+the verb in the sentence, then the articles for that object will change
+according to the dative case. Unlike in the accusative where only the masculine
+article changes, all the articles change for the object under the dative case,
+and the plural article changes as well, which is important to note, since so far
+we have taken for granted that plural is always ‘die’  , and this is no longer
+the case. The dative case articles along with the articles for all the other
+cases that we have learned so far are shown in a table below :
+
+
+
+% 	SUB-SECTION : genetive_case_der_genetiv_der_wesfall_ {{{
+\subsection{\bf{Genetive Case (Der Genetiv / Der Wesfall)}}
+\begin{adjustwidth}{2em}{0pt}
+\label{sec:genetive_case_der_genetiv_der_wesfall_}
+
+
+
+\end{adjustwidth}
+% }}} END SUB-SECTION : genetive_case_der_genetiv_der_wesfall_
+
+
+% 	SUB-SECTION : case_w_question_tables {{{
+\subsection{\bf{Case W-Question Tables}}
+\begin{adjustwidth}{2em}{0pt}
+\label{sec:case_w_question_tables}
+
+
+
+\end{adjustwidth}
+% }}} END SUB-SECTION : case_w_question_tables
+
+
+
+\pagebreak
+% }}}
+
+% SECTION : pronouns {{{
+\section{Pronouns}
+\label{sec:pronouns}
+
+Pronouns are words that are used to refer to names of people, places or things,
+therefore we can often we can use a pronoun as a replacement for a noun in a
+sentence.
+ 
+If we didn’t have pronouns, we’d have to keep repeating our nouns and that would
+make our sentences very cumbersome and repetitive.
+ 
+Basically they are the I, you, he, they etc… types of words that we conjugate
+verbs with respect to.There are many different types of pronouns that we can
+use. The importance of using the correct pronoun is illustrated using the
+following examples :
+Her drives the car vs. She drives the car
+The professor talked to I vs. the professor talked to me
+Think about how bad the grammar would sound if someone was using the first
+iteration of the sentences above. Therefore it is very important to understand
+the different types of pronouns and also to understand when to use them.
+Similar to articles, the pronouns in a sentence will change according to the
+gender, the count (singular / plural) and the case of the thing that we are
+talking about.
+Pronouns are generally subdivided into the following categories :
+Personal Pronouns : I, you, he, she, it, they
+Possessive Pronouns : mine, yours, his , hers, its, ours, theirs
+Indefinite Pronouns : nobody, somebody, anybody, everybody,  nothing, something,
+each, few, none, etc…
+Reflexive Pronouns : myself , yourself, himself, herself, itself, ourselves,
+themselves.
+Demonstrative Pronouns : this, that, these, those
+There are some more specific pronoun categories that we can talk about later.
+Since we have four cases in German, so we also have four different kinds of
+pronoun sub-categories based on case :
+Nominative Pronouns
+Accusative Pronouns
+Dative Pronouns
+Genitive Pronouns
+The pronoun sub-categories listed above will be combined with cases, and
+therefore we will learn things in forms of Nominative possessive pronouns,
+accusative personal pronouns etc…
+
+\vspace{0.25cm}
+\color{flame} \textbf {NOTE :} \color{black} 
+
+Personal Pronouns are pronouns that are associated primarily with a
+particular grammatical person – first person (I), second person (you), or third
+person (he, she, it, they). Personal pronouns also take different forms
+depending on count (singular /  plural), gender, case, and level of formality.
+These are basically the types of pronouns that we were initially introduced to
+in class. They are Nominative Personal Pronouns, instead of just personal
+pronouns because we are dealing with them under the nominative case where we are
+talking in relation to a subject (I, he , she etc…) in a sentence.
+The Nominative Personal Pronouns are :
+
+
+\vspace{0.25cm}
+\color{flame} \textbf {NOTE :} \color{black} 
+
+
+ Possessive Pronoun (or possessive adjective) is a type of pronoun that is used
+to indicate possession of someone / something by someone / something else. If we
+are referring to possession of a subject then we have Nominative Possessive
+Pronouns. Possessive pronouns never occur with articles. Possessive pronouns
+change just like verbs according to the case, formality, count and gender of the
+thing we are referring to. A complete list of all the different possessive
+pronoun forms is shown below.
+
+
+\vspace{0.25cm}
+\color{flame} \textbf {NOTE :} \color{black} 
+
+
+Accusative Possessive Pronouns are basically pronouns that we can use to
+indicate possession of objects, when the objects are in the accusative case.
+Just like there are possessive pronouns in the nominative case, there are also
+changes that occur when we are trying to use the pronoun to indicate possession
+in the accusative case. The most crucial aspect of being able to decide weather
+we have to use the nominative possessive pronouns or the accusative possessive
+pronouns is that we must identify the subject in the sentence. If we are able to
+identify a subject and an object, then the object will take the accusative
+pronoun. If we are not able to find an object in the sentence and there is only
+a subject the we will use the nominative possessive pronoun. As we saw in the
+cases section (above), In the accusative case only the masculine form of the
+noun changes. This will remain true when dealing with possessive pronouns, and
+only the masculine will change when talking changing the possessive pronoun from
+the nominative to the accusative. Besides the masculine all of the pronouns will
+remain the same. All the changes are shown in the table below :
+
+
+
+\vspace{0.25cm}
+\color{flame} \textbf {NOTE :} \color{black} 
+
+Demonstrative or Indicative pronouns are a type of pronoun that can be used to
+distinguish nouns in a sentence from other nouns. They are similar to the words
+‘this/that‘ , or ‘these/those‘ in English. Similar to all the other types of
+pronouns, demonstrative pronouns also change according to case, gender and count
+(plurality) of the noun.
+So far in class we have learned only one demonstrative pronoun : Deise (this) .
+
+
+
+% 	SUB-SECTION : relativpronomen_im_dativ {{{
+\textbf{\subsection{Relativpronomen im Dativ}}
+\begin{adjustwidth}{2em}{0pt}
+\label{sec:relativpronomen_im_dativ}
+
+
+
+\end{adjustwidth}
+% }}} END SUB-SECTION : relativpronomen_im_dativ
+
+
+
+
+\pagebreak
+% }}}
+
+% SECTION : prepositions {{{
+\section{Prepositions}
+\label{sec:prepositions}
+
+Prepositions indicate the relationship of a noun (or pronoun) to another element
+in the sentence. Prepositions tend to be some of the most commonly used words in
+a language. Following are some examples of prepositions :
+We are going to the Apartment. (Wir gehen zu die Wohnung)
+The food is inside the refrigerator. (Das Essen ist innen die Kuhlschrank.)
+It is behind the chair. (Es ist hinter den Stühl)
+Prepositions work in much the same way in German, except for the added
+complication that the nouns and pronouns that they are refereeing to are going
+to change according to the articles of the nouns that we are using the
+preposition to refer to. Some prepositions are specific to certain cases, i.e.,
+certain prepositions will always invoke the dative or the accusative case. These
+are explained in more detail in separate sections below.
+
+
+Depending on the article of the noun that we are using the preposition with, the
+form of the preposition might change. The change is basically that the
+preposition gets contracted (see contractions section above) with the article of
+the noun in the dative case.
+Normally “bei dem,” “von dem,” “zu dem,” and “zu der” are the ones that are most
+commonly contracted.  They are contracted into the following forms :
+bei + dem = beim
+von + dem = vom
+zu + dem = zum
+zu + der = zur
+If we have any other article preposition combination except for the ones listed
+above, just write the full preposition and article out. For example :
+zu + die =/= zuie , it will remain as zu die
+bei + der =/= bier , it will remain as bei der
+
+
+Unlike dative or accusative prepositions that we learned earlier, which can only
+be used in their respective cases, Wechsel Prepositions are prepositions that
+can be used in two different cases, namely wechsel prepositions can be used with
+objects that are in the dative case (indirect objects) and in the accusative
+case (direct objects). Wechsel prepositions are known as dual prepositions in
+English since they can be used with two cases.
+The easiest way to determine if in a given sentence we are using the dative or
+the accusative version of the wechsel preposition is by looking the question
+that the sentence is answering. Extremely simply If the sentence is answering
+a wo (where) question about the object, then we are using the wechsel
+preposition in the accusative case. If the sentence is answering a wohin (where
+to) question about the object then we are using the wechsel preposition in the
+dative case.
+One thing to clarify when talking about wechsel prepositions is – the fact that
+when we say we are using the preposition in the accusative or dative case, the
+preposition itself is not changing. What we actually mean is that the article of
+the noun that the preposition is talking about will get changed into either it’s
+accusative case form or the dative case form.
+To further understand the point made earlier about wo and wohin questions, it
+helps to think about the movement of the object in the sentence. A way to think
+about it in English is using the two phrases “he jumps into the water”
+versus “he is swimming in the water.” The first answers a “where to” question:
+Where is he jumping? Into the water. Or in German, in das Wasser or ins Wasser.
+He is changing location by moving from the land into the water. The second
+phrase represents a “where” situation. Where is he swimming? In the water.
+In German, in dem Wasser or im Wasser. He is swimming inside the body of water
+and not moving in and out of that one location.
+
+
+So basically :
+Use the accusative if there is a significant change of location / position
+happening to the object in the sentence, i.e., if the action (verb) is resulting
+in the object being moved from one place to a different place then we will use
+the accusative case with the wechsel preposition.
+If there is no significant change in movement then, the action is occurring in a
+confined space and little or no movement is taking place. Then we will use the
+dative article for the object with the wechsel preposition.
+
+
+% 	SUB-SECTION : accusative_prepositions {{{
+\textbf{\subsection{Accusative Prepositions}}
+\begin{adjustwidth}{2em}{0pt}
+\label{sec:accusative_prepositions}
+
+
+
+\end{adjustwidth}
+% }}} END SUB-SECTION : accusative_prepositions
+
+% 	SUB-SECTION : dative_prepositions {{{
+\textbf{\subsection{Dative Prepositions}}
+\begin{adjustwidth}{2em}{0pt}
+\label{sec:dative_prepositions}
+
+
+
+\end{adjustwidth}
+% }}} END SUB-SECTION : dative_prepositions
+
+% 	SUB-SECTION : wechsel_prepositions {{{
+\textbf{\subsection{Wechsel Prepositions}}
+\begin{adjustwidth}{2em}{0pt}
+\label{sec:wechsel_prepositions}
+
+
+
+\end{adjustwidth}
+% }}} END SUB-SECTION : wechsel_prepositions
+
+% 	SUB-SECTION : genetiv_prepositions {{{
+\textbf{\subsection{Genetiv Prepositions}}
+\begin{adjustwidth}{2em}{0pt}
+\label{sec:genetiv_prepositions}
+
+
+
+\end{adjustwidth}
+% }}} END SUB-SECTION : genetiv_prepositions
+
+\pagebreak
+% }}}
+
+% SECTION : tenses {{{
+\section{Tenses}
+\label{sec:tenses}
+
+German has the following tenses cover past, present and future : 
+
+% 	SUB-SECTION : present {{{
+\subsection{\bf{Present / Präsens}}
+\begin{adjustwidth}{2em}{0pt}
+\label{sec:present}
+
+The present tense in german has a multitude of uses in german. Unlike english,
+German does not make a distinction between present and present continuous
+tenses. They both fall under the present (Präsens) category. The main cases
+where we will use the Präsens tense are the following : \\
+
+% LIST : prasens_use_cases {{{
+
+\vspace{0.3cm}
+\begin{tabular}{l r l l}
+
+\rowcolor{white} $\bullet$  \textbf{Present Static} & : & When an action in the present
+is unchanging. &\\
+
+%example row
+\rowcolor{white}  & \color{gray} \textit{e.g} \color{black} & \color{gray} \textit{this is the example} \color{black} &\\
+\rowcolor{white} & & pogchamp \\
+
+\rowcolor{white} $\bullet$  \textbf{Present Continuous} & : & Ongoing action/situation in
+the present &\\ 
+
+%example row
+\rowcolor{white}  & \color{gray} \textit{e.g} \color{black} & \color{gray}
+\textit{this is the example} \color{black} &\\
+\rowcolor{white} & & pogchamp &\\
+
+\rowcolor{white} $\bullet$  \textbf{Future} & : & &\\
+
+
+\rowcolor{white} $\bullet$  \textbf{Past Continuous} & : & Unchanged past situation being
+talked about in the present.&\\
+
+
+
+\rowcolor{white} $\bullet$  \textbf{something else}  & & &\\
+
+
+
+\end{tabular}
+\vspace{0.3cm}
+\newline
+
+% }}} End LIST : Prasens use cases
+
+An explanation of the present tense is mainly the same thing as an explanation
+of the infinitve, where we first talked about how and we we go about using
+verbs. All of those explanations are given in the present tense.\\
+
+
+% TO BE DONE {{{
+\begin{center}
+\color{red}
+------------------ !! TBD !! TBD !! TBD !! -------------------------
+
+\begin{enumerate}[noitemsep]
+	\item Find out wether the present is actually used for future or future
+		simple , and the difference between the two. 
+\end{enumerate}
+
+------------------ !! TBD !! TBD !! TBD !! -------------------------
+\color{black}
+\end{center}
+% }}}
+
+\end{adjustwidth}
+% }}}
+
+% 	SUB-SECTION : present_perfect {{{
+\subsection{\bf{Present Perfect / Perfekt}}
+\begin{adjustwidth}{2em}{0pt}
+\label{sec:present_perfect}
+
+This is also known sometimes as the 2nd Participle , or Partizip II 
+
+\end{adjustwidth}
+% }}}
+
+% 	SUB-SECTION : simple_past {{{
+\subsection{\bf{Simple Past (Präteritum / Preterite)}}
+\label{sec:simple_past}
+
+\begin{adjustwidth}{2em}{0pt}
+This is your bread and butter tense for writing about events in the past.
+However when we want to \textbf{talk} about events in the past then we tend to
+use the present perfect (perfekt) tense more often than this one.
+
+\vspace{0.25cm}
+
+
+We use the präteritum for the following two situations :
+
+\begin{enumerate}
+	\item A completed action in the past, with a focus on the result of the
+		action.
+	\begin{itemize}
+		\item Gestern hat Michael sein Büro aufgeräumt.
+
+	\vspace{0.25cm}
+
+		When Yesterday ,
+		\vspace{0.25cm}
+		\textit {Current result}: Office is now clean.
+	\end{itemize}
+	\item An action that will be completed by a certain point in the future.
+\end{enumerate}
+\end{adjustwidth}
+% }}}
+
+% 	SUB-SECTION : past_perfect {{{
+\subsection{\bf{Past Perfect}}
+\begin{adjustwidth}{2em}{0pt}
+\label{sec:past_perfect}
+
+
+
+\end{adjustwidth}
+% }}}
+
+% 	SUB-SECTION : future {{{
+\subsection{\bf{Future}}
+\begin{adjustwidth}{2em}{0pt}
+\label{sec:future}
+
+
+
+\end{adjustwidth}
+% }}}
+
+% 	SUB-SECTION : future_perfect {{{
+\subsection{\bf{Future Perfect}}
+\begin{adjustwidth}{2em}{0pt}
+\label{sec:future_perfect}
+
+
+
+\end{adjustwidth}
+% }}}
+
+% 	SUB-SECTION : plusquamperfekt {{{
+\textbf{\subsection{Plusquamperfekt}}
+\begin{adjustwidth}{2em}{0pt}
+\label{sec:plusquamperfekt}
+
+
+
+\end{adjustwidth}
+% }}} END SUB-SECTION : plusquamperfekt
+
+\pagebreak
+
+% }}}
+
+% SECTION : konjunktiv_ii {{{
+\section{Subjunctive II / Konjunktiv II}
+\label{sec:konjunktiv_ii}
+
+Konjunktiv II is the name given to a special form when we are using werden.
+When we are talking about something wishfully,,
+then we use the würde formation of werden.
+
+The full table is shown below.
+
+\color{red} INSERT TABLE HERE \color{black}
+
+Similarly, when we are using werden in a wishful sense, but with sein haben or
+any modal verb then we will use the konjunktiv II formation of the verb.
+
+The main times we use Konjunktiv II are :
+
+\begin{enumerate}
+	\item Wunsch
+	\item irreale Bedingung
+	\item Höflichkeit
+	\item Ratschlag
+	\item Vorschlag
+\end{enumerate}
+\pagebreak
+% }}}
+
+% SECTION : adjectives {{{
+\section{{Adjectives}}
+\label{sec:adjectives}
+
+Adjectives are words that modify nouns in some way ( young,old,tall,thin, etc…).
+The difference between German and English adjectives is that like everything
+else in German, the adjectives change according to the article of the noun that
+they are being used to describe. This means that according to the gender, the
+count (plural,singular) and the case of the noun in question, the formation of
+the adjectives will change.
+Nominative : Adjectives have an extra –e in the ending in the nominative case
+when they’re placed before nouns and a definite article is being used. This can
+be seen in the examples below :
+Masculine: (schnell/ fast): der schnelle Tiger (the fast tiger).
+Feminine: (jung/ young): die junge Dame (the young lady).
+Neuter: (klug/ smart): das kluge Kind (the smart child).
+Plural: (gut/ good): sie sind gute Bücher (they’re good books).
+Accusative , Dative , Genitive : Adjectives in the rest of the cases
+(Accusative, Dative, Genitive) will have a -en ending attached to the adjective
+for the masculine case, and a -e for the feminine, neuter and plural cases. An
+example using the accusative case is shown below :
+Ich habe den schnellen Tiger gesehen : (I have seen the fast tiger)
+Keep in mind that the ending changes listed above will only occur when we are
+using definite articles with the noun, or if we are using one of the following
+pronouns
+: dieser(this),  jener (that), solcher (such), jeder (each), welcher(which).
+The plural ending for these weak adjectives is “-en” in ALL cases (nominative,
+accusative, dative, and genitive). Examples below :
+Ich habe die schnellen Katzen gesehen (I have seen the fast cats).
+Ich habe die jungen Damen gesehen (I have seen the young ladies).\\
+
+\justify
+% TABLE : adjective_endings_definite_articles {{{
+
+\vspace{0.3cm}
+\begin{tabular}{l|c c c c}
+
+\toprule
+\rowcolor{goethe_green}
+\multicolumn{5}{c}
+{\color{white} \textbf{Adjective Endings : Definite Articles} \color{black}} \\
+\midrule
+
+
+&
+\cellcolor{lightgray} \textbf{\textit{MAS. }} &
+\cellcolor{lightgray} \textbf{\textit{NEU.}}  &
+\cellcolor{lightgray} \textbf{\textit{FEM.}}  &
+\cellcolor{lightgray} \textbf{\textit{PLU.}} \\
+\midrule
+
+\cellcolor{lightgray} \textbf{\textit{NOM.}} &
+\cellcolor{cell-lightred}  -e                &
+\cellcolor{cell-lightred}  -e                &
+\cellcolor{cell-lightred}  -e                &
+\cellcolor{cell-lightblue} -en \\
+
+\cellcolor{lightgray} \textbf{\textit{ACC.}} &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightred}  -e                &
+\cellcolor{cell-lightred}  -e                &
+\cellcolor{cell-lightblue} -en \\
+
+\cellcolor{lightgray} \textbf{\textit{DAT.}} &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightblue} -en \\
+
+\cellcolor{lightgray} \textbf{\textit{GEN.}} &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightblue} -en \\
+
+
+
+
+\bottomrule
+\end{tabular}
+\vspace{0.3cm}
+\newline
+
+% }}} End TABLE : adjective_endings_definite_articles
+\justify
+% TABLE : adjective_endings_indefinite_articles {{{
+
+\vspace{0.3cm}
+\begin{tabular}{l|c c c c}
+
+\toprule
+\rowcolor{goethe_green}
+\multicolumn{5}{c}
+{\color{white} \textbf{Adjective Endings : Indefinite Articles} \color{black}} \\
+\midrule
+
+
+
+&
+\cellcolor{lightgray} \textbf{\textit{MAS. }} &
+\cellcolor{lightgray} \textbf{\textit{NEU.}}  &
+\cellcolor{lightgray} \textbf{\textit{FEM.}}  &
+\cellcolor{lightgray} \textbf{\textit{PLU.}} \\
+\midrule
+
+\cellcolor{lightgray} \textbf{\textit{NOM.}} &
+\cellcolor{cell-lightgreen}   -er             &
+\cellcolor{cell-lightorange} -es             &
+\cellcolor{cell-lightred}    -e              &
+\cellcolor{cell-lightblue}   -en \\
+
+\cellcolor{lightgray} \textbf{\textit{ACC.}} &
+\cellcolor{cell-lightblue}   -en             &
+\cellcolor{cell-lightorange} -es             &
+\cellcolor{cell-lightred}    -e              &
+\cellcolor{cell-lightblue}   -en \\
+
+\cellcolor{lightgray} \textbf{\textit{DAT.}} &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightblue} -en \\
+
+\cellcolor{lightgray} \textbf{\textit{GEN.}} &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightblue} -en \\
+
+
+
+
+
+
+
+
+
+\bottomrule
+\end{tabular}
+\vspace{0.3cm}
+\newline
+
+% }}} End TABLE : adjective_endings_indefinite_articles
+
+% 	SUB-SECTION : comparing_multiple_substantives_steigerungsformen {{{
+\textbf{\subsection{Comparing Multiple Substantives (Steigerungsformen)}}
+\begin{adjustwidth}{2em}{0pt}
+\label{sec:comparing_multiple_substantives_steigerungsformen}
+
+Adjectives , comparatives and Superlatives are forms of comparison that can be
+used when two object or people are NOT the same. Each one of these has different
+uses. Together these three are called \textbf{\textit{steigerungsformen}}.
+
+% 		SUB-SUB-SECTION : comparative_komparativ_ {{{
+\textbf{\subsubsection{Comparative (Komparativ)}}
+\begin{adjustwidth}{3em}{0pt}
+\label{sec:comparative_komparativ_}
+
+
+\begin{mydef}{\bf{Comparative (Komparativ)}}
+\begin{defn-background}
+
+A \textbf{Comparative} is a word that is used to compare a subjunctive (noun)
+with another subjunctive (noun). Comparatives are formed out of either
+adjectives or adverbs. E.g. : higher , shorter , etc \ldots \\
+
+\end{defn-background}
+\end{mydef}
+\vspace{0.25cm}
+
+Mostly the sentence structure for a comparative sentence looks something like
+this :\\
+
+
+% LIST :  {{{
+
+\vspace{0.3cm}
+\begin{tabular}{l l l l l}
+
+  \cellcolor{cell-lightorange} Substantive 1 / Pronoun
+& \cellcolor{cell-lightblue} verb (Conjugated)
+& \cellcolor{cell-lightred} adjective(+er)
+& \cellcolor{cell-lightgray} als
+& \cellcolor{cell-lightorange} Substantive 2
+\\
+
+  \cellcolor{white} Kevin 
+& \cellcolor{white} rennt 
+& \cellcolor{white} schneller 
+& \cellcolor{white} als
+& \cellcolor{white} Max 
+\\
+
+  \cellcolor{white} Der Pferd 
+& \cellcolor{white} rennt 
+& \cellcolor{white} schneller 
+& \cellcolor{white} als
+& \cellcolor{white} der Hund
+\\
+
+
+  \cellcolor{white} Lisa
+& \cellcolor{white} ist 
+& \cellcolor{white} kleiner 
+& \cellcolor{white} als
+& \cellcolor{white} Maria 
+\\
+
+\end{tabular}
+\vspace{0.3cm}
+\newline
+
+% }}} End LIST : 
+
+Look at the following examples :\\
+\\
+\textit{Peter ist groß, aber Hubert ist größer.\\
+\color{gray}( Peter is tall , but Hubert is taller. ) \color{black}}\\
+
+In the above sentence the adjective is groß , but we are comparing two things by
+size, therefore one must be bigger. So just like english we add an -en to the
+ending of the adjective to indicate a comparative. Another example with schön
+:\\
+\\
+\textit{Gestern war das Wetter schön , und heute wird es noch schöner.\\
+\color{gray} ( Yesterday the weather was beautiful and today it will be more
+beautiful )  \color{black}}\\
+
+\textbf{Adjective ending in : -el}\\
+If the adjective ends in -el , then the e in the
+second to last position is deleted when writing the adjective in the comparative
+form. However this deletion of the e is not true in the superlative form.
+
+% LIST : comparative_irregularities {{{
+
+\vspace{0.3cm}
+\begin{tabular}{l l l l l}
+
+\rowcolor{white} $\bullet$ edel     & - & edler     & - & am edelsten \\
+\rowcolor{white} $\bullet$ sensibel & - & sensibler & - & am sensibelsten \\
+\rowcolor{white} $\bullet$ dunkel   & - & dunkler   & - & am dunkelsten\\
+\rowcolor{white} $\bullet$ flexibel & - & flexibler & - & am flexibelsten\\
+
+
+\end{tabular}
+\vspace{0.3cm}
+\newline
+
+% }}} End LIST : Comparative irregularities
+
+\textbf{Adjective ending in : -er}\\
+If the adjective ends in -er and we have
+a vowel (a,e,i,o,u) as the last character before the -er ending, then similar to
+the -el ending the e in the second to last position in the word is deleted when
+forming the comparative. If the character before the -er ending is a consonant
+then the comparative form does not change.  Again this is not true for the
+superlative form.
+
+% LIST : comparative_irregularities {{{
+
+\vspace{0.3cm}
+\begin{tabular}{l l l l l}
+
+\rowcolor{white} $\bullet$ teuer  & - & teurer   & - & am teuersten \\
+\rowcolor{white} $\bullet$ sauer  & - & saurer   & - & am sauersten \\
+\rowcolor{white} $\bullet$ sauber & - & sauberer & - & am saubersten \\
+
+
+
+\end{tabular}
+\vspace{0.3cm}
+\newline
+
+% }}} End LIST : Comparative irregularities
+
+\textbf{Single Syllable Adjectives} \\
+When we have single syllable adjectives and they have a vowel then we use the
+umlaut version of that vowel in the comparative and the superlative formation.
+
+% LIST : comparative_irregularities {{{
+
+\vspace{0.3cm}
+\begin{tabular}{l l l l l}
+
+\rowcolor{white} $\bullet$ groß & - & größer & - & am größten \\
+\rowcolor{white} $\bullet$ klug & - & klüger & - & am klügsten \\
+\rowcolor{white} $\bullet$ alt  & - & älter  & - & am ältesten \\
+
+
+
+\end{tabular}
+\vspace{0.3cm}
+\newline
+
+% }}} End LIST : Comparative irregularities
+
+\end{adjustwidth}
+% }}} END SUB-SUB-SECTION : comparative_komparativ_
+
+% 		SUB-SUB-SECTION : superlative_superlativ_ {{{
+\textbf{\subsubsection{Superlative (Superlativ)}}
+\begin{adjustwidth}{3em}{0pt}
+\label{sec:superlative_superlativ_}
+
+
+\begin{mydef}{\bf{Superlative (Superlativ)}}
+\begin{defn-background}
+
+A \textbf {Superlative} is a word that is used when we a comparing a subjunctive
+to a group of subjunctives. The superlative is used to delineate the upper or
+lower limits of the quality that we are comparing. E.g. : highest, shortest,
+etc \ldots
+
+\end{defn-background}
+\end{mydef}
+\vspace{0.25cm}
+
+
+Similarly, superlatives are used in dealing with extremes of a certain
+comparison. Consider the following example :\\
+\\
+\textit{
+Ute ist klein, Petra ist kleiner und Martina ist die kleinste.\\
+\color{gray} ( Ute is small, Petra is smaller and Martina is the smallest)  \color{black}}
+\\
+
+
+
+
+\end{adjustwidth}
+% }}} END SUB-SUB-SECTION : superlative_superlativ_
+
+
+\end{adjustwidth}
+% }}} END SUB-SECTION : comparing_multiple_substantives_steigerungsformen
+
+% 	SUB-SECTION : comparatives_and_superlatives {{{
+\subsection{\bf{Comparatives and Superlatives}}
+\begin{adjustwidth}{2em}{0pt}
+\label{sec:comparatives_and_superlatives}
+
+
+
+\end{adjustwidth}
+% }}} END SUB-SECTION : comparatives_and_superlatives
+
+% 	SUB-SECTION : using_adjectives_as_adverbs {{{
+\subsection{\bf{Using Adjectives as Adverbs}}
+\begin{adjustwidth}{2em}{0pt}
+\label{sec:using_adjectives_as_adverbs}
+
+
+
+\end{adjustwidth}
+% }}} END SUB-SECTION : using_adjectives_as_adverbs
+
+
+% TO BE DONE {{{
+\begin{center}
+\color{red}
+------------------ !! TBD !! TBD !! TBD !! -------------------------
+
+\begin{enumerate}[noitemsep]
+
+	\item Move comparatives and superlative to sub-sections instead of
+		subsub-sections 
+	\item Finish writing out superlative section from
+		https://easy-deutsch.de/adjektive/steigerung-der-adjektive/
+	\item Write explanation for how adjective endings derived from substantives
+		affect superlatives and comparatives
+	\item figure out a better / cleaner way displaying sentence structures
+ 
+\end{enumerate}
+
+------------------ !! TBD !! TBD !! TBD !! -------------------------
+\color{black}
+\end{center}
+% }}}
+
+
+
+
+\pagebreak
+% }}}
+
+% SECTION : adverbs {{{
+\section{{Adverbs}}
+\label{sec:adverbs}
+
+\begin{mydef}{\bf{Adverb}}
+\begin{defn-background}
+
+An \textbf{adverb }is any word that functions to modify a verb, adjective,
+preposition, or sentence.
+
+
+\end{defn-background}
+\end{mydef}
+\vspace{0.25cm}
+
+When we use a word to further accentuate the action that is being performed by
+a verb, or when we use a word to accentuate an adjective that is being used to
+desribe a noun, this word is called an adverb ( I like to think because it is
+adding to the verb.)
+
+
+\vspace{0.25cm}
+
+
+When an adverb modifies a verb, it usually tells us :
+
+\begin{itemize}[noitemsep]
+	\item \textbf {When} : He ran yesterday.
+	\item \textbf {Where} : He ran here.
+	\item \textbf{How }: He ran barefoot.
+	\item \textbf{To what extent }: He ran fastest.
+\end{itemize}
+
+
+% TO BE DONE {{{
+\begin{center}
+\color{red}
+------------------ !! TBD !! TBD !! TBD !! -------------------------
+
+\begin{enumerate}[noitemsep]
+	\item add adverb explanation from germanforenglishspeakers.com 
+\end{enumerate}
+
+------------------ !! TBD !! TBD !! TBD !! -------------------------
+\color{black}
+\end{center}
+% }}}
+
+
+Adverbs are very versatile und are broadly divided into the following categories
+in german :
+
+% 	SUB-SECTION : temporal_adverbs {{{
+\subsection{\bf{Temporal Adverbs (Temporaladverbien)}}
+\begin{adjustwidth}{2em}{0pt}
+\label{sec:temporal_adverbs}
+
+Temporal Adverbs or adverbs of time function to tell us \textbf
+{when} the event or the current action is happening. These can include the day
+that the action took place or will take place, as well as an abstract time like
+"soon". The most commonly used temporal adverbs are :
+
+% MINI-TABLE : temporal_adverbs_days {{{
+\begin{minipage}{0.45\textwidth}
+\vspace{0.3cm}
+\begin{tabular}{l|l}
+\toprule
+\rowcolor{goethe_green}
+\multicolumn{2}{c}
+{\color{white} \textbf{Temporal Adverbs : Days} \color{black}} \\
+\midrule
+
+\rowcolor{white}      vorgestern & day before yesterday \\
+\rowcolor{lightgray}  gestern    & yesterday \\
+\rowcolor{white}      heute      & today \\
+\rowcolor{lightgray}  morgen     & tomorrow\\
+\rowcolor{white}      übermorgen & day after tomorrow\\
+
+\bottomrule
+\end{tabular}
+\vspace{0.3cm}
+\newline
+\end{minipage}
+% }}}
+% MINI-TABLE : temporal_adverbs_abstract_time {{{
+\begin{minipage}{0.45\textwidth}
+\vspace{0.3cm}
+\begin{tabular}{l|l}
+
+\toprule
+\rowcolor{goethe_green}
+\multicolumn{2}{c}
+{\color{white} \textbf{Temporal Adverbs : Abstract Time} \color{black}} \\
+\midrule
+
+\rowcolor{white}     damals & then \\
+\rowcolor{lightgray} früher & earlier \\
+\rowcolor{white}     jetzt  & now \\
+\rowcolor{lightgray} sofort & immediately \\
+\rowcolor{white}     gleich & immediately \\
+\rowcolor{lightgray} bald   & soon \\
+\rowcolor{white}     später & later \\
+\rowcolor{lightgray} dann   & then / after \\
+
+
+\bottomrule
+\end{tabular}
+\vspace{0.3cm}
+\newline
+\end{minipage}
+% }}}
+
+The adverb \textit{gerade} is used to make a sentence in the present continuous.
+For example we have the sentences shown below. The second version ensures
+clarity in that the listener will know that the action is still continiuing as
+opposed to the dual meaning of the first sentence.
+
+\vspace{0.25cm}
+
+\noindent
+Ich trinke        : I drink \& I am drinking \\
+Ich trinke gerade : I am drinking
+
+\vspace{0.25cm}
+
+anfangs -- at the beginning
+bald -- soon
+bereits -- already
+damals -- at that time, then
+danach -- afterward
+dann -- then
+diesmal -- this time
+einmal -- once
+endlich -- finally, at last
+früher -- earlier, previously
+gestern -- yesterday
+heute -- today
+immer -- always
+inzwischen -- meanwhile
+jemals -- ever
+jetzt -- now
+langsam -- slowly
+längst -- long ago
+manchmal -- sometimes
+meistens -- mostly, most often
+neulich -- recently
+nie -- never
+noch -- still
+nochmal -- again
+nun -- now
+oft -- often
+schon -- already
+sofort -- immediately
+vorbei -- over, past
+vorher -- previously, before
+vorhin -- just now, a short time ago
+wieder -- again
+zuerst -- first, at first
+zurzeit -- at the moment, at present
+
+
+% TO BE DONE {{{
+\begin{center}
+\color{red}
+------------------ !! TBD !! TBD !! TBD !! -------------------------
+
+\begin{enumerate}[noitemsep]
+	\item add the things from the giant list above to the tables 
+\end{enumerate}
+
+------------------ !! TBD !! TBD !! TBD !! -------------------------
+\color{black}
+\end{center}
+% }}}
+
+
+\end{adjustwidth}
+% }}}
+
+% 	SUB-SECTION : frequency_adverbs {{{
+\subsection{\bf{Frequency Adverbs}}
+\begin{adjustwidth}{2em}{0pt}
+\label{sec:frequency_adverbs}
+
+Frequency Adverbs function to tell us \textbf {how often} the event or the
+current action is happening. Frequency adverbs can be formed out of any time
+period by just adding a -s, or a -lich to the end of the word. This allows us to
+use adverbs like daily, monthly, evenings and so forth. Some examples are shown
+below :
+
+% MINI-TABLE : frequency_adverbs_abstract {{{
+\begin{minipage}{0.45\textwidth}
+\vspace{0.3cm}
+\begin{tabular}{l|l}
+\toprule
+\rowcolor{goethe_green}
+\multicolumn{2}{c}
+{\color{white} \textbf{Frequency Adverbs : Abstract} \color{black}} \\
+\midrule
+
+\rowcolor{white}     immer      & always \\
+\rowcolor{lightgray} fast immer & almost always \\
+\rowcolor{white}     meistens   & most of the time \\
+\rowcolor{lightgray} häufig     & frequently \\
+\rowcolor{white}     oft        & often \\
+\rowcolor{lightgray} ab und zu  & once in a while \\
+\rowcolor{white}     manchmal   & sometimes \\
+\rowcolor{lightgray} selten     & rarely \\
+\rowcolor{white}     fast nie   & almost never \\
+\rowcolor{lightgray} nie        & never \\
+
+\bottomrule
+\end{tabular}
+
+\vspace{0.3cm}
+\end{minipage}
+% }}} END MINI-TABLE : frequency_adverbs_abstract
+% MINI-TABLE : frequency_adverbs_specific {{{
+\begin{minipage}{0.45\textwidth}
+\vspace{0.3cm}
+\begin{tabular}{l|l}
+\toprule
+\rowcolor{goethe_green}
+\multicolumn{2}{c}
+{\color{white} \textbf{Frequency Adverbs : Specific} \color{black}} \\
+\midrule
+
+\rowcolor{white}      morgens     & mornings \\
+\rowcolor{lightgray}  nachmittags & afternoons  \\
+\rowcolor{white}      montags     & on mondays \\
+\rowcolor{lightgray}  täglich     & daily \\
+\rowcolor{white}      wochentlich & weekly \\
+\rowcolor{lightgray}  monatlich   & monthly \\
+\rowcolor{white}      jährlich    & yearly / anually \\
+\rowcolor{lightgray}  halbtags    & half days \\
+\rowcolor{white}      feiertags   & all holidays  \\
+
+\bottomrule
+\end{tabular}
+\vspace{0.3cm}
+\newline
+\end{minipage}
+% }}}
+
+\end{adjustwidth}
+% }}}
+
+% 	SUB-SECTION : spatial_adverbs {{{
+\subsection{\bf{Spatial/Locative Adverbs (Lokaladverbien)}}
+\begin{adjustwidth}{2em}{0pt}
+\label{sec:spatial_adverbs}
+
+Spatial Adverbs as is indicated in the name , serve to describe locations and
+spaces. Therefore they are used to indicate the position of a person or object
+relative to your current position. They can change based on wether you or the
+object are moving, and can also change based on wether you and the object are
+moving away from or towards each other. The most common spatial adverbs for both
+static and movement based scenarios are shown below :
+
+% MINI-TABLE : spatial_adverbs_static {{{
+\begin{minipage}{0.4\textwidth}
+\vspace{0.3cm}
+\begin{tabular}{l|l}
+
+\toprule
+\rowcolor{goethe_green}
+\multicolumn{2}{c}
+{\color{white} \textbf{Spatial Adverbs : Static} \color{black}} \\
+\midrule
+
+\rowcolor{white}     vorn / vorne & in front\\
+\rowcolor{lightgray} hinten       & behind\\
+\rowcolor{white}     links        & left\\
+\rowcolor{lightgray} rechts       & right\\
+\rowcolor{white}     oben         & over\\
+\rowcolor{lightgray} unten        & under\\
+\rowcolor{white}     innen        & inside\\
+\rowcolor{lightgray} außen        & outside\\
+\rowcolor{white}     hier         & hier\\
+\rowcolor{lightgray} da           & here/there\\
+\rowcolor{white}     dort         & over there/there\\
+\rowcolor{lightgray} überall      & everywhere\\
+\rowcolor{white}     nirgends     & nowhere\\
+\rowcolor{lightgray} fort      & away\\
+
+\bottomrule
+\end{tabular}
+\vspace{0.3cm}
+\newline
+\end{minipage}
+% }}} End MINI-TABLE : spatial_adverbs_static
+% MINI-TABLE : spatial_adverbs_movement {{{
+\begin{minipage}{0.4\textwidth}
+\vspace{0.3cm}
+\begin{tabular}{l|l}
+
+\toprule
+\rowcolor{goethe_green}
+\multicolumn{2}{c}
+{\color{white} \textbf{Spatial Adverbs : Movement} \color{black}} \\
+\midrule
+
+\rowcolor{white}     aufwärts  & upwards\\
+\rowcolor{lightgray} abwärts   & downwards\\
+\rowcolor{white}     vorwärts  & forwards\\
+\rowcolor{lightgray} rückwärts & backwards\\
+\rowcolor{white}     heimwärts & homeward\\
+\rowcolor{lightgray} westwärts & westward\\
+\rowcolor{white}     bergauf   & uphill\\
+\rowcolor{lightgray} bergab    & downhill\\
+
+\bottomrule
+\end{tabular}
+\vspace{0.3cm}
+\newline
+\end{minipage}
+% }}} End MINI-TABLE : spatial_adverbs_movement
+
+% 		SUB-SUB-SECTION : hin_and_her_ {{{
+\subsubsection{\bf{Hin- and Her-}}
+\begin{adjustwidth}{3em}{0pt}
+\label{sec:hin_and_her_}
+
+The prefixes \textit{Hin- }and \textit{Her-} cause a bit of confusion because
+there are no equivalencies in English. German delineates between movement away
+and towards the speaker in a way that english does not. It is to describe this
+delineation that we use the aforementioned prefixes.\\
+
+\textbf{\textit{Hin-}} generally indicates movement in a direction away from the speaker toward a
+particular destination. Examples of sentences using the \textit{hin-} prefix are
+shown below :
+\\\\
+\noindent
+Wir gehen zum Hafen hin. : We are going to the harbor.\\
+Schau mal hin!           : Look (over there)!
+\\\\
+\textbf{\textit{Her-}} generally indicates movement from a point of origin in a direction toward
+the speaker.
+\\\\
+\noindent
+Komm mal her!                 : Come over here (from there)!\\
+Wo bekommen wir das Geld her? : Where will we get the money (from)?
+\\\\
+Hin- and her- are used in their most literal sense with verbs of movement (e.g.,
+gehen to go, kommen to come) or activity that involves direction (e.g., sehen to
+look, geben to give, reichen to hand over). Often they appear as separable
+prefixes (e.g., herkommen , herholen, hinlegen, hinschreiben). More specific
+directional adverbs are created through a number of compounds that comine hin
+and her with prepositions that denote direction (e.g., herauf, herab, heraus,
+herein, hinauf, hinüber, hindurch, hinzu) or with other adverbs (e.g., hierher,
+woher, dahin, überallhin).
+\\\\
+\noindent
+Er geht die Treppe hinauf.hinaufHe is going up the stairs.\\
+Er kommt die Treppe herunter.herunterHe is coming down the stairs.\\
+Der Apfel fiel vom Baum herab.herabThe apple fell (down) from the tree.\\
+Der Apfel fiel ins Gras hinunter.hinunterThe apple fell (down) into the grass.
+\\\\
+\noindent
+The most commonly used adverbs with hin and her are shown below :
+
+
+% MINI-TABLE : spatial_adverbs_hin_her_ {{{
+\begin{minipage}{.5\linewidth}
+\vspace{0.3cm}
+\begin{tabular}{l|l}
+\toprule
+\rowcolor{goethe_green}
+\multicolumn{2}{c}
+{\color{white} \textbf{Spatial Adverbs : Hin- / Her-} \color{black}} \\
+\midrule
+
+\rowcolor{white}     heraus & go out (towards the speaker) \\
+\rowcolor{lightgray} herein & go in (towards the speaker)\\
+\rowcolor{white}     hinein & go in (away from speaker)\\
+\rowcolor{lightgray} hinaus & go out (away from the speaker) \\
+
+\bottomrule
+\end{tabular}
+\vspace{0.3cm}
+\newline
+\end{minipage}
+% }}} End MINI-TABLE : spatial_adverbs_hin_her_
+
+
+\vspace{0.25cm}
+\color{flame} \textbf {NOTE :} \color{black} Even though I havent written the
+verb gehen in the table above , the adverbs above are almost always used with
+some movement related verb which is why the translation column has the words go.
+
+
+\end{adjustwidth}
+% }}} END SUB-SUB-SECTION : hin_and_her_
+
+\end{adjustwidth}
+% }}}
+
+% 	SUB-SECTION : causal_adverbs {{{
+\subsection{\bf{Causal/Conjuntional Adverbs (Konjunktionadverbien)}}
+\begin{adjustwidth}{2em}{0pt}
+\label{sec:causal_adverbs}
+
+Causal adverbs help in explaining a previous action. They are indicating the
+cause for the previous action occuring. Therefore they act almost exactly like
+conjunctions between two sentences are are also known as conjunctional adverbs.
+The most common ones are :
+
+% MINI-TABLE : causal_adverbs {{{
+\begin{minipage}{.5\linewidth}
+\vspace{0.3cm}
+\begin{tabular}{l|l}
+\toprule
+\rowcolor{goethe_green}
+\multicolumn{2}{c}
+{\color{white} \textbf{Causal Adverbs} \color{black}} \\
+\midrule
+\rowcolor{white}     also / so         & so / therefore \\
+\rowcolor{lightgray} anstandshalber    & for decencys sake\\
+\rowcolor{white}     dadurch           & through that/ because of that\\
+\rowcolor{lightgray} darum             & therefore / because of that\\
+\rowcolor{white}     demnach           & thus / according to that\\
+\rowcolor{lightgray} demzufolge        & whereby / accordingly\\
+\rowcolor{white}     deshalb           & therefore\\
+\rowcolor{lightgray} folglich          & consequently\\
+\rowcolor{white}     sicherheitshalber & preventatively\\
+\rowcolor{lightgray} somit             & thus / therefore\\
+\rowcolor{white}     trotzdem          & despite that\\
+\rowcolor{lightgray} daher             & therefore\\
+
+\bottomrule
+\end{tabular}
+\vspace{0.3cm}
+\newline
+\end{minipage}
+% }}} End MINI-TABLE : causal_adverbs
+
+\end{adjustwidth}
+% }}}
+
+% 	SUB-SECTION : interrogative_adverbs {{{
+\subsection{\bf{Interrogative adverbs (Frageadverbien)}}
+\begin{adjustwidth}{2em}{0pt}
+\label{sec:interrogative_adverbs}
+
+Used when trying to ask questions. These are basically the W-question words.
+Therefore the main explanation for this topic is provided under the questions
+section.
+
+% MINI-TABLE : interrogative_adverbs_w_questions {{{
+\begin{minipage}{.6\linewidth}
+\vspace{0.3cm}
+\begin{tabular}{l|l}
+\toprule
+\rowcolor{goethe_green}
+\multicolumn{2}{c}
+{\color{white} \textbf{Interrogative Adverbs : W-Questions} \color{black}} \\
+\midrule
+
+\rowcolor{white}     Wer   & Who\\
+\rowcolor{lightgray} Was   & What\\
+\rowcolor{white}     Wann  & When\\
+\rowcolor{lightgray} Wo    & Where\\
+\rowcolor{white}     Warum & Why\\
+
+
+\rowcolor{lightgray} Wofür   & \\
+\rowcolor{white}     Woher &  \\
+\rowcolor{lightgray} Wieso &  \\
+\rowcolor{white}     Wessen &  \\
+\rowcolor{lightgray} Welcher &  \\
+\rowcolor{white}     Wen &  \\
+\rowcolor{lightgray} Wem &  \\
+
+\bottomrule
+\end{tabular}
+\vspace{0.3cm}
+\newline
+\end{minipage}
+% }}} End MINI-TABLE : interrogative_adverbs_w_questions
+% MINI-TABLE : w_questions_wo {{{
+\begin{minipage}{.5\linewidth}
+\vspace{0.3cm}
+\begin{tabular}{l|l}
+\toprule
+\rowcolor{goethe_green}
+\multicolumn{2}{c}
+{\color{white} \textbf{W-Questions : Wo} \color{black}} \\
+\midrule
+
+\rowcolor{white}     Wo &  \\
+\rowcolor{lightgray} Woran &  \\
+\rowcolor{white}     Worauf &  \\
+\rowcolor{lightgray} Woraus &  \\
+\rowcolor{white}     Wobei &  \\
+\rowcolor{lightgray} Wogegen &  \\
+\rowcolor{white}     Worin &  \\
+\rowcolor{lightgray} Womit &  \\
+\rowcolor{white}     Worüber &  \\
+\rowcolor{lightgray} Worum &  \\
+\rowcolor{white}     Wozu &  \\
+
+
+\bottomrule
+\end{tabular}
+\vspace{0.3cm}
+\newline
+\end{minipage}
+% }}} End MINI-TABLE : w_questions_wo
+
+\end{adjustwidth}
+% }}}
+
+% 	SUB-SECTION : adverbs_of_manner {{{
+\subsection{\bf{Adverbs of manner (Modaladverbien)}}
+\begin{adjustwidth}{2em}{0pt}
+\label{sec:adverbs_of_manner}
+
+Modal adverbs or adverbs of manner answer questions of how much of a
+certain thing we are dealing with. So these can be broken up according to how
+much of what we are dealing with. Then we get the following three categories :
+
+\begin{enumerate}[noitemsep]
+	\item Manner : 
+	\item Quantity :
+	\item Restrictive :
+\end{enumerate}
+
+beinahe -- nearly, almost
+besonders -- especially
+bloß -- merely, simply, just
+daneben -- besides, in addition
+ebenfalls -- likewise, also
+ebenso -- equally, similarly
+eigentlich -- actually, in fact
+fast -- almost
+gemeinsam -- in common, jointly
+gern, gerne -- gladly
+hoffentlich -- hopefully
+insgesamt -- in total, altogether
+kaum -- hardly
+leider -- unfortunately
+mindestens -- at least, at minimum
+nämlich -- namely
+natürlich -- naturally
+nebenbei -- by the way, incidentally
+schließlich -- finally
+sehr -- very
+sogar -- even
+sonst -- otherwise
+teilweise -- partially
+übrigens -- by the way
+ungefähr -- approximately
+ursprünglich -- originally
+vielleicht -- perhaps, maybe
+wahrscheinlich -- probably, likely
+wirklich -- really, truly
+ziemlich -- rather, quite
+zufällig -- accidentally, by chance
+zurück -- back
+zusammen -- together
+
+
+% TO BE DONE {{{
+\begin{center}
+\color{red}
+------------------ !! TBD !! TBD !! TBD !! -------------------------
+
+\begin{enumerate}[noitemsep]
+	\item write an actual explanation for this section
+	\item create tables for the words above
+\end{enumerate}
+
+------------------ !! TBD !! TBD !! TBD !! -------------------------
+\color{black}
+\end{center}
+% }}}
+
+\end{adjustwidth}
+% }}}
+
+% 	SUB-SECTION : pronoun_adverbs {{{
+\subsection{\bf{Pronoun Adverbs (Pronomialadverbien)}}
+\begin{adjustwidth}{2em}{0pt}
+\label{sec:pronoun_adverbs}
+
+Pronomial adverbs are words like : daran , damit, darüber, hierbei, hiermit,
+wovon.  Even though they are referred to as Pronoun Adverbs, they are actually a
+combination of a preposition and a pronoun.\\
+
+\noindent
+Each Pronomialadverbien can be broken up into two parts : The stem and
+The root.\\
+
+\noindent The stem of pronomial adverbs is always one of the following three :
+\textbf{\textit{da-}} , \textbf{\textit{hier-}} , \textbf{\textit{wo-}}.\\
+
+\noindent The endings are determined by what we are actually referring to. The
+adverbs ending will change according to wether we are referring to a person or
+to a thing.\\
+
+
+A complete list of all the pronomial adverbs are shown below, although this is
+just meant as a reference. I would not advise memorizing all of these, and
+rather knowing which preposition is accompanied with which verb we are using,
+and using those to form the appropriate pronoun. Anyway here they are :\\
+
+\textbf {Da-} : 
+dabei
+dadurch
+dafür
+dagegen
+dahinter
+damit
+danach
+daneben
+daran
+darauf
+daraus
+darin
+darum
+darunter
+darüber
+davon
+davor
+dazu
+dazwischen
+
+\textbf {Hier-} : 
+hierfür
+hiermit
+hiervon
+
+\textbf {Wo-}  
+wobei
+wodurch
+wofür
+wogegen
+wohinter
+womit
+wonach
+woneben
+woran
+worauf
+woraus
+worin
+worum
+worunter
+worüber
+wovon
+wovor
+wozu
+wozwischen
+
+
+
+
+
+% TO BE DONE {{{
+\begin{center}
+\color{red}
+------------------ !! TBD !! TBD !! TBD !! -------------------------
+
+\begin{enumerate}[noitemsep]
+	\item add sub section for two different types of pronomial adverbs sentences
+	\item clean up the list for da hier and wo
+\end{enumerate}
+
+------------------ !! TBD !! TBD !! TBD !! -------------------------
+\color{black}
+\end{center}
+% }}}
+
+\end{adjustwidth}
+% }}}
+
+\pagebreak
+
+% }}}
+
+% SECTION : conjunctions {{{
+\section{{Conjunctions / Connectors}}
+\label{sec:conjunctions}
+
+‘Because‘ is a very important word. It allows us to explain ourselves with
+complex sentences by joining two clauses (sentences are sometimes called
+clauses) together. In German, you have three different options for the word
+“because”: denn , weil , and da. Denn and weil are the most commonly used
+with da being used very rarely. The three words are synonyms and can be used
+interchangeably with each other. According to which one of the words we use the
+grammatical structure of the clause (sentence) after the conjunction will
+change. Another difference between Denn and weil / da is that Denn has different
+uses, only one of which is ‘because.’ It is also used as a word to help with
+comparisons. Weil, on the other hand, only functions as the conjunction
+‘because.’ Note : Be careful not to confuse denn with dann , which means ‘then.’
+The biggest difference between denn and weil however is that : denn is
+a coordinating conjunction, and weil / da are subordinating conjunctions.
+Coordinating conjunctions do not alter the word order of the clause or sentence.
+So the verbs will retain their regular place at position 2 in the sentence when
+using denn.
+Subordinating conjunctions on the other hand, send the conjugated verb all the
+way to the end of the sentence.
+Several examples using denn and weil are shown below :
+COORDINATING CONJUNCTION : Denn Examples
+Sie geht jeden tag spazieren, denn sie hat einen Hund. (She goes for a walk
+every day because she has a dog.)
+Peter hat Michael nicht gern, denn er ist immer spät. (Peter doesn’t like
+Michael because he is always late.)
+Anna geht nicht zur Party, denn sie hatKopfschmerzen. (Anna isn’t going to the
+party because she has a headache.)
+SUBORDINATING CONJUNCTION : Weil Examples
+Sie geht jeden tag spazieren, weil sie einen Hund hat. (She goes for a walk
+every day because she has a dog)
+Peter hat Michael nicht gern, weil er immer spät ist. (Peter doesn’t like
+Michael because he is always late)
+Anna geht nicht zur Party, weil sie Kopfschmerzen hat. (Anna isn’t going to the
+party because she has a headache)
+
+
+% 	SUB-SECTION : zweiteilige_konnectoren {{{
+\textbf{\subsection{Zweiteilige Konnectoren}}
+\begin{adjustwidth}{2em}{0pt}
+\label{sec:zweiteilige_konnectoren}
+
+
+
+\end{adjustwidth}
+% }}} END SUB-SECTION : zweiteilige_konnectoren
+
+\pagebreak
+% }}}
+
+% SECTION : random {{{
+\section{{RANDOM}}
+\label{sec:random}
+
+
+% 	SUB-SECTION : um_am_im {{{
+\subsection{\bf{Um, Am, Im}}
+\begin{adjustwidth}{2em}{0pt}
+	\label{sec:um_am_im}
+
+	According to whether we are referring to time of day, day or clock time, the
+preposition we use will change. Following are the preposition rules we use with
+the time periods we use them with :
+
+\begin{itemize}[noitemsep]
+	\item \textbf {Um} : Specific / Wall clock time
+	\item \textbf {Am} : Dates , Weedays
+	\item \textbf {Im} : Months , Seasons
+	\item \textbf {Von ... bis} :  Time intervals from von lasting until bis
+	\item \textbf {Ab} : Used when start point is known but not end point
+\end{itemize}
+
+\end{adjustwidth}
+% }}}
+
+% 	SUB-SECTION : um_zu {{{
+\subsection{\bf{um ... zu}}
+\begin{adjustwidth}{2em}{0pt}
+\label{sec:um_zu}
+
+
+
+\end{adjustwidth}
+% }}}
+
+% 	SUB-SECTION : nicht_kein_vs_nur_brauchen_zu {{{
+\textbf{\subsection{nicht / kein vs.\ nur + brauchen + zu}}
+\begin{adjustwidth}{2em}{0pt}
+\label{sec:nicht_kein_vs_nur_brauchen_zu}
+
+
+
+\end{adjustwidth}
+% }}} END SUB-SECTION : nicht_kein_vs_nur_brauchen_zu
+
+% 	SUB-SECTION : infinitive_mit_zu {{{
+\textbf{\subsection{Infinitive mit zu}}
+\begin{adjustwidth}{2em}{0pt}
+\label{sec:infinitive_mit_zu}
+
+
+
+\end{adjustwidth}
+% }}} END SUB-SECTION : infinitive_mit_zu
+
+% 	SUB-SECTION : passive_voice_vs_active_voice {{{
+\textbf{\subsection{Passive Voice vs Active Voice}}
+\begin{adjustwidth}{2em}{0pt}
+\label{sec:passive_voice_vs_active_voice}
+
+
+
+\end{adjustwidth}
+% }}} END SUB-SECTION : passive_voice_vs_active_voice
+
+% 	SUB-SECTION : difference_between_kennen_and_wissen {{{
+\textbf{\subsection{Difference Between Kennen and Wissen}}
+\label{sec:difference_between_kennen_and_wissen}
+
+We use kennen when we are talking about a noun. For example : \\
+
+Kennst du mir ? / Kennst du deises Auto ?\\
+
+We use wissen when we are talking about a known immutable fact.\\
+
+Wisst du mein name ? / Wissen Sie wie alt ich bin ?\\
+
+% }}} END SUB-SECTION : difference_between_kennen_and_wissen
+
+% 	SUB-SECTION : wenn_vs_als {{{
+\textbf{\subsection{Wenn vs Als}}
+\label{sec:wenn_vs_als}
+
+
+% TABLE : als_vs_wenn {{{
+
+\vspace{0.3cm}
+\begin{tabular}{l|l l}
+
+\toprule
+\rowcolor{goethe_green}
+\multicolumn{3}{c}
+{\color{white} \textbf{als vs wenn} \color{black}} \\
+\midrule
+
+\rowcolor{white}    & einmal & mehrmal \\
+\rowcolor{lightgray}Präs & wenn & wenn \\
+\rowcolor{lightgray}vergangenheit & als & wenn \\
+
+
+\bottomrule
+\end{tabular}
+\vspace{0.3cm}
+\newline
+
+% }}} End TABLE : als_vs_wenn
+
+
+% }}} END SUB-SECTION : wenn_vs_als
+
+
+\pagebreak
+
+% }}}
+
+% SECTION : bibliogrpahy {{{
+\section{{Bibliogrpahy}}
+\label{sec:bibliogrpahy}
+
+\begin{itemize}[noitemsep]
+	\item https://www.germanveryeasy.com/
+	\item http://www.thegermanprofessor.com/
+	\item https://deutsch.lingolia.com/en/grammar
+	\item http://germanforenglishspeakers.com/
+\end{itemize}
+\pagebreak
+% }}}
+
+
+
+
+
+\end{document}
+
+% =============================================================================
+% - EOF - EOF - EOF - EOF - EOF - EOF - EOF - EOF - EOF - EOF - EOF - EOF -
+% =============================================================================

@@ -1,0 +1,32 @@
+\begin{thebibliography}{5}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\EM}{\em}
+\providecommand{\RNtxt}{\relax}
+\RNtxt{}
+
+\bibitem[lik(????)]{likegeeks_filesystem}
+Likegeeks Filesystem.
+\newblock ????
+\newblock Accessed: 2019-12-25.
+
+\bibitem[lin(????{\natexlab{a}})]{linux_filesystem}
+Linux Filesystem Explained.
+\newblock ????{\natexlab{a}}.
+\newblock Accessed: 2019-12-25.
+
+\bibitem[lin(????{\natexlab{b}})]{linuxtopia}
+Linuxtopia.
+\newblock ????{\natexlab{b}}.
+\newblock Accessed: 2019-12-25.
+
+\bibitem[wik(????{\natexlab{a}})]{wiki_posix}
+Wikipedia : POSIX.
+\newblock ????{\natexlab{a}}.
+\newblock Accessed: 2019-12-25.
+
+\bibitem[wik(????{\natexlab{b}})]{wiki_filesystem}
+Wikipedia Filesystem.
+\newblock ????{\natexlab{b}}.
+\newblock Accessed: 2019-12-25.
+
+\end{thebibliography}

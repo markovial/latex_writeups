@@ -1,0 +1,1925 @@
+% =============================================================================
+
+% PACKAGES ---------------------------------------------------------------- {{{
+
+% DOCUMENT CLASS , ENCODING , TITLE -------------------------------------- {{{
+
+\documentclass[a4paper,twocolumn,10pt]{article}
+\setlength{\columnsep}{10pt}
+%\setlength{\columnseprule}{1pt}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\title{This will be some super impressive title}
+\author{Ishan Tiwathia}
+\date{\today}
+
+% }}}
+% FONTS ------------------------------------------------------------------ {{{
+
+\usepackage{courier}     % courier font
+\usepackage{fontawesome} % font awesome glyphs
+\usepackage{setspace}    % inter line spacing
+\singlespacing           % set spacing to single spaced
+
+% \onehalfspacing
+% \doublespacing
+% \setstretch{1.1}
+
+
+% }}}
+% PAGE FORMAT ------------------------------------------------------------ {{{
+
+\usepackage[document]{ragged2e} % Text alignment package
+\usepackage{enumitem}           %
+\usepackage{geometry}           %
+\geometry{
+	a4paper,
+	total = {170mm,257mm},
+	top=5mm,
+	left=5mm,
+	right=5mm,
+	bottom=5mm
+}
+
+\usepackage[switch,displaymath,mathlines]{lineno}
+%\modulolinenumbers[5]
+\linenumberfont{\normalfont\large\sffamily}
+\renewcommand\thelinenumber{\color{gray}\arabic{linenumber}}
+\setlength\linenumbersep{0.5cm}
+
+
+% }}}
+% TEXT FORMAT ------------------------------------------------------------ {{{
+
+\usepackage[activate={true,nocompatibility},
+final,
+tracking=true,
+kerning=true,
+spacing=true,
+factor=1100,
+stretch=10,
+shrink=10]{microtype}
+% prevents a certiain amount of overfull hbox badness
+% helps with other margin stuff
+
+\usepackage{verbatim}
+\makeatletter
+\newcommand{\verbatimfont}[1]{\def\verbatim@font{#1}}%
+\makeatother%\verbatimfont{courier}
+
+\usepackage{type1cm}  % Allows font resizing
+\usepackage{lettrine} % Allows font calligraphy (enlarge first char)
+\renewcommand{\LettrineTextFont}{\rmfamily}
+
+
+% }}}
+% TITLE FORMAT  ---------------------------------------------------------- {{{
+
+\usepackage[export]{adjustbox}
+\usepackage{changepage}
+\usepackage[compact,explicit]{titlesec} % Allows customization of section head
+
+% compact : reduces spaces before and after sections
+% explicit : allows for expicit positioning of title statement with #1
+
+% title_format : command,shape,format,label,sep,before,after
+% title-brackets : {}[]{}{}{}{}[] , basically only shape and aftercode have []
+
+% Section Title Settings {{{
+\titleformat {\section}
+	[hang]
+	{\color{black}\Large\bfseries}
+	{}
+	{0em}
+	{
+	\nolinenumbers
+	\begin{section-box}
+	\thesection. #1
+	\end{section-box}
+	}
+[
+\linenumbers
+]
+
+% left before-sep after-sep right-sep
+\titlespacing{\section}{0cm}{0cm}{0cm}[0cm]
+
+% }}}
+
+% Sub-Section Title Settings {{{
+\titleformat {\subsection}
+	[hang]
+	{\color{black}\small\bfseries}
+	{}
+	{0em}
+	{
+	\nolinenumbers
+	\begin{subsection-box}
+		\thesubsection. #1
+	\end{subsection-box}
+	}
+[
+\linenumbers
+]
+
+% left before-sep after-sep right-sep
+\titlespacing*{\subsection}{0cm}{0cm}{0cm}[0em]
+
+% }}}
+
+% Sub-Sub-Section Title Settings {{{
+\titleformat {\subsubsection}
+	[hang]
+	{\color{black}\small\bfseries}
+	{}
+	{0em}
+	{
+	\nolinenumbers
+	\begin{subsubsection-box}
+		\thesubsubsection. #1
+	\end{subsubsection-box}
+	}
+[
+\linenumbers
+]
+
+% left before-sep after-sep right-sep
+\titlespacing{\subsubsection}{0cm}{0cm}{0cm}[0em]
+
+% }}}
+
+% }}}
+% HYPERLINKS ------------------------------------------------------------- {{{
+
+\usepackage{hyperref} % auto hyperlinks toc , refrences
+                      % others can be manually specified
+
+\hypersetup{
+colorlinks = true,
+linktoc    = all,
+citecolor  = purple,
+filecolor  = black,
+linkcolor  = black,
+urlcolor   = black
+}
+
+
+% }}}
+% HEADER / FOOTER -------------------------------------------------------- {{{
+
+\usepackage{fancyhdr} % allows for header and footer customizations
+\pagestyle{fancy}     %
+\fancyhf{}            %
+
+\renewcommand{\headrulewidth}{0.2pt} % draw line at header
+\lhead{\textit{\leftmark}}           % LEFT  : show section name at header
+\rhead{\textit{\thepage}}            % RIGHT : Show page number
+% \chead{ }
+
+\renewcommand{\footrulewidth}{0pt} % draw line at footer
+%\lfoot{\textit{Last Edited : \today}}
+%\cfoot{center foot}
+%\rfoot{\textit{tiwathia \thepage}}
+
+\pagenumbering{arabic} % Specify type of number characters to use
+
+% }}}
+% COLORS ----------------------------------------------------------------- {{{
+
+\usepackage  {xcolor, colortbl}
+
+% Section Colors {{{
+
+\definecolor {section-bg}         {HTML} { 767676}
+\definecolor {subsection-bg}      {HTML} { aaaaaa}
+\definecolor {subsubsection-bg}   {HTML} { dddddd}
+\definecolor {section-font}       {RGB}  { 0,0,0}
+\definecolor {subsection-font}    {RGB}  { 0,0,0}
+\definecolor {subsubsection-font} {RGB}  { 0,0,0}
+
+% }}}
+
+% Table Colors {{{
+
+\definecolor {table-topic}        {HTML} {aeb4b8}
+\definecolor {table-subtopic}     {HTML} {c2c7ca}
+\definecolor {table-subsubtopic}  {HTML} {d6d9db}
+
+\definecolor {table-alternating-blue}    {HTML} {F2F3F4}
+\definecolor {table-alternating-white}    {HTML} {FFFFFF} 
+\definecolor {table-alternating-gray}  {RGB}  { 228,230,221}
+
+\definecolor {cell-lightblue}     {HTML} { b2cce5}
+\definecolor {cell-lightgray}     {HTML} { d8deda}
+\definecolor {cell-lightorange}   {HTML} { F6C396}
+\definecolor {cell-lightred}      {HTML} { F1A099}
+\definecolor {cell-lightgreen}    {HTML} { C6DA7F}
+\definecolor {cell-lightpurple}   {HTML} { CCB2E5}
+\definecolor {cell-lightyellow}   {HTML} { FFF09A}
+
+% }}}
+
+% Tcolorbox Tables {{{
+
+\definecolor {defn-bg}       {HTML} {F2F3F4}
+\definecolor {defn-title}    {HTML} {A9A9A9}
+\definecolor {defn-theword}  {HTML} {EDA72D}
+
+\definecolor {note-bg}       {HTML} {F2F3F4}
+\definecolor {note-theword}  {HTML} {E25A22}
+
+\definecolor {table-bg}      {HTML} {F2F3F4}
+\definecolor {table-title}   {HTML} {A9A9A9}
+\definecolor {table-theword} {HTML} {9ACD32}
+
+\definecolor {image-bg}      {HTML} {F2F3F4}
+\definecolor {image-title}   {HTML} {A9A9A9}
+\definecolor {image-theword} {HTML} {0067A5}
+
+% }}}
+
+\definecolor {gray-dark}          {RGB}  { 71,77,80}
+\definecolor {gray-medium}        {RGB}  { 95,103,107}
+\definecolor {gray-light}         {RGB}  { 228,230,221}
+
+\definecolor {red-flame}       {HTML}  {E25822}
+\definecolor {green-goethe}       {RGB}  {160,200,20}
+\definecolor {green-goethe-light} {RGB}  {219,243,134}
+
+% }}}
+% TABLES & IMAGES -------------------------------------------------------- {{{
+
+\usepackage{booktabs}   %
+\usepackage{multirow}   %
+\usepackage{tabularx}   % allow tables to stretch to page length
+%\usepackage{longtable}  % allows tables to span pages
+%\usepackage{ltablex}    % combination of longtable and tabularx
+\usepackage{xtab} % allows page breaking tables inline
+
+\usepackage{graphicx}   %
+\usepackage{subcaption} %
+\usepackage{wrapfig}    % wrap images around text
+\usepackage{capt-of}    % define captions independent of figures
+\usepackage{float}
+\usepackage{varwidth}
+\graphicspath{{images/}} % define folder path for images
+
+% TCOLORBOX -------------------------------------------------------------- {{{
+
+\usepackage[skins,breakable]{tcolorbox}
+% skins allows use of enhanced options
+% breakable allows breaking boxes between pages
+
+% 	IMAGE TABLES (TCOLORBOX) {{{
+
+\newtcolorbox{image-bg}[2][]{
+	enhanced,
+	colback           = image-bg,
+	colframe          = image-bg,
+	fonttitle         = \bfseries,
+%	width             = 0.98\linewidth,
+	beforeafter skip  = 0.5cm,
+	drop fuzzy shadow = gray,
+%	boxrule         = 0mm,
+%	top             = 0mm,
+%	bottom          = 0mm,
+%	left            = 0mm,
+%	right           = 0mm,
+	title = #2,#1
+}
+
+\newtcolorbox{image-title}[2][]{
+	enhanced,
+	colback           = image-title,
+	colframe          = image-title,
+	fonttitle         = \bfseries,
+	height            = 0.6cm,
+	drop fuzzy shadow = gray,
+	beforeafter skip  = 0pt,
+	grow to left by   = 0.7cm,
+	boxrule           = 0mm,
+	top               = 0.5mm,
+	bottom            = 0mm,
+	left              = 1mm,
+	right             = 0mm,
+	sharp corners,
+	title = #2,#1
+}
+
+\newtcolorbox{image-theword}{
+	enhanced,
+	colback           = image-theword,
+	colframe          = image-theword,
+	fonttitle         = \bfseries,
+	drop fuzzy shadow = gray,
+	width             = 1.8cm,
+	height            = 0.5cm,
+	beforeafter skip  = 0pt,
+	grow to left by   = 0.7cm,
+	boxrule           = 0mm,
+	top               = 0.5mm,
+	bottom            = 0mm,
+	left              = 1mm,
+	right             = 0mm,
+	sharp corners,
+}
+
+\newtcolorbox{image-content}{
+	enhanced,
+	colback         = image-bg,
+	colframe        = image-bg,
+	fonttitle       = \bfseries,
+%	enlarge top by  = -0.5cm,
+	enlarge right by = 5cm,
+	width           = \linewidth,
+	boxrule         = 0mm,
+	top             = 2mm,
+	bottom          = 0mm,
+	left            = 0mm,
+	right           = 0mm,
+%	show bounding box
+}
+
+
+\newtcolorbox{image-caption}[2][]{
+	enhanced,
+	colback           = defn-title,
+	colframe          = defn-title,
+	fonttitle         = \bfseries,
+	halign            = center,
+	height            = 0.6cm,
+	drop fuzzy shadow = gray,
+	before skip       = 5pt,
+%	grow to right by  = 1.055\linewidth,
+	enlarge bottom by = -1cm,
+	boxrule           = 0mm,
+	top               = 0.5mm,
+	bottom            = 0mm,
+	left              = 2mm,
+	right             = 0mm,
+	sharp corners,
+	title = #2,#1
+}
+
+
+% }}}
+
+% 	REGULAR TABLES (TCOLORBOX) {{{
+
+\newtcolorbox{table-bg}[2][]{
+	enhanced,
+%	float,
+%	breakable,
+	colback           = table-bg,
+	colframe          = table-bg,
+	fonttitle         = \bfseries,
+%	width             = 0.98\linewidth,
+	beforeafter skip  = 0.5cm,
+	drop fuzzy shadow = gray,
+%	boxrule         = 0mm,
+%	top             = 0mm,
+%	bottom          = 0mm,
+%	left            = 0mm,
+%	right           = 0mm,
+	title = #2,#1
+}
+
+\newtcolorbox{table-theword}{
+	enhanced,
+	colback           = table-theword,
+	colframe          = table-theword,
+	fonttitle         = \bfseries,
+	drop fuzzy shadow = gray,
+	width             = 1.5cm,
+	height            = 0.5cm,
+	beforeafter skip  = 0pt,
+	grow to left by   = 0.7cm,
+	boxrule           = 0mm,
+	top               = 0.5mm,
+	bottom            = 0mm,
+	left              = 1mm,
+	right             = 0mm,
+	sharp corners,
+}
+
+\newtcolorbox{table-title}[2][]{
+	enhanced,
+	colback           = table-title,
+	colframe          = table-title,
+	fonttitle         = \bfseries,
+	height            = 0.6cm,
+	drop fuzzy shadow = gray,
+	beforeafter skip  = 0pt,
+	grow to left by   = 0.7cm,
+	boxrule           = 0mm,
+	top               = 0.5mm,
+	bottom            = 0mm,
+	left              = 1mm,
+	right             = 0mm,
+	sharp corners,
+	title = #2,#1
+}
+
+
+\newtcolorbox{table-content}{
+	enhanced,
+	colback         = table-bg,
+	colframe        = table-bg,
+	fonttitle       = \bfseries,
+	before skip = 0.5cm,
+%	enlarge top by  = -0.5cm,
+%	enlarge right by = 5cm,
+	width           = \linewidth,
+	boxrule         = 0mm,
+	top             = 2mm,
+	bottom          = 0mm,
+	left            = 0mm,
+	right           = 0mm
+	%show bounding box
+}
+
+% }}}
+
+% 	DEFINITION TABLE (TCOLORBOX) {{{
+
+% \newtcbox[init options]{name}[number][default]{options}
+
+\newtcolorbox{defn-bg}{
+	enhanced,
+	colback           = defn-bg,
+	colframe          = defn-bg,
+	fonttitle         = \bfseries,
+	drop fuzzy shadow = gray,
+	width             = 0.95\linewidth,
+	beforeafter skip  = 0.5cm,
+	arc is angular,
+}
+
+\newtcolorbox{defn-theword}{
+	enhanced,
+	colback           = defn-theword,
+	colframe          = defn-theword,
+	fonttitle         = \bfseries,
+	drop fuzzy shadow = gray,
+	width             = 2.5cm,
+	height            = 0.5cm,
+	beforeafter skip  = 0pt,
+	grow to left by   = 0.7cm,
+	boxrule           = 0mm,
+	top               = 0.5mm,
+	bottom            = 0mm,
+	left              = 1mm,
+	right             = 0mm,
+	sharp corners,
+}
+
+\newtcolorbox{defn-title}[2][]{
+	enhanced,
+	colback           = defn-title,
+	colframe          = defn-title,
+	fonttitle         = \bfseries,
+	height            = 0.6cm,
+	drop fuzzy shadow = gray,
+	beforeafter skip  = 0pt,
+	grow to left by   = 0.7cm,
+	boxrule           = 0mm,
+	top               = 0.5mm,
+	bottom            = 0mm,
+	left              = 1mm,
+	right             = 0mm,
+	sharp corners,
+	title = #2,#1
+}
+
+\newtcolorbox{defn-content}{
+	enhanced,
+	standard jigsaw,%allows transparency
+	opacityback=1,
+	fonttitle       = \bfseries,
+%	enlarge top by  = -0.5cm,
+%	enlarge right by = -5cm,
+%	width           = 13cm,
+	boxrule         = 0mm
+%	top             = 1mm,
+%	bottom          = 0mm,
+%	left            = 4mm,
+%	right           = 10mm,
+%	show bounding box
+}
+
+% }}}
+
+% 	NOTE TABLE (TCOLORBOX) {{{
+
+\newtcolorbox{note-bg}{
+	enhanced,
+	colback           = note-bg,
+	colframe          = note-bg,
+	fonttitle         = \bfseries,
+	drop fuzzy shadow = gray,
+	width             = 0.95\linewidth,
+	before skip  = 0.5cm,
+	after skip  = 0.5cm,
+	arc is angular,
+}
+
+\newtcolorbox{note-theword}{
+	enhanced,
+	colback           = note-theword,
+	colframe          = note-theword,
+	fonttitle         = \bfseries,
+	drop fuzzy shadow = gray,
+	width             = 0.7cm,
+	height            = 0.5cm,
+	beforeafter skip  = 0pt,
+	grow to left by   = 0.7cm,
+	boxrule           = 0mm,
+	top               = 0.5mm,
+	bottom            = 0mm,
+	left              = 1mm,
+	right             = 0mm,
+	sharp corners,
+}
+
+\newtcolorbox{note-content}{
+	enhanced,
+	colback         = note-bg,
+	colframe        = note-bg,
+	fonttitle       = \bfseries,
+%	enlarge top by  = -0.6cm,
+%	enlarge left by = 1.5cm,
+%	width           = 13cm,
+%	boxrule         = 0mm,
+%	top             = 0mm,
+%	bottom          = 0mm,
+%	left            = 0mm,
+%	right           = 0mm
+}
+
+
+% }}}
+
+% 	SECTION TITLES (TCOLORBOX) {{{
+
+\newtcolorbox{section-box}{
+	enhanced,
+	colback          = section-bg,
+	colframe         = section-bg,
+	fonttitle        = \bfseries,
+	width            = \linewidth,
+	height           = 1cm,
+	beforeafter skip = 0pt,
+	sharp corners 
+}
+
+\newtcolorbox{subsection-box}{
+	enhanced,
+	colback           = subsection-bg,
+	colframe          = subsection-bg,
+	fonttitle         = \bfseries,
+	width             = \linewidth,
+	height = 0.6cm,
+	sharp corners,
+	beforeafter skip  = 0pt,
+	boxrule           = 0mm,
+	top               = 0.5mm,
+	bottom            = 0mm,
+	left              = 1mm,
+	right             = 0mm
+}
+
+\newtcolorbox{subsubsection-box}{
+	enhanced,
+	colback   = subsubsection-bg,
+	colframe  = subsubsection-bg,
+	fonttitle = \bfseries,
+	width     = \linewidth,
+	height = 0.6cm,
+	sharp corners,
+	beforeafter skip  = 0pt,
+	boxrule           = 0mm,
+	top               = 0.5mm,
+	bottom            = 0mm,
+	left              = 1mm,
+	right             = 0mm
+}
+
+% }}}
+
+
+
+
+% }}}
+
+% }}}
+% CODE / CODE DISPLAY ---------------------------------------------------- {{{
+
+\usepackage{listings}
+
+
+\definecolor{codebackground}{RGB}{239,239,239}
+\definecolor{codecomments}{RGB}{169,169,169}
+\definecolor{codekeyword}{RGB}{249,38,114}
+\definecolor{codestrings}{HTML}{ECE47E}
+\definecolor{coderegular}{RGB}{39,40,34}
+
+\lstset{
+basicstyle       = \footnotesize\ttfamily,
+backgroundcolor  = \color{codebackground},
+commentstyle     = \color{codecomments}, % comment style
+keywordstyle     = \color{codekeyword},  % keyword style
+stringstyle      = \color{codestrings},  % string literal style
+rulecolor        = \color{black},        % if not set, the frame-color may be changed on line-breaks
+frame            = single,               % adds a frame around the code
+basicstyle       = \footnotesize,        % the size of the fonts that are used for the code
+keepspaces       = true,                 % keeps spaces in text, useful for keeping indentation of code
+tabsize          = 2,                    % sets default tabsize
+breaklines       = true,                 % sets automatic line breaking
+captionpos       = b,                    % sets the caption-position to bottom
+numbers          = left,
+numberstyle      = \tiny,
+numbersep        = 10pt,
+frame            = tb,
+columns          = fixed,
+showstringspaces = false,
+showtabs         = false,
+keepspaces,
+% escapeinside={\%*}{*)},  % if you want to add LaTeX within your code
+framextopmargin=10pt,    % margin for the top background border
+framexbottommargin=10pt, % margin for the bot background border
+framexleftmargin=0pt,    % margin for the left background border
+framexrightmargin=0pt    % margin for the right background border
+}
+
+
+% }}}
+% MATH / GRAPHING  ------------------------------------------------------- {{{
+
+\usepackage{amsmath} % basic math package
+\usepackage{amssymb} % allows more math symbols
+\usepackage{amsthm}  % allows custom therorem,defn,corll etc... definitions
+\usepackage{mathrsfs} % some new fonts for math mode
+
+\newtheorem{mydef}{DEFINITION}[section]
+\newtheorem{myimage}{IMAGE}[section]
+\newtheorem{mytable}{TABLE}[section]
+
+% TIKZ -------------------------------------------------------------------- {{{
+\usepackage{tikz}
+% }}}
+
+% }}}
+% BIBLIOGRAPHY / REFERENCES / FOOTNOTES ---------------------------------- {{{
+
+\usepackage[nottoc,numbib]{tocbibind} % to show references line in toc
+\usepackage[super]{natbib}            % superscript the citations
+
+%\usepackage[superscript,biblabel]{cite}
+%\usepackage{cleveref}
+
+
+\renewcommand{\thefootnote}{\roman{footnote}} % footnote style
+
+
+
+
+% }}}
+% TABLE OF CONTENTS ------------------------------------------------------ {{{
+
+\usepackage{titletoc}
+% margin from RHS
+%\contentsmargin{1cm}
+
+% \dottedcontents {section}[left]{above}{label-width}{leader-width}
+%\dottedcontents{section}[1.8cm]{\bfseries}{3.2em}{1pc}
+%\dottedcontents{subsection}[1.8cm]{}{3.2em}{1pc}
+%\dottedcontents{subsubsection}[1.8cm]{}{2.8em}{1pc}
+
+
+% }}}
+% CUSTOM COMMANDS -------------------------------------------------------- {{{
+
+\newcommand{\newpar}
+{\par \vspace{0.3cm}}
+
+% New Commands : Sectioning {{{
+
+\newcommand{\sectionend}
+{
+\nolinenumbers
+\begin{center}
+%	\textbf{---------}
+	$\blacksquare$
+%	\textbf{---------}
+\end{center}
+\clearpage
+\linenumbers
+}
+
+\newcommand{\subsectionend}
+{
+\nolinenumbers
+%\begin{center}
+%	\textbf{---------}
+%	\hspace{0.2cm}
+%	\textsection 
+%	\hspace{0.05cm}
+%	\thesubsection
+%	\hspace{0.2cm}
+%	\textbf{---------}
+%\end{center}
+\linenumbers
+}
+
+\newcommand{\subsubsectionend}
+{
+\nolinenumbers
+%\begin{center}
+%	\textbf{---------}
+%	\hspace{0.2cm}
+%	\textsection
+%	\hspace{0.05cm}
+%	\thesubsubsection
+%	\hspace{0.2cm}
+%	\textbf{---------}
+%\end{center}
+\linenumbers
+}
+
+% }}}
+
+% New Commands : Symbols {{{
+
+\newcommand{\bulletpoint}
+{ $\bullet$  }
+
+% }}}
+
+% New Commands : Tcolorbox {{{
+
+%	General {{{
+
+\newcommand{\tcolorboxstart}
+{
+	\nolinenumbers
+	\vspace{0.2cm}
+	\centering
+}
+
+\newcommand{\tcolorboxend}
+{
+	\justifying
+	\vspace{0.2cm}
+	\linenumbers
+}
+
+% }}}
+
+%	Definition {{{
+
+\newcommand{\tcolorboxdefinition}[3]
+{
+
+\tcolorboxstart
+\begin{defn-bg}
+
+	\begin{defn-title}[width=7cm]{}
+	{
+		\normalsize \textbf{\textit{#1}}
+	}
+	\end{defn-title}
+
+	\begin{defn-theword}
+	{
+		\footnotesize
+		\begin{mydef} #2
+%		\label{def:{#2}}
+		\end{mydef}
+	}
+	\end{defn-theword}
+
+
+	\begin{defn-content}
+
+	\justify
+	#3
+
+	\end{defn-content}
+
+\end{defn-bg}
+\tcolorboxend
+}
+
+% }}}
+
+%	Note {{{
+
+\newcommand{\tcolorboxnote}[1]
+{
+
+\tcolorboxstart
+\begin{note-bg}
+
+	\begin{note-theword}
+		{\footnotesize \textbf{NOTE} }
+	\end{note-theword}
+
+	\begin{note-content} \justifying
+
+		#1
+
+	\end{note-content}
+
+\end{note-bg}
+\tcolorboxend
+}
+
+
+
+
+% }}}
+
+%	Table {{{
+
+
+\newcommand{\tcolorboxtable}[5]
+{
+\tcolorboxstart
+\begin{table-bg}#3{}
+
+	\begin{table-title}[width=6.5cm]{}
+		\captionsetup{labelformat=empty}
+		\captionof{table}{#1}
+	\end{table-title}
+
+	\begin{table-theword}
+		\footnotesize
+		\begin{mytable}
+		#2
+		\end{mytable}
+	\end{table-theword}
+
+	\begin{table-content}
+	\begin{tabularx}{\textwidth}{#4}
+
+		#5
+		
+	\end{tabularx}
+	\end{table-content}
+
+\end{table-bg}
+\tcolorboxend
+}
+
+% }}}
+
+%	Image {{{
+
+\newcommand{\tcolorboxfigure}[4]
+{
+\tcolorboxstart
+\begin{image-bg}[width=\linewidth]{}
+
+	\begin{image-title}[width=5cm]{}
+		\captionsetup{labelformat=empty}
+		\captionof{figure}{#1}
+	\end{image-title}
+
+	\begin{image-theword}
+		\footnotesize
+		\begin{myimage}
+		#2
+		\end{myimage}
+	\end{image-theword}
+
+	\begin{image-content}
+		\includegraphics[width=\linewidth]{#3}
+		\href{#4}{Source}
+	\end{image-content}
+
+\end{image-bg}
+\tcolorboxend
+}
+
+% }}}
+
+% }}}
+
+% New Commands : Tables {{{
+
+\newcommand{\tabularxtable}[3]
+{
+
+	\vspace{0.5cm}
+	\nolinenumbers
+
+	\begin{tabularx}{#1}{#2}
+		#3
+	\end{tabularx}
+
+	\linenumbers
+	\vspace{0.5cm}
+}
+
+\newcommand{\xtabulartable}[2]
+{
+
+	\vspace{0.25cm}
+	\nolinenumbers
+
+	\begin{xtabular}{#1}
+		#2
+	\end{xtabular}
+
+	\vspace{0.25cm}
+	\linenumbers
+}
+
+
+
+
+
+
+
+% }}}
+
+% New Commands : References {{{
+
+\newcommand{\refsec}[1]
+{
+	\hyperref[sec:#1]
+	{
+		(\textsection~\ref{sec:#1})
+	}
+}
+
+\newcommand{\refssec}[1]
+{
+	\hyperref[sec:#1]
+	{
+		(\textsection~\ref{ssec:#1})
+	}
+}
+
+\newcommand{\refsssec}[1]
+{
+	\hyperref[sec:#1]
+	{
+		(\textsection~\ref{sssec:#1})
+	}
+}
+
+\newcommand{\refdef}[1]
+{
+	\hyperref[def:#1]
+	{
+		\textit{(Def.~\ref{def:#1})}
+	}
+}
+
+\newcommand{\reffig}[1]
+{
+	\hyperref[fig:#1]
+	{
+		(Fig.~\ref{fig:#1})
+	}
+}
+
+\newcommand{\reftable}[1]
+{
+	\hyperref[table:#1]
+	{
+		(Table.~\ref{table:#1})
+	}
+}
+% }}}
+
+% }}}
+% TESTING ---------------------------------------------------------------- {{{
+
+\usepackage{lipsum}    % generates filler text
+\usepackage{blindtext} % generates non-latin filler text
+
+% }}}
+
+\usetikzlibrary{arrows} 
+\usetikzlibrary{positioning}
+
+
+
+% }}}
+
+% ============================================================================ 
+\begin{document}
+% ----------------------------------------------------------------------------- 
+% TOC & SETUP {{{
+\raggedbottom
+%\onecolumn
+
+%\tableofcontents
+%\pagebreak
+
+%\listoftables
+\clearpage
+\twocolumn
+%\justifying
+
+
+%\linenumbers
+
+% }}}
+% ----------------------------------------------------------------------------- 
+
+
+% TABULARX TABLE : definite_articles {{{
+
+\textbf {Definite Articles}
+\tabularxtable
+{0.99\linewidth}
+{l|XXXX}
+{
+
+		&
+		\cellcolor{table-subtopic} \textbf{\textit{MAS.}}  &
+		\cellcolor{table-subtopic} \textbf{\textit{NEU.}}  &
+		\cellcolor{table-subtopic} \textbf{\textit{FEM.}}  &
+		\cellcolor{table-subtopic} \textbf{\textit{PLU.}} \\
+
+		\midrule
+
+		\cellcolor{table-subtopic} \textbf{\textit{NOM.}} &
+		\cellcolor{cell-lightpurple}  der            &
+		\cellcolor{cell-lightorange}  das            &
+		\cellcolor{cell-lightblue}    die            &
+		\cellcolor{cell-lightblue}    die \\
+
+		\cellcolor{table-subtopic} \textbf{\textit{ACC.}} &
+		\cellcolor{cell-lightgreen}   den            &
+		\cellcolor{cell-lightorange}  das            &
+		\cellcolor{cell-lightblue}    die            &
+		\cellcolor{cell-lightblue}    die \\
+
+		\cellcolor{table-subtopic} \textbf{\textit{DAT.}} &
+		\cellcolor{cell-lightred}    dem             &
+		\cellcolor{cell-lightred}    dem             &
+		\cellcolor{cell-lightpurple} der             &
+		\cellcolor{cell-lightgreen}  den \\
+
+		\cellcolor{table-subtopic} \textbf{\textit{GEN.}} &
+		\cellcolor{cell-lightyellow} des               &
+		\cellcolor{cell-lightyellow} des               &
+		\cellcolor{cell-lightpurple} der               &
+		\cellcolor{cell-lightpurple} der \\
+
+
+
+}
+
+% }}} End TABLE : definite_articles
+
+% TABULARX TABLE : indefinite_articles {{{
+\textbf {Indefinite Articles}
+\tabularxtable
+{0.99\linewidth}
+{l|XXXX}
+{
+
+		&
+		\cellcolor{table-subtopic} \textbf{\textit{MAS.}} &
+		\cellcolor{table-subtopic} \textbf{\textit{NEU.}}  &
+		\cellcolor{table-subtopic} \textbf{\textit{FEM.}}  &
+		\cellcolor{table-subtopic} \textbf{\textit{PLU.}}\\
+
+\midrule
+
+\cellcolor{table-subtopic} \textbf{\textit{NOM.}} &
+\cellcolor{cell-lightpurple}  ein            &
+\cellcolor{cell-lightorange}  ein            &
+\cellcolor{cell-lightblue} eine              &
+\cellcolor{table-bg} - \\
+
+\cellcolor{table-subtopic} \textbf{\textit{ACC.}} &
+\cellcolor{cell-lightgreen} einen            &
+\cellcolor{cell-lightorange}  ein            &
+\cellcolor{cell-lightblue}  eine             &
+\cellcolor{table-bg} - \\
+
+\cellcolor{table-subtopic} \textbf{\textit{DAT.}} &
+\cellcolor{cell-lightred} einem              &
+\cellcolor{cell-lightred} einem              &
+\cellcolor{cell-lightpurple} einer           &
+\cellcolor{table-bg} - \\
+
+\cellcolor{table-subtopic} \textbf{\textit{GEN.}} &
+\cellcolor{cell-lightyellow} eines           &
+\cellcolor{cell-lightyellow} eines           &
+\cellcolor{cell-lightpurple} einer           &
+\cellcolor{table-bg} - \\
+
+
+
+}
+
+% }}} End TABLE : indefinite_articles
+
+% TABULARX TABLE : adjective_endings_definite {{{
+
+\textbf {Adjective Endings : Definite}
+\tabularxtable
+{0.99\linewidth}
+{l|XXXX}
+{
+
+&
+\cellcolor{table-subtopic} \textbf{\textit{MAS.}} &
+\cellcolor{table-subtopic} \textbf{\textit{NEU.}}  &
+\cellcolor{table-subtopic} \textbf{\textit{FEM.}}  &
+\cellcolor{table-subtopic} \textbf{\textit{PLU.}} \\
+\midrule
+
+\cellcolor{table-subtopic} \textbf{\textit{NOM.}} &
+\cellcolor{cell-lightred}  -e                &
+\cellcolor{cell-lightred}  -e                &
+\cellcolor{cell-lightred}  -e                &
+\cellcolor{cell-lightblue} -en \\
+
+\cellcolor{table-subtopic} \textbf{\textit{ACC.}} &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightred}  -e                &
+\cellcolor{cell-lightred}  -e                &
+\cellcolor{cell-lightblue} -en \\
+
+\cellcolor{table-subtopic} \textbf{\textit{DAT.}} &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightblue} -en \\
+
+\cellcolor{table-subtopic} \textbf{\textit{GEN.}} &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightblue} -en \\
+
+
+
+
+}
+
+% }}} End TABLE : adjective_endings_definite
+
+% TABULARX TABLE : adjective_endings_indefinite {{{
+
+\textbf {Adjective Endings : Indefinite}
+\tabularxtable
+{0.99\linewidth}
+{l|XXXX}
+{
+
+&
+\cellcolor{table-subtopic} \textbf{\textit{MAS.}} &
+\cellcolor{table-subtopic} \textbf{\textit{NEU.}}  &
+\cellcolor{table-subtopic} \textbf{\textit{FEM.}}  &
+\cellcolor{table-subtopic} \textbf{\textit{PLU.}} \\
+\midrule
+
+\cellcolor{table-subtopic} \textbf{\textit{NOM.}} &
+\cellcolor{cell-lightgreen}   -er             &
+\cellcolor{cell-lightorange} -es             &
+\cellcolor{cell-lightred}    -e              &
+\cellcolor{cell-lightblue}   -en \\
+
+\cellcolor{table-subtopic} \textbf{\textit{ACC.}} &
+\cellcolor{cell-lightblue}   -en             &
+\cellcolor{cell-lightorange} -es             &
+\cellcolor{cell-lightred}    -e              &
+\cellcolor{cell-lightblue}   -en \\
+
+\cellcolor{table-subtopic} \textbf{\textit{DAT.}} &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightblue} -en \\
+
+\cellcolor{table-subtopic} \textbf{\textit{GEN.}} &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightblue} -en \\
+
+
+
+
+}
+
+% }}} End TABLE : adjective)endings_indefinite
+
+% TABULARX TABLE : adjective_endings_no_article {{{
+
+\textbf {Adjective Endings : No Article}
+\tabularxtable
+{0.99\linewidth}
+{l|XXXX}
+{
+
+&
+\cellcolor{table-subtopic} \textbf{\textit{MAS.}} &
+\cellcolor{table-subtopic} \textbf{\textit{NEU.}}  &
+\cellcolor{table-subtopic} \textbf{\textit{FEM.}}  &
+\cellcolor{table-subtopic} \textbf{\textit{PLU.}} \\
+\midrule
+
+\cellcolor{table-subtopic} \textbf{\textit{NOM.}} &
+\cellcolor{cell-lightgreen}   -er             &
+\cellcolor{cell-lightorange} -es             &
+\cellcolor{cell-lightred}    -e              &
+\cellcolor{cell-lightred}   -e\\
+
+\cellcolor{table-subtopic} \textbf{\textit{ACC.}} &
+\cellcolor{cell-lightblue}   -en             &
+\cellcolor{cell-lightorange} -es             &
+\cellcolor{cell-lightred}    -e              &
+\cellcolor{cell-lightred}   -e \\
+
+\cellcolor{table-subtopic} \textbf{\textit{DAT.}} &
+\cellcolor{cell-lightyellow} -em               &
+\cellcolor{cell-lightyellow} -em               &
+\cellcolor{cell-lightgreen} -er              &
+\cellcolor{cell-lightblue} -en \\
+
+\cellcolor{table-subtopic} \textbf{\textit{GEN.}} &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightblue} -en               &
+\cellcolor{cell-lightgreen} -er               &
+\cellcolor{cell-lightgreen} -er \\
+
+
+
+
+}
+
+% }}} End TABLE : adjective_endings no article
+
+\pagebreak
+
+% TABULARX TABLE : pronouns_realtive {{{
+
+\textbf {Pronouns: Relative}
+\tabularxtable
+{0.99\linewidth}
+{l|XXXX}
+{
+
+		&
+		\cellcolor{table-subtopic} \textbf{\textit{MAS.}}  &
+		\cellcolor{table-subtopic} \textbf{\textit{NEU.}}  &
+		\cellcolor{table-subtopic} \textbf{\textit{FEM.}}  &
+		\cellcolor{table-subtopic} \textbf{\textit{PLU.}} \\
+
+		\midrule
+
+		\cellcolor{table-subtopic} \textbf{\textit{NOM.}} &
+		\cellcolor{cell-lightpurple}  der            &
+		\cellcolor{cell-lightorange}  das            &
+		\cellcolor{cell-lightblue}    die            &
+		\cellcolor{cell-lightblue}    die \\
+
+		\cellcolor{table-subtopic} \textbf{\textit{ACC.}} &
+		\cellcolor{cell-lightgreen}   den            &
+		\cellcolor{cell-lightorange}  das            &
+		\cellcolor{cell-lightblue}    die            &
+		\cellcolor{cell-lightblue}    die \\
+
+		\cellcolor{table-subtopic} \textbf{\textit{DAT.}} &
+		\cellcolor{cell-lightred}    dem             &
+		\cellcolor{cell-lightred}    dem             &
+		\cellcolor{cell-lightpurple} der             &
+		\cellcolor{cell-lightgreen}  denen \\
+
+		\cellcolor{table-subtopic} \textbf{\textit{GEN.}} &
+		\cellcolor{cell-lightyellow} dessen               &
+		\cellcolor{cell-lightyellow} dessen               &
+		\cellcolor{cell-lightpurple} deren               &
+		\cellcolor{cell-lightpurple} deren \\
+
+}
+
+% }}} End TABLE : Pronouns realtive
+
+% TABULARX TABLE : pronouns_possessive {{{
+
+\textbf {Pronouns: Possessive}
+\tabularxtable
+{0.99\linewidth}
+{l|XXXXXXXX}
+{
+
+		&
+		\cellcolor{table-subtopic}  ich                   &
+		\cellcolor{table-subtopic}  du                    &
+		\cellcolor{table-subtopic}  er                    &
+		\cellcolor{table-subtopic}  sie                   &
+		\cellcolor{table-subtopic}  es                    &
+		\cellcolor{table-subtopic}  wir                   &
+		\cellcolor{table-subtopic}  ihr                   &
+		\cellcolor{table-subtopic}  sie \\
+
+		\cellcolor{table-subtopic} \textbf{\textit{NOM.}} &
+		\cellcolor{white}  mein                            &
+		\cellcolor{white}  dein                             &
+		\cellcolor{white}  sein                             &
+		\cellcolor{white}  ihr                            &
+		\cellcolor{white}  sein                             &
+		\cellcolor{white}  unser                            &
+		\cellcolor{white}  euer                            &
+		\cellcolor{white}  ihr \\
+
+		\cellcolor{table-subtopic} \textbf{\textit{ACC.}} & \\
+
+		\cellcolor{table-subtopic} \textbf{\textit{DAT.}} & \\
+		\cellcolor{table-subtopic} \textbf{\textit{GEN.}} & \\
+
+}
+
+% }}} End TABLE : Pronouns Possessive
+
+% TABULARX TABLE : pronouns_reflexive {{{
+
+\textbf {Pronouns: Reflexive}
+\tabularxtable
+{0.99\linewidth}
+{l|XXXXXXXX}
+{
+
+		&
+		\cellcolor{table-subtopic}  ich                   &
+		\cellcolor{table-subtopic}  du                    &
+		\cellcolor{table-subtopic}  er                    &
+		\cellcolor{table-subtopic}  sie                   &
+		\cellcolor{table-subtopic}  es                    &
+		\cellcolor{table-subtopic}  wir                   &
+		\cellcolor{table-subtopic}  ihr                   &
+		\cellcolor{table-subtopic}  sie \\
+
+		\cellcolor{table-subtopic} \textbf{\textit{NOM.}} &
+		\cellcolor{white}  mein                           &
+		\cellcolor{white}  dein                           &
+		\cellcolor{white}  sein                           &
+		\cellcolor{white}  ihr                            &
+		\cellcolor{white}  sein                           &
+		\cellcolor{white}  unser                          &
+		\cellcolor{white}  euer                           &
+		\cellcolor{white}  ihr \\
+
+		\cellcolor{table-subtopic} \textbf{\textit{ACC.}} & \\
+		\cellcolor{table-subtopic} \textbf{\textit{DAT.}} & \\
+		\cellcolor{table-subtopic} \textbf{\textit{GEN.}} & \\
+
+}
+
+% }}} End TABLE : Pronouns reflexive
+
+% TABULARX TABLE : verbs_vorgangspassiv {{{
+
+\textbf {Verbs : Vorgangspassiv}
+\tabularxtable
+{0.95\linewidth}
+{lllllX}
+{
+
+
+\cellcolor{table-title} \textbf{Präs}  & : & Ich & \textbf{\textcolor{green-goethe}{werde}} & informiert & \\
+\cellcolor{table-title} \textbf{Prät}  & : & Ich & \textbf{\textcolor{green-goethe}{wurde}} & informiert & \\
+\cellcolor{table-title} \textbf{Perf}  & : & Ich & \textbf{\textcolor{green-goethe}{bin}} & informiert & worden \\
+\cellcolor{table-title} \textbf{Plqu}  & : & Ich &\textbf{\textcolor{green-goethe}{war}} & informiert & worden \\
+\cellcolor{table-title} \textbf{Mod} & : & Ich & \textbf{\textcolor{green-goethe}{kann}}  & informiert & werden \\
+\cellcolor{table-title} \textbf{Fut} & : & Ich & \textbf{\textcolor{green-goethe}{werde}} & informiert & werden \\
+
+}
+
+% }}} End TABULARX TABLE : Vorgangspassiv
+
+% TABULARX TABLE : verbs_modal {{{
+\textbf {Verbs : Modal}
+\tabularxtable
+{0.99\linewidth}
+{X|X|X|X|X|X|X}
+{
+
+	&
+	\cellcolor{gray-light} \textbf{ich} &
+	\cellcolor{gray-light} \textbf{du} &
+	\cellcolor{gray-light} \textbf{er/sie/es} &
+	\cellcolor{gray-light} \textbf{wir} &
+	\cellcolor{gray-light} \textbf{ihr} &
+	\cellcolor{gray-light} \textbf{sie/Sie} \\
+
+	\midrule
+
+	\cellcolor{gray-light} \textbf{\textit{dürfen}} &
+	\cellcolor{white} darf                          &
+	\cellcolor{white} darfst                        &
+	\cellcolor{white} darf                          &
+	\cellcolor{white} dürfen                        &
+	\cellcolor{white} dürft                         &
+	\cellcolor{white} dürfen \\
+
+	\cellcolor{gray-light} \textbf{\textit{können}} &
+	\cellcolor{white} kann                          &
+	\cellcolor{white} kannst                        &
+	\cellcolor{white} kann                          &
+	\cellcolor{white} können                        &
+	\cellcolor{white} könnt                         &
+	\cellcolor{white} können\\
+
+	\cellcolor{gray-light} \textbf{\textit{mögen}} &
+	\cellcolor{white} mag                          &
+	\cellcolor{white} magst                        &
+	\cellcolor{white} mag                          &
+	\cellcolor{white} mögen                        &
+	\cellcolor{white} mögt                         &
+	\cellcolor{white} mögen\\
+
+	\cellcolor{gray-light} \textbf{\textit{wollen}} &
+	\cellcolor{white} will                          &
+	\cellcolor{white} willst                        &
+	\cellcolor{white} will                          &
+	\cellcolor{white} wollen                        &
+	\cellcolor{white} wollt                         &
+	\cellcolor{white} wollen\\
+
+	\cellcolor{gray-light} \textbf{\textit{sollen}} &
+	\cellcolor{white} soll                          &
+	\cellcolor{white} sollst                        &
+	\cellcolor{white} soll                          &
+	\cellcolor{white} sollen                        &
+	\cellcolor{white} sollt                         &
+	\cellcolor{white} sollen\\
+
+	\cellcolor{gray-light} \textbf{\textit{mussen}} &
+	\cellcolor{white} muss                          &
+	\cellcolor{white} musst                         &
+	\cellcolor{white} muss                          &
+	\cellcolor{white} müssen                        &
+	\cellcolor{white} müsst                         &
+	\cellcolor{white} müssen\\
+
+}
+
+% }}} End TABLE : verbs modal
+
+% TABULARX TABLE : verbs_konjunktiv_ii {{{
+\textbf {Verbs : Konjunktiv II}
+\tabularxtable
+{0.99\linewidth}
+{X|X|X|X|X|X|X}
+{
+
+	&
+	\cellcolor{gray-light} \textbf{ich} &
+	\cellcolor{gray-light} \textbf{du} &
+	\cellcolor{gray-light} \textbf{er/sie/es} &
+	\cellcolor{gray-light} \textbf{wir} &
+	\cellcolor{gray-light} \textbf{ihr} &
+	\cellcolor{gray-light} \textbf{sie/Sie} \\
+
+	\midrule
+
+	\cellcolor{gray-light} \textbf{\textit{haben}} &
+	\cellcolor{white} hätte                        &
+	\cellcolor{white} hättest                      &
+	\cellcolor{white} hätte                        &
+	\cellcolor{white} hätten                       &
+	\cellcolor{white} hättet                       &
+	\cellcolor{white} hätten \\
+
+	\cellcolor{gray-light} \textbf{\textit{sein}} &
+	\cellcolor{white} wäre                        &
+	\cellcolor{white} wär(e)st                    &
+	\cellcolor{white} wäre                        &
+	\cellcolor{white} wären                       &
+	\cellcolor{white} wäre(e)t                    &
+	\cellcolor{white} wären \\
+
+	\cellcolor{gray-light} \textbf{\textit{werden}} &
+	\cellcolor{white} würde                         &
+	\cellcolor{white} würdest                       &
+	\cellcolor{white} würde                         &
+	\cellcolor{white} würden                        &
+	\cellcolor{white} würdet                        &
+	\cellcolor{white} würden \\
+
+	\cellcolor{gray-light} \textbf{\textit{können}} &
+	\cellcolor{white} könnte                        &
+	\cellcolor{white} könntest                      &
+	\cellcolor{white} könnte                        &
+	\cellcolor{white} könnten                       &
+	\cellcolor{white} könntet                       &
+	\cellcolor{white} können \\
+
+	\cellcolor{gray-light} \textbf{\textit{sollen}} &
+	\cellcolor{white} sollte                        &
+	\cellcolor{white} solltest                      &
+	\cellcolor{white} sollte                        &
+	\cellcolor{white} sollten                       &
+	\cellcolor{white} solltet                       &
+	\cellcolor{white} sollten \\
+
+
+}
+
+% }}} End TABLE : Verbs Konjunktiv II
+
+% TABULARX TABLE : verbs_positions {{{
+
+\tabularxtable
+{0.99\linewidth}
+{llX}
+{
+
+	falls   & \\
+	wenn    & \\
+	dass    & \\
+	dadurch & \\
+	indem   & \\
+	wodurch & \\
+	da      & \\
+	ob    & \\
+	sofern    & \\
+
+	aber    & \\
+	denn    & \\
+	und    & \\
+	sondern    & \\
+	oder    & \\
+
+
+	sodass    & \\
+	so \ldots dass    & \\
+
+	dermaßen \ldots dass    & \\
+	derart \ldots dass    & \\
+	zu \ldots als dass    & \\
+
+	weshalb    & \\
+	wegen    & \\
+	weswegen    & \\
+	deswegen    & \\
+
+	trotz    & \\
+	trotzdem    & \\
+
+
+
+	obwohl    & \\
+	zumal    & \\
+	auch wenn    & \\
+	wobei    & \\
+	ungeachtet dessen , dass  & \\
+
+	während    & \\
+	nachdem    & \\
+	bevor    & \\
+	ehe   & \\
+	bis    & \\
+	seit(dem)    & \\
+	wenn    & \\
+	als    & \\
+	solange    & \\
+	sobald    & \\
+	sowie    & \\
+	sooft    & \\
+	    & \\
+	    & \\
+	    & \\
+	    & \\
+	    & \\
+	    & \\
+	    & \\
+	    & \\
+
+und 	and
+aber 	but
+denn 	because
+oder 	or
+sondern 	but (as in but rather)
+beziehungsweise 	or, or more precisely
+doch 	but, however
+jedoch 	but, however
+allein (rare expression) 	but unfortunately
+bevor 	before
+nachdem 	after
+ehe 	before
+seit, seitdem 	since (indicating time, not a causality)
+während 	while, during, whereas
+als 	when (in describing past events)
+wenn 	when (describing present and future), if, whenever
+wann 	when (for questions only)
+bis 	until, by
+obwohl 	although
+als ob, als wenn, als 	as if
+sooft 	as often as (whenever)
+sobald 	as soon as
+solange 	as long as
+da 	because
+indem 	by … -ing
+weil 	because
+ob 	whether*, if (*only use when you could say “whether” in English as well)
+falls 	in case, if
+wenn 	if, when
+um … zu 	in order to
+dass 	that
+sodass 	so that
+damit 	so that
+}
+
+% }}} End TABLE : verbs_positions
+
+% TABULARX TABLE : konnektoren_zweiteilige {{{
+
+\tabularxtable
+{0.99\linewidth}
+{llX}
+{
+entweder … oder 	either … or
+sowohl … als auch 	both … and
+weder … noch 	neither … nor
+einerseits, … andererseits 	on the one hand … on the other hand
+mal … mal 	sometimes … sometimes
+teils … teils 	partly … partly
+
+}
+
+% }}} End TABLE : Konnektoren zweiteilige
+
+% TABULARX TABLE : passive {{{
+
+\tabularxtable
+{0.99\linewidth}
+{llX}
+{
+
+
+}
+
+% }}} End TABLE : Passive
+
+% TABULARX TABLE : prepositions {{{
+
+\tabularxtable
+{0.99\linewidth}
+{XXX}
+{
+
+	Deutsch & Fall & Englisch  \\
+		% Akkusativ
+		\midrule
+
+
+		\cellcolor{white} bis &
+		\cellcolor{white} until , up-to \\
+
+		\cellcolor{white} durch &
+		\cellcolor{white} through \\
+
+		\cellcolor{white} entlang &
+		\cellcolor{white} along \\
+
+		\cellcolor{white} für &
+		\cellcolor{white} for \\
+
+		\cellcolor{white} gegen &
+		\cellcolor{white} against / opposite \\
+
+		\cellcolor{white} ohne &
+		\cellcolor{white}  without\\
+
+		\cellcolor{white} um \ldots herum &
+		\cellcolor{white}  around\\
+
+		\cellcolor{white} hinter &
+		\cellcolor{white}  behind\\
+
+		\cellcolor{white} in &
+		\cellcolor{white} in , inside \\
+
+		\cellcolor{white} neben &
+		\cellcolor{white} next to , beside \\
+
+		\cellcolor{white} über &
+		\cellcolor{white} over , above \\
+
+		\cellcolor{white} unter &
+		\cellcolor{white} among ,under, below \\
+
+
+		\cellcolor{white} vor &
+		\cellcolor{white} ahead of, in front of \\
+
+	\cellcolor{white} zwischen &
+		\cellcolor{white}  between\\
+
+
+
+		\cellcolor{white} wider &
+		\cellcolor{white} against \\
+
+		\midrule
+
+		% dative
+
+		\cellcolor{white} von &
+		\cellcolor{white} of / from \\
+
+		\cellcolor{white} zu &
+		\cellcolor{white} to / for \\
+
+		\cellcolor{white} seit &
+		\cellcolor{white} since \\
+
+		\cellcolor{white} nach &
+		\cellcolor{white} towards / to / past (time) / after\\
+
+		\cellcolor{white} aus &
+		\cellcolor{white} out of / from / made of \\
+
+		\cellcolor{white} mit &
+		\cellcolor{white} with\\
+
+		\cellcolor{white} bei &
+		\cellcolor{white}  with / by\\
+
+		\cellcolor{white} außer &
+		\cellcolor{white}  besides\\
+
+		\cellcolor{white} gegenüber &
+		\cellcolor{white} against \\
+
+		% wechsel
+		% akksativ : major movement
+		% dativ : minimal / no movement
+		% prep is same only the noun changes
+
+		\cellcolor{white} zwischen &
+		\cellcolor{white} between\\
+
+
+		\cellcolor{white} unter &
+		\cellcolor{white} under\\
+
+		\cellcolor{white} neben &
+		\cellcolor{white} next to\\
+
+		\cellcolor{white} über &
+		\cellcolor{white} above\\
+
+		\cellcolor{white} hinter &
+		\cellcolor{white} behind \\
+
+		\cellcolor{white} an &
+		\cellcolor{white} at \\
+
+		\cellcolor{white} vor &
+		\cellcolor{white} in front of \\
+
+		\cellcolor{white} auf &
+		\cellcolor{white} on \\
+
+		\cellcolor{white} in &
+		\cellcolor{white} in \\
+
+
+
+}
+
+% }}} End TABLE : Prepositions
+
+% Konjunktiv I : sein , haben , können {{{
+
+\textbf{Konjunktiv I : Sein , Haben , Können}
+\begin{table}[htpb]
+	\centering
+%	\caption{Konjunktiv I : Sein , Haben , Können}
+%	\label{tab:label}
+	\begin{tabular}{llll}
+
+ich  & sei
+     & hab\textcolor{cell-lightgreen}{\textbf{e}} \textcolor{cell-lightred}{\textbf{(hätte)}}
+     & könn\textcolor{cell-lightgreen}{\textbf{e}}
+	 \\
+
+
+du & sei\textcolor{cell-lightgreen}{\textbf{est}}
+   & hab\textcolor{cell-lightgreen}{\textbf{est}} \textcolor{cell-lightred}{\textbf{(hättest)}}
+& könn\textcolor{cell-lightgreen}{\textbf{est}}
+\\
+
+
+er & sei
+   & hab\textcolor{cell-lightgreen}{\textbf{e}}
+   & könn\textcolor{cell-lightgreen}{\textbf{e}}
+\\
+
+wir & sei\textcolor{cell-lightgreen}{\textbf{en}}
+    & hab\textcolor{cell-lightgreen}{\textbf{en}} \textcolor{cell-lightred}{\textbf{(hätten)}}
+    & könn\textcolor{cell-lightgreen}{\textbf{en}} \textcolor{cell-lightred}{\textbf{(könnten)}}
+\\
+
+ihr & sei\textcolor{cell-lightgreen}{\textbf{et}}
+    & hab\textcolor{cell-lightgreen}{\textbf{et}} \textcolor{cell-lightred}{\textbf{(hättet)}}
+    & könn\textcolor{cell-lightgreen}{\textbf{est}}
+\\
+
+Sie & sei\textcolor{cell-lightgreen}{\textbf{en}}
+    & hab\textcolor{cell-lightgreen}{\textbf{en}} \textcolor{cell-lightred}{\textbf{(hätten)}}
+    & könn\textcolor{cell-lightgreen}{\textbf{en}} \textcolor{cell-lightred}{\textbf{(könnten)}}
+\\
+
+	\end{tabular}
+\end{table}
+% }}}
+
+% Konjunktiv I : regular verbs {{{
+
+\textbf{Konjunktiv I : Regular Verbs}
+\begin{table}[htpb]
+	\centering
+%	\caption{Konjunktiv I : Sein , Haben , Können}
+%	\label{tab:label}
+	\begin{tabular}{llll}
+
+ich & brauch\textcolor{cell-lightgreen}{\textbf{e}}
+&  \textcolor{cell-lightred}{\textbf{Konj II}}
+& würd\textcolor{cell-lightgreen}{\textbf{e}} brauchen
+
+\\
+
+
+du & brauch\textcolor{cell-lightgreen}{\textbf{est}}
+& \textcolor{cell-lightred}{\textbf{Konj II}}
+& würd\textcolor{cell-lightgreen}{\textbf{est}} brauchen
+
+\\
+
+
+er & brauch\textcolor{cell-lightgreen}{\textbf{e}}
+& 
+&
+\\
+
+wir & brauch\textcolor{cell-lightgreen}{\textbf{en}}
+& \textcolor{cell-lightred}{\textbf{Konj II}}
+& würd\textcolor{cell-lightgreen}{\textbf{en}} brauchen
+
+\\
+
+ihr & brauch\textcolor{cell-lightgreen}{\textbf{et}}
+& \textcolor{cell-lightred}{\textbf{Konj II}}
+& würd\textcolor{cell-lightgreen}{\textbf{et}} brauchen
+
+\\
+
+Sie & brauch\textcolor{cell-lightgreen}{\textbf{en}} 
+& \textcolor{cell-lightred}{\textbf{Konj II}}
+& würd\textcolor{cell-lightgreen}{\textbf{en}} brauchen
+\\
+
+	\end{tabular}
+\end{table}
+
+
+% }}}
+
+
+trennbar
+
+immer untrennbar
+miss , ent , be , ge , zer , ver , er
+
+both tren and untrenn
+durch , hinter, über , um , unter , voll , wider , wieder
+
+
+
+
+
+
+% ----------------------------------------------------------------------------- 
+% BIBLIOGRAPHY & FIGURE LISTS {{{
+
+% https://www.fluentu.com/blog/german/german-adjectival-nouns/
+
+\onecolumn
+\nolinenumbers
+\bibliographystyle{unsrt}
+\bibliography{bibliography/references}
+
+
+% }}}
+% -----------------------------------------------------------------------------
+\end{document}
+% =============================================================================
+% - EOF - EOF - EOF - EOF - EOF - EOF - EOF - EOF - EOF - EOF - EOF - EOF -
+% =============================================================================
+

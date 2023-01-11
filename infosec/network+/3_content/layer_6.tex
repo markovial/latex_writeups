@@ -1,0 +1,223 @@
+
+% SECTION : layer_6_presentation {{{
+\section{Layer 6 : Presentation}
+\label{sec:layer_6_presentation}
+\parindent=0em
+
+Layer 6, the Presentation Layer
+
+The functions of encryption and decryption are defined on this layer. It ensures that data is transferred in standardized formats by converting data formats into a format readable by the application layer.
+
+The following are the presentation layer protocols: XDR, TLS, SSL and MIME.
+
+% 	SUB-SECTION : dhcp {{{
+\subsection{DHCP}
+\label{ssec:dhcp}
+
+DHCP : gives a computer a dynamic ip , subnet mask and gateway from its scope
+
+DHCP Reservation : asks for specific mac to be given specific IP everytime from
+DHCP server , usually given to network printers and servers , that need to
+maintain a constant IP
+
+DHCP Lease : amount of time an IP is assigned to a computer
+
+DHCP Relay : 
+
+BootP
+
+DHCP Client
+
+DHCP servers can be included within the routers you buy , or they can be special
+software that is sitting on your system. Most commonly however a DHCP server is
+an actual computer server sitting out there on the network , whose only job it
+is to be a computer running the DHCP software.
+
+DHCP Discover
+DHCP Offer
+DHCP Request
+DHCP Acknowledge
+
+You want to make sure that each broadcast domain only has one DHCP server
+running, because otherwise if you send out a broadcast you can get back
+conflicting information from two different DHCP servers that are operating on
+the same network. This is one of those so called "bad things". This also means
+that the DHCP Server has to be within the broadcast domain , i.e. within your
+LAN. It cannot be outside the network.
+
+DHCP Relay
+DHCP Server Scope : When you are creating your own DHCP server , one of the
+first things you are going to want to do is set the scope. Which means you are
+going to set the starting IP address , and an end IP address. As an example , 
+
+Start IP address : 192.168.15.100
+End IP address : 192.168.15.105
+
+passes out a total of 6 IP Adresses
+In addtion you will also decide which subnet to pass out , as well as
+exclusions. This basically means that if there are any special IP adresses
+within the scope that you specified earlier , you can specify them and the
+server will not hand them out when some device is making a DHCP request. Another
+thing you will specify is the lease duration. Basically how long will the host
+that got a specific IP address be along to keep it for. On most Windows DHCP
+servers , the default is something like 8 days. But if you are in something like
+a coffe shop or some other public facing network , you might want to reduce this
+setting down to just a couple of hours.
+
+
+Rogue DHCP Server : If you have a DHCP server running on the local network and
+you are not getting an APIPA , and you have an IP address which is different
+than what you know yours to actually be , then that means that you have a rogue
+DHCP server.  Rogue DHCP servers can assign incompatible IP addresses to hosts
+on a network making them unable to communicate with other hosts or the Internet.
+Rogue DHCP servers cause IP address incompatibilities or worse - they do not
+increase network performance by either increasing DHCP assignment speeds or the
+size of IP address pools. The existence of a DHCP server, rogue or approved,
+ensures that hosts will not generate APIPA addresses.
+
+WAN DHCP 
+
+APIPA : automatic private IP address assignment ,  if DHCP cannot be reached
+then all computers post Windows 98 will assign an IP to themselves which looks
+like 169.254.0.0. We can still use the APIPA address to communicate on the
+internal network. We cannot however use it to connect to a machine over the
+internet.
+
+Dynamic IP addressing : gets IP from DHCP (dynamic host configuration protocol )
+, the dhcp has a pool of IPs that it can lease to a particular device for
+certain periods of time ,
+
+\subsectionend
+% }}} END SUB-SECTION : dhcp
+
+% 	SUB-SECTION : dns_server {{{
+\subsection{DNS Server}
+\label{ssec:dns_server}
+
+% 		SUB-SUB-SECTION : dns_hierarchy {{{
+\subsubsection{DNS Hierarchy}
+\label{sssec:dns_hierarchy}
+
+
+Host File : Before DNS Servers existed , computers used to use something called
+a host file to resolve domain names to ip addresses. This was basically a text
+file containing a list of domains and ips. Even though DNS Servers can do
+everything a host file was supposed to do,  the hosts files still exist on every
+computer that uses TCP/IP. What is even more interesting is that the records in
+the host file take precedence over any DNS server that you might be using.
+The one job that Domain Name System Servers (DNS Servers) have  is
+to resolve resource names to IP addresses. In the DNS, the clients are called
+resolvers because the are requesting a resolution of domain name to an
+IP-Address and the servers are called name servers.
+
+DNS databases are distributed because no one DNS server holds all possible DNS
+records. This would be far too much information for a single server to store.
+Instead if the particular record that the client is asking for does not exist in
+this particular DNS servers table , then it will just ask some other DNS server
+for the information. The way they figure out which one of the numerous DNS
+servers to ask for this information is by looking at the requested domain name.
+Then they use a tree structure where just below the root are a set of Top Level
+Domains (TLD) that define broad classes of entities (.com , .gov , \ldots) or
+national authorities (.uk , .ca \ldots). Within these top level domains,
+companies, universities, non-profits, governments, or even just one guy can all
+register individual domains.
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : dns_hierarchy
+
+% 		SUB-SUB-SECTION : lookup_zones {{{
+\subsubsection{Lookup Zones}
+\label{sssec:lookup_zones}
+
+Lookup Zone : When we create our own DNS server for a LAN , we need to input the
+domain to ip mappings in a table that will allow the server to resolve requests.
+These records in the table are called lookup zones.
+
+There are two different types of zones ( or requests ) that you can make to your
+local Authoritative DNS server :
+
+- Forward Lookup Zone : This basically resolves the domain name to an ip
+address. The server will query its table for some string "name" and then return
+the address in the corresponding "data" column in the table.
+
+ - Reverse Lookup : The other type of request we can make from a DNS server is
+ to ask for domain names , based on provided IP addresses.  Unfortunately, it is
+ a limitation by design that DNS server cannot just lookup at the value on
+ “Data” column to find the associated “Name” value. To fix this we store the ip
+ addresses as regular "names" in the table and the corresponding "data" column
+ would then contain the domain name. So a lookup for a domain based on provided
+ ip address is called a reverse lookup.  Reverse Lookup zones are useful for
+ mail servers.
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : lookup_zones
+
+% 		SUB-SUB-SECTION : dns_records {{{
+\subsubsection{DNS Records}
+\label{sssec:dns_records}
+
+Any computer holding records for a part of the namespace is said to be a name
+server. Name servers that contain the requested resource records for a
+particular namespace are said to be authoritative. If they are not authoritative
+for a namespace, they will have pointers to other name servers which might be
+authoritative.
+
+Resolvers are software programs running on client computers. For example, name
+resolution is a critical part of web browsing, so web browser software will
+implement a resolver.
+Authoritative (Local) DNS Servers : One of the few reasons to deal with
+implmenting or at least spinning up your own DNS server is to allow computers on
+the local network to talk to each other. Usually by convention the domains that
+are supposed to be used on LANs are marked .local as opposed to .com / .edu /
+.org or something like that. The name server ( local DNS server ) that resolves
+local domain names is called an Authoritative DNS Server. If we have multiple
+DNS servers on a LAN , then one of them is designated the primary one we should
+attempt to use. This sever is called the Start of Authority. The rest of the
+local DNS servers will all just be called Name servers. It can in addition
+resolve your nomal website domains like google.com by sending an upstream
+request from other internet DNS servers.  To be able to resolve these domain
+names into ip addresses , we need a table that holds these records. These
+records are called lookup zones.  If not then we can just statically enter the
+domains and the ips. If we are using IPv4 records that is called a "A" record ,
+and if we are using IPv6 then it is reffered to as a "AAAA" record. We can also
+have CNAME ( Canonical Names ) and are used as aliases for the host names.
+MX Record
+SRV Record (Service Location) : 
+
+TXT Records
+DKMI
+SPF
+
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : dns_records
+
+% 		SUB-SUB-SECTION : ddns {{{
+\subsubsection{DDNS}
+\label{sssec:ddns}
+
+Dynamic DNS : We can either manually go into the DNS servers we have created and
+enter the records into our table , or we can get this information dynamically. 
+If we are using DHCP to get our IP addresses , then the DNS server would need to
+be configured to get the table records from the DHCP server. This is called DDNS
+or dynamic DNS.
+
+ Enables you to use a DHCP-assigned IP address for connection.
+
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : ddns
+
+
+\subsectionend
+% }}} END SUB-SECTION : dns_server
+
+% 	SUB-SECTION : protocols {{{
+\subsection{Protocols}
+\label{ssec:protocols}
+
+
+\subsectionend
+% }}} END SUB-SECTION : protocols
+
+\sectionend
+% }}} END SECTION : layer_6_presentation

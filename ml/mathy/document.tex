@@ -1,0 +1,524 @@
+% =============================================================================
+\input{0_includes/0_preamble.tex}
+\usepackage{cancel} % gives you two ways to strike out text , like cancel to 0
+
+% ============================================================================ 
+\begin{document}
+%\input{0_includes/1_title_page.tex}
+%\input{0_includes/2_contents_page.tex}        \clearpage
+
+%\twocolumn
+\onecolumn
+
+%\input{3_content/0_linear_regression.tex}     \clearpage
+%\input{3_content/2_logistic_regression.tex}   \clearpage
+
+% SECTION : multivariate_linear_regression {{{
+\section{Multivariate Linear Regression}
+\label{sec:multivariate_linear_regression}
+\parindent=0em
+
+% 	SUB-SECTION : equation {{{
+\subsection{Equation}
+\label{ssec:equation}
+\parindent=0em
+
+% 		SUB-SUB-SECTION : example {{{
+\subsubsection{Example}
+\label{sssec:example}
+\parindent=0em
+
+
+ Independant / Input Variable / Feature : $ x\; $ 
+
+ Number of features $x$ : $ n\; , \; n \in \mathbb{N} $ 
+
+ Output Variable / Dependant Variable / Target : $ y\; $ 
+
+ Number of training examples $y$ : $ m  \; , \; m \in \mathbb{N} $ 
+
+  the $j^{th}$ feature : $ x_{j} $ for $ j \in \{1 , \ldots , n\} $ , where features are columns in a table
+
+  the $i^{th}$ training set / vector : $x^{(i)}$  for $ i \in \{1 , \ldots , m\} $ $\; , \;  x^{(i)} \in \mathbb{R}^{n} $
+ , where indexes are rows in a table
+
+  value of feature $j$ in $i^{th}$ training example : $ x_{j}^{(i)} $ , 
+ in an $ m \times n$ data table it is the value of the $i^{th}$ row , $j^{th}$ column 
+
+ $i^{th}$ training example : $ ( x_{j}^{(i)} , y^{(i)} ) $ \\
+
+ Learning Rate : \( \alpha \)  \\
+
+\[
+	\vec{x} =
+	\begin{bmatrix}
+		x_0 \\
+		x_1 \\
+		x_2 \\
+		x_3 \\
+	\end{bmatrix}
+	X = 
+\begin{array}{ l@{} l@{} l@{} l@{} l@{}} 
+\begin{bmatrix}
+	1 & x_0 \\
+	1 & x_1 \\
+	1 & x_2 \\
+	1 & x_3 \\
+\end{bmatrix}
+,
+\Theta = 
+	\begin{array}{ l@{} l@{} }
+		\begin{bmatrix}
+			\theta_0 \\
+			\theta_1 \\
+		\end{bmatrix} 
+	\end{array}
+\end{array}
+\]
+\[
+	\begin{array}{ l@{} l@{} }
+		h_{\theta}(x_0) &= \theta_{0} + \theta_{1}x_0  \\
+		h_{\theta}(x_1) &= \theta_{0} + \theta_{1}x_1  \\
+		h_{\theta}(x_2) &= \theta_{0} + \theta_{1}x_2  \\
+		h_{\theta}(x_3) &= \theta_{0} + \theta_{1}x_3  \\
+	\end{array}
+\]
+\[
+\begin{array}{ l@{} l@{} l@{} l@{} l@{} l@{}}
+\begin{bmatrix}
+	h_{\theta}(x_0) \\
+	h_{\theta}(x_1) \\
+	h_{\theta}(x_2) \\
+	h_{\theta}(x_3) \\
+\end{bmatrix}
+& =
+& \begin{bmatrix}
+	1 & x_0 \\
+	1 & x_1 \\
+	1 & x_2 \\
+	1 & x_3 \\
+\end{bmatrix}
+& \times
+& \begin{bmatrix}
+	\theta_0 \\
+	\theta_1 \\
+\end{bmatrix}
+\\
+& =
+& \begin{bmatrix}
+	( \theta_0 \cdot 1 ) + (\theta_1 \cdot x_0) \\
+	( \theta_0 \cdot 1 ) + (\theta_1 \cdot x_1) \\
+	( \theta_0 \cdot 1 ) + (\theta_1 \cdot x_2) \\
+	( \theta_0 \cdot 1 ) + (\theta_1 \cdot x_3) \\
+\end{bmatrix}
+
+\\
+\end{array}
+\]
+
+\[
+\begin{array}{ l@{} l@{} l@{} l@{} l@{}}
+A_{ m \times n }
+& \times
+& B_{ n \times 1}
+& =
+& C_{m \times 1} \\
+\begin{bmatrix}
+	a_{0,n} &  & \cdots & & a_{0,n} \\
+	\vdots  &  & \ddots & & \vdots \\
+	a_{m,0} &  & \cdots & & a_{m,n} \\
+\end{bmatrix}
+& \times
+& \begin{bmatrix}
+	b_{0,n} \\
+	\vdots  \\
+	\\
+	b_{n,1} \\
+\end{bmatrix}
+& =
+& \begin{bmatrix}
+	c_{0,1} \\
+	\vdots  \\
+	c_{m,0} \\
+\end{bmatrix}
+\\
+\end{array}
+\]
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : example
+% 		SUB-SUB-SECTION : general_form {{{
+\subsubsection{General Form}
+\label{sssec:general_form}
+\parindent=0em
+
+\[
+	\begin{array}{ l@{} l@{}} 
+	h_\theta(x) & = 
+	\theta_0
+	+ \theta_1 \cdot x_1
+	+ \theta_2 \cdot x_2
+	+ \ldots
+	+ \theta_n \cdot x_n
+	\end{array}
+\]
+\[
+	\Theta_{(n+1 \times 1)}
+	=
+	\begin{bmatrix}
+	\theta_0 \\
+	\theta_1 \\
+	\theta_2 \\
+	\vdots \\
+	\theta_n \\
+	\end{bmatrix}
+	\in \mathbb{R}^{n + 1}
+\]
+
+\[
+	\Theta_{(1 \times n+1)}^{T}
+	=
+	\begin{bmatrix}
+		\theta_0 ,
+		\theta_1 ,
+		\theta_2 ,
+		\cdots ,
+		\theta_n
+	\end{bmatrix} 
+\]
+
+\[
+	\vec{x}_{(n+1 \times 1)}
+	=
+	\begin{bmatrix}
+		1 \\
+		x_1 \\
+		x_2 \\
+		\vdots \\
+		x_n \\
+	\end{bmatrix}
+	\in \mathbb{R}^{n + 1}
+\]
+
+\[
+\begin{array}{ l@{} l@{} l@{}}
+h_\theta (\vec{x})
+	& = \Theta_{(1 \times n+1)}^{T} \bullet \vec{x}_{(n+1 \times 1)}
+\\
+& =
+	\begin{bmatrix}
+	\theta_0 ,
+	\theta_1 ,
+	\theta_2 ,
+	\cdots ,
+	\theta_n
+	\end{bmatrix}_{(1 \times n+1)}
+	\bullet
+	\begin{bmatrix}
+		1 \\
+		x_1 \\
+		x_2 \\
+		\vdots \\
+		x_n \\
+	\end{bmatrix}_{(n+1 \times 1)}
+\\ \\
+& =
+\begin{bmatrix}
+	x_0\theta_0 +
+	x_1\theta_1 +
+	x_2\theta_2 +
+	\cdots +
+	x_n\theta_n \\
+\end{bmatrix}_{(1 \times 1)}
+\end{array}
+\]
+
+\[
+	\begin{array}{ l@{} l@{} } 
+		x_j^{(i)} & = 
+		\text{value of feature } j \text{ in the }i^{th}\text{ training example} \\
+		x^{(i)} & = \text{the input (features) of the }i^{th}\text{ training example} \\
+		m &= \text{the number of training examples} \\
+		n &= \text{the number of features} \\
+	\end{array}
+\]
+\[
+	\begin{array}{ l@{} l@{} l@{} l@{} l@{}} 
+		\vec{x}^{(1)} & = 
+		\begin{bmatrix}
+			x_{1}^{(1)} \\
+			x_{2}^{(1)} \\
+			\vdots \\
+			x_{j}^{(1)} \\
+			\vdots \\
+			x_{n}^{(1)} \\
+		\end{bmatrix} 
+		\; , \ldots , \; 
+		\vec{x}^{(i)} & = 
+		\begin{bmatrix}
+			x_{1}^{(i)} \\
+			x_{2}^{(i)} \\
+			\vdots \\
+			x_{j}^{(i)} \\
+			\vdots \\
+			x_{n}^{(i)} \\
+		\end{bmatrix} 
+		\; , \ldots , \;
+		\vec{x}^{(m)} = 
+		\begin{bmatrix}
+			x_{1}^{(m)} \\
+			x_{2}^{(m)} \\
+			\vdots \\
+			x_{j}^{(m)} \\
+			\vdots \\
+			x_{n}^{(m)} \\
+		\end{bmatrix} 
+	\end{array}
+\]
+
+
+\[
+	\begin{array}{ l@{} l@{} } 
+	\vec{x}^{(0)} = &
+		\begin{bmatrix}
+			x_{1}^{(0)} = 1 \\
+			x_{2}^{(0)} = 1 \\
+			\vdots \\
+			x_{j}^{(0)} = 1 \\
+			\vdots \\
+			x_{n}^{(0)} = 1 \\
+		\end{bmatrix} 
+	\end{array}
+\]
+
+\[
+	\begin{array}{ l@{} l@{} } 
+		X_{m \times n+1} 
+		& = 
+		\begin{bmatrix} \\ 
+			\vec{x}^{(0)} &
+			\vec{x}^{(1)} &
+			\vec{x}^{(2)} &
+			\cdots &
+			\vec{x}^{(m)} \\ \\ 
+		\end{bmatrix} \\ 
+		& =
+		\begin{bmatrix} 
+			x_{1}^{(0)} & x_{1}^{(1)} & x_{1}^{2)} & \cdots & x_{0}^{(m)} \\
+			x_{2}^{(0)} & x_{2}^{(1)} & x_{2}^{(2)} &\cdots & x_{1}^{(m)} \\ 
+			\vdots & \vdots & \vdots & \ddots & \vdots \\ 
+			x_{n}^{(0)} & x_{n}^{(1)} & x_{n}^{(2)} &\cdots & x_{n}^{(m)} \\ 
+		\end{bmatrix} \\ 
+	\end{array}
+\]
+
+\[
+	\begin{array}{ l@{} l@{} l@{} l@{}} 
+	& h_\theta (X)
+	& = & \Theta_{(1 \times n+1)}^{T} \cdot X_{(n+1 \times m)} \\ 
+	\\ 
+	= &
+	\begin{bmatrix} 
+		h_\theta(x_{0}) \\
+		h_\theta(x_{1}) \\
+		h_\theta(x_{2}) \\
+		\vdots \\
+		h_\theta(x_{m}) \\ 
+	\end{bmatrix}_{(1 \times m)} 
+	& = & 
+	\begin{bmatrix} 
+		\theta_0 ,
+		\theta_1 ,
+		\theta_2 ,
+		\cdots ,
+		\theta_n 
+	\end{bmatrix}_{(1 \times n+1)} 
+	\cdot 
+	\begin{bmatrix} 
+		x_{1}^{(0)} & x_{1}^{(1)} & x_{1}^{(2)} & \cdots & x_{0}^{(m)} \\
+		x_{2}^{(0)} & x_{2}^{(1)} & x_{2}^{(2)} &\cdots & x_{1}^{(m)} \\ 
+		\vdots & \vdots & \vdots & \ddots & \vdots \\ 
+		x_{n}^{(0)} & x_{n}^{(1)} & x_{n}^{(2)} &\cdots & x_{n}^{(m)} \\ 
+	\end{bmatrix}_{(n+1 \times m)} \\ 
+	= &
+	\begin{bmatrix} 
+		h_\theta(x_{0}) \\
+		h_\theta(x_{1}) \\
+		h_\theta(x_{2}) \\ 
+		\vdots \\ 
+		h_\theta(x_{j}) \\ 
+		\vdots \\ 
+		h_\theta(x_{m}) \\ 
+	\end{bmatrix}_{(1 \times m)} 
+	& = &
+	\begin{bmatrix} 
+		x_{0}^{(1)} \theta_0 +
+		x_{1}^{(1)} \theta_1 +
+		x_{2}^{(1)} \theta_2 +
+		\cdots +
+		x_{n}^{(1)} \theta_n \\ 
+		x_{0}^{(2)} \theta_0 +
+		x_{1}^{(2)} \theta_1 +
+		x_{2}^{(2)} \theta_2 +
+		\cdots +
+		x_{n}^{(2)} \theta_n \\ 
+		\vdots \\ 
+		x_{j}^{(i)} \theta_0 +
+		x_{j}^{(i)} \theta_1 +
+		x_{j}^{(i)} \theta_2 +
+		\cdots +
+		x_{j}^{(i)} \theta_n \\ 
+		\vdots \\ 
+		x_{0}^{(m)} \theta_0 +
+		x_{1}^{(m)} \theta_1 +
+		x_{2}^{(m)} \theta_2 +
+		\cdots +
+		x_{n}^{(m)} \theta_n \\ 
+	\end{bmatrix}_{(1 \times m)} 
+	\\
+	\\
+	& & &
+	\; 0 \leq i \leq m \; ,
+	\; 0 \leq j \leq n \; ,
+	\; m , n \in \mathbb{N} 
+	\end{array}
+	\] 
+
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : general_form
+
+\subsectionend
+% }}} END SUB-SECTION : equation
+% 	SUB-SECTION : cost_function {{{
+\subsection{Cost Function}
+\label{ssec:cost_function}
+\parindent=0em
+
+\[
+	J(\Theta) = J(\theta_0 , \theta_1 , \ldots , \theta_n)
+\]
+\[
+\begin{aligned}
+	J(\Theta)
+	& = 
+	\frac{1}{2}
+	\cdot \frac{1}{m}
+	\cdot \sum_{i=1}^{m} \left\{
+		\left(
+			h_{\theta}(x^{(i)}) - y^{(i)}
+		\right)^{2}
+	\right\}
+	\\
+	& =
+	\frac{1}{2}
+	\cdot \frac{1}{m}
+	\cdot \sum_{i=1}^{m} \left\{
+		\left(
+		\sum_{j=0}^{n} \left(
+			\theta_{j}x_{j}^{(i)}
+		\right)
+	- y^{(i)}
+	\right)^{2}
+	\right\}
+	\\
+	& =
+	\frac{1}{2}
+	\cdot \frac{1}{m}
+	\cdot \sum_{i=1}^{m} \left\{
+		\left(
+			\Theta^{T}x^{(i)}
+	- y^{(i)}
+	\right)^{2}
+	\right\}
+	\\
+\end{aligned}
+\tag{2}
+\]
+
+\subsectionend
+% }}} END SUB-SECTION : cost_function
+% 	SUB-SECTION : gradient_descent {{{
+\subsection{Gradient Descent}
+\label{ssec:gradient_descent}
+\parindent=0em
+
+\[
+	\begin{array}{ l@{} l@{} }
+		\nabla J(\Theta)
+		& =
+		\left\langle
+		  {\displaystyle \frac{\partial}{\partial \theta_0} J(\Theta)}
+		, {\displaystyle \frac{\partial}{\partial \theta_1} J(\Theta)}
+		, {\displaystyle \frac{\partial}{\partial \theta_2} J(\Theta)}
+		\ldots
+		, {\displaystyle \frac{\partial}{\partial \theta_m} J(\Theta)}
+		\right\rangle
+		\\
+	\end{array}
+\]
+
+\[
+\begin{aligned}
+	\frac{\partial}{\partial \theta_j}
+	J(\Theta)
+	& =
+	\frac{\partial}{\partial \theta_j}
+	\left(
+		\frac{1}{2}
+		\cdot \frac{1}{m}
+		\cdot \sum_{i=0}^{m}
+			\left\{
+				\left(
+					h_{\theta}(x^{(i)}) - y^{(i)}
+				\right)^{2}
+			\right\}
+	\right)
+	\\
+	& =
+	\phantom{\frac{\partial}{\partial \theta_j}}
+	\left(
+		\color{cell-lightgray}
+		\cancel{2
+		\cdot 
+		\frac{1}{2}}
+		\color{black}
+		\color{white}\cdot\color{black}
+		\frac{1}{m}
+		\cdot \sum_{i=0}^{m}
+			\left\{
+				\left(
+					h_{\theta}(x^{(i)}) - y^{(i)}
+				\right)
+			\cdot x_{j}^{(i)}
+			\right\}
+	\right)
+	\\
+\end{aligned}
+\]
+
+
+\subsectionend
+% }}} END SUB-SECTION : gradient_descent
+% 	SUB-SECTION : update_rule {{{
+\subsection{Update Rule}
+\label{ssec:update_rule}
+\parindent=0em
+
+
+\subsectionend
+% }}} END SUB-SECTION : update_rule
+
+\sectionend
+% }}} END SECTION : multivariate_linear_regression
+
+
+
+
+% ----------------------------------------------------------------------------- 
+%\bibliography{1_bibliography/references}
+\end{document}
+% =============================================================================
+% - EOF - EOF - EOF - EOF - EOF - EOF - EOF - EOF - EOF - EOF - EOF - EOF -
+% =============================================================================
+

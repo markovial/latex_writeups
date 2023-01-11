@@ -1,0 +1,1242 @@
+% DOCUMENT CLASS , ENCODING , TITLE -------------------------------------- {{{
+
+\documentclass[a4paper,twocolumn,10pt]{article}
+\setlength{\columnsep}{20pt}
+%\setlength{\columnseprule}{1pt}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\title{This is title for this document}
+\author{John Doestar}
+\date{\today}
+
+% }}}
+% FONTS ------------------------------------------------------------------ {{{
+
+\usepackage{courier}     % courier font
+%\usepackage{fontawesome} % font awesome glyphs
+\usepackage{setspace}    % inter line spacing
+\singlespacing           % set spacing to single spaced
+
+% \onehalfspacing
+% \doublespacing
+% \setstretch{1.1}
+
+
+% }}}
+% PAGE FORMAT ------------------------------------------------------------ {{{
+
+\usepackage[document]{ragged2e} % Text alignment package
+\usepackage{enumitem}           %
+\usepackage{geometry}           %
+\geometry{
+	a4paper,
+	total = {170mm,257mm},
+	top=20mm,
+	left=20mm,
+	right=20mm,
+	bottom=20mm
+}
+
+
+\usepackage[switch]{lineno} % switch allows line numbers on alternating sides
+%\usepackage[switch,displaymath,mathlines]{lineno}
+%\modulolinenumbers[5]
+\linenumberfont{\normalfont\large\sffamily}
+\renewcommand{\thelinenumber}{\color{gray}\arabic{linenumber}}
+
+\setlength\linenumbersep{0.5cm}
+
+
+% }}}
+% TEXT FORMAT ------------------------------------------------------------ {{{
+
+\usepackage[activate={true,nocompatibility},
+final,
+tracking=true,
+kerning=true,
+spacing=true,
+factor=1100,
+stretch=10,
+shrink=10]{microtype}
+% prevents a certiain amount of overfull hbox badness
+% helps with other margin stuff
+
+\usepackage{verbatim}
+\makeatletter
+\newcommand{\verbatimfont}[1]{\def\verbatim@font{#1}}%
+\makeatother%\verbatimfont{courier}
+
+\usepackage{type1cm}  % Allows font resizing
+\usepackage{lettrine} % Allows font calligraphy (enlarge first char)
+\renewcommand{\LettrineTextFont}{\rmfamily}
+
+\renewcommand{\baselinestretch}{1} % Line Spacing
+
+%1.0 	single spacing
+%1.3 	one-and-a-half spacing
+%1.6 	double spacing 
+
+\setlength\parskip{1em} % Space Between Paragraphs
+\setlength\parindent{0em} % Indent Spacing 
+
+% }}}
+% TITLE FORMAT (TITLESEC) ------------------------------------------------ {{{
+
+\usepackage[export]{adjustbox}
+\usepackage{changepage}
+\usepackage[compact,explicit]{titlesec} % Allows customization of section head
+
+% compact : reduces spaces before and after sections
+% explicit : allows for expicit positioning of title statement with #1
+
+% title_format : command,shape,format,label,sep,before,after
+% title-brackets : {}[]{}{}{}{}[] , basically only shape and aftercode have []
+
+% Section Title Settings {{{
+\titleformat {\section}
+	[hang]
+	{\Large\bfseries}
+	{}
+	{0em}
+	{
+	\nolinenumbers
+	\vspace{-0.5cm}
+	\begin{section-box}
+		\color{white} \thesection. #1
+	\end{section-box}
+	}
+[
+\linenumbers
+]
+% left before-sep after-sep right-sep
+\titlespacing{\section}{0.1cm}{0cm}{0cm}[0cm]
+
+% }}}
+
+% Sub-Section Title Settings {{{
+\titleformat {\subsection}
+	[hang]
+	{\small\bfseries}
+	{}
+	{0em}
+	{
+	\nolinenumbers 
+	\vspace{-0.5cm} 
+	\begin{subsection-box} 
+	\begin{subsection-box-2} \end{subsection-box-2} 
+	\vspace{-0.5cm} \hspace{0.35cm}
+		\color{black} \thesubsection. #1
+	\end{subsection-box}
+	}
+[
+\linenumbers
+]
+
+% left before-sep after-sep right-sep
+\titlespacing*{\subsection}{0cm}{0cm}{0cm}[0em]
+
+% }}}
+
+% Sub-Sub-Section Title Settings {{{
+\titleformat {\subsubsection}
+	[hang]
+	{\small\bfseries}
+	{}
+	{0em}
+	{
+	\nolinenumbers 
+	\vspace{-0.5cm} 
+	\begin{subsubsection-box} 
+	\begin{subsubsection-box-2} 
+	\begin{subsubsection-box-3}
+	\end{subsubsection-box-3} 
+	\end{subsubsection-box-2}
+	\vspace{-0.4cm} \hspace{0.8cm} 
+		\color{black} \thesubsubsection. #1
+	\end{subsubsection-box}
+	}
+[
+\linenumbers
+]
+
+% left before-sep after-sep right-sep
+\titlespacing{\subsubsection}{0cm}{0cm}{0cm}[0em]
+
+% }}}
+
+% }}}
+% HYPERLINKS ------------------------------------------------------------- {{{
+
+\usepackage[unicode,bookmarks]{hyperref} % auto hyperlinks toc , refrences
+                      % others can be manually specified
+					  % unicode + bookmarks for japanese characters
+
+\hypersetup{
+colorlinks = true,
+linktoc    = all,
+citecolor  = purple,
+filecolor  = black,
+linkcolor  = black,
+urlcolor   = black
+}
+
+
+% }}}
+% HEADER / FOOTER -------------------------------------------------------- {{{
+
+\usepackage{fancyhdr} % allows for header and footer customizations
+\pagestyle{fancy}     %
+\fancyhf{}            %
+
+\renewcommand{\headrulewidth}{0.2pt} % draw line at header
+\lhead { \textit{ \leftmark } }           % LEFT  : show section name at header
+\rhead{\textit{\thepage}}            % RIGHT : Show page number
+% \chead{ }
+
+\renewcommand{\footrulewidth}{0pt} % draw line at footer
+%\lfoot{\textit{Last Edited : \today}}
+%\cfoot{center foot}
+%\rfoot{\textit{tiwathia \thepage}}
+
+\pagenumbering{arabic} % Specify type of number characters to use
+
+% }}}
+% COLORS ----------------------------------------------------------------- {{{
+
+\usepackage [table]{xcolor}
+%\rowcolors{<starting row index>}{<odd row color>}{<even row color>}
+
+% Section Colors {{{
+
+% 464444 is a tint color of 181616
+\definecolor {section-bg}         {HTML} {464444}
+\definecolor {subsection-bg}      {HTML} {747373}
+\definecolor {subsubsection-bg}   {HTML} {8b8a8a}
+\definecolor {section-font}       {RGB}  { 0,0,0}
+\definecolor {subsection-font}    {RGB}  { 0,0,0}
+\definecolor {subsubsection-font} {RGB}  { 0,0,0}
+
+% }}}
+
+% Table Colors {{{
+
+% 404b4b is ananlagous color of 181616
+% 534e4e is tint color of 404b4b
+\definecolor {table-topic}        {HTML} {747373}
+\definecolor {table-subtopic}     {HTML} {8b8a8a}
+\definecolor {table-subsubtopic}  {HTML} {a2a1a1}
+
+% e7e7e7 is tint color of 181616
+\definecolor {table-alternating-1}    {HTML} {e7e7e7} % 1 = gray
+\definecolor {table-alternating-2}    {HTML} {FFFFFF} % 2 = white
+
+\definecolor {cell-lightblue}     {HTML} { b2cce5}
+\definecolor {cell-lightgray}     {HTML} { d8deda}
+\definecolor {cell-lightorange}   {HTML} { F6C396}
+\definecolor {cell-lightred}      {HTML} { F1A099}
+\definecolor {cell-lightgreen}    {HTML} { C6DA7F}
+\definecolor {cell-lightpurple}   {HTML} { CCB2E5}
+\definecolor {cell-lightyellow}   {HTML} { FFF09A}
+
+% }}}
+
+% Tcolorbox Tables {{{
+
+
+% B/W DEFS
+
+\definecolor {defn-bg}       {HTML} {e7e7e7}
+\definecolor {defn-title}    {HTML} {747373}
+\definecolor {defn-theword}  {HTML} {a2a1a1}
+
+\definecolor {note-bg}       {HTML} {e7e7e7}
+\definecolor {note-theword}  {HTML} {a2a1a1}
+
+\definecolor {table-bg}      {HTML} {FFFFFF}
+\definecolor {table-title}   {HTML} {747373}
+\definecolor {table-theword} {HTML} {a2a1a1}
+
+\definecolor {image-bg}      {HTML} {FFFFFF} 
+\definecolor {image-title}   {HTML} {747373}
+\definecolor {image-theword} {HTML} {a2a1a1}
+
+% COLOR DEFS
+
+%\definecolor {defn-bg}       {HTML} {e7e7e7}
+%\definecolor {defn-title}    {HTML} {A9A9A9}
+%\definecolor {defn-theword}  {HTML} {EDA72D}
+
+%\definecolor {note-bg}       {HTML} {e7e7e7}
+%\definecolor {note-theword}  {HTML} {E25A22}
+
+%\definecolor {table-bg}      {HTML} {e7e7e7}
+%\definecolor {table-title}   {HTML} {F2F3F4}
+%\definecolor {table-theword} {HTML} {9ACD32}
+
+%\definecolor {image-bg}      {HTML} {e7e7e7}
+%\definecolor {image-title}   {HTML} {A9A9A9}
+%\definecolor {image-theword} {HTML} {0067A5}
+% }}}
+
+% Code {{{
+
+\definecolor{code-bg}      {HTML}{fbfbfb}
+\definecolor{code-comment} {HTML}{A4E400}
+\definecolor{code-keyword} {HTML}{FC1A70}
+\definecolor{code-string}  {HTML}{62d8f1}
+\definecolor{code-regular} {RGB}{39,40,34}
+
+% }}}
+
+% }}}
+% TABLES ----------------------------------------------------------------- {{{
+
+\usepackage{booktabs}    % nicer line drawing with toprule,midrule,hrule
+\usepackage{multicol}    % allows column merging in tables
+\usepackage{multirow}    % allows row merging in tables
+
+% was causing issues where equations , matrices , merged cells etc... , were
+% appearing white / not displaying / overwriting each other
+%\usepackage{tabularx}    % allow tables to stretch to page length
+
+\usepackage{xtab}        % allows page breaking tables inline
+\usepackage{makecell}    % allows linebreaking within cells of tables
+
+% longtables tend to break in two column mode
+%\usepackage{longtable}  % allows tables to span pages
+%\usepackage{ltablex}    % combination of longtable and tabularx
+
+
+% }}}
+% TCOLORBOX -------------------------------------------------------------- {{{
+
+\usepackage[skins,breakable]{tcolorbox}
+% skins allows use of enhanced options
+% breakable allows breaking boxes between pages
+
+% 	IMAGE TABLES (TCOLORBOX) {{{
+
+\newtcolorbox{image-bg}[2][]{
+	enhanced,
+	colback           = image-bg,
+	colframe          = image-bg,
+	fonttitle         = \bfseries,
+	width             = \linewidth,
+	beforeafter skip  = 0.5cm,
+	sharp corners,
+%	drop fuzzy shadow = gray,
+	boxrule         = 0mm,
+	top             = 0mm,
+	bottom          = 0mm,
+	left            = 0mm,
+	right           = 0mm,
+	title = #2,#1
+}
+
+\newtcolorbox{image-title}[2][]{
+	enhanced,
+	colback           = image-title,
+	colframe          = image-title,
+	fonttitle         = \bfseries, 
+	width             = \linewidth,
+	height            = 0.6cm,
+%	drop fuzzy shadow = gray,
+	beforeafter skip  = 0pt,
+%	grow to left by   = 0.7cm,
+	boxrule           = 0mm,
+	top               = 0.5mm,
+	bottom            = 0mm,
+	left              = 1mm,
+	right             = 0mm,
+	sharp corners,
+	title = #2,#1
+}
+
+\newtcolorbox{image-theword}{
+	enhanced,
+	colback           = image-theword,
+	colframe          = image-theword,
+	fonttitle         = \bfseries,
+%	drop fuzzy shadow = gray,
+	width             = 3cm,
+	height            = 0.5cm,
+	beforeafter skip  = 0pt,
+%	grow to left by   = 0.7cm,
+	boxrule           = 0mm,
+	top               = 0.5mm,
+	bottom            = 0mm,
+	left              = 1mm,
+	right             = 0mm,
+	sharp corners
+}
+
+\newtcolorbox{image-content}{
+	enhanced,
+	colback         = image-bg,
+	colframe        = image-bg,
+	fonttitle       = \bfseries,
+%	enlarge top by  = -0.5cm,
+%	enlarge right by = 5cm,
+	width           = \linewidth,
+	boxrule         = 0mm,
+	top             = 0mm,
+	bottom          = 0mm,
+	left            = 0mm,
+	right           = 0mm,
+%	show bounding box
+}
+
+
+\newtcolorbox{image-caption}{
+	enhanced,
+	colback           = image-theword,
+	colframe          = image-theword,
+	fonttitle         = \bfseries, 
+	width             = 0.18\linewidth,
+	height            = 0.5cm,
+	beforeafter skip  = 0pt,
+%	grow to left by   = 0.7cm,
+	boxrule           = 0mm,
+	top               = 0.5mm,
+	bottom            = 0mm,
+	left              = 1mm,
+	right             = 0mm,
+	sharp corners
+}
+
+
+% }}}
+
+% 	REGULAR TABLES (TCOLORBOX) {{{
+
+\newtcolorbox{table-bg}[2][]{
+	enhanced,
+%	float,
+%	breakable,
+	colback           = table-bg,
+	colframe          = table-bg,
+	fonttitle         = \bfseries,
+%	width             = 0.98\linewidth,
+	beforeafter skip  = 0cm,
+%	drop fuzzy shadow = gray,
+	boxrule         = 0mm,
+	top             = 0mm,
+	bottom          = 0mm,
+	left            = 0mm,
+	right           = 0mm,
+	sharp corners,
+	title = #2,#1
+}
+
+\newtcolorbox{table-theword}{
+	enhanced,
+	colback           = table-theword,
+	colframe          = table-theword,
+	fonttitle         = \bfseries,
+%	drop fuzzy shadow = gray,
+	width             = 2.2cm,
+	height            = 0.5cm,
+	beforeafter skip  = 0pt,
+%	grow to left by   = 0.7cm,
+	boxrule           = 0mm,
+	top               = 0.5mm,
+	bottom            = 0mm,
+	left              = 1mm,
+	right             = 0mm,
+	sharp corners,
+}
+
+\newtcolorbox{table-title}[2][]{
+	enhanced,
+	colback           = table-title,
+	colframe          = table-title,
+	fonttitle         = \bfseries,
+	width             = 0.8\linewidth,
+	height            = 0.6cm,
+%	width = 0.5\linewidth,
+%	drop fuzzy shadow = gray,
+	beforeafter skip  = 0pt,
+%	grow to left by   = 0.7cm,
+	boxrule           = 0mm,
+	top               = 0.5mm,
+	bottom            = 0mm,
+	left              = 1mm,
+	right             = 0mm,
+	sharp corners,
+	title = #2,#1
+}
+
+
+\newtcolorbox{table-content}{
+	enhanced,
+	colback         = table-bg,
+	colframe        = table-bg,
+	fonttitle       = \bfseries,
+	before skip = 0.5cm,
+%	enlarge top by  = -0.5cm,
+%	enlarge right by = 5cm,
+	width           = \linewidth,
+	boxrule         = 0mm,
+	top             = 2mm,
+	bottom          = 0mm,
+	left            = 0mm,
+	right           = 0mm 
+}
+
+% }}}
+
+% 	DEFINITION TABLE (TCOLORBOX) {{{
+
+% \newtcbox[init options]{name}[number][default]{options}
+
+\newtcolorbox{defn-bg}{
+	enhanced,
+	colback           = defn-bg,
+	colframe          = defn-bg,
+	fonttitle         = \bfseries,
+%	drop fuzzy shadow = gray,
+	width             = \linewidth,
+	beforeafter skip  = 0.3cm, 
+	boxrule           = 0mm,
+	top               = 0mm,
+	bottom            = 0mm,
+	left              = 0mm,
+	right             = 0mm,
+%	sharp corners
+	arc is angular,
+}
+
+\newtcolorbox{defn-theword}{
+	enhanced,
+	colback           = defn-theword,
+	colframe          = defn-theword,
+	fonttitle         = \bfseries,
+	width             = 3.3cm,
+	height            = 0.5cm,
+	beforeafter skip  = 0pt,
+	boxrule           = 0mm,
+	top               = 0.5mm,
+	bottom            = 0mm,
+	left              = 1mm,
+	right             = 0mm,
+	drop fuzzy shadow = gray,
+	% comment following line to align
+	grow to left by   = 0.3cm,
+	sharp corners
+}
+
+\newtcolorbox{defn-title}[2][]{
+	enhanced,
+	colback           = defn-title,
+	colframe          = defn-title,
+	fonttitle         = \bfseries,
+	width             = 0.5\linewidth,
+	height            = 0.6cm,
+	beforeafter skip  = 0pt,
+	boxrule           = 0mm,
+	top               = 0.5mm,
+	bottom            = 0mm,
+	left              = 1mm,
+	right             = 0mm,
+	drop fuzzy shadow = gray,
+	% comment following line to align
+	grow to left by   = 0.3cm,
+	sharp corners,
+	title = #2,#1
+}
+
+\newtcolorbox{defn-content}{
+	enhanced,
+	colback         = defn-bg,
+	colframe        = defn-bg,
+	fonttitle       = \bfseries,
+	beforeafter skip = 0.5cm,
+%	enlarge top by  = -0.5cm,
+%	enlarge right by = 5cm,
+	width           = \linewidth,
+	boxrule         = 2.5mm,
+	top             = 2mm,
+	bottom          = 0mm,
+	left            = 0mm,
+	right           = 0mm 
+}
+
+% }}}
+
+% 	NOTE TABLE (TCOLORBOX) {{{
+
+\newtcolorbox{note-bg}{
+	enhanced,
+	colback           = note-bg,
+	colframe          = note-bg,
+	fonttitle         = \bfseries,
+%	drop fuzzy shadow = gray,
+	width             = 0.95\linewidth,
+	before skip       = 0cm,
+	after skip        = 0cm,
+	boxrule           = 0mm,
+	top               = 0mm,
+	bottom            = 0mm,
+	left              = 0mm,
+	right             = 0mm,
+%	sharp corners, 
+	arc is angular,
+}
+
+\newtcolorbox{note-theword}{
+	enhanced,
+	colback           = note-theword,
+	colframe          = note-theword,
+	fonttitle         = \bfseries,
+%	drop fuzzy shadow = gray,
+	width             = 1.4cm,
+	height            = 0.5cm,
+	beforeafter skip  = 0pt,
+	boxrule           = 0mm,
+	top               = 0.5mm,
+	bottom            = 0mm,
+	left              = 1mm,
+	right             = 0mm,
+%	grow to left by   = 0.7cm,
+	sharp corners,
+}
+
+\newtcolorbox{note-content}{
+	enhanced,
+	colback         = note-bg,
+	colframe        = note-bg,
+	fonttitle       = \bfseries,
+	boxrule         = 0mm,
+	top             = 2mm,
+	bottom          = 0mm,
+	left            = 0mm,
+	right           = 0mm 
+%	enlarge top by  = -0.6cm,
+%	enlarge left by = 1.5cm,
+%	width           = 13cm,
+}
+
+
+% }}}
+
+% 	SECTION TITLES (TCOLORBOX) {{{
+
+\newtcolorbox{section-box}{
+	enhanced,
+	colback          = section-bg,
+	colframe         = section-bg,
+	fonttitle        = \bfseries,
+	width            = \linewidth,
+	height           = 1cm,
+	beforeafter skip = 0pt, 
+	sharp corners 
+}
+
+\newtcolorbox{subsection-box}{
+	enhanced,
+	colback          = white,
+	colframe         = white,
+	fonttitle        = \bfseries,
+	width            = \linewidth,
+	height           = 0.8cm,
+	beforeafter skip = 0pt,
+	boxrule          = 0mm, 
+	top               = -1mm,
+	bottom            = 0mm,
+	left              = -1mm,
+	right             = 0mm,
+	sharp corners
+}
+
+\newtcolorbox{subsubsection-box}{
+	enhanced,
+	colback   = white,
+	colframe  = white,
+	fonttitle = \bfseries,
+	width     = \linewidth,
+	height = 0.6cm,
+	sharp corners,
+	beforeafter skip  = 0pt,
+	boxrule           = 0mm,
+	top               = -1mm,
+	bottom            = 0mm,
+	left              = -1mm,
+	right             = 0mm
+}
+
+% }}}
+
+% 	SECTION TITLES 2 (TCOLORBOX) {{{
+
+\newtcolorbox{subsection-box-2}{
+	enhanced,
+	colback          = section-bg,
+	colframe         = section-bg,
+	fonttitle        = \bfseries,
+	width            = 0.35cm,
+	height           = 0.8cm,
+	beforeafter skip = 0pt, 
+	top               = 0mm,
+	bottom            = 0mm,
+	left              = 0mm,
+	right             = 0mm,
+	sharp corners 
+}
+
+\newtcolorbox{subsubsection-box-2}{
+	enhanced,
+	colback          = section-bg,
+	colframe         = section-bg,
+	fonttitle        = \bfseries,
+	width            = 0.35cm,
+	height           = 0.6cm,
+	beforeafter skip = 0pt, 
+	top               = -1.5mm,
+	bottom            = 0mm,
+	left              = 2mm,
+	right             = 0mm,
+	sharp corners 
+}
+
+
+\newtcolorbox{subsubsection-box-3}{
+	enhanced,
+	colback          = subsection-bg,
+	colframe         = subsection-bg,
+	fonttitle        = \bfseries,
+	width            = 0.35cm,
+	height           = 0.6cm,
+	beforeafter skip = 0pt,
+	boxrule          = 0mm, 
+	top               = 0mm,
+	bottom            = 0mm,
+	left              = 0mm,
+	right             = 0mm,
+	sharp corners
+}
+
+% }}}
+
+% }}}
+% IMAGES ----------------------------------------------------------------- {{{
+
+\usepackage{wrapfig, graphicx}
+%\usepackage{graphicx}   %
+\usepackage{subcaption} %
+%\usepackage{wrapfig}    % wrap images around text
+\usepackage{capt-of}    % define captions independent of figures
+\usepackage{float}
+\usepackage{varwidth}
+\graphicspath{{2_images/}} % define folder path for images
+
+% }}}
+% CODE / CODE DISPLAY ---------------------------------------------------- {{{
+
+\usepackage{listings}
+
+\lstset{
+basicstyle       = \footnotesize\ttfamily,
+backgroundcolor  = \color{code-bg},
+commentstyle     = \color{code-comment}, % comment style
+keywordstyle     = \color{code-keyword},  % keyword style
+stringstyle      = \color{code-string},  % string literal style
+rulecolor        = \color{black},        % if not set, the frame-color may be changed on line-breaks
+frame            = single,               % adds a frame around the code
+basicstyle       = \footnotesize,        % the size of the fonts that are used for the code
+keepspaces       = true,                 % keeps spaces in text, useful for keeping indentation of code
+tabsize          = 2,                    % sets default tabsize
+breaklines       = true,                 % sets automatic line breaking
+captionpos       = b,                    % sets the caption-position to bottom
+%numbers          = left,
+%numberstyle      = \tiny,
+%numbersep        = 10pt,
+frame            = tb, % top bottom
+columns          = fixed,
+showstringspaces = false,
+showtabs         = false,
+keepspaces,
+% escapeinside={\%*}{*)},  % if you want to add LaTeX within your code
+framextopmargin=10pt,    % margin for the top background border
+framexbottommargin=10pt, % margin for the bot background border
+framexleftmargin=0pt,    % margin for the left background border
+framexrightmargin=0pt    % margin for the right background border
+}
+
+
+% }}}
+% MATH / GRAPHING  ------------------------------------------------------- {{{
+
+\usepackage{amsmath}  % basic math package
+\usepackage{amssymb}  % allows more math symbols
+\usepackage{amsthm}   % allows custom therorem,defn,corll etc... definitions
+\usepackage{mathrsfs} % some new fonts for math mode
+
+\newtheorem{mydef}{DEFINITION}[section] % to get auto numbering
+\newtheorem{myfigure}{FIGURE}[section]  % to get auto numbering
+\newtheorem{mytable}{TABLE}[section]    % to get auto numbering
+
+% tex.stackexchange.com/questions/461186/how-to-use-lineno-with-amsmath-align
+% amsmath should come after lineno for auto math line numbering
+% linenumbers for amsmath (lineno+ams) ,
+% honestly i can live without it ... , it creates more problems than its worth
+
+	% TIKZ --------------------------------------------------------------- {{{
+	\usepackage{tikz}
+	%\documentclass[tikz, border=1mm]{standalone} % only tikz image document
+
+	% https://latexdraw.com/exploring-tikz-arrows/
+
+	\usetikzlibrary{calc} % to sum coordinates
+	\usetikzlibrary{shapes.geometric}
+	\usetikzlibrary{shapes.arrows}
+	\usetikzlibrary{arrows.meta} % custom arrow heads for vectors
+	\usetikzlibrary{positioning}
+	\usetikzlibrary{backgrounds}
+	\usetikzlibrary{decorations.pathreplacing}
+	\usetikzlibrary{angles}
+	\usetikzlibrary{quotes}
+	\usetikzlibrary{intersections}
+	\usetikzlibrary{calligraphy}
+
+
+	\usepackage{pgfplots}
+	\pgfplotsset{compat=newest}
+	\usepgfplotslibrary{fillbetween}
+	\usepackage{array}
+
+	% }}}
+
+% }}}
+% BIBLIOGRAPHY / REFERENCES / FOOTNOTES ---------------------------------- {{{
+
+\usepackage[nottoc,numbib]{tocbibind} % to show references line in toc
+\usepackage{natbib}                   % natbib bibliography manager
+\bibliographystyle{rusnat}            % natbib bibliography style
+\setcitestyle{notesep={; },round,aysep={},yysep={;}} % natbib inline citation style
+
+%\usepackage[superscript,biblabel]{cite}
+
+%\usepackage{cleveref} % enhances latex referencing features
+                      % stuff like page refrences , formats etc
+% it might help get rid of all those custom secrefs we have going on
+
+\renewcommand{\thefootnote}{\roman{footnote}} % footnote style
+
+% force footnotes to bottom of page
+\def\footnoterule{\vfill % added this
+   \kern-3pt\hrule width 2truein \kern 2.6pt} % the \hrule is .4pt high
+
+% Dont forget to generate the .bbl and .blg files using :
+% pdflatex document.tex
+% bibtex document
+% pdflatex document.tex
+
+
+% }}}
+% TABLE OF CONTENTS ------------------------------------------------------ {{{
+
+\usepackage{titletoc}
+% margin from RHS
+%\contentsmargin{1cm}
+
+%\dottedcontents {section}[left]{above}{label-width}{leader-width}
+
+%\dottedcontents{section}[1.8cm]{\bfseries}{3.2em}{1pc}
+%\dottedcontents{subsection}[1.8cm]{}{3.2em}{1pc}
+%\dottedcontents{subsubsection}[1.8cm]{}{2.8em}{1pc}
+
+
+% }}}
+% CUSTOM COMMANDS -------------------------------------------------------- {{{
+
+% New Commands : Sectioning {{{
+
+\newcommand{ \sectionend}
+{
+\nolinenumbers
+\begin{center} 
+{\large \textbf{-§-}  }
+\end{center} 
+
+% was causing problems , i havent figured out the cause
+%\justify
+
+\linenumbers
+\pagebreak
+}
+
+\newcommand{ \subsectionend}
+{
+\nolinenumbers 
+
+%\begin{center} 
+%\rule{0.7em}{0.7em} \rule{0.7em}{0.7em}
+%\end{center} 
+
+\linenumbers
+}
+
+\newcommand{ \subsubsectionend}
+{
+\nolinenumbers
+
+%\begin{center} 
+%\rule{0.7em}{0.7em}
+%\end{center} 
+
+\linenumbers
+}
+
+% }}}
+
+% New Commands : Symbols {{{
+
+\newcommand{ \bulletpoint}
+{ $\bullet$  }
+
+% }}}
+
+% New Commands : Tcolorbox {{{
+
+%	General {{{
+
+\newcommand { \tcolorboxstart }
+{
+	\nolinenumbers
+	\vspace{0.2cm}
+	\centering
+}
+
+\newcommand{ \tcolorboxend}
+{
+	\justifying
+	\vspace{0.2cm}
+	\linenumbers
+}
+
+% }}}
+
+%	Definition {{{
+
+\newcommand{ \tcolorboxdefinition}[3]
+{
+
+\tcolorboxstart
+\begin{defn-bg}
+
+	\begin{defn-title}[width=7cm]{}
+	{
+		\normalsize \textbf{#1}
+	}
+	\end{defn-title}
+
+	\begin{defn-theword}
+	{
+		\footnotesize
+		\begin{mydef} #2
+%		\label{def:{#2}}
+		\end{mydef}
+	}
+	\end{defn-theword}
+
+	\begin{defn-content}
+		\justify
+		\vspace{-0.6cm}
+		#3
+	\end{defn-content}
+
+\end{defn-bg}
+\tcolorboxend
+}
+
+% }}}
+
+%	Note {{{
+
+\newcommand{ \tcolorboxnote}[1]
+{
+
+\tcolorboxstart
+\begin{note-bg}
+
+	\begin{note-theword}
+		{\footnotesize \textbf{NOTE} }
+	\end{note-theword}
+
+	\begin{note-content} \justifying
+
+		#1
+
+	\end{note-content}
+
+\end{note-bg}
+\tcolorboxend
+}
+
+
+
+
+% }}}
+
+%	Table {{{
+
+
+\newcommand{ \tcolorboxtable}[5]
+{
+\tcolorboxstart
+\begin{table-bg}#3{}
+
+	\begin{table-title}[width=\linewidth]{}
+		\captionsetup{labelformat=empty}
+		\captionof{table}{ \textbf{#1} }
+	\end{table-title}
+
+	\begin{table-theword}
+		\footnotesize
+		\begin{mytable}
+		#2
+		\end{mytable}
+	\end{table-theword}
+
+	\begin{table-content}
+	\vspace{-0.5cm}
+	#4
+	\end{table-content}
+
+\end{table-bg}
+\tcolorboxend
+}
+
+% }}}
+
+%	Image {{{
+
+\newcommand{ \tcolorboxfigure}[4]
+{
+\tcolorboxstart
+\begin{image-bg}[width=\linewidth]{}
+
+	\begin{image-title}[width=\linewidth]{}
+		\captionsetup{labelformat=empty}
+		\captionof{figure}{#1 \cite{#4}}
+	\end{image-title}
+
+	\begin{image-theword} 
+	\footnotesize 
+		\begin{myfigure}
+		#2
+		\end{myfigure}
+	\end{image-theword}
+
+	\begin{image-content}
+		\includegraphics[width=\linewidth]{#3} 
+	\end{image-content}
+
+
+
+\end{image-bg}
+\tcolorboxend
+}
+
+% }}}
+
+% }}}
+
+% New Commands : Tables {{{
+
+
+
+\newcommand{ \tabulartable }[3]
+{
+	\nolinenumbers
+	\begin{tabular*}{#1}{@{\extracolsep{\fill}} #2 @{}}
+
+		#3
+
+	\end{tabular*}
+	\linenumbers
+}
+
+\newcommand{ \alternatingtabulartable }[2]
+{
+	\nolinenumbers
+
+	\rowcolors{2}{table-alternating-1}{table-alternating-2}
+	\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}} #1 @{}}
+
+		#2
+
+	\end{tabular*}
+
+	\linenumbers
+}
+
+\newcommand{ \alternatingtabularxtable}[3]
+{
+
+	\nolinenumbers
+
+	\rowcolors{2}{table-alternating-1}{table-alternating-2}
+	\begin{tabularx}{#1}{#2}
+		#3
+	\end{tabularx}
+
+	\linenumbers
+
+}
+
+\newcommand{ \tabularxtable}[3]
+{
+	\nolinenumbers
+
+	\rowcolors{2}{table-alternating-2}{table-alternating-2}
+	\begin{tabularx}{#1}{#2}
+		#3
+	\end{tabularx}
+
+	\linenumbers
+}
+
+\newcommand{ \alternatingxtabulartable}[2]
+{
+	\nolinenumbers
+
+	\rowcolors{2}{table-alternating-1}{table-alternating-2}
+	\begin{xtabular}{#1}
+		#2
+	\end{xtabular}
+
+	\vspace{0.25cm}
+	\linenumbers
+}
+
+\newcommand{ \xtabulartable}[2]
+{
+	\nolinenumbers
+
+	\rowcolors{2}{table-alternating-2}{table-alternating-2}
+	\begin{xtabular}{#1}
+		#2
+	\end{xtabular}
+
+	\vspace{0.25cm}
+	\linenumbers
+}
+
+\newcommand{ \twocolumnxtabulartable}[2]
+{
+	\nolinenumbers
+
+	\rowcolors{2}{table-alternating-2}{table-alternating-2}
+	\begin{xtabular}{#1}
+		#2
+	\end{xtabular}
+
+	\vspace{0.25cm}
+	\linenumbers
+}
+
+\newcommand{ \pagewidetable}[3]
+{
+
+	\nolinenumbers
+
+	\begin{table*}[ht]
+	\caption{#1}
+	\centering
+	\begin{tabular} {#2}
+		#3
+	\end{tabular}
+	\end{table*}
+
+	\linenumbers
+}
+% }}}
+
+% New Commands : References {{{
+
+\newcommand{ \refsec}[1]
+{
+	\hyperref[sec:#1]
+	{
+		(\textsection~\ref{sec:#1})
+	}
+}
+
+\newcommand{ \refssec}[1]
+{
+	\hyperref[sec:#1]
+	{
+		(\textsection~\ref{ssec:#1})
+	}
+}
+
+\newcommand{ \refsssec}[1]
+{
+	\hyperref[sec:#1]
+	{
+		(\textsection~\ref{sssec:#1})
+	}
+}
+
+\newcommand{ \refdef}[1]
+{
+	\hyperref[def:#1]
+	{
+		(Def.~\ref{def:#1})
+	}
+}
+
+\newcommand{ \reffig}[1]
+{
+	\hyperref[fig:#1]
+	{
+		(Fig.~\ref{fig:#1})
+	}
+}
+
+\newcommand{ \reftable}[1]
+{
+	\hyperref[table:#1]
+	{
+		(Table.~\ref{table:#1})
+	}
+}
+% }}}
+
+% }}}
+% TESTING ---------------------------------------------------------------- {{{ 
+
+\usepackage{lipsum}    % generates filler text
+\usepackage{blindtext} % generates non-latin filler text
+
+%\usepackage{showframe} % allows showing frames within which stuff is printed
+%\renewcommand*\ShowFrameColor{\color{red}}
+
+
+% }}}
+% JAPANESE --------------------------------------------------------------- {{{
+
+\usepackage[whole]{bxcjkjatype} % Allows Japanese Characters , CJK incompatible with pdflatex
+\usepackage{ruby}               % used for kanji furigana placement
+                                % \ruby{学}{がく}
+
+\renewcommand\rubysep{0ex}      % Kanji and furigana placement location
+\let\temp\ruby                  %
+\renewcommand\ruby[2]{          % Kanji and furigana size / spacing / color
+	\temp
+	{\fontsize{10}{10}#1 }
+	{\fontsize{6}{6}\textcolor{gray}{#2}}
+}
+% }}}
+% KOREAN {{{
+\usepackage{CJKutf8}
+
+% text has to inside block :
+%\begin{CJK}{UTF8}{}
+%\end{CJK}
+
+
+% }}}
+

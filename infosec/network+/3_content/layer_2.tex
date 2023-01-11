@@ -1,0 +1,288 @@
+
+% SECTION : layer_2_data_link {{{
+\section{Layer 2 : Data Link}
+\label{sec:layer_2_data_link}
+\parindent=0em
+
+Layer 2, the Data Link Layer
+
+This layer receives data from the physical layer and compiles it into a transform form called framing or frame. The principal purpose of this layer is to detect transfer errors by adding headers to data packets.
+
+The protocols are used by the Data Link Layer include: ARP, CSLIP, HDLC, IEEE.802.3, PPP, X-25, SLIP, ATM, SDLS and PLIP.
+
+% 	SUB-SECTION : switches {{{
+\subsection{Switches}
+\label{ssec:switches}
+
+
+% repeater {{{
+
+repeater : gets a signal , regenerates it and sends it on. Used to extend
+range of networks , since cables and topologies have maximum lengths they can
+reach. Originally known as a digital regenerator since it only works for digital signals.
+the analog equivalent is called a analog amplifier. Reapeaters have an advantage
+over amplifiers since the digital signal is regenerated back to original quality
+and all noise is removed from the signal. Whereas amplifiers would only boost
+whatever analog signal they recieve which includes the noise.
+
+multi-port repeater : this is also known as a hub
+
+% }}}
+
+% hub {{{
+
+% }}}
+
+% switches {{{
+
+bridge : filter by mac between hubs by using MAC table
+
+multilayer switches
+layer 3 switch
+content switch
+
+frame switching
+
+no loops
+
+spanning tree protocols
+
+flooding for unknown MACS
+
+
+Switches can be connected to each other over any port using a crossover cable.
+Switches can also have an uplink port , which means that this particular port
+can be configured ( by pressing a button ) to either be a pre crosslink port or
+a normal port. As a crosslink port the switch would treat the plugged in cable
+as a cross link which means that we would use a straight through cable because
+the switch is doing the crossover for us. If we use the uplink port on the
+normal setting then that means we should be using a crossover cable to connect
+our other switch. Nowwdays most switches have Auto sensing ports , which will
+self configure to the type of cable attached so we dont really have to worry
+about all of this straight through and crossover business. What this also
+means is that everyone basically just uses straight through TIA 568A standard
+cables.
+
+Switching / Bridging Loops : These occur when we have a loop between network switches.
+If this is allowed to exist without fixing it then the data will continue to
+loop around inside the network causing lots and lots of collisons. There was a
+protocoll developed exclusively to avoid this kind of shit. It was called the
+spanning tree protcol (STP). STP is built into the switches. What happends
+when switches are first connected to each other is that one of them
+automatically becomes the `root switch'. This root switch will watch any of the
+data that goes through , and upon detection of a bridge loop , it will
+disconnect one of its ports that is connected to any one of the switches. This
+means that the loop is broken , but all the switches will keep functioning and
+will remain connected to each other.
+
+Flood Protection : Works similar to the STP , where when a computer or network
+device is flooding the network with traffic ( usually because they are trying a
+layer 2 DDoS attack) , then the port connected to that machine will get turned
+off by that switch.
+
+console Port : Console ports allow you to go in and manage the switches. These
+require rollover (a.k.a Yost cable). THe better idea is that to just use SSH to
+this instead of physically connecting.
+
+switch port vs ports : Switch Ports do not use IP adresses or work with Layer 3
+
+root guard :
+
+BPDU Guard : A Cisco method allowing only non-switch devices to connect to the
+switch. If there is another switch that is plugged into a port that is marked
+with BPDU guard , then the port automatically turns itself off , and can only be
+turned back on by an administrator logging in and reenabling it.
+
+
+DHCP Snooping : Similar to BPDU guard , we can specify certain ports in the
+swith as ports that are communicating with a DHCP server. This means that any
+other port on the switch that is not the certified DHCP port , will be
+automatically shut down if it senses a DHCP server plugged into it. This
+prevents things like rouge DHCP servers.
+
+
+Autosensing in the switch will cause the switch port to re-wire into s crossover
+configuration. Straight-through cables can connect switches together. Switch
+ports work in full-duplex mode when connected together with either
+straight-through or crossover cables. A switch cannot rewire the terminating
+connector on a cable, only the internals of the port.
+
+% }}}
+
+
+\subsectionend
+% }}} END SUB-SECTION : switches
+
+% 	SUB-SECTION : mac_eui_addresses {{{
+\subsection{MAC / EUI Addresses}
+\label{ssec:mac_eui_addresses}
+
+media access control
+
+EUI-48 is the link-layer address of ethernet devices (used almost nowhere else) EUI-64 is the link-layer address used pretty much everywhere else.
+
+Historically, both EUI-48 and MAC-48 were concatenations of a 24-bit OUI
+(Organizationally Unique Identifier) assigned by the IEEE and a 24-bit extension
+identifier assigned by the organization with that OUI assignment (NIC). The
+subtle difference between EUI-48 and MAC-48 was not well understood; as a
+result, the term MAC-48 is now obsolete and the term EUI-48 is used for both
+(but the terms “MAC” and “MAC address” are still used).
+
+In other words, EUI-48 and the MAC number of a device represent the same thing!
+Usually it is represented in 12 hex (e.g. 0023.a34e.abc9), equivalent to 48 bits
+or 6 bytes.
+
+\subsectionend
+% }}} END SUB-SECTION : mac_eui_addresses
+
+% 	SUB-SECTION : protocols {{{
+\subsection{Protocols}
+\label{ssec:protocols}
+
+ICMP : works on layer 2 (internet) of TCP/IP and layer 3 (network) on the OSI 
+
+
+ARP : If two systems are to communicate using IP, the host sending the packet
+must map the IP address of the destination host to the hardware address of the
+destination host. The Address Resolution Protocol (ARP) is the protocol that
+enables this process of local address discovery to take place. Hosts broadcast
+ARP messages onto the local network to find out which host MAC address "owns" a
+particular IP address. If the destination host responds, the frame can be
+delivered. Hosts also cache IP:MAC address mappings for several minutes to
+reduce the number of ARP messages that have to be sent. 
+
+RARP
+
+
+
+\subsectionend
+% }}} END SUB-SECTION : protocols
+
+% 	SUB-SECTION : vlans {{{
+\subsection{VLANs}
+\label{ssec:vlans}
+
+VLAN : A VLAN (Virtual Local Area Network) splits one broadcast domain into two
+or more smaller broadcast domains. In a VLAN , the computers , servers ,a dn
+other network devices are logically connected regardless of their physical
+location. These are super upseful when you dont want traffic from devices that
+are physically on the same network to intermingle (e.g. accounting shouldnt be
+able to connect to shipping computers etc ...). To do this we basically break up
+the physical network into smaller distinct virtual networks. You can designate
+VLANs on a switch by specifiying ports or ranges of ports. Vlans can also help
+with traffic management because of the smaller broadcast domain , we can
+alleviate the broadcast traffic on the network.
+
+
+Inter VLAN Routing : If we set up a VLAN we have multiple broadcast domains.
+This means that we want the traffic between these domains to remain segregated.
+We want this on the switch side , as well as the router side. So one solution is
+that we can just plug in one port from each VLAN into the router to create
+indipendent default gateways. The problem with this approach is that you are
+going to have to keep adding more router cause they usually dont ship with a
+whole bunch of ports ( usually only 2 ). So the solution is something called
+inter VLAN routing.  This is a virtualization of the functions of the router. So
+we are basically  creating new virtual routers to interact with these virtual
+LANS.
+
+
+Trunk Ports : A trunk port is assigned to carry traffic from all the VLANs
+connected to a specific network switch.
+
+802.1q adds a tag to the ethernet frame header , labeling it as belonging to a
+certian VLAN.
+
+Trunk Line
+
+Port Bonding / NIC Teaming / Link Aggregation / Channel Bonding / Port Trunking
+/ NIC Trunking : It is the process of taking two ports and bonding them
+together such that they act as on higher speed port. In cisco switches at least
+, the way we do this is by creating groups and assigning each individual port we
+want bonded onto that group. Use LACP for the trunking protocol and make sure at
+least one of the ports is set as active. If both ports are set as passive it
+wont work.
+
+LACP
+
+Port Mirroring : Port Mirroring enables the traffic flowing through one port to
+be monitored on another port. This feature enables administrators to remotely
+insepect traffic from a suspicious machine. It is configured on a switch by
+providing a source port and a destination port.
+
+
+\subsectionend
+% }}} END SUB-SECTION : vlans
+
+% 	SUB-SECTION : ppp {{{
+\subsection{PPP}
+\label{ssec:ppp}
+
+% 		SUB-SUB-SECTION : aaa {{{
+\subsubsection{AAA}
+\label{sssec:aaa}
+
+ACL : Access Control List
+
+MAC : Mandatory Access Control : uses specific labels to restrict access to
+individual files
+DAC : Discretionary Access Control : gives / restricts acess to users
+RBAC : Role Based Access Control : uses groups that are then assigned to users
+to grant permissions
+
+AAA : Authentication , Authorization , Accounting
+
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : aaa
+
+% 		SUB-SUB-SECTION : radius {{{
+\subsubsection{RADIUS}
+\label{sssec:radius}
+
+
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : radius
+
+% 		SUB-SUB-SECTION : tacacs {{{
+\subsubsection{TACACS+}
+\label{sssec:tacacs}
+
+
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : tacacs
+
+\subsectionend
+% }}} END SUB-SECTION : ppp
+
+% 	SUB-SECTION : kerberos {{{
+\subsection{Kerberos}
+\label{ssec:kerberos}
+Single Sign On
+Kerberos : Handles authentication and authorization for wired networks. It
+relies heavily on timestamps
+KDC ( Key Distribution Center )
+AS ( Authentication Service )
+TGS ( Ticket Granting Service ) 
+TGT ( Ticket Granting Ticket / Token )
+
+\subsectionend
+% }}} END SUB-SECTION : kerberos
+
+% 	SUB-SECTION : layer_2_vpns {{{
+\subsection{Layer 2 VPNs}
+\label{ssec:layer_2_vpns}
+
+When it comes to the Data Link Layer VPNs, there are two private networks which are linked or connected on to the Layer 2 of the OSI model while utilizing a suitable protocol like Frame Relay or ATM.
+
+However, these two procedures simultaneously give off a quite suitable way towards the development of VPNs. These layers are often found to be expensive as they require dedicated Layer 2 pathways for its creation and functioning.
+
+Frame Relay and ATM protocols, both of these protocols usually don’t provide encrypting mechanisms. Instead, these two mechanisms are only responsible for allowing the network traffic for the segregation based on how Layer 2 is connected and how it relates to it.
+
+To wrap it up, we could say that for an extra layer of security and protection you would need to develop some encrypting mechanism in its place.
+\subsectionend
+% }}} END SUB-SECTION : layer_2_vpns
+
+\sectionend
+% }}} END SECTION : layer_2_data_link

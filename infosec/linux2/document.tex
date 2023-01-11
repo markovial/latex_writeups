@@ -1,0 +1,1296 @@
+% =============================================================================
+\input{0_includes/0_preamble.tex}
+% ============================================================================ 
+\begin{document}
+%\input{0_includes/1_title_page.tex}
+\input{0_includes/2_contents_page.tex}
+%\input{3_content/file.tex}
+
+% SECTION : linux_sysadmin_course {{{
+\section{Linux SysAdmin Course}
+\label{sec:linux_sysadmin_course}
+
+% 	SUB-SECTION : std_o_i_err {{{
+\subsection{STD O I ERR}
+\label{ssec:std_o_i_err}
+
+Everything in linux is treated as ordinary files. This includes data streams.
+Each file gets a file-descriptor assigned to it that can then be used to acces
+the particular type of data stream that it is carrying. A file-descriptor is
+basically in integer. When executing a command on linux we will mainly be
+concerned with the following three tupes of file descriptors :
+
+
+% tabular TABLE : file_descriptors {{{
+
+\tabulartable
+{0.95\linewidth}
+{t}
+{llll}
+{
+
+\textbf{STDIN}  & : & Standard input has file decriptor  & 0 \\
+\textbf{STDOUT} & : & Standard output has file decriptor & 1 \\
+\textbf{STDERR} & : & Standard error has file decriptor  & 2 \\
+
+}
+
+% }}} End TABLE : file descriptors
+
+every process that is running in the linux kernel has three channels , which are
+STDIN , STDOUT and STDERR . Each one of these channels have numbers that
+correspond to them. If we want to redirect ouputs of certain processes into
+others.\\
+
+
+% IMAGE : std_in_out_err {{{
+
+\tcolorboxfigure
+{ \textbf{STD IN / OUT / ERR} }
+{\label{fig:std_in_out_err}}
+{std.png}
+{stdioerr}
+
+% }}} End IMAGE : std_in_out_err
+
+
+\noindent
+echo ``this should be in a file'' 1 \textgreater \hspace{0.2cm} somefile.txt\\
+
+\noindent
+output redirection uses STDOUT by default so we dont even need the 1 in the
+above command.\\
+
+\noindent
+echo ``this should be in a file'' \textgreater \hspace{0.1cm} somefile.txt \\
+
+\noindent
+this will however overwrite everything in the original file.\ so instead of
+overwrite , we append using \textgreater \textgreater \\
+
+\noindent
+echo ``this should be in a file'' \textgreater \textgreater \hspace{0.1cm}
+somefile.txt\\
+
+\noindent
+similarly to print out error , we use the filedescriptor 2\\
+
+\noindent
+ls thisdoesnotexist 2 \textgreater \hspace{0.1cm} somefile.txt\\
+
+\noindent
+to redirect input we use the \textless symbol\\
+
+
+\subsectionend
+% }}} END SUB-SECTION : std_o_i_err
+
+% 	SUB-SECTION : package_management {{{
+\subsection{Package Management}
+\label{ssec:package_management}
+
+% 		SUB-SUB-SECTION : pacman {{{
+\subsubsection{pacman}
+\label{sssec:pacman}
+
+
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : pacman
+
+% 		SUB-SUB-SECTION : aur {{{
+\subsubsection{AUR}
+\label{sssec:aur}
+
+
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : aur
+
+% 		SUB-SUB-SECTION : source_installation {{{
+\subsubsection{Source Installation}
+\label{sssec:source_installation}
+
+
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : source_installation
+
+\subsectionend
+% }}} END SUB-SECTION : package_management
+
+% 	SUB-SECTION : grep {{{
+\subsection{GREP : \textit{Global Regular Expression Print} }
+\label{ssec:grep}
+
+\noindent
+Grep is a pattern matching tool. It basically returns things based on your set
+conditions from a large ouput.  Grep is most often used in conjuction with other
+file manipulation commands such as less , cut , cat , sort \ldots in order to
+reduce the information that we as a human need to parse through to get at what
+we really wanted.
+
+Grep uses POSIX regular expressions in evaluation. This is different from PERL
+compatible regular expressions that are used in python and some other
+programming languages. So dont get that confused.
+
+Grep use examples and flags are shown below :
+
+% XTABULAR TABLE :  {{{
+
+\xtabulartable
+{lllll}
+{
+
+\rowcolor{table-alternating-1}
+grep &           & John            & notes.txt        \\
+\multicolumn{4}{l}{ basic usecase } \\
+&&&\\
+
+\rowcolor{table-alternating-1}
+grep &           & ``abc pqr''     & \textit{filename} \\
+\multicolumn{4}{l}{ use double quotes to search for phrases }\\
+\multicolumn{4}{l}{ with spaces }\\
+&&&\\
+
+\rowcolor{table-alternating-1}
+grep & -w        & \textit{phrase} & \textit{filename} \\
+\multicolumn{4}{l}{ exact matches  }\\
+&&&\\
+
+\rowcolor{table-alternating-1}
+grep & -i        & \textit{phrase} & \textit{filename} \\
+\multicolumn{4}{l}{ non case sensitive matches  }\\
+&&&\\
+
+\rowcolor{table-alternating-1}
+grep & -n        & \textit{phrase} & \textit{filename} \\
+\multicolumn{4}{l}{ display line numbers  }\\
+&&&\\
+
+\rowcolor{table-alternating-1}
+grep & -B 4      & \textit{phrase} & \textit{filename} \\
+\multicolumn{4}{l}{ display lines \textbf{before} matched word  }\\
+&&&\\
+
+\rowcolor{table-alternating-1}
+grep & -A 4      & \textit{phrase} & \textit{filename} \\
+\multicolumn{4}{l}{ display lines \textbf{after} matched word   }\\
+&&&\\
+
+\rowcolor{table-alternating-1}
+grep & -win -C 4 & \textit{phrase} & \textit{filename} \\
+\multicolumn{4}{l}{ display lines \textbf{context} of word \textbf{(before and
+		after) } }\\
+%\multicolumn{4}{l}{ \textbf{after)} }\\
+&&&\\
+
+\rowcolor{table-alternating-1}
+grep & -r        & \textit{phrase} & \textit{filename} \\
+\multicolumn{4}{l}{ search for phrase recursively in all subdirectories }\\
+&&&\\
+
+\rowcolor{table-alternating-1}
+grep & -l        & \textit{phrase} & \textit{filename} \\
+\multicolumn{4}{l}{ display files that contain match }\\
+&&&\\
+
+\rowcolor{table-alternating-1}
+grep & -c        & \textit{phrase} & \textit{filename} \\
+
+\multicolumn{4}{l}{ \makecell[l]{return count of the number of lines (not \\
+		times) the phrase occurs in the specified files} } \\
+
+&&&\\
+
+\rowcolor{table-alternating-1}
+grep & -v        & \textit{phrase} & \textit{filename} \\
+
+\multicolumn{4}{l}{ \makecell[l]{Do an inverse match , i.e.\, return all \\
+		lines that do not contain the given phrase}{} }\\
+
+&&&\\
+
+\rowcolor{table-alternating-1}
+grep &           & \textit{phrase} & ./* \\
+\multicolumn{4}{l}{ search all files (*) in current dir (./) }\\
+&&&\\
+
+\rowcolor{table-alternating-1}
+grep &           & \textit{phrase} & ./*.txt \\
+\multicolumn{4}{l}{ search all .txt files (*.txt) in current dir (./) }\\
+&&&\\
+
+
+}
+
+
+% }}} End XTABULAR TABLE : 
+
+\subsectionend
+% }}} END SUB-SECTION : grep
+
+% 	SUB-SECTION : file_permissions {{{
+\subsection{File Permissions}
+\label{ssec:file_permissions}
+
+\vspace{0.5cm}
+
+Each file in linux has 9 permission bits.The first 9 bits in a file are used to
+describe the kinds of permissions that are allowed for a file.  Traditionally
+there are three types of permission bits :
+
+% ITEMIZE : permission_bits {{{
+
+\begin{itemize}[noitemsep]
+
+	\item \textbf{r} gives permission to read the file
+	\item \textbf{w} gives permission to write the file , this lets you edit a
+		file , move a file , rename a file and a bunch of other stuff.
+	\item \textbf{x} gives permission to execute the file
+	\item \textbf{-} means the file has no permission
+
+\end{itemize}
+
+% }}} END-ITEMIZE : permission bits
+
+\noindent
+The nine bits can be grouped into threes since they specify \textit{rwx}
+permissions for the owner , the next three for the owners group , the last three
+are for everyone else respectively.
+
+\noindent
+Usually when you are printing with a command like ls with the -l flag , then we
+see an additional 10th bit at the front of the permission bits. This bit sets
+the entry type, and describes the type of the file we are dealing with. The most
+common types you might see the first bit being are :
+
+% ITEMIZE : entry_bit_types {{{
+
+\begin{itemize}[noitemsep]
+
+	\item \textbf{-} means it is a file 
+	\item \textbf{d} means it is a directory 
+	\item \textbf{l} means it is a link
+	\item \textbf{b} means it is a block device type (hard disk)
+
+\end{itemize}
+
+% }}} END-ITEMIZE : Entry bit Types
+
+% tabular TABLE : file_permissions {{{
+
+\tabulartable {0.95\linewidth}{t} {lllllll} { \rowcolor{table-subtopic}
+	\textbf{Permissions} &   & \textbf{Owner} & \textbf{Owner Group} &
+	\textbf{PID} &  & \textbf{Filename} \\ \midrule \rowcolor{white}  &   &  &
+	&  &  &  \\
+
+-rw-r--r-- & 1  & ishan & users & 11707 & Jun 15 17:59 & .vimrc \\ drwxr-xr-x &
+15 & ishan & users & 4096  & Jun 15 20:55 & Documents \\
+
+}
+
+% }}} End TABLE : file permissions
+
+\noindent
+The permissions are goverened by the command \textit{chmod}
+
+\noindent
+The rwx permission also have numerical representations that are sometime used.
+These also follow the same orders mentioned above , i.e.\ , the first numerical
+representation will be for the user account. The second for the user group and
+the third for the everyone else.
+
+\noindent
+These numbers are :
+
+
+% ITEMIZE : file_permissions_numerical {{{
+
+\begin{itemize}[noitemsep]
+
+	\item 7  :  r w x
+	\item 6  :  r w -
+	\item 5  :  r - x
+	\item 4  :  r - -
+	\item 3  :  - w x
+	\item 2  :  - w -
+	\item 1  :  - - x
+	\item 0  :  - - -
+
+\end{itemize}
+
+% }}} END-ITEMIZE : file_permissions_numerical
+
+\noindent
+If you dont want to go around manually editing file permissions then edit (very
+very carefully) the file : /etc/login.defs in debian based systems.
+
+
+\subsectionend
+% }}} END SUB-SECTION : file_permissions
+
+% 	SUB-SECTION : file_access_control {{{
+\subsection{File Access Control}
+\label{ssec:file_access_control}
+
+Everything in linux is an object.\\
+
+Permissions of a process are goverened by the user that started the process.\\
+
+Usually these permissions are set-up not on an individual user basis , but
+rather at a user group basis. (you might have heard of the WHEEL group). In a
+production or company environment these are groups like Human Resources group ,
+the managers group etc \ldots. One user can be part of multiple groups which
+allows for easy modularity between user privilege levels.\\
+
+The biggest baddest user is called root.
+
+\vspace{0.5cm}
+
+% 	SUB-SECTION : root {{{
+\subsection{Root}
+\label{ssec:root}
+
+Root in linux can mean one of three things : 
+
+\noindent
+
+
+% ENUMERATE : roottypes {{{
+
+\begin{enumerate}[noitemsep]
+
+	\item Root User
+	\item Root Folder
+	\item Root Home
+
+\end{enumerate}
+
+% }}} END-ENUMERATE : Roottypes
+
+\noindent
+\textbf{Root User}
+
+
+\noindent
+The root user is the most powerful account user , and is also known as a
+\textbf{\textit{superuser}}. There are many commands such as installing new
+packages, or mounting / unmounting filesystems that require this privelege level (sudo == super user do ). 
+
+
+\noindent 
+\textbf{Root Directory}
+
+
+\noindent
+The root diretory is the place where the linux filesystem starts. It is the
+directory that is indicated by only a / . The root directory contains all
+folders in the linux sub directory.
+
+\subsectionend
+% }}} END SUB-SECTION : root
+
+\subsectionend
+% }}} END SUB-SECTION : file_access_control
+
+% 	SUB-SECTION : users {{{
+\subsection{Users}
+\label{ssec:users}
+
+A user is the person who is currently using the machine. You can see who you are
+in many ways. First you can just open up the shell and look at the prompt. It
+will look something like \textit{username@machinename:~} . You can also type in
+the \textit{who} and \textit{w} commands. If you want more information than that
+about just your current user account then you can see all current users by
+catting the file \textbf{/etc/passwd} , or the file \textbf{/etc/shadow} .
+
+\noindent
+In the \textbf{/etc/shadows} file you might see two anomailes in the password
+field : * and ! . The root user has password status ! which means that they can
+only be accessed through sudo. And all processes acting as users have no ability
+to log in whatsoever. This is specified by *. All other passwords should look
+like hashes. If a user has been created , but thier password has not been set
+yet, then they will also have ! in the password field in this file.
+
+\noindent
+To list user groups instead of just the users , we can cat : \textbf{/etc/group}
+
+\noindent
+These files also contains services that are running. Therefore you will see a lot
+more ` Users ' than you might have on the machine. This is because a lot of
+services also run as users within a linux machine. These services are listed
+here albeit with much fewer permission than those that a normal human user would
+have.
+
+\noindent
+The feilds in \textbf{/etc/passwd} will look something like :
+
+\noindent
+Username  :  x  :  USER ID  :  GROUP ID  :  Human Readable Info  :  Home Dir  :  Default Shell \\
+
+\noindent
+The feilds in \textbf{/etc/group} will look something like :
+
+\noindent
+Group Name  :  x  :  GROUP ID  :  Members of that Group \\
+
+\noindent
+\textbf{\textit{Adding a user}}
+
+\noindent
+To add a user we use the \textit{useradd} command , with the following flags
+
+% ITEMIZE : add_user_flags {{{
+
+\begin{itemize}[noitemsep]
+
+
+	\item -m create home directory
+	\item -d /home/username
+	\item -u create user id
+	\item -g define group id
+	\item -s define default shell
+
+
+\end{itemize}
+
+% }}} END-ITEMIZE : add user flags
+
+\noindent We can also create a bunch of new users simultaneously using the
+\textit{newusers} command.  After creating the user , use the \textit{passwd}
+command to set the password for the user. This will remove the locked ! status
+from /etc/shadows mentioned earlier. If you want to relock the user then we can
+use the \textit{usermod -L username} command. And to unlock him/her user
+\textit{usermod -U username} .
+
+\noindent
+\textbf{\textit{Deleting a user}}
+
+\noindent
+Finally use \textit{userdel username} to delete the user. After deleting the
+user remember to find and clean up their home directory or anything else thay
+they have done.
+
+
+
+% NOTE : Email Origins {{{
+
+\tcolorboxnote
+{
+
+Emails originated from the ishan@linuxmachine sort of format , where the
+username would follow the machine name and that is the convention that people
+were used to in servers back in like the 70s.
+}
+
+% }}} END NOTE : email_origins
+
+\subsectionend
+% }}} END SUB-SECTION : users
+
+% 	SUB-SECTION : filesystem {{{
+\subsection{Filesystem}
+\label{ssec:filesystem}
+
+So when we are storing data it is essentially stored in binary bits (0 and 1).
+But that is essentially just one large body of text in some storage device and
+there is no way for us or the computer tell when the bits from one piece of data
+end and where the bits of another begin. We need some sort of pre agreed on
+system , to say : `` \textit{from `here' to `there' is one thing, and from
+	`there' to `another place' is another thing} ''.
+
+By separating the data into pieces and giving each piece a name, the data is
+easily isolated and identified.
+
+Since most of the naming conventions came about when paper-based management
+systems and filing cabinets were still things that existed , each little group
+of data started being called a ``file''. 
+
+And since we are still dealing with old timer terminology , what do you do with
+files ? You name them and organize them and put them into filing cabinets
+according to some sort of system. Therefore the way these are named , sorted and
+organized got called a file system.
+
+So one thing that we know is that not everyone agrees on the logic of how things
+should be organized. Some people organize clothes by color , others by season ,
+others by occasion and so on. Similary there are various different ways to
+organize and categorize the files inside our storage devices, which means there
+are a bunch of differnt filesystems that we can use. The most common ones are :
+
+% ITEMIZE : common_filesystems {{{
+
+\begin{itemize}[noitemsep]
+
+	\item FAT32
+	\item EXT3
+	\item EXT4
+	\item NTFS
+	\item ZFS
+	\item HFS
+
+\end{itemize}
+
+% }}} END-ITEMIZE : common filesystems
+
+There are also certain filesystems that are specific to certain mediums. Such as
+the ISO 9660 filsystem which is only for CDs.
+
+Its been said before , and I will say it again. Everything in linux is a process
+and every process is manfisted as a file, so everything in linux is essentially
+just a file. Which means that files and filesystems are very important in
+understanding and dealing with any information and information manipulation
+inside Linux.
+
+The filesystems inside linux can be physical / real filesystems that the machine
+is dealing with , or they can be virtual filesystems that the kernel / system
+creates to make things easier to deal with. An example is the /proc filesystem
+that deals with the storage and processing of inter-process signals.
+
+
+% 		SUB-SUB-SECTION : logical_file_system {{{
+\subsubsection{Logical File System}
+\label{sssec:logical_file_system}
+
+The logical file system is responsible for interaction with the user
+application. It provides the application program interface (API) for file
+operations — OPEN, CLOSE, READ, etc., and passes the requested operation to the
+layer below it for processing. The logical file system "manage[s] open file
+table entries and per-process file descriptors."[8] This layer provides "file
+access, directory operations, [and] security and protection."[7]
+
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : logical_file_system
+
+% 		SUB-SUB-SECTION : virtual_filesystem {{{
+\subsubsection{Virtual Filesystem}
+\label{sssec:virtual_filesystem}
+
+
+The second optional layer is the virtual file system. "This interface allows
+support for multiple concurrent instances of physical file systems, each of
+which is called a file system implementation."[8]
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : virtual_filesystem
+
+% 		SUB-SUB-SECTION : physical_filesystem {{{
+\subsubsection{Physical Filesystem}
+\label{sssec:physical_filesystem}
+
+The third layer is the physical file system. This layer is concerned with the
+physical operation of the storage device (e.g. disk). It processes physical
+blocks being read or written. It handles buffering and memory management and is
+responsible for the physical placement of blocks in specific locations on the
+storage medium. The physical file system interacts with the device drivers or
+with the channel to drive the storage device.[7] 
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : physical_filesystem
+
+
+\textbf{\textit{tmpfs}}
+
+
+\textbf{\textit{Mounting}}
+
+\textbf{\textit{udevd Daemon}}
+
+
+
+\subsectionend
+% }}} END SUB-SECTION : filesystem
+
+% 	SUB-SECTION : process {{{
+\subsection{Process}
+\label{ssec:process}
+
+A process ia basically an application , shell command or any program that is
+``doing something'' in linux. It can be as complex as running a browser ,
+running a vulnerability scanner , or as simple as running a shell command or
+read a file. All of this will spawn a process.
+
+A process is given its own share of memory do go about its business (it has its
+own call stack and memory allocated for a heap). This is usually virtual memory
+, so it might not be able to see absolute address that it is reading or writing
+to. Instead it is given virtual addresses by the kernel.
+
+\textbf{\textit{Kernel}}
+
+Basically , a kernel is the thing that is sitting between a running process and
+the physical hardware.  The kernel also keeps track of
+
+% ITEMIZE : things_the_kernel_does {{{
+
+\begin{itemize}[noitemsep]
+
+	\item \textbf{Owner} : Which user is the owner of the process 
+
+	\item \textbf{Parent Process} : Which process spawned the current process ,
+		since all processes are born from other processes.
+
+	\item \textbf{Priority} : Does it need to do work quickly (high priority) or
+		can it chill for a while (low priority).
+
+	\item \textbf{Memory Allocation} : the address spaces (files , network ports
+		\ldots) that the process is allowed to use and what it is currently
+		using.
+
+\end{itemize}
+
+% }}} END-ITEMIZE : things the kernel does
+
+Each process has an ID , called the \textbf{\textit{Process ID}} or
+\textbf{\textit{PID}}. This is a unique number assigned to each process. The
+first process (PID 1) is always \textit{init}. It is the parent that gives birth
+to all other processes on the system. The kernel spawns this process during boot
+, and it runs all the startup scripts that setup linux. If any process dies ,
+then all the children that it spawns are not killed , rather they are adopted by
+init.
+
+What init specifically does differs according to some distributions, and is
+outside the scope of this text. Just remember it is the first process and it is
+spawned by the kernel.
+
+% NOTE : a note about init {{{
+
+\tcolorboxnote
+{
+
+There are some virtual machines that think that they are real machines. Which
+means that they will have thier own \textit{init} with PID 1, while the host
+machine also has a similar \textit{init} with PID 1.
+
+} 
+
+% }}} END NOTE : a_note_about_init
+
+There are two kinds of process permissions , namely id based permissions or
+effective id based permissions. More formally UID (user id) define permissions
+based on user privilege level of the user that spawns the process.  On the other
+hand , the EUID (effective user id) , gives permissions more sparingly (or just
+differently) based upon a foundation of the original permissions.
+
+A good example why this is needed is if root spawns a process , and this process
+goes crazy , we dont want it walking around in our system doing whatever it
+wants with root privileges , because that pretty much means deth. So EUID gives
+permissions different than the ones granted by user spawn.
+
+Similarly there are also group ids GID and effective group ids EGIDs.
+
+% 		SUB-SUB-SECTION : signals {{{
+\subsubsection{Signals}
+\label{sssec:signals}
+
+Signals are what processes use to communicate with each other. You might also
+already know them as software interrupts from your operating systems class.
+Signals can be sent by the kernel as well when a process does something heinous
+like dividing by or zero, but they are more commonly the kernel uses signals to
+indicate the state of the system to the processes. Some common signals are
+notifying the parent of the death of the child process, or notifying a process
+about the availability and readiness of some hardware like a CD-drive.
+
+As has been mentioned before everything in linux is a file. So what a signal
+essentially is read and writing from files. A process has something to say to
+another process so it will write to a file, and the other process will read fomr
+this file. This `process' of reading and writing is called a signal.
+
+The following are examples of signals :
+~\footnote{man page is : man 7 signal}
+
+
+% XTABULAR TABLE : process_signals {{{
+
+\tabulartable
+{\columnwidth}
+{t}
+{ll}
+{
+
+	SIG \textbf{HUP} & Hang up \\
+
+	SIG \textbf{INIT} & interrupt \\
+	SIG \textbf{QUIT} & quit \\
+	SIG \textbf{ILL} & illegal instruction \\
+	SIG \textbf{TRAP} & trace trap \\
+	SIG \textbf{ABRT} & abort process \\
+	SIG \textbf{BUS} & bus error \\
+	SIG \textbf{FPE} & floating point exception \\
+	SIG \textbf{KILL} & kill (cannot be ignored) \\
+	SIG \textbf{USR1} & custom user defined signal \\
+	SIG \textbf{SEGV} & Segmentation Fault / Violation \\
+	SIG \textbf{USR2} & custom user defined signal \\
+	SIG \textbf{PIPE} & Write to pipe fault  \\
+	SIG \textbf{ALRM} & Alarm \\
+	SIG \textbf{TERM} & Terminate (can be ignored by process) \\
+	SIG \textbf{STKFLT} & Stack fault \\
+	SIG \textbf{CHLD} & \makecell{Child process terminted \\ / interrupted / resumed.} \\
+	SIG \textbf{CONT} & Continue executing after stop \\
+	SIG \textbf{STOP} & Stop a process for later \\
+	SIG \textbf{TSTP} & Temporaily stop \\
+	SIG \textbf{TTIN} & tty in \\
+	SIG \textbf{TTOU} & tty out \\
+	SIG \textbf{URG} & urgent data aviable for read\\
+	SIG \textbf{XCPU} & You have overused your CPU time. This is a warning to gracefully exit before SIGKILL shows up to bounce yo ass. \\
+	SIG \textbf{XFSZ} & X-Filesize , Grew file larger than maximum allowed size. \\
+	SIG \textbf{VTALRM} & Virtual alarm clock \\
+	SIG \textbf{PROF} & Profling alarm clock \\
+	SIG \textbf{WINCH} & window change , or when terminal / window manager changes size \\
+	SIG \textbf{IO} & Input Output now possible \\
+	SIG \textbf{PWR} & Power failure detected \\
+	SIG \textbf{LOST} & Power lost , synonym for SIGPWR \\
+	SIG \textbf{UNUSED} & Unused signal \\
+}
+
+
+% }}} End XTABULAR TABLE : process signals
+
+
+\textbf{\textit{Sending signals from the keyboard}}
+
+Signals may be sent from the keyboard. Several standard defaults are listed below. Default key combinations for sending interrupt signals can be defined with the stty command.
+
+
+% tabular TABLE : common_singal_interrupts {{{
+
+\tabulartable
+{0.99\linewidth}
+{t}
+{ll}
+{
+
+
+Ctrl-C & Send SIG INT (Interrupt).  \\
+&  By default, this causes a process to terminate.  \\
+
+Ctrl-Z & Send SIG TSTP (Suspend).  \\
+&  By default, this causes a process to suspend all operation. \\
+
+Ctrl-\ & Send SIG QUIT (Quit).  \\
+&  By default, this causes a process to terminate immediately and dump the
+core. \\
+
+Ctrl-T & Send SIG INFO (Info).  \\
+&  By default, this causes the operating system to display information about
+the command. Not supported on all systems. \\
+
+}
+
+% }}} End TABLE : Common Singal interrupts
+
+To send a signal we can also use the signal number assigned to each signal as
+opposed to typing / remebering the whole signal name. Similarly for the
+processes themselves. Although getting the process ID will usually require a
+grep. As examples :
+
+% tabular TABLE : common_signal_commands {{{
+
+\tabulartable
+{0.99\linewidth}
+{t}
+{lll}
+{
+
+\textit{kill 15 firefox} & : & this will send SIGTERM to firefox\\
+
+\textit{ps aux \textbar grep firefox} & : & Greps for the named process
+~\footnote{
+This particular grep command will always return at least 1 result , since a
+process would be started to look for the other process containing the same name.
+If firefox is actually running then we will see at least 2 processes in the
+returned results. One for the actual process and the other for the search
+process.
+}
+
+\\
+
+\textit{kill 9 3460} &  : & this will send SIGKILL to process number 3460\\
+
+}
+
+% }}} End TABLE : common signal commands
+
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : signals
+
+% 		SUB-SUB-SECTION : process_states {{{
+\subsubsection{Process : States}
+\label{sssec:process_states}
+
+Everything on the machine is basically some combination of calculations that
+need to get done, in order to get some answer. This answer is the raison d'être
+~\footnote{reason or justification for existence} for a process , and to
+calculate it they all need CPU time. However not every process needs CPU time at
+every given second. Which is why we have scheduling algorithms like round robin.
+So for example if a process is waiting for keyboard input , or for something to
+be read from the hard drive or CD-Drive then it doesnt need CPU time because it
+can't really do much (or anything) with it anyway. So the processes can exist in
+the following states :
+
+% ITEMIZE : process_states {{{
+
+\begin{itemize}[noitemsep]
+
+	\item \textbf{Runnable} : The process has all the information and input it
+		needs , and it can just get run (or be scheduled to run) the next time
+		the CPU has any free time.
+
+	\item \textbf{Sleeping} : It can be waiting for something.
+
+	\item \textbf{Zombie State} : It has finished doing whatever it needed to do
+		, but now it is just waiting to give back the information and then be
+		killed.
+
+	\item \textbf{Stopped State} : A process that may have been in the middle of
+		doing something but the user or another process sent it SIGSTOP so it is
+		waiting for SIGCONT to resume where it left off.
+
+\end{itemize}
+
+% }}} END-ITEMIZE : Process states
+
+The processes also have a \textbf{\textit{niceness property}}, which basically
+details how much they allows other processes to run , i.e.\ does this process
+hog system resources or not. This is goverened by it's priority level, so the
+higher the priority the more of a dick the process is going to be about sharing
+system resources.
+
+Linux processes have niceness ranger from -20 to 19 , where the higher the
+number the lower the priority. So if something is -20 nice then it is ultra
+critical and it needs to get run before everything else. This will also probably
+cause your screen freeze because as much CPU time as possible is going to this
+process , and the CPU wont even have enough time to refresh your screen.
+
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : process_states
+
+% 		SUB-SUB-SECTION : proc_filesystem {{{
+\subsubsection{/proc Filesystem}
+\label{sssec:proc_filesystem}
+
+One of the reasons Linux is really popular as a server side operating system is
+that we (specifically System Admnisistrators) can change the underlying values
+of the operating systen while still keeping the server and the system up and
+running.
+
+Since we know that all actions on linux run as an underlying process , and we
+also know that all things in linux are essentially files. This means that all
+procsses are also represented as a file `somewhere' on the system.
+
+This `somewhere' is the \textbf{/proc} folder. This folder is a virtual
+filsystem which can be accessed by the system administrarors to view and change
+underlying system values.
+
+A /proc filesystem is not a real filsystem because it resides only in the
+computer's memory and does not use and space on the hard disk (i.e.\ it is a
+virtual filesystem). This filesystem is a map to the running kernel processes.
+
+It is mounted in /proc during system initialization and has an entry in the
+/etc/fstab file\footnote{fstab file is the operating systems system table}
+
+If you ls /proc you will see a bunch of subdirs and files. Most of these have
+numbers , and these numbers are actually PIDs for running processes. Other
+directories deal with system hardware, networking settings , activity and memory
+usage and so on.
+
+If you list the files under /proc, you will find that all the files have a size
+of 0 - this is because they are not really files and directories in the typical
+sense. Basically these files are beaing created and updated on the fly.  This
+also means that if you want to `see' one of these files you can't just cat them.
+
+% NOTE : warning {{{
+
+\tcolorboxnote
+{
+
+\textbf{\textit{WARNING}} \\
+
+Do not use `cat' on /proc/kcore as this is a special file which is an
+image of the running kernel's memory at that particular moment - cat'ting this
+file will leave your terminal unusable.\\
+
+}
+
+
+
+% }}} END NOTE : warning
+
+Another thing to keep in mind is that a lot of the information contained in
+these files is either raw data , and sometimes even just binary. So looking
+through these files for useful information is not always easy. This information
+if often meant to parsed and interpreted through other programs , but it is
+still good to know where the programs like top and htop are getting their
+information from, and if you are a madlad read it directly from source.
+
+Within each process's (es) folder there will be some common files that will be
+of interest :
+
+% ITEMIZE : proc_init_files {{{
+
+\begin{itemize}[noitemsep]
+
+	\item \textbf{cmd} : Contains the command that the process is currently
+		executing
+
+	\item \textbf{cmdline} : Contains information about how the process was
+		called , i.e.\ the command line argument that was inputted to run the
+		current process 
+
+	\item \textbf{cwd} : Contains information about the directory within which
+		the process is opertaing from
+
+	\item \textbf{environ} : shows the environment variables
+
+	\item \textbf{exe} : a link to the executable
+
+\end{itemize}
+
+% }}} END-ITEMIZE : proc init files
+
+Some of the key files in the top-level directory are as follows :
+
+% ITEMIZE : proc_key_directories {{{
+
+\begin{itemize}[noitemsep]
+
+	\item \textbf{/proc/interrupts} - View IRQ settings
+
+	\item \textbf{/proc/cpuinfo} - Information about the system's CPU(s)
+
+	\item \textbf{/proc/dma} - Direct Memory Access (DMA) settings
+
+	\item \textbf{/proc/ioports} - I/O settings.
+
+	\item \textbf{/proc/meminfo} - Information on available memory, free memory,
+		swap, cache memory and buffers. You can also get the same information
+		using the utilities free and vmstat.
+
+	\item \textbf{/proc/loadavg} - System load average
+
+	\item \textbf{/proc/uptime} - system uptime and idle time. Can also be
+		obtained using utility uptime.
+
+	\item \textbf{/proc/version} - Linux kernel version, build host, build date
+		etc. Can also be obtained by executing `uname -a`.
+
+\end{itemize}
+
+% }}} END-ITEMIZE : proc key directories
+
+Beneath the top-level /proc directory are a number of important subdirectories containing files with useful information. These include :
+
+% ITEMIZE : proc_subdirectories {{{
+
+\begin{itemize}[noitemsep]
+
+	\item \textbf{/proc/scsi} - Gives information about SCSI devices
+
+	\item \textbf{/proc/ide} - information about IDE devices
+
+	\item \textbf{/proc/net} - information about network activity and
+		configuration
+
+	\item \textbf{/proc/sys} - Kernel configuration parameters. The values in
+		files in this directory are editable by root, which I will further
+		explain below.
+
+	\item \textbf{/proc/} - information about process PID.
+
+\end{itemize}
+
+% }}} END-ITEMIZE : proc subdirectories
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : proc_filesystem
+
+\subsectionend
+% }}} END SUB-SECTION : process
+
+\onecolumn
+
+% TBOX TABLE : commands_overview {{{
+
+\tcolorboxtable
+{ Commands Overview }
+{ \label{table:commands_overview} }
+{ [width=\linewidth] }
+{
+
+\tabulartable
+{\linewidth}
+{t}
+{lll}
+{
+
+\rowcolor{table-subtopic}
+\multicolumn{3}{c}{ \textbf{Navigation \& Creation \& Destruction}}  \\
+\midrule
+\rowcolor{white} \multicolumn{3}{c}{ }  \\
+
+\textbf{clear}   & : & clear the terminal \\
+\textbf{pwd}     & : & Print working Directory \\
+\textbf{ls}      & : & list everything in current dir\\
+                 & : & can also list everything the dir if path is specified\\
+\textbf{cd}      & : & change directory \\
+\textbf{touch}   & : & creates an empty file \\
+\textbf{mkdir}   & : & makes a directory inside current directory with given name \\
+\textbf{rmdir}   & : & removes directory inside current directory with given name , but only works if specified dir is empty \\
+\textbf{rm}      & : & remove (delete) the file , will also work with directories , even if they are non empty \\
+\textbf{mv}      & : & move the file to the specified destination (Regex works). \\
+                 &   & Is also used to rename files. Just move the file into the same folder with a different name \\
+
+\rowcolor{white} \multicolumn{3}{c}{ }  \\
+\rowcolor{table-subtopic} \multicolumn{3}{c}{ \textbf{Manipulation}}  \\
+\midrule
+\rowcolor{white} \multicolumn{3}{c}{ }  \\
+
+
+\textbf{cat}      & : & prints out everything in the file \\
+\textbf{grep}     & : & Allows STDOUT manipulation , see\refssec{grep} \\
+\textbf{less}     & : & allows pagination of STDOUT \\
+\textbf{cut}      & : & remove section from STDOUT based on args\\
+\textbf{sort}     & : & sort the output produced on STDOUT \\
+\textbf{wc}       & : & gives char / byte / newline count of STDOUT \\
+\textbf{uniq}     & : & removed repeated lines from STDOUT\\
+\textbf{tail}     & : & print the last 10 lines of each file to STDOUT \\
+\textbf{wc}       & : & print the number of lines / character / bytes in a file depending on args \\
+\textbf{\textbar} & : & pipes all STDOUT from the first command into STDIN for second command \\
+
+\textbf{\&\&}     & : & runs command 2 iff command 1 runs succesfully ,i.e.\ returns true\\
+
+\rowcolor{white} \multicolumn{3}{c}{ }  \\
+\rowcolor{table-subtopic} \multicolumn{3}{c}{ \textbf{System}}  \\
+\midrule
+\rowcolor{white} \multicolumn{3}{c}{ }  \\
+
+\textbf{man}     & : & shows manual for command , as well as all avialable flags\\
+\textbf{ps}      & : & lists all the running processes \\
+\textbf{who}     & : & shows list of logged on users \\
+\textbf{w}       & : & shows list of logged on users and their processes\\
+\textbf{.}       & : & indicates current working directory \\
+\textbf{..}      & : & indicates parent of current working directory \\
+
+
+\textbf{find}     & : & \\
+\textbf{locate}   & : & \\
+\textbf{awk}      & : & \\
+\textbf{ack}      & : & \\
+\textbf{rename}   & : & rename files \\
+
+\rowcolor{white} \multicolumn{3}{c}{ }  \\
+\rowcolor{table-subtopic} \multicolumn{3}{c}{ \textbf{Users}}  \\
+\midrule
+\rowcolor{white} \multicolumn{3}{c}{ }  \\
+
+\textbf{useradd}  & : & Add a new user \\
+\textbf{userdel}  & : & Delete an existing user \\
+\textbf{usermod}  & : & Modify existing user somehow \\
+\textbf{newusers} & : & create multiple users simultaneously \\
+\textbf{passwd}   & : & set the password for a user \\
+
+}
+}
+
+% }}} End TBOX TABLE : commands_overview
+
+% TBOX TABLE : commands_overview {{{
+
+\tcolorboxtable
+{ Commands Overview 2 }
+{ \label{table:commands_overview_2} }
+{ [width=\linewidth] }
+{
+
+\tabulartable
+{\linewidth}
+{t}
+{lll}
+{
+
+\rowcolor{table-subtopic} \multicolumn{3}{c}{ \textbf{Process \& Signals}}  \\
+\midrule
+\rowcolor{white} \multicolumn{3}{c}{ }  \\
+
+\textbf{kill}   & : & tries to terminate a process , default SIGTERM (15) \\
+\textbf{kill} 9  & : & sends SIGKILL to brutally murder a process where it
+stands\\
+\textbf{killall} & : & SIGTERM all processes with the specified name\\
+\textbf{pkill} & : & kill all processes based on name or other attribute\\
+\textbf{pgrep} & : & kill all processes based on name or other attribute\\
+\textbf{pkill -u} & : & kill all processes for a certain user\\
+\textbf{nice} & : & run a process with specified niceness value\\
+\textbf{renice} & : & Change the niceness of a running process \footnote{be very
+very careful here. If you give a process too high importance you might not even
+be able to kill it since your kill signal will get less CPU time than the
+process itself. It might even take minutes just to renice the thing again to be
+able to kill it. Its just not a good time.}\\
+
+\textbf{strace} & : & gives a detailed view of system processes\\
+
+\rowcolor{white} \multicolumn{3}{c}{ }  \\
+\rowcolor{table-subtopic} \multicolumn{3}{c}{ \textbf{Network}}  \\
+\midrule
+\rowcolor{white} \multicolumn{3}{c}{ }  \\
+
+\textbf{ifconfig}   & : &  \\
+
+}
+}
+
+% }}} End TBOX TABLE : commands_overview
+
+
+\twocolumn
+\sectionend
+% }}} END SECTION : linux_sysadmin_course
+
+% SECTION : standards {{{
+\section{Standards}
+\label{sec:standards}
+
+% 	SUB-SECTION : posix {{{
+\subsection{POSIX}
+\label{ssec:posix}
+
+
+\subsectionend
+% }}} END SUB-SECTION : posix
+
+% 	SUB-SECTION : ansi {{{
+\subsection{ANSI}
+\label{ssec:ansi}
+
+
+\subsectionend
+% }}} END SUB-SECTION : ansi
+
+% 	SUB-SECTION : bsd {{{
+\subsection{BSD}
+\label{ssec:bsd}
+
+
+\subsectionend
+% }}} END SUB-SECTION : bsd
+
+\sectionend
+% }}} END SECTION : standards
+
+% SECTION : conventions {{{
+\section{Conventions}
+\label{sec:conventions}
+\parindent=0em
+
+
+All file names are case sensitive. So filename vivek.txt Vivek.txt VIVEK.txt all
+are three different files.
+
+You can use upper and lowercase letters, numbers, “.” (dot), and “\_”
+(underscore) symbols.
+
+You can use other special characters such as blank space, but they are hard to
+use and it is better to avoid them.
+
+In short, filenames may contain any character except / (root directory), which
+is reserved as the separator between files and directories in a pathname. You
+cannot use the null character.
+
+No need to use . (dot) in a filename. Some time dot improves readability of
+filenames. And you can use dot based filename extension to identify file. For
+example:
+
+.sh = Shell file
+
+.tar.gz = Compressed archive
+
+Most modern Linux and UNIX limit filename to 255 characters (255 bytes).
+However, some older version of UNIX system limits filenames to 14 characters
+only.
+
+A filename must be unique inside its directory. For example, inside /home/vivek
+directory you cannot create a demo.txt file and demo.txt directory name.
+However, other directory may have files with the same names. For example, you
+can create demo.txt directory in /tmp.
+
+Linux / UNIX: Reserved Characters And Words
+
+Avoid using the following characters from appearing in file names:
+
+%    /
+%    >
+%    <
+%    |
+%    :
+%    &
+
+Please note that Linux and UNIX allows white spaces, <, >, |, \, :, (, ), \&, ;,
+as well as wildcards such as ? and *, to be quoted or escaped using \ symbol. 
+
+. is used to separate a filetype extension, e.g. foo.txt.
+
+- or \_ is used to separate logical words, e.g. my-big-file.txt or sometimes
+my\_big\_file.txt. - is better because you don't have to press the Shift key (at
+least with a standard US English PC keyboard), others prefer \_ because it looks
+more like a space.
+
+So if I understand your example, backup-part2-random or backup\_part2\_random
+would be closest to the normal Unix convention.
+
+CamelCase is normally not used on Linux/Unix systems. Have a look at file names
+in /bin and /usr/bin. CamelCase is the exception rather than the rule on Unix
+and Linux systems.
+
+(NetworkManager is the only example I can think of that uses CamelCase, and it
+was written by a Mac developer. Many have complained about this choice of name.
+On Ubuntu, they have actually renamed the script to network-manager.)
+
+
+\textbf{\textit{Absolute vs.\ Relative Paths}}
+
+
+Absolute path means full true path to get to the thing you want to get to. This
+means that all aboslute paths must start with / i.e.\ they must all start in the
+root directory. So the absolute path to get to file in your Documents directory
+would be :
+
+/home/username/Documents/
+
+Relative paths are based on where you are currently in the system. As an example
+from your root directory if you cd into Documents, and then run ls. The ls
+command will be run relative to where you are and will therefore show the
+contents of the folder that you are in ,i.e.\ of Documents. Which means to get
+to the same file in the Documents directory as in the absolute path explanation
+, the path is now (if we are sitting on home) :
+
+Documents/
+
+Generally you want to be using Absolute paths as much as possible. This avoids
+confusion and works on all linux distributions. The reason I say this is because
+there are some commands (like ifconfig) that work based on relative paths in
+some distributions like Ubuntu , but on others like Debian they will not work
+unless the full absolute path is specified , i.e.\ , /sbin/ifconfig , which
+would work on both systems.
+
+There are also security reasons to use absolute paths since whenever you use
+relative paths to access / run some software some other process / program has to
+deal with figuring out the absolute path to it and the returning the relevant
+information. The program responsible for this translation might return the
+correct information or run the right software but it also has the ability to
+store any information that was passed as arguments to the command we are running
+since it is a literal man in the middle on your system.
+
+\sectionend
+% }}} END SECTION : conventions
+
+
+% :)
+
+% ----------------------------------------------------------------------------- 
+\bibliography{1_bibliography/references}
+\end{document}
+% =============================================================================
+% - EOF - EOF - EOF - EOF - EOF - EOF - EOF - EOF - EOF - EOF - EOF - EOF -
+% =============================================================================
+

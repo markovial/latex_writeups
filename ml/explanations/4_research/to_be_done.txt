@@ -1,0 +1,184 @@
+regression {{{
+
+	linear univariate   : motivation       : ✓ (25/05/21)
+	linear univariate   : notation         : ✓ (25/05/21)
+	linear univariate   : equation         : ✓ (25/05/21)
+	linear univariate   : cost function    :
+	linear univariate   : gradient descent :
+	linear univariate   : update rule      :
+
+	linear multivariate : motivation       :
+	linear multivariate : notation         :
+	linear multivariate : equation         :
+	linear multivariate : cost function    :
+	linear multivariate : gradient descent :
+	linear multivariate : update rule      :
+
+	polynomial          : motivation       :
+	polynomial          : notation         :
+	polynomial          : equation         :
+	polynomial          : cost function    :
+	polynomial          : gradient descent :
+	polynomial          : update rule      :
+
+	logistic            : motivation       :
+	logistic            : notation         :
+	logistic            : equation         :
+	logistic            : cost function    :
+	logistic            : gradient descent :
+	logistic            : update rule      :
+
+	feature scaling     : techniques       :
+	feature scaling     : proofs           :
+
+	stepwise regression :                  :
+	ridge regression    :                  :
+
+	Multi-variate Adaptive Regression SPlines (MARS) :  :
+	Locally Estimated Scatterploit Smoothing (LOESS) :  :
+
+}}}
+
+neural networks
+
+https://www.youtube.com/c/joshstarmer/videos
+
+------------------------
+GENERAL QUESTIONS
+------------------------
+Supervised Learning
+Unsupervised Learning
+Semi-Supervised Learning
+------------------------
+
+---------------------------
+INSTANCE BASED ALGORITHMS
+---------------------------
+
+K-Nearest Neighbour
+Learning Vector Quantization
+Self-Organizing Map
+Locally weighted Learning
+
+---------------------------
+
+---------------------------
+REGULARIZATION ALGORITHMS
+---------------------------
+Ridge Regression
+Least Absolute Shrinkage and Selection Operator (LASSO)
+Elastic Net
+Least Angle Regression (LASSO)
+---------------------------
+
+---------------------------
+DECISION TREE ALGORITHMS
+---------------------------
+
+Classification and Regression Tree
+Iterative Dichotomiser 3
+C4.5 and C5
+Chi-squared Automatic Interaction Detection
+Decision Stump
+M5
+Conditional Decision Trees
+
+---------------------------
+
+---------------------------
+BAYESIAN ALGORITHMS
+---------------------------
+
+Naive Bayes
+Gaussian Naive Bayes
+Multinomial Naive Bayes
+Average One Dependence Estimatos
+Bayesian Belief Network
+Bayesian Network
+
+---------------------------
+
+---------------------------
+CLUSTERING ALGORITHMS
+---------------------------
+
+K-Means Clustering
+k-medians
+Expectation maximization
+hierarchical clustering
+---------------------------
+
+---------------------------
+ASSOSIATION RULE LEARNING ALGORITHMS
+---------------------------
+
+Apriori algorithm
+eclat algorithm
+
+---------------------------
+
+---------------------------
+ARTIFICIAL NEURAL NETWORK
+---------------------------
+Perceptrons
+Backpropogation
+Hopfield Network
+Radial Basis Function Network
+---------------------------
+
+---------------------------
+DEEP LEARNING
+---------------------------
+
+Deep Boltzman Machine
+Deep beleif networks
+convolutional neural network
+Recurrent Neural Networks
+stack auto-encoders
+
+---------------------------
+
+---------------------------
+DIMENSIONALITY REDUCTION ALGORITHMS
+---------------------------
+
+Principle Component Analysis
+Principle Component Regression
+Partial Least Squares Regression
+Sammon Mapping
+Multidimensional Scaling
+Projection Pursuit
+Linear Discriminant Analysis
+Mixture Discriminant Analysis
+Quadratic Discriminant Analysis
+Flexible Discriminant Analysis
+
+---------------------------
+
+---------------------------
+ENSEMBLE ALGORITHMS
+---------------------------
+
+Boosting
+Bootsrapped Aggregation (Bagging)
+AdaBoost
+Stacked Generalization
+Gradient Boosting Machines
+Gradient Boosted Regression Trees
+Random Forest
+
+---------------------------
+
+
+---------------------------
+OTHERS
+---------------------------
+Gradient Descent
+Simulated Annealing
+BFS
+DFS
+Genetic Algorithms
+MiniMax Algorithm
+AlphaBeta Pruning
+---------------------------
+

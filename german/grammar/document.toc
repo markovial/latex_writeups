@@ -1,0 +1,85 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{List of Tables}{3}{Doc-Start}%
+\contentsline {section}{\numberline {1}{Nouns}}{4}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Gendered Nouns}{4}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Articles}{4}{subsection.1.2}%
+\contentsline {subsubsection}{\numberline {1.2.1}Article Tips : Masculine (Der)}{5}{subsubsection.1.2.1}%
+\contentsline {subsubsection}{\numberline {1.2.2}Article Tips : Feminine (Die)}{5}{subsubsection.1.2.2}%
+\contentsline {subsubsection}{\numberline {1.2.3}Article Tips : Neuter (Das)}{6}{subsubsection.1.2.3}%
+\contentsline {subsection}{\numberline {1.3}Plurals}{6}{subsection.1.3}%
+\contentsline {subsubsection}{\numberline {1.3.1}Plurals : Masculine Nouns}{6}{subsubsection.1.3.1}%
+\contentsline {subsubsection}{\numberline {1.3.2}Plurals : Feminine Nouns}{6}{subsubsection.1.3.2}%
+\contentsline {subsubsection}{\numberline {1.3.3}Plurals Neuter Nouns}{7}{subsubsection.1.3.3}%
+\contentsline {subsection}{\numberline {1.4}Cases}{7}{subsection.1.4}%
+\contentsline {subsubsection}{\numberline {1.4.1}Nominative}{7}{subsubsection.1.4.1}%
+\contentsline {subsubsection}{\numberline {1.4.2}Accusative}{8}{subsubsection.1.4.2}%
+\contentsline {subsubsection}{\numberline {1.4.3}Dative}{9}{subsubsection.1.4.3}%
+\contentsline {subsubsection}{\numberline {1.4.4}Genetive}{10}{subsubsection.1.4.4}%
+\contentsline {subsection}{\numberline {1.5}n-Declination}{11}{subsection.1.5}%
+\contentsline {subsection}{\numberline {1.6}Clauses}{11}{subsection.1.6}%
+\contentsline {subsection}{\numberline {1.7}Noun Contractions}{11}{subsection.1.7}%
+\contentsline {subsection}{\numberline {1.8}Adjectival Nouns}{12}{subsection.1.8}%
+\contentsline {section}{\numberline {2}{Verbs}}{14}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Imperative}{14}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Irregular / Strong Verbs}{15}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Tenses}{15}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1}Present (Präsens)}{15}{subsubsection.2.3.1}%
+\contentsline {subsubsection}{\numberline {2.3.2}Partizip I (Partizip Präsens)}{16}{subsubsection.2.3.2}%
+\contentsline {subsubsection}{\numberline {2.3.3}Partizip II (Partzip Perfekt)}{16}{subsubsection.2.3.3}%
+\contentsline {subsubsection}{\numberline {2.3.4}Present Perfect (Perfekt)}{16}{subsubsection.2.3.4}%
+\contentsline {subsubsection}{\numberline {2.3.5}Simple Past (Präteritum)}{18}{subsubsection.2.3.5}%
+\contentsline {subsubsection}{\numberline {2.3.6}Past Perfect (Plusquamperfekt)}{19}{subsubsection.2.3.6}%
+\contentsline {subsubsection}{\numberline {2.3.7}Future (Futur I)}{19}{subsubsection.2.3.7}%
+\contentsline {subsubsection}{\numberline {2.3.8}Future Perfect (Futur II)}{19}{subsubsection.2.3.8}%
+\contentsline {subsection}{\numberline {2.4}Konjunktiv II}{19}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Special Verbs}{20}{subsection.2.5}%
+\contentsline {subsubsection}{\numberline {2.5.1}Werden}{20}{subsubsection.2.5.1}%
+\contentsline {subsubsection}{\numberline {2.5.2}Lassen}{20}{subsubsection.2.5.2}%
+\contentsline {subsection}{\numberline {2.6}Modal Verbs}{20}{subsection.2.6}%
+\contentsline {subsection}{\numberline {2.7}Reflexive Verbs}{22}{subsection.2.7}%
+\contentsline {subsection}{\numberline {2.8}Verb Contraction}{22}{subsection.2.8}%
+\contentsline {section}{\numberline {3}{Pronouns}}{23}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Personal}{23}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Possessive}{23}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Reflexive}{23}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Indefinite Pronouns}{23}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Relative Pronouns}{23}{subsection.3.5}%
+\contentsline {section}{\numberline {4}{Prepositions}}{25}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Accusative prepositions}{25}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Dative Prepositions}{26}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Wechsel Prepositions}{26}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Genetive Prepositions}{26}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Temporal Prepositions}{26}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.6}Spatial Prepositions}{28}{subsection.4.6}%
+\contentsline {subsection}{\numberline {4.7}Pronouns with Prepositions}{28}{subsection.4.7}%
+\contentsline {subsection}{\numberline {4.8}Verbs with prepositions}{28}{subsection.4.8}%
+\contentsline {subsection}{\numberline {4.9}Zu}{28}{subsection.4.9}%
+\contentsline {subsection}{\numberline {4.10}Contractions}{28}{subsection.4.10}%
+\contentsline {section}{\numberline {5}{Adjectives}}{29}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Comparatives}{30}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Superlatives}{31}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Indefinite Adjectives}{32}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Demonstrative Adjectives}{32}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Adjectives as Adverbs}{32}{subsection.5.5}%
+\contentsline {subsection}{\numberline {5.6}Adjectives as Nouns}{32}{subsection.5.6}%
+\contentsline {subsection}{\numberline {5.7}Adjective Contractoins}{32}{subsection.5.7}%
+\contentsline {section}{\numberline {6}{Adverbs}}{33}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Temporal Adverbs}{33}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Frequency Adverbs}{33}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Spatial / Locative Adverbs}{33}{subsection.6.3}%
+\contentsline {subsubsection}{\numberline {6.3.1}Hin- and Her-}{34}{subsubsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.4}Causal / Conjunctional Adverbs}{34}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.5}Interrogative adverbs}{35}{subsection.6.5}%
+\contentsline {subsection}{\numberline {6.6}Adverbs of Manner}{35}{subsection.6.6}%
+\contentsline {subsection}{\numberline {6.7}Pronoun Adverbs}{35}{subsection.6.7}%
+\contentsline {section}{\numberline {7}{Sentence Structures}}{36}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Clauses}{36}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Conjunctions}{36}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Cojunctions / Connectors}{36}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Negation}{36}{subsection.7.4}%
+\contentsline {subsection}{\numberline {7.5}Passive}{37}{subsection.7.5}%
+\contentsline {subsection}{\numberline {7.6}Infinitve + Zu}{37}{subsection.7.6}%
+\contentsline {subsection}{\numberline {7.7}Damit / Um .. Zu .. / Zum}{38}{subsection.7.7}%
+\contentsline {subsection}{\numberline {7.8}Double Connectors}{38}{subsection.7.8}%
+\contentsline {section}{\numberline {8}References}{39}{section.8}%
+\contentsfinish 

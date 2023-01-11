@@ -1,0 +1,38 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{List of Tables}{2}{Doc-Start}%
+\contentsline {section}{List of Figures}{2}{Doc-Start}%
+\contentsline {section}{\numberline {1}Algebra}{3}{section.1}%
+\contentsline {section}{\numberline {2}Graphs}{4}{section.2}%
+\contentsline {section}{\numberline {3}Linear Algebra}{6}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Basics}{6}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Matrix Multiplication}{6}{subsubsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.2}Basis}{6}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Converting Basis}{7}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Rotating in a different Basis}{7}{subsubsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.3}Products}{7}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Inner Product}{7}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Outer Product}{7}{subsubsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.4}Operations}{7}{subsection.3.4}%
+\contentsline {subsubsection}{\numberline {3.4.1}Projections}{7}{subsubsection.3.4.1}%
+\contentsline {subsubsection}{\numberline {3.4.2}Rotations}{7}{subsubsection.3.4.2}%
+\contentsline {subsubsection}{\numberline {3.4.3}Scale}{7}{subsubsection.3.4.3}%
+\contentsline {subsubsection}{\numberline {3.4.4}Shear}{7}{subsubsection.3.4.4}%
+\contentsline {subsubsection}{\numberline {3.4.5}Pivots}{7}{subsubsection.3.4.5}%
+\contentsline {subsubsection}{\numberline {3.4.6}Transpose}{7}{subsubsection.3.4.6}%
+\contentsline {subsubsection}{\numberline {3.4.7}Conjugate}{7}{subsubsection.3.4.7}%
+\contentsline {subsubsection}{\numberline {3.4.8}Complex Conjugate}{7}{subsubsection.3.4.8}%
+\contentsline {subsection}{\numberline {3.5}Properties}{8}{subsection.3.5}%
+\contentsline {subsubsection}{\numberline {3.5.1}Orthogonoal}{8}{subsubsection.3.5.1}%
+\contentsline {subsubsection}{\numberline {3.5.2}Positive}{8}{subsubsection.3.5.2}%
+\contentsline {subsection}{\numberline {3.6}Spaces}{8}{subsection.3.6}%
+\contentsline {subsection}{\numberline {3.7}Eigenvectors}{8}{subsection.3.7}%
+\contentsline {subsubsection}{\numberline {3.7.1}Eigenbasis}{9}{subsubsection.3.7.1}%
+\contentsline {subsection}{\numberline {3.8}Factorization}{9}{subsection.3.8}%
+\contentsline {subsubsection}{\numberline {3.8.1}Gram-Schmidt}{9}{subsubsection.3.8.1}%
+\contentsline {subsubsection}{\numberline {3.8.2}Singular Value Decomposition}{9}{subsubsection.3.8.2}%
+\contentsline {section}{\numberline {4}Calculus}{9}{section.4}%
+\contentsline {section}{\numberline {5}Multivariable Calculus}{10}{section.5}%
+\contentsfinish 
+\contentsline {section}{\numberline {6}Sequences , Series}{11}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Sequences}{11}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Series}{11}{subsection.6.2}%

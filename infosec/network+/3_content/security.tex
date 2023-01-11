@@ -1,0 +1,244 @@
+
+% SECTION : security {{{
+\section{Security}
+\label{sec:security}
+\parindent=0em
+
+something you know : password , pin , captcha , security questions
+something you have
+something about you
+somewhere you are
+something you do : typing speed
+
+federated trust system
+
+% 	SUB-SECTION : symmetric_encryption {{{
+\subsection{Symmetric Encryption}
+\label{ssec:symmetric_encryption}
+
+RC4
+AES
+
+Symmetric Encryption uses one key for both encryption and decryption.
+
+Super basically symmetric encryption will change some plaintext into cyphertext
+using a key and an algorithm.
+
+\subsectionend
+% }}} END SUB-SECTION : symmetric_encryption
+
+% 	SUB-SECTION : asymmetric_encryption {{{
+\subsection{Asymmetric Encryption}
+\label{ssec:asymmetric_encryption}
+
+% 		SUB-SUB-SECTION : hashing {{{
+\subsubsection{hashing}
+\label{sssec:hashing}
+
+MD5
+SHA1
+
+hashes confirm data integrity , they are not forms of encryption.
+
+Hash values are always fixed in size.
+
+
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : hashing
+
+% 		SUB-SUB-SECTION : digital_signatures {{{
+\subsubsection{Digital Signatures}
+\label{sssec:digital_signatures}
+
+Asymmetric Encryption uses two keys. One key only encrypts and the other key
+only decrypts. The key that encrypts is also called the public key. The key that
+decrypts is called the private key.
+
+Now that we have two keys , we can share one of them with others. The one we
+share is the public encryption key. The guy who has this key can then send over
+his own public key. This process is known as a key exchange.
+
+Public keys aernt really protected all that much , since the only thing you can
+do with it is encrypt data. The only person who can actually decrypt the data is
+the guy who has the exact corresponding private decryption key to that public
+encryption key.
+
+Keep in mind though that both the public encryption key and the private
+decryption key are basically just strings of binary. There is no rule built into
+the key itself saying that you can only decrypt with this key. The simple faact
+is that the algorithmn generated two keys ( binary strings ) and we happen to be
+using one of those strings arbitrarily as a public encryption key and another
+one as a private decryption key.
+
+There are two problems that arise here :
+
+1. How do you know that the domain claiming to send the public key is the real
+domain you wished to get the public key for ?
+
+2. How do we verify that the the person who sent the information is actually the
+owner of the public key that was sent ?
+
+To solve this problem we use a digital signature.
+
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : digital_signatures
+
+% 		SUB-SUB-SECTION : certificates {{{
+\subsubsection{Certificates}
+\label{sssec:certificates}
+
+Digital Certificates and Anti-phishing
+
+When a web browser communicates with a secure (HTTPS) server, it accepts the
+server's digital certificate to use its public key to encrypt communications.
+Because of the special way that the keys are linked, the public key cannot be
+used to decrypt the message once encrypted. Only the linked private key can be
+used to do that. The private key must be kept secret. This is referred to as
+asymmetric encryption. 
+
+Having a certificate is not in itself any proof of identity. The browser and
+server rely upon a third-party—the Certificate Authority (CA)—to vouch for the
+server's identity. This framework is called Public Key Infrastructure (PKI).
+
+A browser is pre-installed with a number of root certificates that are
+automatically trusted. These represent the commercial CAs that grant
+certificates to most of the companies that do business on the web. 
+
+Digital Signature : When we are trying to have secure communications and verify
+the integrity of the files sent as well as the identity of the sender ( because
+the sender could be some evil dude ) , we use encryption and hashing together. A
+digital signature basically serves to verify the owner / sender of the private
+key as well as the information being sent.
+
+
+what I as a sender do is the following :
+
+1. Participate in public key exchange
+2. Encrypt the entire information being sent (e.g. webpage) using a private key
+3. Hash the entire encrypted page
+4. Send the hashed encrypted page to the guy who has my public key and requested
+the info
+5. Dude will unencrypt the page using the public key
+
+This is called a digital signature
+
+Digital Certificate : A digital certificate is a collection of a public key , a
+digital signature of the sending party (i.e. the guy who owns this particular
+public key) to verify that the public / private key belongs to the sender , as
+well as a third party signature that verifies that the sender actually is who he
+says he is.
+
+Unsigned Certificate :
+
+Self Signed Certificate : A self-signed certificate can throw a 443 error, as
+the certificate has not been issued by a certifcate authority.
+
+Any expired certificate can be viewed , then fiexed by getting a new certificate
+from the issuer or accepting the certificate in its current state.
+
+
+Web of Trust :
+
+PKI (Public Key Infrastructure) : 
+
+Certificate Authorities (CA) :
+
+CRL
+
+OCSP : 
+
+
+\subsubsectionend
+% }}} END SUB-SUB-SECTION : certificates
+
+
+\subsectionend
+% }}} END SUB-SECTION : asymmetric_encryption
+
+% symmetric encryption {{{
+
+
+% }}}
+
+% asymmetric encryption {{{
+
+
+
+
+% }}}
+
+
+
+
+% 	SUB-SECTION : wireless_security {{{
+\subsection{Wireless Security}
+\label{ssec:wireless_security}
+
+
+\subsectionend
+% }}} END SUB-SECTION : wireless_security
+
+
+
+
+
+% malware {{{
+
+There are types of malware :
+
+- Viruses and Worms
+- Tojan Horse
+- Adware
+- Spyware
+- Randomware / Crypto-Malware
+- Logic Bomb
+- Rootkit and Backdoors
+
+
+RAT ( Remote Access Trojan )
+Polymorphic Malware
+Keyloggers
+Armored Viruses
+
+
+
+
+
+
+
+
+% }}}
+
+% DDoS {{{
+
+Distributed Denial of Service
+
+A Denial of Service Attack Basically Prevents other from accessing a system.
+
+A Distrubuted Denial of Service does the same thing as a DoS attack except this
+time using a bunch of different computers.
+
+There are three types od DoS ( Denial of Service ) :
+
+- Volume Attack : Flood the server with ping , or udp etc \ldots so that the
+server is not able to handle the amount of network traffic and goes down.
+- Protocol Attack
+- Application Attack
+
+
+Slow Loris Attack
+Smurf Attack
+
+BotNet
+
+
+% }}}
+
+
+
+
+
+\sectionend
+% }}} END SECTION : security

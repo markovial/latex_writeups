@@ -1,0 +1,169 @@
+
+% SECTION : layer_4_transport {{{
+\section{Layer 4 : Transport}
+\label{sec:layer_4_transport}
+\parindent=0em
+
+Layer 4, the Transport Layer
+
+The transport layer works on two determined communication modes: Connection oriented and connectionless. This layer transmits data from source to destination node.
+
+It uses the most important protocols of OSI protocol family, which are: Transmission Control Protocol (TCP), UDP, SPX, DCCP and SCTP.
+% 	SUB-SECTION : proxy_servers {{{
+\subsection{Proxy Servers}
+\label{ssec:proxy_servers}
+
+A proxy server, also known as a "proxy" or "application-level gateway", is a
+computer that acts as a gateway between a local network (for example, all the
+computers at one company or in one building) and a larger-scale network such as
+the internet. Proxy servers provide increased performance and security. In some
+cases, they monitor employees' use of outside resources.
+
+A proxy server works by intercepting connections between sender and receiver.
+All incoming data enters through one port and is forwarded to the rest of the
+network via another port. By blocking direct access between two networks, proxy
+servers make it much more difficult for hackers to get internal addresses and
+details of a private network.
+
+Some proxy servers are a group of applications or servers that block common
+internet services. For example, an HTTP proxy intercepts web access, and an SMTP
+proxy intercepts email. A proxy server uses a network addressing scheme to
+present one organization-wide IP address to the internet. The server funnels all
+user requests to the internet and returns responses to the appropriate users. In
+addition to restricting access from outside, this mechanism can prevent inside
+users from reaching specific internet resources (for example, certain websites).
+A proxy server can also be one of the components of a firewall.
+
+Proxies may also cache web pages. Each time an internal user requests a URL from
+outside, a temporary copy is stored locally. The next time an internal user
+requests the same URL, the proxy can serve the local copy instead of retrieving
+the original across the network, improving performance.
+
+Do not confuse a proxy server with a NAT (Network Address Translation) device. A
+proxy server connects to, responds to, and receives traffic from the internet,
+acting on behalf of the client computer, while a NAT device transparently
+changes the origination address of traffic coming through it before passing it
+to the internet.
+
+For those who understand the OSI (Open System Interconnection) model of
+networking, the technical difference between a proxy and a NAT is that the proxy
+server works on the transport layer (layer 4) or higher of the OSI model,
+whereas a NAT works on the network layer (layer 3).
+
+A proxy is any device that acts like an intermedieary between two different
+devices tha are in a session. This means that a proxy will sit between a client
+and a server when they are talking.
+
+Proxies are all going to be application specific. As an example if we want to
+channel HTTP traffic through the proxy then we would have a web proxy. Other
+types of proxies , all application specific are :
+
+- Web Proxy
+- FTP Proxy
+- VoIP Proxy
+
+
+Transparent Proxy
+
+
+% Forward Proxy Server {{{
+
+A forward proxy sits behind the network firewall and in front of the client. In
+this case the client would be aware of the existence of this proxy. The client
+would speak to the proxy and then the proxy after doing whatever it is doing
+would forward the clients request to whichever server that the client wanted to
+talk to.
+
+Forward Proxies can be a dedicated box , or a peice of software that is running
+on any computer somewhere.
+
+Most forward proxy servers would act like firewalls , by providing content
+filtering , ad blocking and stuff.
+
+% }}}
+
+% Reverse Proxy Server {{{
+
+% }}}
+
+This is a complete reverse of a forward server. In this case the proxy will
+represent the actual server that we are communicating with. This means that the
+client will send a request , the proxy server will intercept the request , and
+send that request to the actual server on behalf of the client , the server
+responds not to the client , but to the request of the proxy server. The proxy
+then returns whatever information was requested to the original client.
+
+The main functions of reverse proxy servers is to protect the server instead of
+the client. Therefore they have features such as :
+
+- high security
+- handle DoS attacks
+- load balancing
+- caching
+- encryption acceleration
+
+\subsectionend
+% }}} END SUB-SECTION : proxy_servers
+
+% 	SUB-SECTION : tcp {{{
+\subsection{TCP}
+\label{ssec:tcp}
+
+NCP : Network Control protocol , precursor to tcp
+
+TCP Acceleration : TCP acceleration is the name of a series of techniques for
+achieving better throughput on a network connection than standard TCP achieves,
+without modifying the end applications. It is an alternative or a supplement to
+TCP tuning. 
+
+\subsectionend
+% }}} END SUB-SECTION : tcp
+
+% 	SUB-SECTION : udp {{{
+\subsection{UDP}
+\label{ssec:udp}
+
+
+\subsectionend
+% }}} END SUB-SECTION : udp
+
+% 	SUB-SECTION : ports_port_numbers {{{
+\subsection{Ports / Port Numbers}
+\label{ssec:ports_port_numbers}
+
+Yes, its the 4th layer (transport) of the 7 layers for the OSI model.
+
+Reading your last post/question, if you're also asking about the TCP/IP model,
+it's the 3rd layer (transport) of the 4 layers for that model.
+
+Port numbers, in IP, are used by both TCP and UDP. Port numbers all quick
+"sorting" of received packets, to processes that want them. Some applications
+have been "assigned" specific port numbers. For example, HTTP has assigned to it
+port 80. So, when a client wants to contact a HTTP server, its uses destination
+port of 80 and a source port unique to the process making the request. This
+allows the receiving host to send any received packets with a destination of
+port 80 to the processes "listening" for those packets, which if there is one,
+would normally be a HTTP server process.
+
+When the HTTP server responds, it uses the client's source port as the reply's
+destination port and it might use port 80 for the reply packet's source port.
+This allows the original client to forward the port quickly to the process that
+made the request.
+
+Although many applications have "assigned" ports, applications might use other
+port numbers. I.e. the port number doesn't control an application, it's just a
+convenience. For example, you could configure a HTTP server to "listen" on port
+8080. Now, either the client needs to know that too, or it would need to send
+its HTTP request to all possible 65K port numbers.
+
+\subsectionend
+% }}} END SUB-SECTION : ports_port_numbers
+
+
+DCCP
+SCTP
+RSVP
+
+
+\sectionend
+% }}} END SECTION : layer_4_transport

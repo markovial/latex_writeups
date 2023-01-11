@@ -1,0 +1,75 @@
+% =============================================================================
+\input{0_includes/0_preamble.tex}
+
+%  {{{
+
+\makeatletter
+% \overarrow@ and \arrowfill@ are defined in amsmath
+\newcommand*{\harpoon}{\mathpalette{\overarrow@\rightharpoonupfill@}}
+\newcommand*{\rightharpoonupfill@}{\arrowfill@\relbar\relbar\rightharpoonup}
+\makeatother
+
+\DeclareFontFamily{U}{matha}{\hyphenchar\font45}
+\DeclareFontShape{U}{matha}{m}{n}{
+      <5> <6> <7> <8> <9> <10> gen * matha
+      <10.95> matha10 <12> <14.4> <17.28> <20.74> <24.88> matha12
+      }{}
+\DeclareSymbolFont{matha}{U}{matha}{m}{n}
+\DeclareMathSymbol{\varrightharpoonup}{3}{matha}{"E1}
+
+% }}}
+
+% ============================================================================ 
+\begin{document}
+%\input{0_includes/1_title_page.tex}
+\input{0_includes/2_contents_page.tex}
+
+
+\input{3_content/algebra.tex}
+\input{3_content/graphs.tex}
+\input{3_content/linear_algebra.tex}
+\input{3_content/calculus.tex}
+
+
+% SECTION : sequences_series {{{
+\section{Sequences , Series}
+\label{sec:sequences_series}
+\parindent=0em
+
+% 	SUB-SECTION : sequences {{{
+\subsection{Sequences}
+\label{ssec:sequences}
+\parindent=0em
+
+Geometric Sequences
+Arithmetic Sequences
+
+\subsectionend
+% }}} END SUB-SECTION : sequencesSeries are just sequences added together
+% 	SUB-SECTION : series {{{
+\subsection{Series}
+\label{ssec:series}
+\parindent=0em
+
+Infinite Geometric Series
+
+\[
+	\sum^{\infty}_{i=0} { {\alpha}^{i}} = 1 + {\alpha} + {\alpha}^2 + \ldots = \frac{1}{1-\alpha}  \;\; , \;\;|\alpha| < 1
+\]
+
+
+\subsectionend
+% }}} END SUB-SECTION : series
+
+\sectionend
+% }}} END SECTION : sequences_series
+
+
+
+% ----------------------------------------------------------------------------- 
+%\bibliography{1_bibferences}
+\end{document}
+% =============================================================================
+% - EOF - EOF - EOF - EOF - EOF - EOF - EOF - EOF - EOF - EOF - EOF - EOF -
+% =============================================================================
+

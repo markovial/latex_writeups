@@ -1,0 +1,162 @@
+{{{
+
+Machine Learning DEF 
+
+A well-posed learning Problem : A computer program is said
+
+to learn from experience  : E
+with respect to some task : T
+and performance measure   : P
+
+if its performance on     : T
+as measured by           : P
+improves with experience : E
+
+Tom Mitchell (1988)
+
+The various types of Machine Learning algorithms :
+
+Supervised Learning
+Unsupervised Learning
+Reinforcement Learning
+Recommender systems
+
+SUPERVISED LEARNING
+
+Regression : Predict continuous function f(x) based on given labelled data set
+
+In a regression problem, we are trying to predict results within a continuous
+output, meaning that we are trying to map input variables to some continuous
+function. 
+
+Given data about the size of houses on the real estate market, try to predict their price. Price as a function of size is a continuous output, so this is a regression problem.
+
+(a) Regression - Given a picture of a person, we have to predict their age on the basis of the given picture
+
+
+
+Classification : Predict discrete values ( 0 , 1 , etc) based on given labelled
+data set of previous classifications
+
+In a classification problem, we are instead trying to predict results in a discrete output. In other words, we are trying to map input variables into discrete categories. 
+
+the house "sells for more or less than the asking price." Here we are classifying the houses based on price into two discrete categories.
+
+(b) Classification - Given a patient with a tumor, we have to predict whether the tumor is malignant or benign.
+
+All these algorithms mentioned work on a predefined list of features. There can
+be anywhere from 1 to n features that represent a given data set. As an example
+we can represent a classification problem for classifying benign from malignant
+tumors using just 2 features (variables) :
+
+Age
+Tumor Size
+
+or we can use 5 features (variables) :
+
+Age
+Tumor Size
+Clump Thickness
+Uniformity of Cell Size
+Uniformity of Cell Shape
+
+For some ML problems what you actually want to do is use an infinite number of
+features or attributes. This seems impractical because how do you even store an
+infinite number of features for one data point , much less an infinite number of
+features for 100s and 1000s of data points on a finite amount of memory. Well
+there are some neat mathematical tricks provided by a learning algorithm called
+a support vector machine that enable us to do stuff like this.
+
+
+
+
+UNSUPERVISED LEARNING
+
+In an unsupervised learning environment , we have data that has no labels at
+all. This means we have data , but are not told what to do with it , or what
+each data point even is, but we have to find some sort of relationship between
+the data, or some structure in the data. As long as we are not giving the
+algorithm the answer / label for any of the data it is a unsupervised learning
+problem.
+
+Unsupervised learning allows us to approach problems with little or no idea what our results should look like. We can derive structure from data where we don't necessarily know the effect of the variables.
+
+We can derive this structure by clustering the data based on relationships among the variables in the data.
+
+With unsupervised learning there is no feedback based on the prediction results.
+
+
+Clustering Algorithm
+
+e.g. : clustering stories from multiple news sources into one group 
+astronomical data analysis
+social network analysis
+market / customer segmentation
+
+identifying which machines in a given data center tend to work together
+
+Non-Clustering Unsupervised Learning
+
+
+cocktail party algorithm : separates multiple audio sources out from each other
+based on unsupervised algorithm
+
+
+Prototyping language for machine learning algorithms : Octave / Matlab
+
+
+LINEAR REGRESSION
+
+supervised learning has training sets and testing sets
+
+In linear regression we will be given at least the following three things :
+
+
+m = Number of training examples
+x = input variables / features
+y = output variables / targets
+
+(x,y) = one training example
+(x^i , y^i ) = the ith training example
+
+Given this training set , we feed this into our learning algorithm to obtain
+what is known as a hypothesis function h(x)
+
+So given a input value x , the hypothesis h tries to output a corresponding
+y also denoted as h(x).
+
+So how do we represent h ?
+
+We use the equation of a line y = mx + b , but we write it in linear regression
+terms.
+
+h \theat
+
+
+
+
+  }}}
+
+convex functions {{{
+
+Convex Functions
+
+A convex function is defined as follows :
+
+Let $X$ be a convex set in a real vector space and let $f : X \rightarrow
+\mathbb{R} $. Then : 
+
+	$f$ is called convex if : 
+		\[
+			\begin{array}{ l@{} l@{} }
+		\forall x_1 , x_2 \in X , \forall t \in [0,1] \\
+			f(tx_1 + (1 - t)x_2)
+			\; \leq \;
+			tf(x_1) + (1 - t)f(x_2)
+		\end{array}
+		\]
+
+
+
+}}}
+
